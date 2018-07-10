@@ -1,0 +1,208 @@
+package com.kddi.android.UtaPass.sqatest.pages ;
+
+import com.google.android.gms.tasks.RuntimeExecutionException;
+import com.kddi.android.UtaPass.R ;
+import com.kddi.android.UtaPass.sqatest.common.lineup.* ;
+import com.kddi.android.UtaPass.sqatest.common.UtaPassUtil;
+
+import android.support.test.espresso.NoMatchingViewException;
+import android.support.test.espresso.ViewInteraction ;
+import android.support.test.espresso.contrib.RecyclerViewActions;
+import android.support.test.espresso.matcher.ViewMatchers;
+import android.view.View;
+
+import static android.support.test.espresso.Espresso.onView ;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
+import static android.support.test.espresso.matcher.ViewMatchers.* ;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed ;
+import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
+import static org.hamcrest.Matchers.*;
+import org.hamcrest.Matcher;
+
+public class StreamPage extends BasicPage{
+    private final int MAX_LINEUP_OBJECT             = 13 ;
+    private final int POSITION_SPOTLIGHT            = 0 ;
+    private final int POSITION_RADIO                = 1 ;
+    private final int POSITION_LISTEN_WITH          = 2 ;
+    private final int POSITION_LIVE                 = 3 ;
+    private final int POSITION_ARTIST_NEW_RELEASE   = 4 ;
+    private final int POSITION_DAILY_MIX            = 5 ;
+    private final int POSITION_TOP_CHARTS           = 6 ;
+    private final int POSITION_POPULAR_ARTIST       = 7 ;
+    private final int POSITION_WHATS_NEW            = 8 ;
+    private final int POSITION_NEW_SONGS_HITS_SONGS = 9 ;
+    private final int POSITION_YOU_MAY_ALSO_LIKE    = 10 ;
+    private final int POSITION_MEMBER_PRIVILEGES    = 11 ;
+    private final int POSITION_RUN_AWAY             = 12 ;
+    private int[] lineupExistence ;
+
+
+    public StreamPage() {
+        this.item = onView( withId( R.id.navigation_stream ) ) ;
+
+        this.lineupExistence = new int[ this.MAX_LINEUP_OBJECT ] ;
+        for(int i = 0; i < this.MAX_LINEUP_OBJECT; i++ ) {
+            this.lineupExistence[ i ] = 1 ;
+        }
+    }
+
+    public void _ready() {
+        this.retryWhenNotReady = false ;
+
+        this.streamTab().ready() ;
+        this.libraryTab().ready() ;
+        this.searchTab().ready() ;
+
+        // According to spec, spotlight line-up must be at position 0
+        // thus, it is a good checkpoint to see if stream page is ready
+        this.spotlightLineUp().ready() ;
+
+        // then, calculate position for all line-up objects
+        this.refreshPositionOfLineUpObjects() ;
+    }
+
+    private void refreshPositionOfLineUpObjects() {
+
+        // Calculating position by lineup objects' existence.
+        this.lineupExistence[ this.POSITION_RADIO       ] = this.hasRadioLineUp()      ? 1 : 0 ;
+        this.lineupExistence[ this.POSITION_LISTEN_WITH ] = this.hasListenWithLineUp() ? 1 : 0 ;
+        this.lineupExistence[ this.POSITION_LIVE        ] = this.hasLiveLineUp()       ? 1 : 0 ;
+
+        this.swipeToSpotlightLineUp() ;
+    }
+
+    public boolean hasRadioLineUp() {
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_RADIO ) ) ;
+        return this.isVisibleByGetText(
+                allOf( withId( R.id.item_list_title ),
+                       anyOf( withText( RadioLineUp.titleInEnglish ),
+                              withText( RadioLineUp.titleInJapanese) ) ) ) ;
+    }
+
+    public boolean hasListenWithLineUp() {
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_LISTEN_WITH ) ) ;
+        return this.isVisibleByGetText(
+                allOf( withId( R.id.item_list_title ),
+                        anyOf( withText( ListenWithLineUp.titleInJapanese ),
+                               withText( ListenWithLineUp.titleInEnglish ) ) ) ) ;
+    }
+
+    public boolean hasLiveLineUp() {
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_LIVE ) ) ;
+        return this.isVisibleByGetText(
+                allOf( withId( R.id.item_list_title ),
+                       anyOf( withText( LiveLineUp.titleInEnglish ),
+                              withText( LiveLineUp.titleInJapanese) ) ) ) ;
+    }
+
+    public void swipeToLineUpObject( int position ) {
+        onView( withId( R.id.stream_recycler_view ) ).perform( scrollToPosition( position ) ) ;
+    }
+
+    private int getPosition( int lineupId ) {
+        int positionInStreamPage = -1 ;
+        for( int i = 0; i <= lineupId; i++ ) {
+            positionInStreamPage += this.lineupExistence[ i ] ;
+        }
+
+        if( positionInStreamPage == -1 ) {
+            String msg = String.format(
+                    "Failto get positionInStreamPage: '%s'",
+                    positionInStreamPage ) ;
+            throw new RuntimeException( msg ) ;
+        }
+
+        return positionInStreamPage ;
+    }
+
+    public void swipeToSpotlightLineUp() {
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_SPOTLIGHT ) ) ;
+    }
+
+    public void swipeToLiveLineUp() {
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_ARTIST_NEW_RELEASE ) ) ;
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_LIVE ) ) ;
+    }
+
+    public void swipeToArtistNewReleaseLineUp() {
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_DAILY_MIX ) ) ;
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_ARTIST_NEW_RELEASE ) ) ;
+    }
+
+    public void swipeToDailyMixLineUp(){
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_TOP_CHARTS ) ) ;
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_DAILY_MIX ) ) ;
+    }
+
+    public void swipeToTopChartsLineUp() {
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_POPULAR_ARTIST ) ) ;
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_TOP_CHARTS ) ) ;
+    }
+
+    public void swipeToPopularArtistLineUp() {
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_WHATS_NEW ) ) ;
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_POPULAR_ARTIST ) ) ;
+    }
+
+    public void swipeToWhatsNewLineUp() {
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_NEW_SONGS_HITS_SONGS ) ) ;
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_WHATS_NEW ) ) ;
+    }
+
+    public void swipeToNewSongsHitSongsLineUp() {
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_YOU_MAY_ALSO_LIKE ) ) ;
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_NEW_SONGS_HITS_SONGS ) ) ;
+    }
+
+    public void swipeToYouMayAlsoLikeLineUp() {
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_MEMBER_PRIVILEGES ) ) ;
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_YOU_MAY_ALSO_LIKE ) ) ;
+     }
+
+    public SpotlightLineUp spotlightLineUp() {
+        this.swipeToSpotlightLineUp() ;
+        return new SpotlightLineUp() ;
+    }
+
+    public LiveLineUp liveLineUp() {
+        this.swipeToLiveLineUp() ;
+        return new LiveLineUp() ;
+    }
+
+    public ArtistNewReleaseLineUp artistNewReleaseLineUp() {
+        this.swipeToArtistNewReleaseLineUp() ;
+        return new ArtistNewReleaseLineUp() ;
+    }
+
+    public DailyMixLineUp dailyMixLineUp() {
+        this.swipeToDailyMixLineUp() ;
+        return new DailyMixLineUp() ;
+    }
+
+    public TopChartsLineUp topChartsLineUp() {
+        this.swipeToTopChartsLineUp() ;
+        return new TopChartsLineUp() ;
+    }
+
+    public PopularArtistLineUp popularArtistLineUp() {
+        this.swipeToPopularArtistLineUp() ;
+        return new PopularArtistLineUp() ;
+    }
+
+    public WhatsNewLineUp whatsNewLineUp() {
+        this.swipeToWhatsNewLineUp() ;
+        return new WhatsNewLineUp() ;
+    }
+
+    public NewSongsHitSongsLineUp newSongsHitSongsLineUp() {
+        this.swipeToNewSongsHitSongsLineUp() ;
+        return new NewSongsHitSongsLineUp() ;
+    }
+
+    public YouMayAlsoLikeLineUp youMayAlsoLikeLineUp() {
+        this.swipeToYouMayAlsoLikeLineUp() ;
+        return new YouMayAlsoLikeLineUp() ;
+    }
+}

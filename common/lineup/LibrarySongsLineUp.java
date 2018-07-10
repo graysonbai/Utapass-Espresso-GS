@@ -1,11 +1,10 @@
-package com.kddi.android.UtaPass.sqatest.common.lineup ;
+package com.kddi.android.UtaPass.sqa_espresso.common.lineup ;
 
 import android.support.test.espresso.ViewInteraction;
 import android.view.View;
 
 import com.kddi.android.UtaPass.R;
-import com.kddi.android.UtaPass.sqatest.common.LibrarySongObject;
-import com.kddi.android.UtaPass.sqatest.common.UtaPassUtil;
+import com.kddi.android.UtaPass.sqa_espresso.common.* ;
 
 import org.hamcrest.Matcher;
 

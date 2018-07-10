@@ -1,7 +1,7 @@
-package com.kddi.android.UtaPass.sqatest.pages ;
+package com.kddi.android.UtaPass.sqa_espresso.pages ;
 
 import com.kddi.android.UtaPass.R ;
-import com.kddi.android.UtaPass.sqatest.common.lineup.LibrarySongsLineUp ;
+import com.kddi.android.UtaPass.sqa_espresso.common.lineup.LibrarySongsLineUp ;
 
 import static android.support.test.espresso.matcher.ViewMatchers.withId ;
 

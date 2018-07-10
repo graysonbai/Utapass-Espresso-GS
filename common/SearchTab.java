@@ -1,7 +1,7 @@
-package com.kddi.android.UtaPass.sqatest.common ;
+package com.kddi.android.UtaPass.sqa_espresso.common ;
 
 import com.kddi.android.UtaPass.R ;
-import com.kddi.android.UtaPass.sqatest.pages.SearchPage ;
+import com.kddi.android.UtaPass.sqa_espresso.pages.SearchPage ;
 
 import android.support.test.espresso.ViewInteraction ;
 import static android.support.test.espresso.Espresso.onView ;

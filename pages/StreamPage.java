@@ -1,27 +1,15 @@
-package com.kddi.android.UtaPass.sqatest.pages ;
+package com.kddi.android.UtaPass.sqa_espresso.pages ;
 
-import com.google.android.gms.tasks.RuntimeExecutionException;
 import com.kddi.android.UtaPass.R ;
-import com.kddi.android.UtaPass.sqatest.common.lineup.* ;
-import com.kddi.android.UtaPass.sqatest.common.UtaPassUtil;
-
-import android.support.test.espresso.NoMatchingViewException;
-import android.support.test.espresso.ViewInteraction ;
-import android.support.test.espresso.contrib.RecyclerViewActions;
-import android.support.test.espresso.matcher.ViewMatchers;
-import android.view.View;
+import com.kddi.android.UtaPass.sqa_espresso.common.lineup.* ;
 
 import static android.support.test.espresso.Espresso.onView ;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.* ;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed ;
 import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
 import static org.hamcrest.Matchers.*;
-import org.hamcrest.Matcher;
 
-public class StreamPage extends BasicPage{
+
+public class StreamPage extends BasicPage {
     private final int MAX_LINEUP_OBJECT             = 13 ;
     private final int POSITION_SPOTLIGHT            = 0 ;
     private final int POSITION_RADIO                = 1 ;

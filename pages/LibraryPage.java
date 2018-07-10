@@ -1,13 +1,6 @@
-package com.kddi.android.UtaPass.sqatest.pages ;
+package com.kddi.android.UtaPass.sqa_espresso.pages ;
 
-import com.kddi.android.UtaPass.sqatest.common.category.AlbumsCategory;
-import com.kddi.android.UtaPass.sqatest.common.category.ArtistsCategory;
-import com.kddi.android.UtaPass.sqatest.common.category.FavoriteCategory;
-import com.kddi.android.UtaPass.sqatest.common.category.MyPlaylistsCategory;
-import com.kddi.android.UtaPass.sqatest.common.category.MyUtaCategory;
-import com.kddi.android.UtaPass.sqatest.common.category.PurchasedMusicCategory;
-import com.kddi.android.UtaPass.sqatest.common.category.SongsCategory;
-import com.kddi.android.UtaPass.sqatest.common.category.VideosCategory;
+import com.kddi.android.UtaPass.sqa_espresso.common.category.* ;
 
 public class LibraryPage extends BasicPage{
 

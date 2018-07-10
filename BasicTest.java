@@ -1,6 +1,6 @@
-package com.kddi.android.UtaPass.sqatest ;
+package com.kddi.android.UtaPass.sqa_espresso ;
 
-import com.kddi.android.UtaPass.sqatest.common.RetryUnit ;
+import com.kddi.android.UtaPass.sqa_espresso.RetryUnit ;
 
 public class BasicTest {
 

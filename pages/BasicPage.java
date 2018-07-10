@@ -1,8 +1,8 @@
-package com.kddi.android.UtaPass.sqatest.pages ;
+package com.kddi.android.UtaPass.sqa_espresso.pages ;
 
 import android.support.test.espresso.Espresso;
 
-import com.kddi.android.UtaPass.sqatest.common.* ;
+import com.kddi.android.UtaPass.sqa_espresso.common.* ;
 
 public class BasicPage extends ViewObject{
 

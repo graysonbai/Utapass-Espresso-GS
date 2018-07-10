@@ -1,30 +1,17 @@
-package com.kddi.android.UtaPass.sqatest.common.lineup ;
+package com.kddi.android.UtaPass.sqa_espresso.common.lineup ;
 
-import android.support.test.espresso.ViewInteraction;
-import android.view.View;
-import android.widget.TextView;
+import android.support.test.espresso.ViewInteraction ;
+import android.view.View ;
 
-import com.kddi.android.UtaPass.R;
-import com.kddi.android.UtaPass.sqatest.common.CardObject;
-import com.kddi.android.UtaPass.sqatest.common.UtaPassUtil;
-import com.kddi.android.UtaPass.sqatest.pages.StreamPage;
+import com.kddi.android.UtaPass.R ;
+import com.kddi.android.UtaPass.sqa_espresso.common.* ;
 
-import org.hamcrest.Matcher;
+import org.hamcrest.Matcher ;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.matcher.ViewMatchers.hasSibling;
-import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
-import static android.support.test.espresso.matcher.ViewMatchers.withChild;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.anyOf;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
-import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
-import static android.support.test.espresso.action.ViewActions.click ;
+import static android.support.test.espresso.Espresso.onView ;
+import static android.support.test.espresso.matcher.ViewMatchers.* ;
+import static org.hamcrest.Matchers.allOf ;
+
 
 public class LiveLineUp extends LineUpObject {
 

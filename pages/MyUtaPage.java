@@ -1,20 +1,14 @@
-package com.kddi.android.UtaPass.sqatest.pages ;
-
-import android.support.test.espresso.ViewInteraction ;
-import android.view.View ;
+package com.kddi.android.UtaPass.sqa_espresso.pages ;
 
 import com.kddi.android.UtaPass.R ;
-import com.kddi.android.UtaPass.sqatest.common.* ;
-import com.kddi.android.UtaPass.sqatest.common.lineup.* ;
-
-import org.hamcrest.Matcher ;
+import com.kddi.android.UtaPass.sqa_espresso.common.* ;
+import com.kddi.android.UtaPass.sqa_espresso.common.lineup.* ;
 
 import java.util.regex.Pattern ;
 
 import static android.support.test.espresso.action.ViewActions.click ;
 import static android.support.test.espresso.Espresso.onView ;
 import static android.support.test.espresso.matcher.ViewMatchers.* ;
-import static org.hamcrest.Matchers.allOf ;
 
 
 public class MyUtaPage extends BasicPage{

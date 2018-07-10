@@ -1,25 +1,17 @@
-package com.kddi.android.UtaPass.sqatest.common.lineup ;
+package com.kddi.android.UtaPass.sqa_espresso.common.lineup ;
 
-import android.support.test.espresso.NoMatchingViewException;
 import android.support.test.espresso.ViewInteraction;
 import android.view.View;
 
 import com.kddi.android.UtaPass.R ;
-import com.kddi.android.UtaPass.sqatest.common.CardObject;
-import com.kddi.android.UtaPass.sqatest.common.UtaPassUtil;
-import com.kddi.android.UtaPass.sqatest.pages.StreamPage;
+import com.kddi.android.UtaPass.sqa_espresso.common.CardObject;
+import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 
 import org.hamcrest.Matcher;
 
 import static android.support.test.espresso.Espresso.onView ;
-import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
-import static android.support.test.espresso.matcher.ViewMatchers.hasSibling;
-import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA ;
-import static android.support.test.espresso.matcher.ViewMatchers.withChild;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static android.support.test.espresso.action.ViewActions.*;
 import static org.hamcrest.Matchers.*;
 
 public class NewSongsHitSongsLineUp extends LineUpObject {

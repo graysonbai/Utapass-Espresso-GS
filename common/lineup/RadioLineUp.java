@@ -1,18 +1,9 @@
-package com.kddi.android.UtaPass.sqatest.common.lineup ;
+package com.kddi.android.UtaPass.sqa_espresso.common.lineup ;
 
-import android.view.View;
-
-import com.kddi.android.UtaPass.R;
-import com.kddi.android.UtaPass.sqatest.pages.StreamPage;
-
-import org.hamcrest.Matcher;
-
-import static android.support.test.espresso.matcher.ViewMatchers.hasSibling;
-import static android.support.test.espresso.matcher.ViewMatchers.withChild;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.anyOf;
+import android.view.View ;
+import com.kddi.android.UtaPass.R ;
+import org.hamcrest.Matcher ;
+import static android.support.test.espresso.matcher.ViewMatchers.withId ;
 
 public class RadioLineUp extends LineUpObject {
 

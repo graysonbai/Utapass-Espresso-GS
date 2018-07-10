@@ -1,4 +1,4 @@
-package com.kddi.android.UtaPass.sqatest.common ;
+package com.kddi.android.UtaPass.sqa_espresso.common ;
 
 import android.support.test.espresso.ViewInteraction;
 import static android.support.test.espresso.action.ViewActions.click;

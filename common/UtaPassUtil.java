@@ -1,30 +1,15 @@
-package com.kddi.android.UtaPass.sqatest.common ;
+package com.kddi.android.UtaPass.sqa_espresso.common ;
 
-import com.kddi.android.UtaPass.R;
+import android.content.res.Resources ;
+import android.graphics.* ;
+import android.graphics.drawable.Drawable ;
+import android.support.test.espresso.* ;
+import android.support.test.espresso.action.* ;
+import android.util.Log ;
+import android.view.View ;
+import android.widget.ImageView ;
 
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.support.test.espresso.Espresso;
-import android.support.test.espresso.UiController;
-import android.support.test.espresso.ViewAction;
-import android.support.test.espresso.action.CoordinatesProvider;
-import android.support.test.espresso.action.GeneralLocation;
-import android.support.test.espresso.action.GeneralSwipeAction;
-import android.support.test.espresso.action.Press;
-import android.support.test.espresso.action.Swipe;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
-
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.actionWithAssertions;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import org.hamcrest.* ;
 
 public class UtaPassUtil {
 
@@ -129,14 +114,6 @@ public class UtaPassUtil {
     public static void pressBack() {
         Espresso.pressBack() ;
     }
-//    private class UtaPassSwipeAction implements ViewAction {
-//        @Override public Matcher<View> getConstraints() {...}
-//
-//        @Override public String getDescription() {...}
-//
-//        @Override
-//        public void perform(UiController uiController, View view) {
-//    }
 }
 
 

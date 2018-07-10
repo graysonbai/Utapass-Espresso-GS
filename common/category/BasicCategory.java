@@ -1,12 +1,12 @@
-package com.kddi.android.UtaPass.sqatest.common.category ;
+package com.kddi.android.UtaPass.sqa_espresso.common.category ;
 
-import com.kddi.android.UtaPass.sqatest.common.* ;
+import com.kddi.android.UtaPass.sqa_espresso.common.* ;
 
 import android.view.View ;
 import org.hamcrest.Matcher;
 
 import static android.support.test.espresso.Espresso.onView ;
-import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.click ;
 
 public abstract class BasicCategory extends ViewObject {
 

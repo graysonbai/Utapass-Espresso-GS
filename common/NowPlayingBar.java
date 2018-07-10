@@ -1,7 +1,6 @@
-package com.kddi.android.UtaPass.sqatest.common ;
+package com.kddi.android.UtaPass.sqa_espresso.common ;
 
 import com.kddi.android.UtaPass.R ;
-import com.kddi.android.UtaPass.sqatest.pages.SearchPage ;
 
 import android.view.View ;
 import android.support.test.espresso.ViewInteraction ;
@@ -11,10 +10,8 @@ import org.hamcrest.Matcher;
 
 import static android.support.test.espresso.Espresso.onView ;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.withId ;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed ;
 import static org.hamcrest.Matchers.* ;
 
 public class NowPlayingBar extends ViewObject{

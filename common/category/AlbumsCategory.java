@@ -1,4 +1,4 @@
-package com.kddi.android.UtaPass.sqatest.common.category ;
+package com.kddi.android.UtaPass.sqa_espresso.common.category ;
 
 import com.kddi.android.UtaPass.R ;
 import android.view.View;

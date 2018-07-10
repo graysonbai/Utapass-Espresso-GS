@@ -1,5 +1,5 @@
-package com.kddi.android.UtaPass.sqatest.common;
-import com.kddi.android.UtaPass.sqatest.pages.* ;
+package com.kddi.android.UtaPass.sqa_espresso.common ;
+import com.kddi.android.UtaPass.sqa_espresso.pages.* ;
 
 
 public class Navigator {

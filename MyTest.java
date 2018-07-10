@@ -1,9 +1,9 @@
-package com.kddi.android.UtaPass.sqatest ;
+package com.kddi.android.UtaPass.sqa_espresso ;
 
 import android.support.test.rule.ActivityTestRule ;
 import android.support.test.runner.AndroidJUnit4 ;
 import com.kddi.android.UtaPass.main.MainActivity ;
-import com.kddi.android.UtaPass.sqatest.common.* ;
+import com.kddi.android.UtaPass.sqa_espresso.common.* ;
 
 import org.junit.Rule ;
 import org.junit.Test ;

@@ -1,4 +1,4 @@
-package com.kddi.android.UtaPass.sqatest.common.lineup ;
+package com.kddi.android.UtaPass.sqa_espresso.common.lineup ;
 
 public abstract class LibraryLineUp extends LineUpObject {
 

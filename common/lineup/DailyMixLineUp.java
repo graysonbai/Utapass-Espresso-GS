@@ -1,13 +1,16 @@
-package com.kddi.android.UtaPass.sqatest.common.lineup ;
+package com.kddi.android.UtaPass.sqa_espresso.common.lineup ;
 
 import android.support.test.espresso.ViewInteraction ;
 import android.view.View ;
+
 import com.kddi.android.UtaPass.R ;
-import com.kddi.android.UtaPass.sqatest.common.CardObject;
+import com.kddi.android.UtaPass.sqa_espresso.common.CardObject ;
+
 import org.hamcrest.Matcher;
 
 import static android.support.test.espresso.Espresso.onView ;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withId ;
+
 
 public class DailyMixLineUp extends LineUpObject {
 

@@ -4,6 +4,8 @@ import android.support.test.rule.ActivityTestRule ;
 import android.support.test.runner.AndroidJUnit4 ;
 import com.kddi.android.UtaPass.main.MainActivity ;
 import com.kddi.android.UtaPass.sqa_espresso.common.* ;
+import com.kddi.android.UtaPass.sqa_espresso.pages.common.NowPlayingBar;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.songs.SongObject ;
 
 import org.junit.Rule ;
 import org.junit.Test ;
@@ -22,7 +24,7 @@ public class MyTest extends BasicTest {
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void play_song_in_all_tracks() {
+    public void play_song_in_songs() {
         this.navigator.streamPage()
                       .libraryTab()
                       .tap() ;
@@ -31,9 +33,9 @@ public class MyTest extends BasicTest {
                       .songsCategory()
                       .tap() ;
 
-        LibrarySongObject song = this.navigator.allTracksPage()
-                                               .songsLineUp()
-                                               .getSong( 0 ) ;
+        SongObject song = this.navigator.songsPage()
+                                        .songsLineUp()
+                                        .getSong( 0 ) ;
 
         // tap song to play it
         song.tap() ;
@@ -59,6 +61,58 @@ public class MyTest extends BasicTest {
                 song.getArtistName(),
                 nowPlayingBar.getArtistName()
             )
+        ) ;
+    }
+
+    @Test
+    public void play_song_in_albums() {
+        this.navigator.streamPage()
+                      .libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .albumsCategory()
+                      .tap() ;
+
+        this.navigator.albumsPage()
+                      .albumsLineUp()
+                      .getAlbum( 0 )
+                      .tap() ;
+
+        this.navigator.albumInfoPage()
+                      .songsLineUp()
+                      .getSong( 1 )
+                      .tap() ;
+
+        this.retry( () ->
+                this.navigator.myUtaPage().nowPlayingBar().isPlaying()
+        ) ;
+    }
+
+    @Test
+    public void play_song_in_artist() {
+
+    }
+
+
+    @Test
+    public void play_song_in_myuta() {
+        // TestRails: 1934617
+
+        this.navigator.streamPage()
+                      .libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .myUtaCategory()
+                      .tap() ;
+
+        this.navigator.myUtaPage()
+                      .playButton()
+                      .tap() ;
+
+        this.retry( () ->
+                this.navigator.myUtaPage().nowPlayingBar().isPlaying()
         ) ;
     }
 
@@ -124,28 +178,5 @@ public class MyTest extends BasicTest {
         this.sleep( 5 ) ;
         UtaPassUtil.pressBack() ;
 
-    }
-
-    @Test
-    public void play_song_in_myuta() {
-        // TestRails: 1934617
-
-        this.navigator.streamPage()
-                      .libraryTab()
-                      .tap() ;
-
-        this.navigator.libraryPage()
-                      .myUtaCategory()
-                      .tap() ;
-
-        this.navigator.myUtaPage()
-                      .playButton()
-                      .tap() ;
-
-        this.retry( () ->
-            this.navigator.myUtaPage().nowPlayingBar().isPlaying()
-        ) ;
-
-        this.sleep( 5 ) ;
     }
 }

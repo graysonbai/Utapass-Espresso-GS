@@ -1,12 +1,13 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages ;
 
 import com.kddi.android.UtaPass.R ;
+import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
 
 import android.support.test.espresso.ViewInteraction ;
 import static android.support.test.espresso.Espresso.onView ;
 import static android.support.test.espresso.matcher.ViewMatchers.withId ;
 
-public class SearchPage extends BasicPage{
+public class SearchPage extends BasicPage {
 
     private ViewInteraction item ;
 

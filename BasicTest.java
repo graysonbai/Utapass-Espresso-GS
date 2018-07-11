@@ -1,7 +1,5 @@
 package com.kddi.android.UtaPass.sqa_espresso ;
 
-import com.kddi.android.UtaPass.sqa_espresso.RetryUnit ;
-
 public class BasicTest {
 
     public void writeMsg( String msg ) {

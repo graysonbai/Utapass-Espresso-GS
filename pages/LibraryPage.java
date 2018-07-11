@@ -1,6 +1,7 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages ;
 
-import com.kddi.android.UtaPass.sqa_espresso.common.category.* ;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library._category.* ;
+import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
 
 public class LibraryPage extends BasicPage{
 

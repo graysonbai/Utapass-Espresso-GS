@@ -1,10 +1,21 @@
 package com.kddi.android.UtaPass.sqa_espresso.common ;
-import com.kddi.android.UtaPass.sqa_espresso.pages.* ;
+
+import com.kddi.android.UtaPass.sqa_espresso.pages.LibraryPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.SearchPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.StreamPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.AlbumsPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.MyUtaPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.SongsPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.albums.AlbumInfoPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream.LiveConcertPage;
 
 
 public class Navigator {
 
-    private AllTracksPage allTracksPage ;
+    private SongsPage songsPage ;
+    private AlbumsPage albumsPage ;
+    private AlbumInfoPage albumInfoPage ;
+
     private MyUtaPage myUtaPage ;
 
     public StreamPage streamPage() {
@@ -23,11 +34,25 @@ public class Navigator {
         return new LiveConcertPage().ready() ;
     }
 
-    public AllTracksPage allTracksPage() {
-        if( this.allTracksPage == null ) {
-            this.allTracksPage = new AllTracksPage().ready() ;
+    public SongsPage songsPage() {
+        if( this.songsPage == null ) {
+            this.songsPage = new SongsPage().ready() ;
         }
-        return this.allTracksPage ;
+        return this.songsPage ;
+    }
+
+    public AlbumsPage albumsPage() {
+        if( this.albumsPage == null ) {
+            this.albumsPage = new AlbumsPage() ;
+        }
+        return this.albumsPage ;
+    }
+
+    public AlbumInfoPage albumInfoPage() {
+        if( this.albumInfoPage == null ) {
+            this.albumInfoPage = new AlbumInfoPage() ;
+        }
+        return this.albumInfoPage ;
     }
 
     public MyUtaPage myUtaPage() {
@@ -36,4 +61,6 @@ public class Navigator {
         }
         return this.myUtaPage ;
     }
+
+
 }

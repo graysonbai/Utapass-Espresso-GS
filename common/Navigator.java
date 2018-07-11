@@ -4,6 +4,7 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.LibraryPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.SearchPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.StreamPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.AlbumsPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.ArtistsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.MyUtaPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.SongsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.albums.AlbumInfoPage;
@@ -15,6 +16,7 @@ public class Navigator {
     private SongsPage songsPage ;
     private AlbumsPage albumsPage ;
     private AlbumInfoPage albumInfoPage ;
+    private ArtistsPage artistsPage ;
 
     private MyUtaPage myUtaPage ;
 
@@ -53,6 +55,13 @@ public class Navigator {
             this.albumInfoPage = new AlbumInfoPage() ;
         }
         return this.albumInfoPage ;
+    }
+
+    public ArtistsPage artistsPage() {
+        if( this.artistsPage == null ) {
+            this.artistsPage = new ArtistsPage() ;
+        }
+        return this.artistsPage ;
     }
 
     public MyUtaPage myUtaPage() {

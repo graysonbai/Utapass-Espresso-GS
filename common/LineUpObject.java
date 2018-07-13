@@ -15,14 +15,10 @@ import static org.hamcrest.Matchers.* ;
 
 public abstract class LineUpObject extends ViewObject {
 
+    private int UN_INIT = -1 ;
     private int currentPosition = 0 ;
     protected int maxIndexOfLineUpObject = 9 ;
-    protected int maxIndexOfWindow ;
-
-
-    public LineUpObject() {
-        this.maxIndexOfWindow = this.getMaxIndexOfWindow() ;
-    }
+    protected int maxIndexOfWindow = this.UN_INIT ;
 
     public <T extends LineUpObject> T swipeToLeftmost() {
         this.getRecycleView().perform( scrollToPosition( 0 ) ) ;
@@ -82,6 +78,14 @@ public abstract class LineUpObject extends ViewObject {
     }
 
     protected int getMaxIndexOfWindow() {
+        if( this.maxIndexOfWindow == this.UN_INIT ) {
+            this.maxIndexOfWindow = this.calculateMaxIndexOfWindow() ;
+        }
+
+        return this.maxIndexOfWindow ;
+    }
+
+    protected int calculateMaxIndexOfWindow() {
         boolean isVisible ;
         for( int i = this.getMaxIndexOfLineUpObject(); i >= 0; i-- ) {
             isVisible = this.isVisible(
@@ -96,6 +100,10 @@ public abstract class LineUpObject extends ViewObject {
         }
 
         return this.getMaxIndexOfLineUpObject() ;
+    }
+
+    protected void resetMaxIndexOfWindow() {
+        this.maxIndexOfWindow = this.UN_INIT ;
     }
 
     protected ViewInteraction getRecycleView() {

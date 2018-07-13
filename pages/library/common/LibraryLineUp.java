@@ -4,18 +4,32 @@ import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
 
 public abstract class LibraryLineUp extends LineUpObject {
 
+    private TitleBar titleBar ;
+
     public LibraryLineUp() {
         this.setMaxIndexOfLineUpObject( 25 ) ;
     }
 
     protected int swipeToCardViewAndGetIndexOfWindow( int index ) {
-        this.swipeToLeftmost() ;
+        if( this.titleBar().isVisible() ) {
+            this.titleBar().swipeUp() ;
+            this.resetMaxIndexOfWindow() ;
+        }
 
-        if( index > this.maxIndexOfWindow ) {
-            this.swipeToPosition( index + 1 ) ;
-            return this.maxIndexOfWindow + 1 ;
+        this.swipeToLeftmost() ;
+        this.swipeToPosition( index ) ;
+
+        if( index > this.getMaxIndexOfWindow() ) {
+            return this.getMaxIndexOfWindow() ;
         }
 
         return index ;
+    }
+
+    public TitleBar titleBar() {
+        if( this.titleBar == null ) {
+            this.titleBar = new TitleBar() ;
+        }
+        return this.titleBar ;
     }
 }

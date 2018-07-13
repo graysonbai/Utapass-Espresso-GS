@@ -1,7 +1,6 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages ;
 
 import com.kddi.android.UtaPass.R ;
-import com.kddi.android.UtaPass.sqa_espresso.pages.stream.ArtistNewReleaseLineUp;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._lineup.* ;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
 

@@ -29,8 +29,6 @@ public class StreamPage extends BasicPage {
 
 
     public StreamPage() {
-        this.item = onView( withId( R.id.navigation_stream ) ) ;
-
         this.lineupExistence = new int[ this.MAX_LINEUP_OBJECT ] ;
         for(int i = 0; i < this.MAX_LINEUP_OBJECT; i++ ) {
             this.lineupExistence[ i ] = 1 ;

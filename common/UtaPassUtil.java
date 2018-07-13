@@ -137,6 +137,18 @@ public class UtaPassUtil {
     public static void pressBack() {
         Espresso.pressBack() ;
     }
+
+    public static void closeApp() {
+        try {
+            while( true ) {
+                UtaPassUtil.pressBack() ;
+                UtaPassUtil.sleep( 1, "for pressing back" ) ;
+            }
+
+        } catch( NoActivityResumedException ex ) {
+            UtaPassUtil.sleep( 3, "for launching next case" ) ;
+        }
+    }
 }
 
 

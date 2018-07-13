@@ -1,4 +1,4 @@
-package com.kddi.android.UtaPass.sqa_espresso.pages.stream ;
+package com.kddi.android.UtaPass.sqa_espresso.pages.stream._lineup ;
 
 import android.support.test.espresso.ViewInteraction ;
 import android.view.View ;

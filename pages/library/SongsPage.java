@@ -11,12 +11,12 @@ public class SongsPage extends BasicPage {
 
     private SongsLineUp songsLineUp ;
 
-    public String getTotalTracks() {
+    public String totalTracks() {
         String raw = this.getText( withId( R.id.view_all_track_shuffle_play_length ) ) ;
         return raw.split( " tracks · " )[ 0 ] ;
     }
 
-    public String getTotalTime() {
+    public String totalTime() {
         String raw = this.getText( withId( R.id.view_all_track_shuffle_play_length ) ) ;
         return raw.split( " tracks · " )[ 1 ] ;
     }

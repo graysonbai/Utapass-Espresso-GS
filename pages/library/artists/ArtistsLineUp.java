@@ -16,6 +16,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.allOf;
 
+
 public class ArtistsLineUp extends LibraryLineUp {
 
     protected Matcher<View> getMatcherToFindRecycleView() {
@@ -26,17 +27,17 @@ public class ArtistsLineUp extends LibraryLineUp {
         return withId( R.id.item_library_local_artist_icon ) ;
     }
 
-    public ArtistObject getArtist(int index ) {
+    public ArtistObject artist( int index ) {
         int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
         ArtistObject artist = new ArtistObject() ;
-        artist.setCoverPhoto( this.getCoverPhoto( indexInWindow ) ) ;
-        artist.setArtistName( this.getArtistName( indexInWindow ) ) ;
-        artist.setTotalAlbums( this.getTotalAlbums( indexInWindow ) ) ;
-        artist.setTotalSongs( this.getTotalSongs( indexInWindow ) ) ;
+        artist.photo( this.photo( indexInWindow ) ) ;
+        artist.name( this.name( indexInWindow ) ) ;
+        artist.albums( this.albums( indexInWindow ) ) ;
+        artist.songs( this.songs( indexInWindow ) ) ;
         return artist ;
     }
 
-    private String getArtistName( int indexInWindow ) {
+    private String name( int indexInWindow ) {
         return this.getText(
                 UtaPassUtil.withIndex(
                         allOf( withId( R.id.item_library_local_artist_title ),
@@ -44,10 +45,10 @@ public class ArtistsLineUp extends LibraryLineUp {
                         indexInWindow ) ) ;
     }
 
-    private String getTotalAlbums( int indexInWindow ) {
+    private String albums( int indexInWindow ) {
         java.util.regex.Matcher matcher =
                 Pattern.compile( "([0-9]+) albums?" )
-                       .matcher( this.getSubTitle( indexInWindow ) ) ;
+                       .matcher( this.subtitle( indexInWindow ) ) ;
 
         if( matcher.find() ) {
             return matcher.group( 1 ) ;
@@ -56,10 +57,10 @@ public class ArtistsLineUp extends LibraryLineUp {
         return "" ;
     }
 
-    private String getTotalSongs( int indexInWindow ) {
+    private String songs( int indexInWindow ) {
         java.util.regex.Matcher matcher =
                 Pattern.compile( "([0-9]+) songs?" )
-                       .matcher( this.getSubTitle( indexInWindow ) ) ;
+                       .matcher( this.subtitle( indexInWindow ) ) ;
 
         if( matcher.find() ) {
             return matcher.group( 1 ) ;
@@ -68,7 +69,7 @@ public class ArtistsLineUp extends LibraryLineUp {
         return "" ;
     }
 
-    private String getSubTitle( int indexInWindow ) {
+    private String subtitle( int indexInWindow ) {
         return this.getText(
                 UtaPassUtil.withIndex(
                         allOf( withId( R.id.item_library_local_artist_subtitle ),
@@ -76,7 +77,7 @@ public class ArtistsLineUp extends LibraryLineUp {
                         indexInWindow ) ) ;
     }
 
-    private ViewInteraction getCoverPhoto(int indexInWindow ) {
+    private ViewInteraction photo(int indexInWindow ) {
         return onView(
                 UtaPassUtil.withIndex(
                         allOf( withId( R.id.item_library_local_artist_icon ),

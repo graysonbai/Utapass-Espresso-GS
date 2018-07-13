@@ -24,12 +24,12 @@ public class AlbumsLineUp extends LibraryLineUp {
         return withId( R.id.item_library_local_album_icon ) ;
     }
 
-    public AlbumObject getAlbum(int index ) {
+    public AlbumObject album(int index ) {
         int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
         AlbumObject album = new AlbumObject() ;
-        album.setAlbumName( this.getAlbumName( indexInWindow ) ) ;
-        album.setArtistName( this.getArtistName( indexInWindow ) ) ;
-        album.setCoverPhoto( this.getCoverPhoto( indexInWindow ) ) ;
+        album.albumName( this.getAlbumName( indexInWindow ) ) ;
+        album.artistName( this.getArtistName( indexInWindow ) ) ;
+        album.photo( this.photo( indexInWindow ) ) ;
         return album ;
     }
 
@@ -49,7 +49,7 @@ public class AlbumsLineUp extends LibraryLineUp {
                         indexInWindow ) ) ;
     }
 
-    private ViewInteraction getCoverPhoto(int indexInWindow ) {
+    private ViewInteraction photo(int indexInWindow ) {
         return onView(
                 UtaPassUtil.withIndex(
                         allOf( withId( R.id.item_library_local_album_icon ),

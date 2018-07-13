@@ -8,41 +8,41 @@ import static android.support.test.espresso.action.ViewActions.click;
 
 public class ArtistObject extends ViewObject {
 
-    private String artistName ;
-    private String totalAlbums ;
-    private String totalSongs ;
-    private ViewInteraction coverPhoto ;
+    private String name ;
+    private String albums ;
+    private String songs ;
+    private ViewInteraction photo ;
 
-    public void setArtistName( String artistName ) {
-        this.artistName = artistName ;
+    public void name( String name ) {
+        this.name = name ;
     }
 
-    public String getArtistName() {
-        return this.artistName ;
+    public String name() {
+        return this.name ;
     }
 
-    public void setTotalAlbums( String totalAlbums ) {
-        this.totalAlbums = totalAlbums ;
+    public void albums( String albums ) {
+        this.albums = albums ;
     }
 
-    public String getTotalAlbums() {
-        return this.totalAlbums ;
+    public String albums() {
+        return this.albums ;
     }
 
-    public void setTotalSongs( String totalSongs ) {
-        this.totalSongs = totalSongs ;
+    public void songs( String songs ) {
+        this.songs = songs ;
     }
 
     public String getTotalSongs() {
-        return this.totalSongs ;
+        return this.songs ;
     }
 
-    public void setCoverPhoto( ViewInteraction coverPhoto ) {
-        this.coverPhoto = coverPhoto ;
+    public void photo( ViewInteraction photo ) {
+        this.photo = photo ;
     }
 
     public void tap() {
-        this.coverPhoto.perform( click() ) ;
+        this.photo.perform( click() ) ;
     }
 }
 

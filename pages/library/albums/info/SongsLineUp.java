@@ -25,16 +25,16 @@ public class SongsLineUp extends LibraryLineUp {
         return withId( R.id.item_detail_local_audio_image ) ;
     }
 
-    public SongObject getSong(int index ) {
+    public SongObject song(int index ) {
         int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
         SongObject song = new SongObject() ;
-        song.setSongName( this.getSongName( indexInWindow ) ) ;
-        song.setArtistName( this.getArtistName( indexInWindow ) ) ;
-        song.setCoverPhoto( this.getCoverPhoto( indexInWindow ) ) ;
+        song.songName( this.songName( indexInWindow ) ) ;
+        song.artistName( this.artistName( indexInWindow ) ) ;
+        song.photo( this.photo( indexInWindow ) ) ;
         return song ;
     }
 
-    private String getSongName( int indexInWindow ) {
+    private String songName( int indexInWindow ) {
         return this.getText(
                 UtaPassUtil.withIndex(
                         allOf( withId( R.id.item_detail_local_audio_title ),
@@ -42,7 +42,7 @@ public class SongsLineUp extends LibraryLineUp {
                         indexInWindow ) ) ;
     }
 
-    private String getArtistName( int indexInWindow ) {
+    private String artistName( int indexInWindow ) {
         return this.getText(
                 UtaPassUtil.withIndex(
                         allOf( withId( R.id.item_detail_local_audio_artist ),
@@ -50,7 +50,7 @@ public class SongsLineUp extends LibraryLineUp {
                         indexInWindow ) ) ;
     }
 
-    private ViewInteraction getCoverPhoto(int indexInWindow ) {
+    private ViewInteraction photo(int indexInWindow ) {
         return onView(
                 UtaPassUtil.withIndex(
                         allOf( withId( R.id.item_detail_local_audio_image ),

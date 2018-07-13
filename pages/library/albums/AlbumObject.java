@@ -10,30 +10,30 @@ public class AlbumObject extends ViewObject {
 
     private String albumName ;
     private String artistName ;
-    private ViewInteraction coverPhoto ;
+    private ViewInteraction photo ;
 
-    public void setAlbumName( String albumName ) {
+    public void albumName( String albumName ) {
         this.albumName = albumName ;
     }
 
-    public String getAlbumName() {
+    public String albumName() {
         return this.albumName ;
     }
 
-    public void setArtistName( String artistName ) {
+    public void artistName( String artistName ) {
         this.artistName = artistName ;
     }
 
-    public String getArtistName() {
+    public String artistName() {
         return this.artistName ;
     }
 
-    public void setCoverPhoto( ViewInteraction coverPhoto ) {
-        this.coverPhoto = coverPhoto ;
+    public void photo( ViewInteraction coverPhoto ) {
+        this.photo = coverPhoto ;
     }
 
     public void tap() {
-        this.coverPhoto.perform( click() ) ;
+        this.photo.perform( click() ) ;
     }
 }
 

@@ -13,6 +13,12 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.stream.LiveConcertPage;
 
 public class Navigator {
 
+    private StreamPage streamPage ;
+    private LibraryPage libraryPage ;
+    private SearchPage searchPage ;
+
+    private LiveConcertPage liveConcertPage ;
+
     private SongsPage songsPage ;
     private AlbumsPage albumsPage ;
     private AlbumInfoPage albumInfoPage ;
@@ -21,54 +27,66 @@ public class Navigator {
     private MyUtaPage myUtaPage ;
 
     public StreamPage streamPage() {
-        return new StreamPage().ready() ;
+        if( this.streamPage == null ) {
+            this.streamPage = new StreamPage().ready() ;
+        }
+        return this.streamPage.ready() ;
     }
 
     public LibraryPage libraryPage() {
-        return new LibraryPage().ready() ;
+        if( this.libraryPage == null ) {
+            this.libraryPage = new LibraryPage().ready() ;
+        }
+        return this.libraryPage.ready() ;
     }
 
     public SearchPage searchPage() {
-        return new SearchPage().ready() ;
+        if( this.searchPage == null ) {
+            this.searchPage = new SearchPage().ready() ;
+        }
+        return this.searchPage.ready() ;
     }
 
     public LiveConcertPage liveConcertPage() {
-        return new LiveConcertPage().ready() ;
+        if( this.liveConcertPage == null ) {
+            this.liveConcertPage = new LiveConcertPage().ready() ;
+        }
+        return this.liveConcertPage.ready() ;
     }
 
     public SongsPage songsPage() {
         if( this.songsPage == null ) {
             this.songsPage = new SongsPage().ready() ;
         }
-        return this.songsPage ;
+        return this.songsPage.ready() ;
     }
 
     public AlbumsPage albumsPage() {
         if( this.albumsPage == null ) {
             this.albumsPage = new AlbumsPage() ;
         }
-        return this.albumsPage ;
+        return this.albumsPage.ready() ;
     }
 
     public AlbumInfoPage albumInfoPage() {
         if( this.albumInfoPage == null ) {
             this.albumInfoPage = new AlbumInfoPage() ;
         }
-        return this.albumInfoPage ;
+        return this.albumInfoPage.ready() ;
     }
 
     public ArtistsPage artistsPage() {
         if( this.artistsPage == null ) {
             this.artistsPage = new ArtistsPage() ;
         }
-        return this.artistsPage ;
+        return this.artistsPage.ready() ;
     }
 
     public MyUtaPage myUtaPage() {
         if( this.myUtaPage == null ) {
             this.myUtaPage = new MyUtaPage() ;
         }
-        return this.myUtaPage ;
+        return this.myUtaPage.ready() ;
     }
 
 

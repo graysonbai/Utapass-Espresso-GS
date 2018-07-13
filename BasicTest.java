@@ -1,29 +1,19 @@
 package com.kddi.android.UtaPass.sqa_espresso ;
 
+import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
+
 public class BasicTest {
 
-    public void writeMsg( String msg ) {
-        android.util.Log.d( "UtapassAutomation", msg ) ;
+    public void dprint( String msg ) {
+        UtaPassUtil.dprint( msg ) ;
     }
 
     public void sleep( int seconds, String info ) {
-        try {
-            this.writeMsg( String.format( "Sleep %s second(s): %s", seconds, info ) ) ;
-            Thread.sleep( seconds * 1000 ) ;
-
-        } catch (InterruptedException ex) {
-            android.util.Log.d("UtapassAutomation", ex.toString());
-        }
+        UtaPassUtil.sleep( seconds, info ) ;
     }
 
     public void sleep( int seconds ) {
-        try {
-            this.writeMsg( String.format( "Sleep %s second(s)...", seconds ) ) ;
-            Thread.sleep( seconds * 1000 ) ;
-
-        } catch (InterruptedException ex) {
-            android.util.Log.d("UtapassAutomation", ex.toString());
-        }
+        UtaPassUtil.sleep( seconds ) ;
     }
 
     public void retry( RetryUnit unit ) {
@@ -65,7 +55,7 @@ public class BasicTest {
             this.assertTrue( block ) ;
         }
         catch( RuntimeException e ) {
-            this.writeMsg( msgWhenFail ) ;
+            this.dprint( msgWhenFail ) ;
             throw e ;
         }
     }

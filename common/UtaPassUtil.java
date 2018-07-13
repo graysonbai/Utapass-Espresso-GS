@@ -13,6 +13,29 @@ import org.hamcrest.* ;
 
 public class UtaPassUtil {
 
+    public static void dprint( String msg ) {
+        android.util.Log.d( "UtapassAutomation", msg ) ;
+    }
+
+    private static void _sleep( int seconds ) {
+        try {
+            Thread.sleep( seconds * 1000 ) ;
+
+        } catch( InterruptedException ex ) {
+            UtaPassUtil.dprint( ex.toString() ) ;
+        }
+    }
+
+    public static void sleep( int seconds, String info ) {
+        UtaPassUtil.dprint( String.format( "Sleep %s second(s): %s", seconds, info ) ) ;
+        UtaPassUtil._sleep( seconds ) ;
+    }
+
+    public static void sleep( int seconds ) {
+        UtaPassUtil.dprint( String.format( "Sleep %s second(s)...", seconds ) ) ;
+        UtaPassUtil._sleep( seconds ) ;
+    }
+
     public static Matcher<View> withIndex(final Matcher<View> matcher, final int index) {
         return new TypeSafeMatcher<View>() {
             int currentIndex = 0;

@@ -4,8 +4,8 @@ import android.support.test.espresso.ViewInteraction ;
 import android.view.View ;
 
 import com.kddi.android.UtaPass.R ;
-import com.kddi.android.UtaPass.sqa_espresso.common.CardObject ;
 import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream._lineup._card.CardObject;
 
 import org.hamcrest.Matcher;
 
@@ -24,11 +24,10 @@ public class DailyMixLineUp extends LineUpObject {
     }
 
     public CardObject getCard() {
-        CardObject card = new CardObject(
-                this.getBackgroundCard(),
-                this.getPlayButtonFromCardView() ) ;
-
-        card.setTitle( "最近聴いたものからオススメする50曲" ) ;
+        CardObject card = new CardObject() ;
+        card.background( this.getBackgroundCard() ) ;
+        card.playButton( this.getPlayButtonFromCardView() ) ;
+        card.title( "最近聴いたものからオススメする50曲" ) ;
         return card ;
     }
 

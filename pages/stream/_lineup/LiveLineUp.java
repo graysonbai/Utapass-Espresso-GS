@@ -4,7 +4,9 @@ import android.support.test.espresso.ViewInteraction ;
 import android.view.View ;
 
 import com.kddi.android.UtaPass.R ;
-import com.kddi.android.UtaPass.sqa_espresso.common.* ;
+import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
+import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream._lineup._card.CardObject;
 
 import org.hamcrest.Matcher ;
 
@@ -30,11 +32,11 @@ public class LiveLineUp extends LineUpObject {
         return LiveLineUp.titleInJapanese ;
     }
 
-    public CardObject getCard( int index ) {
+    public CardObject getCard(int index ) {
         this.swipeToPosition( index ) ;
 
-        CardObject card = new CardObject( index ) ;
-        card.setPlayButton( this.getPlayButtonFromCardView( index ) ) ;
+        CardObject card = new CardObject() ;
+        card.playButton( this.getPlayButtonFromCardView( index ) ) ;
         return card ;
     }
 

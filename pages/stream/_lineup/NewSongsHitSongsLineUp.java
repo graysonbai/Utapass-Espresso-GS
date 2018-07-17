@@ -4,9 +4,9 @@ import android.support.test.espresso.ViewInteraction;
 import android.view.View;
 
 import com.kddi.android.UtaPass.R ;
-import com.kddi.android.UtaPass.sqa_espresso.common.CardObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream._lineup._card.CardObject;
 
 import org.hamcrest.Matcher;
 
@@ -32,10 +32,11 @@ public class NewSongsHitSongsLineUp extends LineUpObject {
         return NewSongsHitSongsLineUp.titleInJapanese ;
     }
 
-    public CardObject getCard( int index ) {
-        CardObject card = new CardObject( this.getPlayButtonFromCardView( index ) ) ;
-        card.setTitle( this.getTitleFromCardView( index ) ) ;
-        card.setLikedCount( this.getLikedCountFromCardView( index ) ) ;
+    public CardObject getCard(int index ) {
+        CardObject card = new CardObject() ;
+        card.playButton( this.getPlayButtonFromCardView( index ) ) ;
+        card.title( this.getTitleFromCardView( index ) ) ;
+        card.likedCount( this.getLikedCountFromCardView( index ) ) ;
         return card ;
     }
 

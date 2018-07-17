@@ -3,7 +3,9 @@ package com.kddi.android.UtaPass.sqa_espresso.pages.stream._lineup ;
 import android.support.test.espresso.ViewInteraction ;
 import android.view.View ;
 import com.kddi.android.UtaPass.R ;
-import com.kddi.android.UtaPass.sqa_espresso.common.* ;
+import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
+import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream._lineup._card.CardObject;
 
 import org.hamcrest.Matcher ;
 
@@ -33,12 +35,12 @@ public class SpotlightLineUp extends LineUpObject {
         return withId( R.id.item_spotlight_image ) ;
     }
 
-    public CardObject getCard( int index ) {
+    public CardObject getCard(int index ) {
         this.swipeToPosition( index ) ;
 
-        CardObject card = new CardObject( index ) ;
-        card.setBackground( this.getBackgroundCard( index ) ) ;
-        card.setTitle( "最近聴いたものからオススメする50曲" ) ;
+        CardObject card = new CardObject() ;
+        card.background( this.getBackgroundCard( index ) ) ;
+        card.title( "最近聴いたものからオススメする50曲" ) ;
         return card ;
     }
 

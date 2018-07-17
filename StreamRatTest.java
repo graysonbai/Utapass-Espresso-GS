@@ -5,84 +5,31 @@ import android.support.test.runner.AndroidJUnit4 ;
 import com.kddi.android.UtaPass.main.MainActivity ;
 import com.kddi.android.UtaPass.sqa_espresso.common.* ;
 
+import org.junit.After;
 import org.junit.Rule ;
 import org.junit.Test ;
 import org.junit.runner.RunWith ;
 
 
 @RunWith(AndroidJUnit4.class)
-public class StreamRatTest {
+public class StreamRatTest extends BasicTest {
 
     private Navigator navigator = new Navigator() ;
 
-    public void writeMsg( String msg ) {
-        android.util.Log.d( "UtapassAutomation", msg ) ;
-    }
-
-    public void sleep( int seconds, String info ) {
-        try {
-            this.writeMsg( String.format( "Sleep %s second(s): %s", seconds, info ) ) ;
-            Thread.sleep( seconds * 1000 ) ;
-
-        } catch (InterruptedException ex) {
-            android.util.Log.d("UtapassAutomation", ex.toString());
-        }
-    }
-
-    public void sleep( int seconds ) {
-        try {
-            this.writeMsg( String.format( "Sleep %s second(s)...", seconds ) ) ;
-            Thread.sleep( seconds * 1000 ) ;
-
-        } catch (InterruptedException ex) {
-            android.util.Log.d("UtapassAutomation", ex.toString());
-        }
-    }
-
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
-
-    private void assertNowPlayingBar_playing() {
-        boolean retryWhenNotReady = true ;
-        int retryMaxCount = 3 ;
-        int retryInterval = 10 ;
-        int count = 0 ;
-
-        while( true ) {
-            try {
-                if( ! this.navigator.streamPage().nowPlayingBar().isPlaying() ) {
-                    throw new RuntimeException( "NowPlayingBar should be in playing status" ) ;
-                }
-
-                return ;
-
-            } catch( Exception e ) {
-                android.util.Log.d("UtapassAutomation", e.getMessage() ) ;
-
-                if( ! retryWhenNotReady ) {
-                    throw e ;
-                }
-
-                if( count++ == retryMaxCount ) {
-                    throw e;
-                }
-
-                this.sleep( retryInterval, String.format( "(%s/%s)", count, retryMaxCount ) ) ;
-            }
-        }
-    }
 
     @Test
     public void play_spotlight() {
         this.navigator.streamPage()
                       .spotlightLineUp()
                       .getCard( 0 )
+                      .background()
                       .tap() ;
 
-        // TODO: NowPlayingPage is displayed
-
-        // TODO: NowPlayingBar is not displayed and is not in playing status
-
+        // TODO: check certain page is displayed
+        // TODO: play any song
+        // TODO: check nowPlayingBar is in playing status
     }
 
     @Test
@@ -90,13 +37,19 @@ public class StreamRatTest {
         this.navigator.streamPage()
                       .liveLineUp()
                       .getCard( 0 )
-                      .play() ;
+                      .playButton()
+                      .tap() ;
 
-        String liveTitle = navigator.liveConcertPage()
-                                    .getLiveTitleBar()
-                                    .getTitle() ;
+        String liveTitle = this.navigator.liveConcertPage()
+                                         .getLiveTitleBar()
+                                         .getTitle() ;
 
-        assert 0 == liveTitle.compareTo( "KICK OFF VIVA!!! 2017" ) ;
+        String expecting = "KICK OFF VIVA!!! 2017" ;
+        this.assertTrue(
+                () -> liveTitle.compareTo( expecting ) == 0,
+                String.format( "WrongLiveEventTitle: actual='%s', expecting='%s'",
+                               liveTitle,
+                               expecting ) ) ;
     }
 
     @Test
@@ -104,9 +57,10 @@ public class StreamRatTest {
         this.navigator.streamPage()
                       .artistNewReleaseLineUp()
                       .getCard( 0 )
-                      .play() ;
+                      .playButton()
+                      .tap() ;
 
-        this.assertNowPlayingBar_playing() ;
+        this.retry( () -> this.navigator.streamPage().nowPlayingBar().isPlaying() ) ;
     }
 
     @Test
@@ -114,9 +68,10 @@ public class StreamRatTest {
         this.navigator.streamPage()
                       .dailyMixLineUp()
                       .getCard()
-                      .play() ;
+                      .playButton()
+                      .tap() ;
 
-        this.assertNowPlayingBar_playing() ;
+        this.retry( () -> this.navigator.streamPage().nowPlayingBar().isPlaying() ) ;
     }
 
     @Test
@@ -124,9 +79,10 @@ public class StreamRatTest {
         this.navigator.streamPage()
                       .topChartsLineUp()
                       .getCard( 3 )
-                      .play() ;
+                      .playButton()
+                      .tap() ;
 
-        this.assertNowPlayingBar_playing() ;
+        this.retry( () -> this.navigator.streamPage().nowPlayingBar().isPlaying() ) ;
     }
 
     @Test
@@ -134,9 +90,10 @@ public class StreamRatTest {
         this.navigator.streamPage()
                       .popularArtistLineUp()
                       .getCard( 0 )
-                      .play() ;
+                      .playButton()
+                      .tap() ;
 
-        this.assertNowPlayingBar_playing() ;
+        // TODO: navigate to next page successfully
     }
 
     @Test
@@ -144,9 +101,10 @@ public class StreamRatTest {
         this.navigator.streamPage()
                       .whatsNewLineUp()
                       .getCard( 0 )
-                      .play() ;
+                      .playButton()
+                      .tap() ;
 
-        this.assertNowPlayingBar_playing() ;
+        this.retry( () -> this.navigator.streamPage().nowPlayingBar().isPlaying() ) ;
     }
 
     @Test
@@ -154,18 +112,26 @@ public class StreamRatTest {
         this.navigator.streamPage()
                       .newSongsHitSongsLineUp()
                       .getCard( 0 )
-                      .play() ;
+                      .playButton()
+                      .tap() ;
 
-        this.assertNowPlayingBar_playing() ;
+        this.retry( () -> this.navigator.streamPage().nowPlayingBar().isPlaying() ) ;
     }
 
     @Test
     public void play_you_may_also_like() {
         this.navigator.streamPage()
-                .youMayAlsoLikeLineUp()
-                .getCard( 0 )
-                .play() ;
+                      .youMayAlsoLikeLineUp()
+                      .getCard( 0 )
+                      .playButton()
+                      .tap() ;
 
-        this.assertNowPlayingBar_playing() ;
+        this.retry( () -> this.navigator.streamPage().nowPlayingBar().isPlaying() ) ;
+    }
+
+    @After
+    public void tear_down() {
+        UtaPassUtil.stopNowPlayingBar() ;
+        UtaPassUtil.closeApp() ;
     }
 }

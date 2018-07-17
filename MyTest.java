@@ -7,12 +7,10 @@ import com.kddi.android.UtaPass.sqa_espresso.common.* ;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.NowPlayingBar;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.songs.SongObject ;
 
+import org.junit.After;
 import org.junit.Rule ;
 import org.junit.Test ;
 import org.junit.runner.RunWith ;
-
-// for temp
-import static android.support.test.espresso.action.ViewActions.click ;
 
 
 @RunWith(AndroidJUnit4.class)
@@ -35,7 +33,7 @@ public class MyTest extends BasicTest {
 
         SongObject song = this.navigator.songsPage()
                                         .songsLineUp()
-                                        .getSong( 0 ) ;
+                                        .song( 0 ) ;
 
         // tap song to play it
         song.tap() ;
@@ -46,22 +44,23 @@ public class MyTest extends BasicTest {
         this.retry( () -> nowPlayingBar.isPlaying() ) ;
 
         this.assertTrue(
-            () -> song.getSongName().equals(nowPlayingBar.getSongName()),
+            () -> song.songName().equals( nowPlayingBar.getSongName() ),
             String.format(
                 "SongNameInNowPlayingBar is not correct: SongName = '%s', SongNameInNowPlayingBar = '%s' ",
-                song.getSongName(),
+                song.songName(),
                 nowPlayingBar.getSongName()
             )
         ) ;
 
         this.assertTrue(
-            () -> song.getArtistName().equals( nowPlayingBar.getArtistName() ),
+            () -> song.artistName().equals( nowPlayingBar.getArtistName() ),
             String.format(
                 "ArtistNameInNowPlayingBar is not correct: ArtistName = '%s', ArtistNameInNowPlayingBar = '%s'",
-                song.getArtistName(),
+                song.artistName(),
                 nowPlayingBar.getArtistName()
             )
         ) ;
+
     }
 
     @Test
@@ -76,24 +75,36 @@ public class MyTest extends BasicTest {
 
         this.navigator.albumsPage()
                       .albumsLineUp()
-                      .getAlbum( 0 )
+                      .album( 0 )
                       .tap() ;
 
         this.navigator.albumInfoPage()
                       .songsLineUp()
-                      .getSong( 1 )
+                      .song( 1 )
                       .tap() ;
 
         this.retry( () ->
-                this.navigator.myUtaPage().nowPlayingBar().isPlaying()
+                this.navigator.albumInfoPage().nowPlayingBar().isPlaying()
         ) ;
     }
 
     @Test
     public void play_song_in_artist() {
+        this.navigator.streamPage()
+                      .libraryTab()
+                      .tap() ;
 
+        this.navigator.libraryPage()
+                      .artistsCategory()
+                      .tap() ;
+
+        this.navigator.artistsPage()
+                      .artistsLineUp()
+                      .artist( 9 )
+                      .tap() ;
+
+        this.sleep( 5 ) ;
     }
-
 
     @Test
     public void play_song_in_myuta() {
@@ -116,67 +127,9 @@ public class MyTest extends BasicTest {
         ) ;
     }
 
-    @Test
-    public void libraryPage_tap_songs() {
-        this.navigator.streamPage()
-                      .libraryTab()
-                      .tap() ;
-
-        // tap "Songs"
-        this.navigator.libraryPage()
-                      .songsCategory()
-                      .tap() ;
-        this.sleep( 5 ) ;
-        UtaPassUtil.pressBack() ;
-
-        // tap "Albums"
-        this.navigator.libraryPage()
-                      .albumsCategory()
-                      .tap() ;
-        this.sleep( 5 ) ;
-        UtaPassUtil.pressBack() ;
-
-        // tap "Artists"
-        this.navigator.libraryPage()
-                      .artistsCategory()
-                      .tap() ;
-        this.sleep( 5 ) ;
-        UtaPassUtil.pressBack() ;
-
-        // tap "Videos"
-        this.navigator.libraryPage()
-                      .videosCategory()
-                      .tap() ;
-        this.sleep( 5 ) ;
-        UtaPassUtil.pressBack() ;
-
-        // tap "Favorite"
-        this.navigator.libraryPage()
-                      .favoriteCategory()
-                      .tap() ;
-        this.sleep( 5 ) ;
-        UtaPassUtil.pressBack() ;
-
-        // tap "My Playlists"
-        this.navigator.libraryPage()
-                      .myPlaylistsCategory()
-                      .tap() ;
-        this.sleep( 5 ) ;
-        UtaPassUtil.pressBack() ;
-
-        // tap "My Uta"
-        this.navigator.libraryPage()
-                      .myUtaCategory()
-                      .tap() ;
-        this.sleep( 5 ) ;
-        UtaPassUtil.pressBack() ;
-
-        // tap "Purchased Music"
-        this.navigator.libraryPage()
-                      .purchasedMusicCategory()
-                      .tap() ;
-        this.sleep( 5 ) ;
-        UtaPassUtil.pressBack() ;
-
+    @After
+    public void tear_down() {
+        UtaPassUtil.stopNowPlayingBar() ;
+        UtaPassUtil.closeApp() ;
     }
 }

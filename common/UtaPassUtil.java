@@ -9,6 +9,8 @@ import android.util.Log ;
 import android.view.View ;
 import android.widget.ImageView ;
 
+import com.kddi.android.UtaPass.sqa_espresso.pages.common.NowPlayingBar;
+
 import org.hamcrest.* ;
 
 public class UtaPassUtil {
@@ -147,6 +149,13 @@ public class UtaPassUtil {
 
         } catch( NoActivityResumedException ex ) {
             UtaPassUtil.sleep( 3, "for launching next case" ) ;
+        }
+    }
+
+    public static void stopNowPlayingBar() {
+        NowPlayingBar nowPlayingBar = new NowPlayingBar() ;
+        if( nowPlayingBar.isPlaying() ) {
+            nowPlayingBar.pause() ;
         }
     }
 }

@@ -3,6 +3,7 @@ package com.kddi.android.UtaPass.sqa_espresso.common ;
 import com.kddi.android.UtaPass.sqa_espresso.pages.LibraryPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.SearchPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.StreamPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.common.NowPlayingBar;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.AlbumsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.ArtistsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.MyUtaPage;
@@ -26,37 +27,39 @@ public class Navigator {
 
     private MyUtaPage myUtaPage ;
 
+    private NowPlayingBar nowPlayingBar ;
+
     public StreamPage streamPage() {
         if( this.streamPage == null ) {
-            this.streamPage = new StreamPage().ready() ;
+            this.streamPage = new StreamPage() ;
         }
         return this.streamPage.ready() ;
     }
 
     public LibraryPage libraryPage() {
         if( this.libraryPage == null ) {
-            this.libraryPage = new LibraryPage().ready() ;
+            this.libraryPage = new LibraryPage() ;
         }
         return this.libraryPage.ready() ;
     }
 
     public SearchPage searchPage() {
         if( this.searchPage == null ) {
-            this.searchPage = new SearchPage().ready() ;
+            this.searchPage = new SearchPage() ;
         }
         return this.searchPage.ready() ;
     }
 
     public LiveConcertPage liveConcertPage() {
         if( this.liveConcertPage == null ) {
-            this.liveConcertPage = new LiveConcertPage().ready() ;
+            this.liveConcertPage = new LiveConcertPage() ;
         }
         return this.liveConcertPage.ready() ;
     }
 
     public SongsPage songsPage() {
         if( this.songsPage == null ) {
-            this.songsPage = new SongsPage().ready() ;
+            this.songsPage = new SongsPage() ;
         }
         return this.songsPage.ready() ;
     }
@@ -89,5 +92,10 @@ public class Navigator {
         return this.myUtaPage.ready() ;
     }
 
-
+    public NowPlayingBar nowPlayingBar() {
+        if (this.nowPlayingBar == null) {
+            this.nowPlayingBar = new NowPlayingBar();
+        }
+        return this.nowPlayingBar.ready();
+    }
 }

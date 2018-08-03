@@ -10,6 +10,16 @@ import org.junit.Rule ;
 import org.junit.Test ;
 import org.junit.runner.RunWith ;
 
+// temp
+import com.kddi.android.UtaPass.R ;
+import static android.support.test.espresso.Espresso.onView ;
+import static android.support.test.espresso.matcher.ViewMatchers.withId ;
+import static android.support.test.espresso.matcher.ViewMatchers.withText ;
+
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition ;
+import static org.hamcrest.Matchers.* ;
+
 
 @RunWith(AndroidJUnit4.class)
 public class StreamRatTest extends BasicTest {
@@ -23,13 +33,17 @@ public class StreamRatTest extends BasicTest {
     public void play_spotlight() {
         this.navigator.streamPage()
                       .spotlightLineUp()
-                      .getCard( 0 )
-                      .background()
+                      .getCard( 1 )
                       .tap() ;
 
-        // TODO: check certain page is displayed
-        // TODO: play any song
-        // TODO: check nowPlayingBar is in playing status
+        this.navigator.spotlightPage()
+//                      .songsLineUp()
+//                      .song( 3 )
+//                      .tap() ;
+                      .playButton()
+                      .tap() ;
+
+        this.retry( () -> this.navigator.nowPlayingBar().isPlaying() ) ;
     }
 
     @Test
@@ -40,16 +54,10 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        String liveTitle = this.navigator.liveConcertPage()
-                                         .getLiveTitleBar()
-                                         .getTitle() ;
-
-        String expecting = "KICK OFF VIVA!!! 2017" ;
-        this.assertTrue(
-                () -> liveTitle.compareTo( expecting ) == 0,
-                String.format( "WrongLiveEventTitle: actual='%s', expecting='%s'",
-                               liveTitle,
-                               expecting ) ) ;
+        this.assertEqual(
+            this.navigator.liveConcertPage().getLiveTitleBar().getTitle(),
+            "KICK OFF VIVA!!! 2017"
+        ) ;
     }
 
     @Test
@@ -60,7 +68,7 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.retry( () -> this.navigator.streamPage().nowPlayingBar().isPlaying() ) ;
+        this.retry( () -> this.navigator.nowPlayingBar().isPlaying() ) ;
     }
 
     @Test
@@ -71,7 +79,7 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.retry( () -> this.navigator.streamPage().nowPlayingBar().isPlaying() ) ;
+        this.retry( () -> this.navigator.nowPlayingBar().isPlaying() ) ;
     }
 
     @Test
@@ -82,7 +90,7 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.retry( () -> this.navigator.streamPage().nowPlayingBar().isPlaying() ) ;
+        this.retry( () -> this.navigator.nowPlayingBar().isPlaying() ) ;
     }
 
     @Test
@@ -93,7 +101,7 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        // TODO: navigate to next page successfully
+        this.retry( () -> this.navigator.nowPlayingBar().isPlaying() ) ;
     }
 
     @Test
@@ -104,7 +112,7 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.retry( () -> this.navigator.streamPage().nowPlayingBar().isPlaying() ) ;
+        this.retry( () -> this.navigator.nowPlayingBar().isPlaying() ) ;
     }
 
     @Test
@@ -115,7 +123,7 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.retry( () -> this.navigator.streamPage().nowPlayingBar().isPlaying() ) ;
+        this.retry( () -> this.navigator.nowPlayingBar().isPlaying() ) ;
     }
 
     @Test
@@ -126,7 +134,7 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.retry( () -> this.navigator.streamPage().nowPlayingBar().isPlaying() ) ;
+        this.retry( () -> this.navigator.nowPlayingBar().isPlaying() ) ;
     }
 
     @After

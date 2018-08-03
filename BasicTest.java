@@ -50,6 +50,15 @@ public class BasicTest {
         boolean execute() ;
     }
 
+    public void assertEqual( String actual, String expecting ) {
+        this.assertTrue(
+                () -> expecting.equals( actual ),
+                String.format( "StringNotEqual: actual='%s', expecting='%s'",
+                        actual,
+                        expecting )
+                ) ;
+    }
+
     public void assertTrue( AssertTrue block, String msgWhenFail ) {
         try {
             this.assertTrue( block ) ;

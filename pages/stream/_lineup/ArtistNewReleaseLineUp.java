@@ -33,10 +33,24 @@ public class ArtistNewReleaseLineUp extends LineUpObject {
 
     public CardObject getCard(int index ) {
         CardObject card = new CardObject() ;
+        card.background( this.getBackgroundCard( index ) ) ;
         card.playButton( this.getPlayButtonFromCardView( index ) ) ;
         card.title( this.getTitleFromCardView( index ) ) ;
         card.likedCount( this.getLikedCountFromCardView( index ) ) ;
         return card ;
+    }
+
+    private ViewInteraction getBackgroundCard( int index ) {
+        return onView( this.getMatcherForBackgroundInCardView( index ) ) ;
+    }
+
+    private Matcher<View> getMatcherForBackgroundInCardView( int index ) {
+        int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
+
+        return UtaPassUtil.withIndex(
+                allOf( withId( R.id.item_playlist_card_image ),
+                       isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
+                indexInWindow ) ;
     }
 
     private ViewInteraction getPlayButtonFromCardView( int index ) {

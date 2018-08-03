@@ -61,11 +61,11 @@ public class NowPlayingBar extends ViewObject {
         }
     }
 
-    public String getSongName() {
+    public String songName() {
         return this.getText( this.songName ) ;
     }
 
-    public String getArtistName() {
+    public String artistName() {
         return this.getText( this.artistName ) ;
     }
 
@@ -79,7 +79,6 @@ public class NowPlayingBar extends ViewObject {
 
     public void play() {
         this.playButton.perform( click() ) ;
-
     }
 
     public void pause() {

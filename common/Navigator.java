@@ -10,6 +10,7 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.library.MyUtaPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.SongsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.albums.AlbumInfoPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.LiveConcertPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream.SpotlightPage;
 
 
 public class Navigator {
@@ -18,6 +19,7 @@ public class Navigator {
     private LibraryPage libraryPage ;
     private SearchPage searchPage ;
 
+    private SpotlightPage spotlightPage ;
     private LiveConcertPage liveConcertPage ;
 
     private SongsPage songsPage ;
@@ -48,6 +50,13 @@ public class Navigator {
             this.searchPage = new SearchPage() ;
         }
         return this.searchPage.ready() ;
+    }
+
+    public SpotlightPage spotlightPage() {
+        if( this.spotlightPage == null ) {
+            this.spotlightPage = new SpotlightPage() ;
+        }
+        return this.spotlightPage.ready() ;
     }
 
     public LiveConcertPage liveConcertPage() {
@@ -93,9 +102,9 @@ public class Navigator {
     }
 
     public NowPlayingBar nowPlayingBar() {
-        if (this.nowPlayingBar == null) {
-            this.nowPlayingBar = new NowPlayingBar();
+        if( this.nowPlayingBar == null ) {
+            this.nowPlayingBar = new NowPlayingBar() ;
         }
-        return this.nowPlayingBar.ready();
+        return this.nowPlayingBar.ready() ;
     }
 }

@@ -37,6 +37,7 @@ public class PopularArtistLineUp extends LineUpObject {
 
     public CardObject getCard(int index ) {
         CardObject card = new CardObject() ;
+        card.background( this.getBackgroundCard( index ) ) ;
         card.playButton( this.getPlayButtonFromCardView( index ) ) ;
         card.title( this.getTitleFromCardView( index ) ) ;
         card.likedCount( this.getLikedCountFromCardView( index ) ) ;
@@ -53,6 +54,19 @@ public class PopularArtistLineUp extends LineUpObject {
 
     private String getLikedCountFromCardView( int index ) {
         return this.getText( this.getMatcherForLikedCountInCardView( index ) ) ;
+    }
+
+    private ViewInteraction getBackgroundCard( int index ) {
+        return onView( this.getMatcherForBackgroundInCardView( index ) ) ;
+    }
+
+    private Matcher<View> getMatcherForBackgroundInCardView( int index ) {
+        int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
+
+        return UtaPassUtil.withIndex(
+                allOf( withId( R.id.item_playlist_card_image ),
+                        isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
+                indexInWindow ) ;
     }
 
     private Matcher<View> getMatcherForPlayButtonInCardView( int index ) {

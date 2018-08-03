@@ -102,7 +102,7 @@ public abstract class LineUpObject extends ViewObject {
         return this.getMaxIndexOfLineUpObject() ;
     }
 
-    protected void resetMaxIndexOfWindow() {
+    public void resetMaxIndexOfWindow() {
         this.maxIndexOfWindow = this.UN_INIT ;
     }
 

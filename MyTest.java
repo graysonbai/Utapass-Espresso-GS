@@ -2,10 +2,10 @@ package com.kddi.android.UtaPass.sqa_espresso ;
 
 import android.support.test.rule.ActivityTestRule ;
 import android.support.test.runner.AndroidJUnit4 ;
+
 import com.kddi.android.UtaPass.main.MainActivity ;
-import com.kddi.android.UtaPass.sqa_espresso.common.* ;
-import com.kddi.android.UtaPass.sqa_espresso.pages.common.NowPlayingBar;
-import com.kddi.android.UtaPass.sqa_espresso.pages.library.songs.SongObject ;
+import com.kddi.android.UtaPass.sqa_espresso.common.Navigator;
+import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 
 import org.junit.After;
 import org.junit.Rule ;
@@ -21,6 +21,7 @@ public class MyTest extends BasicTest {
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
 
+
     @Test
     public void play_song_in_songs() {
         this.navigator.streamPage()
@@ -31,36 +32,22 @@ public class MyTest extends BasicTest {
                       .songsCategory()
                       .tap() ;
 
-        SongObject song = this.navigator.songsPage()
-                                        .songsLineUp()
-                                        .song( 0 ) ;
+        this.navigator.songsPage()
+                      .songsLineUp()
+                      .song( 0 )
+                      .tap() ;
 
-        // tap song to play it
-        song.tap() ;
+        this.retry( () -> this.navigator.nowPlayingBar().isPlaying() ) ;
 
-        NowPlayingBar nowPlayingBar = this.navigator.libraryPage().nowPlayingBar() ;
-
-        // check nowPlayingBar is in playing status
-        this.retry( () -> nowPlayingBar.isPlaying() ) ;
-
-        this.assertTrue(
-            () -> song.songName().equals( nowPlayingBar.getSongName() ),
-            String.format(
-                "SongNameInNowPlayingBar is not correct: SongName = '%s', SongNameInNowPlayingBar = '%s' ",
-                song.songName(),
-                nowPlayingBar.getSongName()
-            )
+        this.assertEqual(
+                this.navigator.songsPage().songsLineUp().song( 0 ).songName(),
+                this.navigator.nowPlayingBar().songName()
         ) ;
 
-        this.assertTrue(
-            () -> song.artistName().equals( nowPlayingBar.getArtistName() ),
-            String.format(
-                "ArtistNameInNowPlayingBar is not correct: ArtistName = '%s', ArtistNameInNowPlayingBar = '%s'",
-                song.artistName(),
-                nowPlayingBar.getArtistName()
-            )
+        this.assertEqual(
+                this.navigator.songsPage().songsLineUp().song( 0 ).artistName(),
+                this.navigator.nowPlayingBar().artistName()
         ) ;
-
     }
 
     @Test
@@ -83,9 +70,7 @@ public class MyTest extends BasicTest {
                       .song( 1 )
                       .tap() ;
 
-        this.retry( () ->
-                this.navigator.albumInfoPage().nowPlayingBar().isPlaying()
-        ) ;
+        this.retry( () -> this.navigator.albumInfoPage().nowPlayingBar().isPlaying() ) ;
     }
 
     @Test

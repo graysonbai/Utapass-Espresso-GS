@@ -1,10 +1,12 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages ;
 
 import com.kddi.android.UtaPass.R ;
+import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._lineup.* ;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
 
 import static android.support.test.espresso.Espresso.onView ;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.* ;
 import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
 import static org.hamcrest.Matchers.*;
@@ -52,12 +54,23 @@ public class StreamPage extends BasicPage {
 
     private void refreshPositionOfLineUpObjects() {
 
+        // Close notice (not to handle it right now)
+        this.closeAllNotice() ;
+
         // Calculating position by lineup objects' existence.
         this.lineupExistence[ this.POSITION_RADIO       ] = this.hasRadioLineUp()      ? 1 : 0 ;
         this.lineupExistence[ this.POSITION_LISTEN_WITH ] = this.hasListenWithLineUp() ? 1 : 0 ;
         this.lineupExistence[ this.POSITION_LIVE        ] = this.hasLiveLineUp()       ? 1 : 0 ;
 
         this.swipeToSpotlightLineUp() ;
+    }
+
+    public void closeAllNotice() {
+        this.swipeToLineUpObject( 1 ) ;
+        while( this.isVisible( UtaPassUtil.withIndex( withId( R.id.notice_close_btn ), 0 ) ) ) {
+            onView( UtaPassUtil.withIndex( withId( R.id.notice_close_btn ), 0 ) )
+                    .perform( click() ) ;
+        }
     }
 
     public boolean hasRadioLineUp() {
@@ -96,7 +109,7 @@ public class StreamPage extends BasicPage {
 
         if( positionInStreamPage == -1 ) {
             String msg = String.format(
-                    "Failto get positionInStreamPage: '%s'",
+                    "Fail to get positionInStreamPage: '%s'",
                     positionInStreamPage ) ;
             throw new RuntimeException( msg ) ;
         }

@@ -1,21 +1,26 @@
 package com.kddi.android.UtaPass.sqa_espresso.common ;
 
+import android.content.pm.ActivityInfo;
 import android.content.res.Resources ;
 import android.graphics.* ;
 import android.graphics.drawable.Drawable ;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.* ;
 import android.support.test.espresso.action.* ;
+import android.support.test.rule.ActivityTestRule ;
 import android.support.test.uiautomator.UiDevice;
 import android.util.Log ;
 import android.view.View ;
 import android.widget.ImageView ;
 
+import com.kddi.android.UtaPass.main.MainActivity;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.NowPlayingBar;
 
 import org.hamcrest.* ;
 
 public class UtaPassUtil {
+
+    private static ActivityTestRule<MainActivity> mActivityRule ;
 
     public static void dprint( String msg ) {
         android.util.Log.d( "UtapassAutomation", msg ) ;
@@ -164,6 +169,18 @@ public class UtaPassUtil {
     public static UiDevice getUiDeviceInstance() {
         return UiDevice.getInstance( InstrumentationRegistry.getInstrumentation() ) ;
     }
+
+    public static void setActivityRule( ActivityTestRule<MainActivity> mActivityRule ) {
+        UtaPassUtil.mActivityRule = mActivityRule ;
+    }
+
+    public static void setScreenOrientationPortrait() {
+        UtaPassUtil.mActivityRule.getActivity().setRequestedOrientation(
+                ActivityInfo.SCREEN_ORIENTATION_PORTRAIT ) ;
+    }
+
+    public static void setScreenOrientationNatural() {
+        UtaPassUtil.mActivityRule.getActivity().setRequestedOrientation(
+                ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR ) ;
+    }
 }
-
-

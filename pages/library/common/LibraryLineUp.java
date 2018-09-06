@@ -15,12 +15,27 @@ public abstract class LibraryLineUp extends LineUpObject {
             this.titleBar().swipeUp() ;
             this.resetMaxIndexOfWindow() ;
         }
-
         this.swipeToLeftmost() ;
+
+        //                                 Max
+        //         swipe      IndexOf    IndexOf
+        // index    to        Window     Window
+        // ========================================
+        //  0        0          0           8
+        //  1        1          1           8
+        //  2        2          2           8
+        //  ...      ...        ...         ...
+        //  8        8          8           8
+
+        //  9        9          8           8
+        // 10       10          8           8
+        // 11       11          8           8
+        // 12       12          8           8
+        //
         this.swipeToPosition( index ) ;
 
         if( index > this.getMaxIndexOfWindow() ) {
-            return this.getMaxIndexOfWindow() ;
+            return this.getMaxIndexOfWindow() + 1 ;
         }
 
         return index ;

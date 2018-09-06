@@ -3,8 +3,10 @@ package com.kddi.android.UtaPass.sqa_espresso.common ;
 import android.content.res.Resources ;
 import android.graphics.* ;
 import android.graphics.drawable.Drawable ;
+import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.* ;
 import android.support.test.espresso.action.* ;
+import android.support.test.uiautomator.UiDevice;
 import android.util.Log ;
 import android.view.View ;
 import android.widget.ImageView ;
@@ -157,6 +159,10 @@ public class UtaPassUtil {
         if( nowPlayingBar.isPlaying() ) {
             nowPlayingBar.pause() ;
         }
+    }
+
+    public static UiDevice getUiDeviceInstance() {
+        return UiDevice.getInstance( InstrumentationRegistry.getInstrumentation() ) ;
     }
 }
 

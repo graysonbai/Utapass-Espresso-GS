@@ -1,12 +1,9 @@
 package com.kddi.android.UtaPass.sqa_espresso ;
 
-import android.support.test.rule.ActivityTestRule ;
 import android.support.test.runner.AndroidJUnit4 ;
-import com.kddi.android.UtaPass.main.MainActivity ;
 import com.kddi.android.UtaPass.sqa_espresso.common.* ;
 
 import org.junit.After;
-import org.junit.Rule ;
 import org.junit.Test ;
 import org.junit.runner.RunWith ;
 
@@ -25,9 +22,6 @@ import static org.hamcrest.Matchers.* ;
 public class StreamRatTest extends BasicTest {
 
     private Navigator navigator = new Navigator() ;
-
-    @Rule
-    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
     public void play_spotlight() {

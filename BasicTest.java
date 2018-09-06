@@ -1,8 +1,20 @@
 package com.kddi.android.UtaPass.sqa_espresso ;
 
+import android.support.test.rule.ActivityTestRule;
+
+import com.kddi.android.UtaPass.main.MainActivity;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 
+import org.junit.Rule;
+
 public class BasicTest {
+
+    @Rule
+    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
+
+    public BasicTest() {
+        UtaPassUtil.setActivityRule( this.mActivityRule ) ;
+    }
 
     public void dprint( String msg ) {
         UtaPassUtil.dprint( msg ) ;

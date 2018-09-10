@@ -20,8 +20,6 @@ import org.hamcrest.* ;
 
 public class UtaPassUtil {
 
-    private static ActivityTestRule<MainActivity> mActivityRule ;
-
     public static void dprint( String msg ) {
         android.util.Log.d( "UtapassAutomation", msg ) ;
     }
@@ -170,17 +168,13 @@ public class UtaPassUtil {
         return UiDevice.getInstance( InstrumentationRegistry.getInstrumentation() ) ;
     }
 
-    public static void setActivityRule( ActivityTestRule<MainActivity> mActivityRule ) {
-        UtaPassUtil.mActivityRule = mActivityRule ;
-    }
-
-    public static void setScreenOrientationPortrait() {
-        UtaPassUtil.mActivityRule.getActivity().setRequestedOrientation(
+    public static void setScreenOrientationPortrait( ActivityTestRule<MainActivity> mActivityRule ) {
+        mActivityRule.getActivity().setRequestedOrientation(
                 ActivityInfo.SCREEN_ORIENTATION_PORTRAIT ) ;
     }
 
-    public static void setScreenOrientationNatural() {
-        UtaPassUtil.mActivityRule.getActivity().setRequestedOrientation(
+    public static void setScreenOrientationNatural( ActivityTestRule<MainActivity> mActivityRule ) {
+        mActivityRule.getActivity().setRequestedOrientation(
                 ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR ) ;
     }
 }

@@ -25,7 +25,7 @@ public class SongsLineUp extends LibraryLineUp {
         return withId( R.id.item_detail_local_audio_image ) ;
     }
 
-    public SongObject song(int index ) {
+    public SongObject song( int index ) {
         int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
         SongObject song = new SongObject() ;
         song.songName( this.songName( indexInWindow ) ) ;
@@ -50,7 +50,7 @@ public class SongsLineUp extends LibraryLineUp {
                         indexInWindow ) ) ;
     }
 
-    private ViewInteraction photo(int indexInWindow ) {
+    private ViewInteraction photo( int indexInWindow ) {
         return onView(
                 UtaPassUtil.withIndex(
                         allOf( withId( R.id.item_detail_local_audio_image ),

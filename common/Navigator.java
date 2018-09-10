@@ -11,6 +11,8 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.library.SongsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.albums.AlbumInfoPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.LiveConcertPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.SpotlightPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.SaveMyUtaConfirmPopupMessage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.SaveMyUtaPopupMessage;
 
 
 public class Navigator {
@@ -30,6 +32,9 @@ public class Navigator {
     private MyUtaPage myUtaPage ;
 
     private NowPlayingBar nowPlayingBar ;
+
+    private SaveMyUtaPopupMessage saveMyUtaPopupMessage ;
+    private SaveMyUtaConfirmPopupMessage saveMyUtaConfirmPopupMessage ;
 
     public StreamPage streamPage() {
         if( this.streamPage == null ) {
@@ -106,5 +111,19 @@ public class Navigator {
             this.nowPlayingBar = new NowPlayingBar() ;
         }
         return this.nowPlayingBar.ready() ;
+    }
+
+    public SaveMyUtaPopupMessage saveMyUtaPopupMessage() {
+        if( this.saveMyUtaPopupMessage == null ) {
+            this.saveMyUtaPopupMessage = new SaveMyUtaPopupMessage() ;
+        }
+        return this.saveMyUtaPopupMessage.ready() ;
+    }
+
+    public SaveMyUtaConfirmPopupMessage saveMyUtaConfirmPopupMessage() {
+        if( this.saveMyUtaConfirmPopupMessage == null ) {
+            this.saveMyUtaConfirmPopupMessage = new SaveMyUtaConfirmPopupMessage() ;
+        }
+        return this.saveMyUtaConfirmPopupMessage ;
     }
 }

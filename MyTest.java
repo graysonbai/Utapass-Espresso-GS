@@ -1,14 +1,9 @@
 package com.kddi.android.UtaPass.sqa_espresso ;
 
-import android.support.test.rule.ActivityTestRule ;
 import android.support.test.runner.AndroidJUnit4 ;
 
-import com.kddi.android.UtaPass.main.MainActivity ;
 import com.kddi.android.UtaPass.sqa_espresso.common.Navigator;
-import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 
-import org.junit.After;
-import org.junit.Rule ;
 import org.junit.Test ;
 import org.junit.runner.RunWith ;
 
@@ -17,10 +12,6 @@ import org.junit.runner.RunWith ;
 public class MyTest extends BasicTest {
 
     private Navigator navigator = new Navigator() ;
-
-    @Rule
-    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
-
 
     @Test
     public void play_song_in_songs() {
@@ -95,7 +86,37 @@ public class MyTest extends BasicTest {
     public void play_song_in_myuta() {
         // TestRails: 1934617
 
+        // save any song to my uta
         this.navigator.streamPage()
+                      .spotlightLineUp()
+                      .getCard( 0 )
+                      .tap() ;
+
+        if( this.navigator.spotlightPage()
+                          .songsLineUp()
+                          .song( 0 )
+                          .myUtaButton()
+                          .isVisible() ) {
+
+            this.navigator.spotlightPage()
+                          .songsLineUp()
+                          .song( 0 )
+                          .myUtaButton()
+                          .tap() ;
+
+            this.navigator.saveMyUtaPopupMessage()
+                          .saveButton()
+                          .tap() ;
+
+            this.sleep( 5 ) ;
+            if( this.navigator.saveMyUtaConfirmPopupMessage().isVisible() ) {
+                this.navigator.saveMyUtaConfirmPopupMessage()
+                              .closeButton()
+                              .tap();
+            }
+        }
+
+        this.navigator.spotlightPage()
                       .libraryTab()
                       .tap() ;
 
@@ -110,11 +131,5 @@ public class MyTest extends BasicTest {
         this.retry( () ->
                 this.navigator.myUtaPage().nowPlayingBar().isPlaying()
         ) ;
-    }
-
-    @After
-    public void tear_down() {
-        UtaPassUtil.stopNowPlayingBar() ;
-        UtaPassUtil.closeApp() ;
     }
 }

@@ -24,7 +24,7 @@ public class LiveConcertPage extends ViewObject {
         this.retryWhenNotReady = false ;
 
         this.liveVideo.ready() ;
-        this.liveTitleBar.ready() ;
+//        this.liveTitleBar.ready() ;
 //        this.liveChatroom.ready() ;
 //        this.liveChatBar.ready() ;
     }

@@ -63,7 +63,7 @@ public class ArtistsLineUp extends LibraryLineUp {
         artist.photo( this.photo( indexInWindow ) ) ;
         artist.name( this.name( indexInWindow ) ) ;
         artist.albums( this.albums( indexInWindow ) ) ;
-        artist.songs( this.songs( indexInWindow ) ) ;
+        artist.totalSongs( this.songs( indexInWindow ) ) ;
         return artist ;
     }
 
@@ -77,7 +77,7 @@ public class ArtistsLineUp extends LibraryLineUp {
 
     private String albums( int indexInWindow ) {
         java.util.regex.Matcher matcher =
-                Pattern.compile( "([0-9]+) albums?" )
+                Pattern.compile( "([0-9]+).+([0-9]+).+" )
                        .matcher( this.subtitle( indexInWindow ) ) ;
 
         if( matcher.find() ) {
@@ -89,11 +89,11 @@ public class ArtistsLineUp extends LibraryLineUp {
 
     private String songs( int indexInWindow ) {
         java.util.regex.Matcher matcher =
-                Pattern.compile( "([0-9]+) songs?" )
+                Pattern.compile( "([0-9]+).+([0-9]+).+" )
                        .matcher( this.subtitle( indexInWindow ) ) ;
 
         if( matcher.find() ) {
-            return matcher.group( 1 ) ;
+            return matcher.group( 2 ) ;
         }
 
         return "" ;

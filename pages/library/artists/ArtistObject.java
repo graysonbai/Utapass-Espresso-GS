@@ -29,11 +29,11 @@ public class ArtistObject extends ViewObject {
         return this.albums ;
     }
 
-    public void songs( String songs ) {
+    public void totalSongs( String songs ) {
         this.songs = songs ;
     }
 
-    public String getTotalSongs() {
+    public String totalSongs() {
         return this.songs ;
     }
 

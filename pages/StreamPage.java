@@ -4,6 +4,7 @@ import com.kddi.android.UtaPass.R ;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._lineup.* ;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.Best50;
 
 import static android.support.test.espresso.Espresso.onView ;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -13,7 +14,7 @@ import static org.hamcrest.Matchers.*;
 
 
 public class StreamPage extends BasicPage {
-    private final int MAX_LINEUP_OBJECT             = 13 ;
+    private final int MAX_LINEUP_OBJECT             = 14 ;
     private final int POSITION_SPOTLIGHT            = 0 ;
     private final int POSITION_RADIO                = 1 ;
     private final int POSITION_LISTEN_WITH          = 2 ;
@@ -21,12 +22,13 @@ public class StreamPage extends BasicPage {
     private final int POSITION_ARTIST_NEW_RELEASE   = 4 ;
     private final int POSITION_DAILY_MIX            = 5 ;
     private final int POSITION_TOP_CHARTS           = 6 ;
-    private final int POSITION_POPULAR_ARTIST       = 7 ;
-    private final int POSITION_WHATS_NEW            = 8 ;
-    private final int POSITION_NEW_SONGS_HITS_SONGS = 9 ;
-    private final int POSITION_YOU_MAY_ALSO_LIKE    = 10 ;
-    private final int POSITION_MEMBER_PRIVILEGES    = 11 ;
-    private final int POSITION_RUN_AWAY             = 12 ;
+    private final int POSITION_BEST50               = 7 ;
+    private final int POSITION_POPULAR_ARTIST       = 8 ;
+    private final int POSITION_WHATS_NEW            = 9 ;
+    private final int POSITION_NEW_SONGS_HITS_SONGS = 10 ;
+    private final int POSITION_YOU_MAY_ALSO_LIKE    = 11 ;
+    private final int POSITION_MEMBER_PRIVILEGES    = 12 ;
+    private final int POSITION_RUN_AWAY             = 13 ;
     private int[] lineupExistence ;
 
 
@@ -57,6 +59,9 @@ public class StreamPage extends BasicPage {
         // Close notice (not to handle it right now)
         this.closeAllNotice() ;
 
+        // Close enjoy Uta Pass (not to handle it right now)
+        this.closeEnjoyUtaPass() ;
+
         // Calculating position by lineup objects' existence.
         this.lineupExistence[ this.POSITION_RADIO       ] = this.hasRadioLineUp()      ? 1 : 0 ;
         this.lineupExistence[ this.POSITION_LISTEN_WITH ] = this.hasListenWithLineUp() ? 1 : 0 ;
@@ -70,6 +75,13 @@ public class StreamPage extends BasicPage {
         while( this.isVisible( UtaPassUtil.withIndex( withId( R.id.notice_close_btn ), 0 ) ) ) {
             onView( UtaPassUtil.withIndex( withId( R.id.notice_close_btn ), 0 ) )
                     .perform( click() ) ;
+        }
+    }
+
+    public void closeEnjoyUtaPass() {
+        this.swipeToLineUpObject(2) ;
+        while( this.isVisible( withId( R.id.rating_item_negative_button ) ) ) {
+            onView( withId( R.id.rating_item_negative_button ) ).perform( click() ) ;
         }
     }
 
@@ -137,8 +149,13 @@ public class StreamPage extends BasicPage {
     }
 
     public void swipeToTopChartsLineUp() {
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_POPULAR_ARTIST ) ) ;
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_BEST50 ) ) ;
         this.swipeToLineUpObject( this.getPosition( this.POSITION_TOP_CHARTS ) ) ;
+    }
+
+    public void swipeToBest50LineUp() {
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_POPULAR_ARTIST ) ) ;
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_BEST50 ) ) ;
     }
 
     public void swipeToPopularArtistLineUp() {
@@ -184,6 +201,16 @@ public class StreamPage extends BasicPage {
     public TopChartsLineUp topChartsLineUp() {
         this.swipeToTopChartsLineUp() ;
         return new TopChartsLineUp() ;
+    }
+
+    public Best50 best50() {
+        this.swipeToBest50LineUp() ;
+        return new Best50() ;
+    }
+
+    public Best50LineUp best50LineUp() {
+        this.swipeToBest50LineUp() ;
+        return new Best50LineUp() ;
     }
 
     public PopularArtistLineUp popularArtistLineUp() {

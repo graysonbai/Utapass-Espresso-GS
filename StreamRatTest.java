@@ -74,6 +74,20 @@ public class StreamRatTest extends BasicTest {
     }
 
     @Test
+    public void play_best50() {
+        this.navigator.streamPage()
+                      .best50()
+                      .seeAll()
+                      .tap() ;
+
+        this.navigator.best50Page()
+                      .playButton()
+                      .tap() ;
+
+        this.retry( () -> this.navigator.nowPlayingBar().isPlaying() ) ;
+    }
+
+    @Test
     public void play_popular_artist() {
         this.navigator.streamPage()
                       .popularArtistLineUp()

@@ -61,7 +61,7 @@ public class MyTest extends BasicTest {
                       .song( 1 )
                       .tap() ;
 
-        this.retry( () -> this.navigator.albumInfoPage().nowPlayingBar().isPlaying() ) ;
+        this.retry( () -> this.navigator.nowPlayingBar().isPlaying() ) ;
     }
 
     @Test
@@ -74,12 +74,30 @@ public class MyTest extends BasicTest {
                       .artistsCategory()
                       .tap() ;
 
+        int albums = Integer.parseInt( this.navigator.artistsPage()
+                                                     .artistsLineUp()
+                                                     .artist( 0 )
+                                                     .albums() ) ;
+
         this.navigator.artistsPage()
                       .artistsLineUp()
-                      .artist( 9 )
+                      .artist( 0 )
                       .tap() ;
 
-        this.sleep( 5 ) ;
+        // ArtistAlbumsPage
+        if( albums > 1 ) {
+            this.navigator.artistAlbumsPage()
+                          .artistAlbumsLineUp()
+                          .album(0 )
+                          .tap();
+        }
+
+        // AlbumInfoPage
+        this.navigator.albumInfoPage()
+                      .shuffleAllButton()
+                      .tap() ;
+
+        this.retry( () -> this.navigator.nowPlayingBar().isPlaying() ) ;
     }
 
     @Test

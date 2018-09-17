@@ -36,7 +36,7 @@ public class Best50 extends ViewObject {
         return new SeeAllButton( this.matcher() ) ;
     }
 
-    public String subTitle() {
+    public String subtitle() {
         return this.getText( withId( R.id.promotion_song_list_subtitle ) ) ;
     }
 

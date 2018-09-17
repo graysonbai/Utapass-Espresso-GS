@@ -88,6 +88,13 @@ public class Best50LineUp extends LineUpObject {
         int indexInWindow = swipeToCardViewAndGetIndexOfWindow( index ) ;
 
         SongObject song = new SongObject() ;
+        song.cover( () -> onView(
+                UtaPassUtil.withIndex(
+                        allOf( withId( R.id.promotion_song_image ),
+                               isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
+                        indexInWindow
+                )
+        ) ) ;
         song.songName( this.songName( indexInWindow ) ) ;
         song.artistName( this.artistName( indexInWindow ) ) ;
         song.myUtaButton( this.myUtaButton( indexInWindow ) ) ;
@@ -99,7 +106,7 @@ public class Best50LineUp extends LineUpObject {
         button.matcherForButton(
                 UtaPassUtil.withIndex(
                         allOf( withId( R.id.promotion_song_myuta_register ),
-                                isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
+                               isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
                         indexInWindow ) ) ;
 
         button.matcherForText(

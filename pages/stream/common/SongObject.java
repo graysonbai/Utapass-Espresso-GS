@@ -14,6 +14,10 @@ public class SongObject extends ViewObject {
 
     private WorkaroundToFindCoverPhoto matcherForCoverPhoto ;
 
+    public boolean isVisible() {
+        return this.isVisible( this.matcherForCoverPhoto.execute() ) ;
+    }
+
     public void songName( String songName ) {
         this.songName = songName ;
     }

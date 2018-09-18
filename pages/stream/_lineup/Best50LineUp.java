@@ -1,27 +1,19 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.stream._lineup ;
 
-import android.support.test.espresso.ViewInteraction ;
 import android.view.View ;
 
 import com.kddi.android.UtaPass.R ;
 
 import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
-import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
-import com.kddi.android.UtaPass.sqa_espresso.pages.stream._lineup._card.CardObject;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.MyUtaButton;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.SongObject;
 
 import org.hamcrest.Matcher ;
 
 import static android.support.test.espresso.Espresso.onView ;
-import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.* ;
 import static org.hamcrest.Matchers.* ;
-
-
-// temp
-import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition ;
 
 
 public class Best50LineUp extends LineUpObject {
@@ -88,13 +80,14 @@ public class Best50LineUp extends LineUpObject {
         int indexInWindow = swipeToCardViewAndGetIndexOfWindow( index ) ;
 
         SongObject song = new SongObject() ;
-        song.cover( () -> onView(
-                UtaPassUtil.withIndex(
-                        allOf( withId( R.id.promotion_song_image ),
-                               isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                        indexInWindow
-                )
-        ) ) ;
+        song.cover( () -> onView( allOf(
+                withId( R.id.promotion_song_image ),
+                isDescendantOfA(
+                        UtaPassUtil.withIndex( this.getMatcherToCountMaxIndexOfWindow(),
+                                               indexInWindow ) )
+                ) ) ) ;
+
+
         song.songName( this.songName( indexInWindow ) ) ;
         song.artistName( this.artistName( indexInWindow ) ) ;
         song.myUtaButton( this.myUtaButton( indexInWindow ) ) ;
@@ -103,17 +96,18 @@ public class Best50LineUp extends LineUpObject {
 
     private MyUtaButton myUtaButton( int indexInWindow ) {
         MyUtaButton button = new MyUtaButton() ;
-        button.matcherForButton(
-                UtaPassUtil.withIndex(
-                        allOf( withId( R.id.promotion_song_myuta_register ),
-                               isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                        indexInWindow ) ) ;
+        button.matcherForButton( allOf(
+                withId( R.id.promotion_song_myuta_register ),
+                isDescendantOfA(
+                        UtaPassUtil.withIndex( this.getMatcherToCountMaxIndexOfWindow(),
+                                               indexInWindow ) ) ) ) ;
 
-        button.matcherForText(
-                UtaPassUtil.withIndex(
-                        allOf( withId( R.id.promotion_song_myuta_text ),
-                                isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                        indexInWindow ) ) ;
+
+        button.matcherForText( allOf(
+                withId( R.id.promotion_song_myuta_text ),
+                isDescendantOfA(
+                        UtaPassUtil.withIndex( this.getMatcherToCountMaxIndexOfWindow(),
+                                               indexInWindow ) ) ) ) ;
 
         return button ;
     }
@@ -126,27 +120,20 @@ public class Best50LineUp extends LineUpObject {
         return this.getText( this.matcherForArtistName( indexInWindow ) ) ;
     }
 
-    private Matcher<View> matcherForMyUtaButton( int indexInWindow ) {
-        return UtaPassUtil.withIndex(
-                    allOf( withId( R.id.promotion_song_myuta_register ),
-                           isDescendantOfA( this.getMatcherToCountMaxIndexOfWindow() ) ),
-                    indexInWindow ) ;
-    }
-
     private Matcher<View> matcherForSongName( int indexInWindow ) {
-        return UtaPassUtil.withIndex(
-                    allOf( withId( R.id.promotion_song_title ),
-                           isCompletelyDisplayed(),
-                           isDescendantOfA( this.getMatcherToCountMaxIndexOfWindow() ) ),
-                    indexInWindow ) ;
+        return allOf(
+                withId( R.id.promotion_song_title ),
+                isDescendantOfA(
+                        UtaPassUtil.withIndex( this.getMatcherToCountMaxIndexOfWindow(),
+                                               indexInWindow ) ) ) ;
     }
 
     private Matcher<View> matcherForArtistName( int indexInWindow ) {
-        return UtaPassUtil.withIndex(
-                allOf( withId( R.id.promotion_song_artist ),
-                        isCompletelyDisplayed(),
-                        isDescendantOfA( this.getMatcherToCountMaxIndexOfWindow() ) ),
-                indexInWindow ) ;
+        return allOf(
+                withId( R.id.promotion_song_artist ),
+                isDescendantOfA(
+                        UtaPassUtil.withIndex( this.getMatcherToCountMaxIndexOfWindow(),
+                                               indexInWindow ) ) ) ;
     }
 }
 

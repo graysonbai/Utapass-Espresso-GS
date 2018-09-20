@@ -124,7 +124,6 @@ public class ViewObject {
 
     // copied from google
     protected String getText(final Matcher<View> matcher) {
-        final String[] stringHolder = { null };
         return this.getText( onView( matcher ) ) ;
     }
 

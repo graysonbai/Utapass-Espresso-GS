@@ -30,15 +30,17 @@ public class MyTest extends BasicTest {
 
         this.retry( () -> this.navigator.nowPlayingBar().isPlaying() ) ;
 
-        this.assertEqual(
-                this.navigator.songsPage().songsLineUp().song( 0 ).songName(),
-                this.navigator.nowPlayingBar().songName()
-        ) ;
+        this.navigator.songsPage()
+                      .songsLineUp()
+                      .song( 0 )
+                      .songName()
+                      .assertEquals( this.navigator.nowPlayingBar().songName() ) ;
 
-        this.assertEqual(
-                this.navigator.songsPage().songsLineUp().song( 0 ).artistName(),
-                this.navigator.nowPlayingBar().artistName()
-        ) ;
+        this.navigator.songsPage()
+                      .songsLineUp()
+                      .song( 0 )
+                      .artistName()
+                      .assertEquals( this.navigator.nowPlayingBar().artistName() ) ;
     }
 
     @Test

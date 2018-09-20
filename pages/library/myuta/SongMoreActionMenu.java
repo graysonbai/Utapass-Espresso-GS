@@ -42,7 +42,7 @@ public class SongMoreActionMenu extends ViewObject {
 
     public class DeleteSongMenuItem extends BasicButton {
         public DeleteSongMenuItem() {
-            super( UtaPassUtil.withIndex( withId( R.id.context_menu_title ), 4 ) ) ;
+            super( () -> UtaPassUtil.withIndex( withId( R.id.context_menu_title ), 4 ) ) ;
         }
     }
 }

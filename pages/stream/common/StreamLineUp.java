@@ -1,23 +1,26 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.stream.common ;
 
-import android.support.test.espresso.ViewInteraction;
+import android.support.test.espresso.NoMatchingViewException;
 import android.support.test.espresso.action.ViewActions;
 import android.view.View;
 
 import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
+import com.kddi.android.UtaPass.sqa_espresso.common.SongObject;
+import com.kddi.android.UtaPass.sqa_espresso.common.StringObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 
 import org.hamcrest.Matcher;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.allOf ;
 
-// for temp
-import static android.support.test.espresso.action.ViewActions.click;
-import org.hamcrest.TypeSafeMatcher;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class StreamLineUp extends LineUpObject {
 
@@ -34,6 +37,12 @@ public class StreamLineUp extends LineUpObject {
 
     protected Matcher<View> getMatcherToCountMaxIndexOfWindow() {
         return withId( R.id.item_detail_stream_audio_image ) ;
+    }
+
+    protected Matcher<View> _getMatcherToCountMaxIndexOfWindow() {
+        return allOf( withId( R.id.item_detail_stream_audio_layout ),
+                      isCompletelyDisplayed(),
+                      isDescendantOfA( this.getMatcherToFindRecycleView() ) ) ;
     }
 
     protected int swipeToCardViewAndGetIndexOfWindow( int index ) {
@@ -89,62 +98,55 @@ public class StreamLineUp extends LineUpObject {
 
     public SongObject song( int index ) {
         int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
+
         SongObject song = new SongObject() ;
-        song.songName( this.songName( indexInWindow ) ) ;
-        song.artistName( this.artistName( indexInWindow ) ) ;
 
-        // This is a workaround to find cover photo
-        // song.photo( this.coverPhoto( indexInWindow ) ) ;
-        song.cover( () -> onView(
-                UtaPassUtil.withIndex(
-                        allOf( withId( R.id.item_detail_stream_audio_image ),
-                               isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                        indexInWindow
-                )
-        ) ) ;
-
-        song.myUtaButton( this.myUtaButton( indexInWindow ) ) ;
-        return song ;
-    }
-
-    private String songName( int indexInWindow ) {
-        return this.getText(
+        song.songName( () ->
                 UtaPassUtil.withIndex(
                         allOf( withId( R.id.item_detail_stream_audio_title ),
-                               isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
+                                isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
                         indexInWindow ) ) ;
-    }
 
-    private String artistName( int indexInWindow ) {
-        return this.getText(
+        song.artistName( () ->
                 UtaPassUtil.withIndex(
                         allOf( withId( R.id.item_detail_stream_audio_artist ),
                                isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
                         indexInWindow ) ) ;
+
+        song.cover( () ->
+                UtaPassUtil.withIndex(
+                        allOf( withId( R.id.item_detail_stream_audio_image ),
+                               isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
+                        indexInWindow ) ) ;
+
+        song.myUtaButton( () ->
+                allOf( withId( R.id.item_detail_stream_audio_myuta_register ),
+                       isDescendantOfA(
+                                UtaPassUtil.withIndex( this._getMatcherToCountMaxIndexOfWindow(),
+                                                            indexInWindow ) ) ) ) ;
+        return song ;
     }
 
-    private ViewInteraction coverPhoto( int indexInWindow ) {
-        return onView(
-                UtaPassUtil.withIndex(
-                    allOf( withId( R.id.item_detail_stream_audio_image ),
-                           isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                    indexInWindow ) ) ;
-    }
 
-    private MyUtaButton myUtaButton( int indexInWindow ) {
-        MyUtaButton button = new MyUtaButton() ;
-        button.matcherForButton(
-                UtaPassUtil.withIndex(
-                    allOf( withId( R.id.item_detail_stream_audio_myuta_register ),
-                           isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                    indexInWindow ) ) ;
+    // ========================================
+    // additional action
+    // ========================================
+    public StringObject countSongs() {
+        Set<String> set = new HashSet<>() ;
 
-        button.matcherForText(
-                UtaPassUtil.withIndex(
-                    allOf( withId( R.id.item_detail_stream_audio_myuta_text ),
-                           isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                    indexInWindow ) ) ;
+        try {
+            for( int i = 0 ; i <= this.getMaxIndexOfLineUpObject() ; i++ ) {
+                SongObject song = this.song( i ) ;
 
-        return button ;
+                set.add( String.format( "%s,%s",
+                                        song.songName().text().string(),
+                                        song.artistName().text().string() ) ) ;
+            }
+
+        } catch( NoMatchingViewException e ) {
+            this.dprint( e.getMessage() ) ;
+        }
+
+        return new StringObject( set.size() ) ;
     }
 }

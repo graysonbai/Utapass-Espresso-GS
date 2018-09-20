@@ -14,7 +14,7 @@ public class ReadMoreButton extends BasicButton {
 
 
     public ReadMoreButton() {
-        super( withId( R.id.synapse_myuta_intro_more ) ) ;
+        super( () -> withId( R.id.synapse_myuta_intro_more ) ) ;
     }
 
     public String text() {

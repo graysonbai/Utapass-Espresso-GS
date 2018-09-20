@@ -1,6 +1,8 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.library ;
 
 import com.kddi.android.UtaPass.R ;
+import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
+import com.kddi.android.UtaPass.sqa_espresso.common.StringObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.myuta.MyUtaHistoryButton;
@@ -27,8 +29,8 @@ public class MyUtaPage extends BasicPage {
         this.myUtaHistoryButton().ready() ;
     }
 
-    public String remainingQuotas() {
-        return this.getText( withId( R.id.myuta_available_quota_count ) ) ;
+    public LazyString remainingQuotas() {
+        return new LazyString( () -> withId( R.id.myuta_available_quota_count ) ) ;
     }
 
     public MyUtaHistoryButton myUtaHistoryButton() {
@@ -45,16 +47,22 @@ public class MyUtaPage extends BasicPage {
         return this.playButton ;
     }
 
-    public String downloadedSongs() {
-        java.util.regex.Matcher matcher =
-            Pattern.compile( "([0-9]+)" )
-                   .matcher( this.getText( withId( R.id.myuta_downloaded_songs_count ) ) ) ;
+    public LazyString downloadedSongs() {
+        return new LazyString( () -> withId( R.id.myuta_downloaded_songs_count ) ) {
 
-        if( matcher.find() ) {
-            return matcher.group( 1 ) ;
-        }
+            @Override
+            public StringObject text() {
+                java.util.regex.Matcher regexMatcher =
+                        Pattern.compile( "([0-9]+)" ).matcher(
+                                this.getText( this.matcher.execute() ) ) ;
 
-        return "" ;
+                if( regexMatcher.find() ) {
+                    return new StringObject( regexMatcher.group( 1 ) ) ;
+                }
+
+                return new StringObject( "" ) ;
+            }
+        } ;
     }
 
     public SongsLineUp lineUp() {

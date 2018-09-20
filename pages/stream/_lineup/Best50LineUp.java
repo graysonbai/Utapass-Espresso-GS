@@ -1,17 +1,20 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.stream._lineup ;
 
+import android.support.test.espresso.NoMatchingViewException;
 import android.view.View ;
 
 import com.kddi.android.UtaPass.R ;
 
 import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
+import com.kddi.android.UtaPass.sqa_espresso.common.SongObject;
+import com.kddi.android.UtaPass.sqa_espresso.common.StringObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
-import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.MyUtaButton;
-import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.SongObject;
 
 import org.hamcrest.Matcher ;
 
-import static android.support.test.espresso.Espresso.onView ;
+import java.util.HashSet;
+import java.util.Set;
+
 import static android.support.test.espresso.matcher.ViewMatchers.* ;
 import static org.hamcrest.Matchers.* ;
 
@@ -80,60 +83,59 @@ public class Best50LineUp extends LineUpObject {
         int indexInWindow = swipeToCardViewAndGetIndexOfWindow( index ) ;
 
         SongObject song = new SongObject() ;
-        song.cover( () -> onView( allOf(
+
+        song.songName( () -> allOf(
+                withId( R.id.promotion_song_title ),
+                isDescendantOfA(
+                        UtaPassUtil.withIndex( this.getMatcherToCountMaxIndexOfWindow(),
+                                               indexInWindow ) ) ) ) ;
+
+        song.artistName( () -> allOf(
+                withId( R.id.promotion_song_artist ),
+                isDescendantOfA(
+                        UtaPassUtil.withIndex( this.getMatcherToCountMaxIndexOfWindow(),
+                                               indexInWindow ) ) ) ) ;
+
+        song.cover( () -> allOf(
                 withId( R.id.promotion_song_image ),
                 isDescendantOfA(
                         UtaPassUtil.withIndex( this.getMatcherToCountMaxIndexOfWindow(),
                                                indexInWindow ) )
-                ) ) ) ;
+                ) ) ;
 
 
-        song.songName( this.songName( indexInWindow ) ) ;
-        song.artistName( this.artistName( indexInWindow ) ) ;
-        song.myUtaButton( this.myUtaButton( indexInWindow ) ) ;
-        return song ;
-    }
-
-    private MyUtaButton myUtaButton( int indexInWindow ) {
-        MyUtaButton button = new MyUtaButton() ;
-        button.matcherForButton( allOf(
+        song.myUtaButton( () -> allOf(
                 withId( R.id.promotion_song_myuta_register ),
                 isDescendantOfA(
                         UtaPassUtil.withIndex( this.getMatcherToCountMaxIndexOfWindow(),
                                                indexInWindow ) ) ) ) ;
 
-
-        button.matcherForText( allOf(
-                withId( R.id.promotion_song_myuta_text ),
-                isDescendantOfA(
-                        UtaPassUtil.withIndex( this.getMatcherToCountMaxIndexOfWindow(),
-                                               indexInWindow ) ) ) ) ;
-
-        return button ;
+        return song ;
     }
 
-    private String songName( int indexInWindow ) {
-        return this.getText( this.matcherForSongName( indexInWindow ) ) ;
-    }
 
-    private String artistName( int indexInWindow ) {
-        return this.getText( this.matcherForArtistName( indexInWindow ) ) ;
-    }
+    // ========================================
+    // additional action
+    // ========================================
+    public StringObject countSongs() {
+        Set<String> set = new HashSet<>() ;
 
-    private Matcher<View> matcherForSongName( int indexInWindow ) {
-        return allOf(
-                withId( R.id.promotion_song_title ),
-                isDescendantOfA(
-                        UtaPassUtil.withIndex( this.getMatcherToCountMaxIndexOfWindow(),
-                                               indexInWindow ) ) ) ;
-    }
+        try {
+            for (int i = 0; i <= Best50LineUp.MAX_INDEX_OF_LINEOBJECT; i++) {
 
-    private Matcher<View> matcherForArtistName( int indexInWindow ) {
-        return allOf(
-                withId( R.id.promotion_song_artist ),
-                isDescendantOfA(
-                        UtaPassUtil.withIndex( this.getMatcherToCountMaxIndexOfWindow(),
-                                               indexInWindow ) ) ) ;
+                // this might throw out NoMatchingViewException when it is out of index
+                SongObject song = this.song(i);
+
+                set.add(String.format("%s,%s",
+                        song.songName().text().string(),
+                        song.artistName().text().string()));
+            }
+
+        } catch( NoMatchingViewException e ) {
+            this.dprint( e.getMessage() ) ;
+        }
+
+        return new StringObject( set.size() ) ;
     }
 }
 

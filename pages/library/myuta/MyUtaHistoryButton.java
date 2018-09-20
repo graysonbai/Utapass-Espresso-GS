@@ -8,7 +8,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId ;
 public class MyUtaHistoryButton extends BasicButton {
 
     public MyUtaHistoryButton() {
-        super( withId( R.id.myuta_to_management ) ) ;
+        super( () -> withId( R.id.myuta_to_management ) ) ;
     }
 
     public void _ready() {

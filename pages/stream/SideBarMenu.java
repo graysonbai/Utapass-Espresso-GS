@@ -5,6 +5,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.kddi.android.UtaPass.R;
+import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
@@ -77,12 +78,12 @@ public class SideBarMenu extends ViewObject {
             return this.readMoreButton ;
         }
 
-        public String savedSongs() {
-            return this.getText( withId( R.id.synapse_myuta_info_used_count ) ) ;
+        public LazyString savedSongs() {
+            return new LazyString( () -> withId( R.id.synapse_myuta_info_used_count ) ) ;
         }
 
-        public String remainingQuotas() {
-            return this.getText( withId( R.id.synapse_myuta_info_remaining_count ) ) ;
+        public LazyString remainingQuotas() {
+            return new LazyString( () -> withId( R.id.synapse_myuta_info_remaining_count ) ) ;
         }
     }
 

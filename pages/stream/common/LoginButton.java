@@ -8,7 +8,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 public class LoginButton extends BasicButton {
 
     public LoginButton() {
-        super( withId( R.id.synapse_account_login_button ) ) ;
+        super( () -> withId( R.id.synapse_account_login_button ) ) ;
     }
 }
 

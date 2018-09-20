@@ -8,7 +8,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId ;
 public class PlayButton extends BasicButton {
 
     public PlayButton() {
-        super( withId( R.id.myuta_play_all ) ) ;
+        super( () -> withId( R.id.myuta_play_all ) ) ;
     }
 
     public void _ready() {

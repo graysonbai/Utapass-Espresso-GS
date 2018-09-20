@@ -1,34 +1,27 @@
 package com.kddi.android.UtaPass.sqa_espresso.common ;
 
-import android.support.test.espresso.ViewInteraction;
-import android.view.View;
-
-import org.hamcrest.Matcher;
-
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 
 
 public class BasicButton extends ViewObject {
 
-    public BasicButton( final ViewInteraction view ) {
-        this.item = view ;
-    }
+    private LazyMatcher matcher ;
 
-    public BasicButton( final Matcher<View> matcher ) {
-        this.item = onView( matcher ) ;
+    public BasicButton( LazyMatcher matcher ) {
+        this.matcher = matcher ;
     }
 
     public void tap() {
-        this.item.perform( click() ) ;
+        onView( this.matcher.execute() ).perform( click() ) ;
     }
 
     public boolean isVisible() {
-        return this.isVisible( this.item ) ;
+        return this.isVisible( this.matcher.execute() ) ;
     }
 
     public String text() {
-        return this.getText( this.item ) ;
+        return this.getText( this.matcher.execute() ) ;
     }
 }
 

@@ -1,57 +1,28 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.stream.common ;
 
-import android.support.test.espresso.ViewInteraction;
-import android.view.View;
+import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
+import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher;
 
-import com.kddi.android.UtaPass.R ;
-import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
-
-import org.hamcrest.Matcher;
-
-import static android.support.test.espresso.Espresso.onView ;
-import static android.support.test.espresso.matcher.ViewMatchers.withId ;
-import static android.support.test.espresso.action.ViewActions.*;
+import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
+import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
+import static org.hamcrest.Matchers.endsWith;
+import static org.hamcrest.core.AllOf.allOf;
 
 
-public class MyUtaButton extends ViewObject {
+public class MyUtaButton extends BasicButton {
 
-    private ViewInteraction item ;
-    private Matcher<View> matcherForButton ;
-    private Matcher<View> matcherForText ;
+    private LazyMatcher matcher ;
 
-    public ViewInteraction item() {
-        if( this.item == null ) {
-            this.item = onView( this.matcherForButton() ) ;
-        }
-        return this.item ;
-    }
+    public MyUtaButton( LazyMatcher matcher ) {
+        super( matcher ) ;
 
-    public void tap() {
-        this.item().perform( click() ) ;
-    }
-
-    public boolean isVisible() {
-        return this.isVisible( this.item() ) ;
+        this.matcher = matcher ;
     }
 
     public String text() {
-        return this.getText( this.matcherForText() ) ;
-    }
-
-    public void matcherForButton( Matcher<View> matcher ) {
-        this.matcherForButton = matcher ;
-    }
-
-    private Matcher<View> matcherForButton() {
-        return this.matcherForButton ;
-    }
-
-    public void matcherForText( Matcher<View> matcher ) {
-        this.matcherForText = matcher ;
-    }
-
-    private Matcher<View> matcherForText() {
-        return this.matcherForText ;
+        return this.getText( allOf(
+                withClassName( endsWith( "TextView" ) ),
+                isDescendantOfA( this.matcher.execute() ) ) ) ;
     }
 }
 

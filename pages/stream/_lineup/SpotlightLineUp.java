@@ -35,7 +35,7 @@ public class SpotlightLineUp extends LineUpObject {
         return withId( R.id.item_spotlight_image ) ;
     }
 
-    public CardObject getCard(int index ) {
+    public CardObject card(int index ) {
         this.swipeToPosition( index ) ;
 
         CardObject card = new CardObject() ;

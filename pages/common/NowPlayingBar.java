@@ -73,6 +73,10 @@ public class NowPlayingBar extends ViewObject {
         return this.isVisible( this.pauseButton ) ;
     }
 
+    public void assertPlaying() {
+        UtaPassUtil.retry( () -> this.isPlaying() ) ;
+    }
+
     public void tap() {
         this.item.perform( click() ) ;
     }

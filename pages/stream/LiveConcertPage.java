@@ -1,6 +1,7 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.stream ;
 
 import com.kddi.android.UtaPass.R ;
+import com.kddi.android.UtaPass.sqa_espresso.common.StringObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 
 import static android.support.test.espresso.Espresso.onView ;
@@ -29,11 +30,11 @@ public class LiveConcertPage extends ViewObject {
 //        this.liveChatBar.ready() ;
     }
 
-    public LiveVideo getLiveVideo() {
+    public LiveVideo liveVideo() {
         return this.liveVideo ;
     }
 
-    public LiveTitleBar getLiveTitleBar() {
+    public LiveTitleBar liveTitleBar() {
         return this.liveTitleBar ;
     }
 
@@ -90,12 +91,12 @@ public class LiveConcertPage extends ViewObject {
             this.title.ready() ;
         }
 
-        public LiveTitleBarIcon getIcon() {
+        public LiveTitleBarIcon icon() {
             return this.icon ;
         }
 
-        public String getTitle() {
-            return this.title.getText() ;
+        public StringObject title() {
+            return this.title.text() ;
         }
 
 
@@ -128,8 +129,8 @@ public class LiveConcertPage extends ViewObject {
                 }
             }
 
-            public String getText() {
-                return this.getText( this.item ) ;
+            public StringObject text() {
+                return new StringObject( this.getText( this.item ) ) ;
             }
         }
     }

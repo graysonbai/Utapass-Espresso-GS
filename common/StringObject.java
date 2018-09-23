@@ -1,5 +1,7 @@
 package com.kddi.android.UtaPass.sqa_espresso.common ;
 
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.StringException;
+
 import java.util.Arrays;
 
 import static android.support.test.espresso.Espresso.onView;

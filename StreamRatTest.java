@@ -16,28 +16,29 @@ public class StreamRatTest extends BasicTest {
     public void play_spotlight() {
         this.navigator.streamPage()
                       .spotlightLineUp()
-                      .getCard( 1 )
+                      .card( 1 )
                       .tap() ;
 
         this.navigator.spotlightPage()
                       .playButton()
                       .tap() ;
 
-        this.retry( () -> this.navigator.nowPlayingBar().isPlaying() ) ;
+        this.navigator.nowPlayingBar()
+                      .assertPlaying() ;
     }
 
     @Test
     public void play_live_event() {
         this.navigator.streamPage()
                       .liveLineUp()
-                      .getCard( 0 )
+                      .card( 0 )
                       .playButton()
                       .tap() ;
 
-        this.assertEqual(
-            this.navigator.liveConcertPage().getLiveTitleBar().getTitle(),
-            "KICK OFF VIVA!!! 2017"
-        ) ;
+        this.navigator.liveConcertPage()
+                      .liveTitleBar()
+                      .title()
+                      .assertEquals( "KICK OFF VIVA!!! 2017" ) ;
     }
 
     @Test
@@ -48,7 +49,8 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.retry( () -> this.navigator.nowPlayingBar().isPlaying() ) ;
+        this.navigator.nowPlayingBar()
+                      .assertPlaying() ;
     }
 
     @Test
@@ -59,7 +61,8 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.retry( () -> this.navigator.nowPlayingBar().isPlaying() ) ;
+        this.navigator.nowPlayingBar()
+                      .assertPlaying() ;
     }
 
     @Test
@@ -70,7 +73,8 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.retry( () -> this.navigator.nowPlayingBar().isPlaying() ) ;
+        this.navigator.nowPlayingBar()
+                      .assertPlaying() ;
     }
 
     @Test
@@ -84,7 +88,8 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.retry( () -> this.navigator.nowPlayingBar().isPlaying() ) ;
+        this.navigator.nowPlayingBar()
+                      .assertPlaying() ;
     }
 
     @Test
@@ -95,7 +100,8 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.retry( () -> this.navigator.nowPlayingBar().isPlaying() ) ;
+        this.navigator.nowPlayingBar()
+                      .assertPlaying() ;
     }
 
     @Test
@@ -106,7 +112,8 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.retry( () -> this.navigator.nowPlayingBar().isPlaying() ) ;
+        this.navigator.nowPlayingBar()
+                      .assertPlaying() ;
     }
 
     @Test
@@ -117,7 +124,8 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.retry( () -> this.navigator.nowPlayingBar().isPlaying() ) ;
+        this.navigator.nowPlayingBar()
+                      .assertPlaying() ;
     }
 
     @Test
@@ -128,6 +136,7 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.retry( () -> this.navigator.nowPlayingBar().isPlaying() ) ;
+        this.navigator.nowPlayingBar()
+                      .assertPlaying() ;
     }
 }

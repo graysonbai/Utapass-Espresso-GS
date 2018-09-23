@@ -32,7 +32,7 @@ public class LiveLineUp extends LineUpObject {
         return LiveLineUp.titleInJapanese ;
     }
 
-    public CardObject getCard(int index ) {
+    public CardObject card(int index ) {
         this.swipeToPosition( index ) ;
 
         CardObject card = new CardObject() ;

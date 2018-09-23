@@ -14,6 +14,7 @@ import android.view.View ;
 import android.widget.ImageView ;
 
 import com.kddi.android.UtaPass.main.MainActivity;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.RetryException;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.NowPlayingBar;
 
 import org.hamcrest.* ;
@@ -153,7 +154,7 @@ public class UtaPassUtil {
             }
 
         } catch( NoActivityResumedException ex ) {
-            UtaPassUtil.sleep( 3, "for launching next case" ) ;
+            UtaPassUtil.sleep( 5, "for launching next case" ) ;
         }
     }
 
@@ -176,5 +177,29 @@ public class UtaPassUtil {
     public static void setScreenOrientationNatural( ActivityTestRule<MainActivity> mActivityRule ) {
         mActivityRule.getActivity().setRequestedOrientation(
                 ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR ) ;
+    }
+
+    public static void retry( RetryUnit unit ) {
+        int retryMaxCount = 6 ;
+        int retryInterval = 5 ;
+        int count = 0 ;
+
+        while( true ) {
+            try {
+                if( ! unit.execute() ) {
+                    throw new RuntimeException() ;
+                }
+
+                return ;
+
+            } catch( Exception e ) {
+                if( count++ == retryMaxCount ) {
+                    throw new RetryException( "" ) ;
+                }
+
+                String msg = String.format( "for next try (%s/%s)", count, retryMaxCount ) ;
+                UtaPassUtil.sleep( retryInterval, msg ) ;
+            }
+        }
     }
 }

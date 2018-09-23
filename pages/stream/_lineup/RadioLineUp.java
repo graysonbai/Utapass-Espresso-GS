@@ -9,7 +9,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId ;
 
 public class RadioLineUp extends LineUpObject {
 
-    public static String titleInEnglish = "TODAY'S RADIO" ;
+    public static String titleInEnglish = "Original radio program" ;
     public static String titleInJapanese = "オリジナルラジオ番組" ;
 
     protected Matcher<View> getMatcherToCountMaxIndexOfWindow() {

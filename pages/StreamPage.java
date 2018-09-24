@@ -1,11 +1,11 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages ;
 
 import com.kddi.android.UtaPass.R ;
+import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._lineup.* ;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.Best50;
-import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.SideBarButton;
 
 import static android.support.test.espresso.Espresso.onView ;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -32,7 +32,7 @@ public class StreamPage extends BasicPage {
     private final int POSITION_RUN_AWAY             = 13 ;
     private int[] lineupExistence ;
 
-    private SideBarButton sideBarButton ;
+    private BasicButton sideBarButton ;
 
     public StreamPage() {
         this.lineupExistence = new int[ this.MAX_LINEUP_OBJECT ] ;
@@ -185,9 +185,9 @@ public class StreamPage extends BasicPage {
         this.swipeToLineUpObject( this.getPosition( this.POSITION_YOU_MAY_ALSO_LIKE ) ) ;
      }
 
-    public SideBarButton sideBarButton() {
+    public BasicButton sideBarButton() {
         if( this.sideBarButton == null ) {
-            this.sideBarButton = new SideBarButton() ;
+            this.sideBarButton = new BasicButton( () -> withId( R.id.main_drawer_icon ) ) ;
         }
         return sideBarButton ;
     }

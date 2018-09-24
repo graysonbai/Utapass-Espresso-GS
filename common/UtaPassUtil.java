@@ -90,8 +90,14 @@ public class UtaPassUtil {
                 Resources resources = view.getContext().getResources() ;
                 Drawable expectedDrawable = resources.getDrawable( resourceId ) ;
 
-                if( imageView.getDrawable() == null || expectedDrawable == null) {
+                if( imageView.getDrawable() == null || expectedDrawable == null ) {
                     return false;
+                }
+
+                if( imageView.getDrawable().getIntrinsicHeight() < 0 ||
+                    imageView.getDrawable().getIntrinsicWidth() < 0 ) {
+
+                    return false ;
                 }
 
                 Bitmap bitmap = getBitmap( imageView.getDrawable() ) ;
@@ -100,13 +106,15 @@ public class UtaPassUtil {
             }
 
             private Bitmap getBitmap( Drawable drawable ) {
-                Bitmap bitmap = Bitmap.createBitmap( drawable.getIntrinsicWidth(),
-                                                     drawable.getIntrinsicHeight(),
-                                                     Bitmap.Config.ARGB_8888 ) ;
-                Canvas canvas = new Canvas( bitmap ) ;
-                drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight() ) ;
-                drawable.draw( canvas ) ;
-                return bitmap ;
+                Bitmap bitmap = Bitmap.createBitmap(
+                        drawable.getIntrinsicWidth(),
+                        drawable.getIntrinsicHeight(),
+                        Bitmap.Config.ARGB_8888 );
+                Canvas canvas = new Canvas(bitmap);
+                drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+                drawable.draw(canvas);
+                return bitmap;
+
             }
         };
     }

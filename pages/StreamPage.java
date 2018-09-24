@@ -135,6 +135,11 @@ public class StreamPage extends BasicPage {
         this.swipeToLineUpObject( this.getPosition( this.POSITION_SPOTLIGHT ) ) ;
     }
 
+    public void swipeToRadioLineUp() {
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_LIVE ) ) ;
+        this.swipeToLineUpObject( this.getPosition( this.POSITION_RADIO ) ) ;
+    }
+
     public void swipeToLiveLineUp() {
         this.swipeToLineUpObject( this.getPosition( this.POSITION_ARTIST_NEW_RELEASE ) ) ;
         this.swipeToLineUpObject( this.getPosition( this.POSITION_LIVE ) ) ;
@@ -190,6 +195,11 @@ public class StreamPage extends BasicPage {
     public SpotlightLineUp spotlightLineUp() {
         this.swipeToSpotlightLineUp() ;
         return new SpotlightLineUp() ;
+    }
+
+    public RadioLineUp radioLineUp() {
+        this.swipeToRadioLineUp() ;
+        return new RadioLineUp() ;
     }
 
     public LiveLineUp liveLineUp() {

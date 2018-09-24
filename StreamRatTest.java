@@ -28,6 +28,26 @@ public class StreamRatTest extends BasicTest {
     }
 
     @Test
+    public void play_radio() {
+        this.navigator.streamPage()
+                      .radioLineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
+
+        this.navigator.nowPlayingBar()
+                      .songName()
+                      .assertVisible() ;
+
+        this.navigator.nowPlayingBar()
+                      .artistName()
+                      .assertVisible() ;
+
+        this.navigator.nowPlayingBar()
+                      .assertPlaying() ;
+    }
+
+    @Test
     public void play_live_event() {
         this.navigator.streamPage()
                       .liveLineUp()

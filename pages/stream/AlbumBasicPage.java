@@ -1,21 +1,21 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.stream ;
 
 import com.kddi.android.UtaPass.R ;
+import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
-import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.FavoriteButton;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.ShowMoreButton;
-import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.PlayButton;
-import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.ShuffleAllButton;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.StreamLineUp;
 
 import static android.support.test.espresso.matcher.ViewMatchers.withId ;
+import static android.support.test.espresso.matcher.ViewMatchers.withParent;
+import static org.hamcrest.core.AllOf.allOf;
 
 
 public class AlbumBasicPage extends BasicPage {
 
-    private FavoriteButton favoriteButton ;
-    private PlayButton playButton ;
-    private ShuffleAllButton shuffleAllButton ;
+    private BasicButton favoriteButton ;
+    private BasicButton playButton ;
+    private BasicButton shuffleAllButton ;
     private StreamLineUp songsLineUp ;
     private ShowMoreButton showMoreButton ;
 
@@ -44,9 +44,10 @@ public class AlbumBasicPage extends BasicPage {
         return this.getText( withId( R.id.detail_editor_title ) ) ;
     }
 
-    public FavoriteButton favoriteButton() {
+    public BasicButton favoriteButton() {
         if( this.favoriteButton == null ) {
-            this.favoriteButton = new FavoriteButton() ;
+            this.favoriteButton = new BasicButton( () ->
+                    withId( R.id.detail_editor_like_layout ) ) ;
         }
 
         this.songsLineUp().swipeToPosition( 0 ) ;
@@ -58,18 +59,21 @@ public class AlbumBasicPage extends BasicPage {
         return this.getText( withId( R.id.detail_editor_description ) ) ;
     }
 
-    public PlayButton playButton() {
+    public BasicButton playButton() {
         if( this.playButton == null ) {
-            this.playButton = new PlayButton() ;
+            this.playButton = new BasicButton( () ->
+                    withId( R.id.view_shuffle_play_layout ) ) ;
         }
 
         this.songsLineUp().swipeToPosition( 1 ) ;
         return this.playButton ;
     }
 
-    public ShuffleAllButton shuffleAllButton() {
+    public BasicButton shuffleAllButton() {
         if( this.shuffleAllButton == null ) {
-            this.shuffleAllButton = new ShuffleAllButton() ;
+            this.shuffleAllButton = new BasicButton( () ->
+                    allOf( withId( R.id.view_shuffle_play_layout ),
+                           withParent( withId( R.id.detail_album_recycler_view ) ) ) ) ;
         }
 
         this.songsLineUp().swipeToPosition( 1 ) ;
@@ -85,7 +89,9 @@ public class AlbumBasicPage extends BasicPage {
 
     public ShowMoreButton showMoreButton() {
         if( this.showMoreButton == null ) {
-            this.showMoreButton = new ShowMoreButton( this.songsLineUp() ) ;
+            this.showMoreButton = new ShowMoreButton(
+                    this.songsLineUp(),
+                    () -> withId( R.id.item_detail_show_more ) ) ;
         }
         this.songsLineUp().swipeToShowMoreButton() ;
         return this.showMoreButton ;

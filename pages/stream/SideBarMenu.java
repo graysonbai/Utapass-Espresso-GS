@@ -1,15 +1,14 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.stream ;
 
 import android.support.test.espresso.ViewInteraction;
-import android.view.MenuItem;
 import android.view.View;
 
 import com.kddi.android.UtaPass.R;
+import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
-import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.LoginButton;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.ReadMoreButton;
 
 import org.hamcrest.Matcher;
@@ -54,7 +53,7 @@ public class SideBarMenu extends ViewObject {
 
     public class QuotaInfo extends ViewObject {
 
-        private LoginButton loginButton ;
+        private BasicButton loginButton ;
         private String promoteMessage ;
         private ReadMoreButton readMoreButton ;
 
@@ -64,9 +63,10 @@ public class SideBarMenu extends ViewObject {
 //        private String RemainingQuotas ;
 //        private WhatIsMyUtaPlusButton whatIsMyUtaPlusButton ;
 
-        public LoginButton loginButton() {
+        public BasicButton loginButton() {
             if( this.loginButton == null ) {
-                this.loginButton = new LoginButton() ;
+                this.loginButton = new BasicButton( () ->
+                        withId( R.id.synapse_account_login_button )  ) ;
             }
             return this.loginButton ;
         }

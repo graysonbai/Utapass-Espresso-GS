@@ -1,17 +1,19 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.library.albums ;
 
 import com.kddi.android.UtaPass.R;
+import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.albums.info.SongsLineUp;
-import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.ShuffleAllButton;
 
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withParent;
+import static org.hamcrest.core.AllOf.allOf;
 
 
 public class AlbumInfoPage extends BasicPage {
 
     private SongsLineUp songsLineUp ;
-    private ShuffleAllButton shuffleAllButton ;
+    private BasicButton shuffleAllButton ;
 
     public String totalSongs() {
         String raw = this.getText( withId( R.id.detail_album_description ) ) ;
@@ -33,9 +35,11 @@ public class AlbumInfoPage extends BasicPage {
         return this.songsLineUp ;
     }
 
-    public ShuffleAllButton shuffleAllButton() {
+    public BasicButton shuffleAllButton() {
         if( this.shuffleAllButton == null ) {
-            this.shuffleAllButton = new ShuffleAllButton() ;
+            this.shuffleAllButton = new BasicButton( () ->
+                    allOf( withId( R.id.view_shuffle_play_layout ),
+                           withParent( withId( R.id.detail_album_recycler_view ) ) ) ) ;
         }
         return this.shuffleAllButton ;
     }

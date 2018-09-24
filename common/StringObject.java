@@ -32,6 +32,25 @@ public class StringObject {
         this.string = String.valueOf( n ) ;
     }
 
+    public boolean isVisible() {
+        return this.string() != null ;
+    }
+
+
+    // ========================================
+    // Visible
+    // ========================================
+    public void assertVisible() {
+        if( ! this.isVisible() ) {
+            throw new StringException( "StringInvisible" ) ;
+        }
+    }
+
+    public void assertInvisible() {
+        if( this.isVisible() ) {
+            throw new StringException( "StringVisible" ) ;
+        }
+    }
 
     // ========================================
     // Equals

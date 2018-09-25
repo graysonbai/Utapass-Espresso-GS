@@ -40,35 +40,17 @@ public class WhatsNewLineUp extends LineUpObject {
                        isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
                 indexInWindow ) ) ;
 
-        card.title( this.getTitleFromCardView( index ) ) ;
-        card.likedCount( this.getLikedCountFromCardView( index ) ) ;
+        card.title( () -> UtaPassUtil.withIndex(
+                allOf( withId( R.id.item_three_cover_playlist_title ),
+                       isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
+                indexInWindow ) ) ;
+
+        card.likedCount( () -> UtaPassUtil.withIndex(
+                allOf( withId( R.id.item_three_cover_playlist_like_count ),
+                       isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
+                indexInWindow ) ) ;
+
         return card ;
-    }
-
-    private String getTitleFromCardView( int index ) {
-        return this.getText( this.getMatcherForTitleInCardView( index ) ) ;
-    }
-
-    private String getLikedCountFromCardView( int index ) {
-        return this.getText( this.getMatcherForLikedCountInCardView( index ) ) ;
-    }
-
-    private Matcher<View> getMatcherForTitleInCardView( int index ) {
-        int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
-
-        return UtaPassUtil.withIndex(
-                    allOf( withId( R.id.item_three_cover_playlist_title ),
-                           isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                    indexInWindow ) ;
-    }
-
-    private Matcher<View> getMatcherForLikedCountInCardView( int index ) {
-        int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
-
-        return UtaPassUtil.withIndex(
-                    allOf( withId( R.id.item_three_cover_playlist_like_count ),
-                           isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                    indexInWindow ) ;
     }
 }
 

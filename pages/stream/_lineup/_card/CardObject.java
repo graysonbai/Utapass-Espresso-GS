@@ -4,17 +4,18 @@ import android.support.test.espresso.ViewInteraction;
 
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher;
+import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 
 import static android.support.test.espresso.action.ViewActions.click;
 
 public class CardObject extends ViewObject {
 
-    private String title ;
-    private int likedCount ;
     private Photo background ;
 
     private LazyMatcher matcherPlayButton ;
+    private LazyMatcher matcherTitle ;
+    private LazyMatcher matcherLikedCount ;
 
     public BasicButton playButton() {
         return new BasicButton( this.matcherPlayButton ) ;
@@ -32,24 +33,20 @@ public class CardObject extends ViewObject {
         this.background = new Photo( background ) ;
     }
 
-    public void title( String title ) {
-        this.title = title ;
+    public void title( LazyMatcher matcher ) {
+        this.matcherTitle = matcher ;
     }
 
-    public String title() {
-        return this.title ;
+    public LazyString title() {
+        return new LazyString( this.matcherTitle ) ;
     }
 
-    public void likedCount( int likedCount ) {
-        this.likedCount = likedCount ;
+    public void likedCount( LazyMatcher matcher ) {
+        this.matcherLikedCount = matcher ;
     }
 
-    public void likedCount( String likedCount ) {
-        this.likedCount( Integer.parseInt( likedCount ) ) ;
-    }
-
-    public int likedCount() {
-        return this.likedCount ;
+    public LazyString likedCount() {
+        return new LazyString( this.matcherLikedCount ) ;
     }
 
     public void play() {

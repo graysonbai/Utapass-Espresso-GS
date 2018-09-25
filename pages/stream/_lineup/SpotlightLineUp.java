@@ -40,7 +40,6 @@ public class SpotlightLineUp extends LineUpObject {
 
         CardObject card = new CardObject() ;
         card.background( this.getBackgroundCard( index ) ) ;
-        card.title( "最近聴いたものからオススメする50曲" ) ;
         return card ;
     }
 

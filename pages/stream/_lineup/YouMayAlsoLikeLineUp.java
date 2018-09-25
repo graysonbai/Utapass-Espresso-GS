@@ -41,17 +41,17 @@ public class YouMayAlsoLikeLineUp extends LineUpObject {
                        isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
                 indexInWindow ) ) ;
 
-        card.title( this.getTitleFromCardView( index ) ) ;
+        card.title( () -> UtaPassUtil.withIndex(
+                allOf( withId( R.id.item_three_cover_playlist_title ),
+                       isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
+                indexInWindow ) ) ;
+
         card.background( this.getBackgroundFromCardView( index ) ) ;
         return card ;
     }
 
     private ViewInteraction getBackgroundFromCardView( int index ) {
         return onView( this.getMatcherForBackgroundInCardView( index ) ) ;
-    }
-
-    private String getTitleFromCardView( int index ) {
-        return this.getText( this.getMatcherForTitleInCardView( index ) ) ;
     }
 
     private Matcher<View> getMatcherForBackgroundInCardView( int index ) {
@@ -61,15 +61,6 @@ public class YouMayAlsoLikeLineUp extends LineUpObject {
                 allOf( withId( R.id.item_three_cover_playlist_cover_2 ),
                         isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
                 indexInWindow ) ;
-    }
-
-    private Matcher<View> getMatcherForTitleInCardView( int index ) {
-        int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
-
-        return UtaPassUtil.withIndex(
-                    allOf( withId( R.id.item_three_cover_playlist_title ),
-                           isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                    indexInWindow ) ;
     }
 }
 

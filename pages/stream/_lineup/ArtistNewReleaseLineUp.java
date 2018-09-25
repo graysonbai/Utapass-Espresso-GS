@@ -43,8 +43,16 @@ public class ArtistNewReleaseLineUp extends LineUpObject {
                        isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
                 indexInWindow ) ) ;
 
-        card.title( this.getTitleFromCardView( index ) ) ;
-        card.likedCount( this.getLikedCountFromCardView( indexInWindow ) ) ;
+        card.title( () -> UtaPassUtil.withIndex(
+                allOf( withId( R.id.item_playlist_card_title ),
+                       isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
+                indexInWindow ) ) ;
+
+        card.likedCount( () -> UtaPassUtil.withIndex(
+                allOf( withId( R.id.item_playlist_card_like_count ),
+                       isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
+                indexInWindow ) ) ;
+
         return card ;
     }
 
@@ -57,28 +65,6 @@ public class ArtistNewReleaseLineUp extends LineUpObject {
                 allOf( withId( R.id.item_playlist_card_image ),
                        isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
                 index ) ;
-    }
-
-    private String getTitleFromCardView( int index ) {
-        return this.getText( this.getMatcherForTitleInCardView( index ) ) ;
-    }
-
-    private String getLikedCountFromCardView( int index ) {
-        return this.getText( this.getMatcherForLikedCountInCardView( index ) ) ;
-    }
-
-    private Matcher<View> getMatcherForTitleInCardView( int index ) {
-        return UtaPassUtil.withIndex(
-                    allOf( withId( R.id.item_playlist_card_title ),
-                           isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                    index ) ;
-    }
-
-    private Matcher<View> getMatcherForLikedCountInCardView( int index ) {
-        return UtaPassUtil.withIndex(
-                    allOf( withId( R.id.item_playlist_card_like_count ),
-                           isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                    index ) ;
     }
 }
 

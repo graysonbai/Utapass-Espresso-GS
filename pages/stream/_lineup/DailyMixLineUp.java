@@ -25,9 +25,13 @@ public class DailyMixLineUp extends LineUpObject {
 
     public CardObject getCard() {
         CardObject card = new CardObject() ;
+
         card.background( this.getBackgroundCard() ) ;
-        card.playButton( this.getPlayButtonFromCardView() ) ;
+
+        card.playButton( () -> withId( R.id.item_dailymix_play ) ) ;
+
         card.title( "最近聴いたものからオススメする50曲" ) ;
+
         return card ;
     }
 
@@ -37,10 +41,6 @@ public class DailyMixLineUp extends LineUpObject {
 
     private ViewInteraction getBackgroundCard() {
         return onView( withId( R.id.item_dailymix_cardview ) ) ;
-    }
-
-    private ViewInteraction getPlayButtonFromCardView() {
-        return onView( withId( R.id.item_dailymix_play ) ) ;
     }
 }
 

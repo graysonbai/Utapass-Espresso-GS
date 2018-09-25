@@ -32,31 +32,26 @@ public class YouMayAlsoLikeLineUp extends LineUpObject {
     }
 
     public CardObject getCard(int index ) {
+        int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
+
         CardObject card = new CardObject() ;
-        card.playButton( this.getPlayButtonFromCardView( index ) ) ;
+
+        card.playButton( () -> UtaPassUtil.withIndex(
+                allOf( withId( R.id.item_three_cover_playlist_play ),
+                       isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
+                indexInWindow ) ) ;
+
         card.title( this.getTitleFromCardView( index ) ) ;
         card.background( this.getBackgroundFromCardView( index ) ) ;
         return card ;
     }
 
-    private ViewInteraction getPlayButtonFromCardView( int index ) {
-        return onView( this.getMatcherForPlayButtonInCardView( index ) ) ;
-    }
-
     private ViewInteraction getBackgroundFromCardView( int index ) {
         return onView( this.getMatcherForBackgroundInCardView( index ) ) ;
     }
+
     private String getTitleFromCardView( int index ) {
         return this.getText( this.getMatcherForTitleInCardView( index ) ) ;
-    }
-
-    private Matcher<View> getMatcherForPlayButtonInCardView( int index ) {
-        int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
-
-        return UtaPassUtil.withIndex(
-                    allOf( withId( R.id.item_three_cover_playlist_play ),
-                           isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                    indexInWindow ) ;
     }
 
     private Matcher<View> getMatcherForBackgroundInCardView( int index ) {

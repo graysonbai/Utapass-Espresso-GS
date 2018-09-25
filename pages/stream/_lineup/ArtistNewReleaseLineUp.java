@@ -32,11 +32,19 @@ public class ArtistNewReleaseLineUp extends LineUpObject {
     }
 
     public CardObject getCard(int index ) {
+        int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
+
         CardObject card = new CardObject() ;
-        card.background( this.getBackgroundCard( index ) ) ;
-        card.playButton( this.getPlayButtonFromCardView( index ) ) ;
+
+        card.background( this.getBackgroundCard( indexInWindow ) ) ;
+
+        card.playButton( () -> UtaPassUtil.withIndex(
+                allOf( withId( R.id.item_playlist_card_play ),
+                       isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
+                indexInWindow ) ) ;
+
         card.title( this.getTitleFromCardView( index ) ) ;
-        card.likedCount( this.getLikedCountFromCardView( index ) ) ;
+        card.likedCount( this.getLikedCountFromCardView( indexInWindow ) ) ;
         return card ;
     }
 
@@ -45,16 +53,10 @@ public class ArtistNewReleaseLineUp extends LineUpObject {
     }
 
     private Matcher<View> getMatcherForBackgroundInCardView( int index ) {
-        int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
-
         return UtaPassUtil.withIndex(
                 allOf( withId( R.id.item_playlist_card_image ),
                        isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                indexInWindow ) ;
-    }
-
-    private ViewInteraction getPlayButtonFromCardView( int index ) {
-        return onView( this.getMatcherForPlayButtonInCardView( index ) ) ;
+                index ) ;
     }
 
     private String getTitleFromCardView( int index ) {
@@ -65,31 +67,18 @@ public class ArtistNewReleaseLineUp extends LineUpObject {
         return this.getText( this.getMatcherForLikedCountInCardView( index ) ) ;
     }
 
-    private Matcher<View> getMatcherForPlayButtonInCardView( int index ) {
-        int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
-
-        return UtaPassUtil.withIndex(
-                    allOf( withId( R.id.item_playlist_card_play ),
-                           isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                    indexInWindow ) ;
-    }
-
     private Matcher<View> getMatcherForTitleInCardView( int index ) {
-        int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
-
         return UtaPassUtil.withIndex(
                     allOf( withId( R.id.item_playlist_card_title ),
                            isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                    indexInWindow ) ;
+                    index ) ;
     }
 
     private Matcher<View> getMatcherForLikedCountInCardView( int index ) {
-        int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
-
         return UtaPassUtil.withIndex(
                     allOf( withId( R.id.item_playlist_card_like_count ),
                            isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                    indexInWindow ) ;
+                    index ) ;
     }
 }
 

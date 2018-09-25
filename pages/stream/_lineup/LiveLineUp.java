@@ -1,6 +1,5 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.stream._lineup ;
 
-import android.support.test.espresso.ViewInteraction ;
 import android.view.View ;
 
 import com.kddi.android.UtaPass.R ;
@@ -10,7 +9,6 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.stream._lineup._card.CardObje
 
 import org.hamcrest.Matcher ;
 
-import static android.support.test.espresso.Espresso.onView ;
 import static android.support.test.espresso.matcher.ViewMatchers.* ;
 import static org.hamcrest.Matchers.allOf ;
 
@@ -32,25 +30,17 @@ public class LiveLineUp extends LineUpObject {
         return LiveLineUp.titleInJapanese ;
     }
 
-    public CardObject card(int index ) {
-        this.swipeToPosition( index ) ;
-
-        CardObject card = new CardObject() ;
-        card.playButton( this.getPlayButtonFromCardView( index ) ) ;
-        return card ;
-    }
-
-    private ViewInteraction getPlayButtonFromCardView( int index ) {
-        return onView( this.getMatcherForPlayButtonInCardView( index ) ) ;
-    }
-
-    private Matcher<View> getMatcherForPlayButtonInCardView( int index ) {
+    public CardObject card( int index ) {
         int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
 
-        return UtaPassUtil.withIndex(
-                    allOf( withId( R.id.item_live_event_play ),
-                           isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                    indexInWindow ) ;
+        CardObject card = new CardObject() ;
+
+        card.playButton( () -> UtaPassUtil.withIndex(
+                allOf( withId( R.id.item_live_event_play ),
+                       isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
+                indexInWindow ) ) ;
+
+        return card ;
     }
 }
 

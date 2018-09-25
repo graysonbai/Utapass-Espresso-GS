@@ -6,7 +6,7 @@ import static android.support.test.espresso.action.ViewActions.click;
 
 public class BasicButton extends ViewObject {
 
-    private LazyMatcher matcher ;
+    protected LazyMatcher matcher ;
 
     public BasicButton( LazyMatcher matcher ) {
         this.matcher = matcher ;
@@ -22,6 +22,17 @@ public class BasicButton extends ViewObject {
 
     public String text() {
         return this.getText( this.matcher.execute() ) ;
+    }
+
+    public void _ready() {
+        if( ! this.isVisible() ) {
+            String msg = "NotReady: " + this.name() ;
+            throw new RuntimeException( msg ) ;
+        }
+    }
+
+    public String name() {
+        return this.getClass().getSimpleName() ;
     }
 }
 

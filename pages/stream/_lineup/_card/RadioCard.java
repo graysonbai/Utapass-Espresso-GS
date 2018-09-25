@@ -1,7 +1,7 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.stream._lineup._card ;
 
+import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher;
-import com.kddi.android.UtaPass.sqa_espresso.common.PlayButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.StringObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 
@@ -9,14 +9,14 @@ import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 public class RadioCard extends ViewObject {
 
     private StringObject name ;
-    private PlayButton playButton ;
+    private LazyMatcher matcherPlayButton ;
 
-    public PlayButton playButton() {
-        return this.playButton ;
+    public BasicButton playButton() {
+        return new BasicButton( this.matcherPlayButton ) ;
     }
 
     public void playButton( LazyMatcher matcher ) {
-        this.playButton = new PlayButton( matcher ) ;
+        this.matcherPlayButton = matcher ;
     }
 
     public StringObject name() {
@@ -29,7 +29,7 @@ public class RadioCard extends ViewObject {
 
     //
     public void play() {
-        this.playButton.tap() ;
+        this.playButton().tap() ;
     }
 }
 

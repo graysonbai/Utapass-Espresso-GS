@@ -2,6 +2,8 @@ package com.kddi.android.UtaPass.sqa_espresso.pages.stream._lineup._card ;
 
 import android.support.test.espresso.ViewInteraction;
 
+import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
+import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 
 import static android.support.test.espresso.action.ViewActions.click;
@@ -11,14 +13,15 @@ public class CardObject extends ViewObject {
     private String title ;
     private int likedCount ;
     private Photo background ;
-    private PlayButton playButton ;
 
-    public PlayButton playButton() {
-        return this.playButton ;
+    private LazyMatcher matcherPlayButton ;
+
+    public BasicButton playButton() {
+        return new BasicButton( this.matcherPlayButton ) ;
     }
 
-    public void playButton( ViewInteraction playButton ) {
-        this.playButton = new PlayButton( playButton ) ;
+    public void playButton( LazyMatcher matcher ) {
+        this.matcherPlayButton = matcher ;
     }
 
     public Photo background() {
@@ -50,28 +53,11 @@ public class CardObject extends ViewObject {
     }
 
     public void play() {
-        this.playButton.tap() ;
+        this.playButton().tap() ;
     }
 
     public void tap() {
         this.background.tap() ;
-    }
-
-    public class PlayButton extends ViewObject {
-
-        public PlayButton( ViewInteraction button ) {
-            this.item = button ;
-        }
-
-        public void _ready() {
-            if( !this.isVisible( this.item ) ) {
-                throw new RuntimeException( "PlayButton is not visible" ) ;
-            }
-        }
-
-        public void tap() {
-            this.item.perform( click() ) ;
-        }
     }
 
     public class Photo extends ViewObject {

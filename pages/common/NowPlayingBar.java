@@ -1,9 +1,9 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.common ;
 
 import com.kddi.android.UtaPass.R ;
+import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.NextButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.PauseButton;
-import com.kddi.android.UtaPass.sqa_espresso.common.PlayButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.StringObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
@@ -28,7 +28,7 @@ public class NowPlayingBar extends ViewObject {
 
     private StringObject songName ;
     private StringObject artistName ;
-    private PlayButton playButton ;
+    private BasicButton playButton ;
     private PauseButton pauseButton ;
     private NextButton nextButton ;
 
@@ -63,9 +63,9 @@ public class NowPlayingBar extends ViewObject {
         return this.artistName ;
     }
 
-    public PlayButton playButton() {
+    public BasicButton playButton() {
         if( this.playButton == null ) {
-            this.playButton = new PlayButton( () ->
+            this.playButton = new BasicButton( () ->
                     allOf( UtaPassUtil.withDrawable( R.drawable.ic_bar_play ),
                            isDescendantOfA( this.itemMatcher ) ) ) ;
         }

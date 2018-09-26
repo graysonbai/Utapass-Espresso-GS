@@ -25,7 +25,7 @@ import java.util.Set;
 public class StreamLineUp extends LineUpObject {
 
     private TitleBar titleBar ;
-    private final int SHOWMORE_BUTTON_POSITION = 11 ;
+    private final int SHOWMORE_BUTTON_POSITION = 10 ;
 
     public StreamLineUp() {
         this.setMaxIndexOfLineUpObject( 25 ) ;

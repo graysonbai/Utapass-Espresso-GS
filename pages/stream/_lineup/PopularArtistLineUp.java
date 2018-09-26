@@ -40,7 +40,10 @@ public class PopularArtistLineUp extends LineUpObject {
 
         CardObject card = new CardObject() ;
 
-        card.background( this.getBackgroundCard( index ) ) ;
+        card.image( () -> UtaPassUtil.withIndex(
+                allOf( withId( R.id.item_playlist_card_image ),
+                       isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
+                indexInWindow ) ) ;
 
         card.playButton( () -> UtaPassUtil.withIndex(
                 allOf( withId( R.id.item_playlist_card_play ),
@@ -49,28 +52,15 @@ public class PopularArtistLineUp extends LineUpObject {
 
         card.title( () -> UtaPassUtil.withIndex(
                 allOf( withId( R.id.item_playlist_card_title ),
-                        isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
+                       isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
                 indexInWindow ) ) ;
 
         card.likedCount( () -> UtaPassUtil.withIndex(
                 allOf( withId( R.id.item_playlist_card_like_count ),
-                        isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
+                       isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
                 indexInWindow ) ) ;
 
         return card ;
-    }
-
-    private ViewInteraction getBackgroundCard( int index ) {
-        return onView( this.getMatcherForBackgroundInCardView( index ) ) ;
-    }
-
-    private Matcher<View> getMatcherForBackgroundInCardView( int index ) {
-        int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
-
-        return UtaPassUtil.withIndex(
-                allOf( withId( R.id.item_playlist_card_image ),
-                        isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                indexInWindow ) ;
     }
 }
 

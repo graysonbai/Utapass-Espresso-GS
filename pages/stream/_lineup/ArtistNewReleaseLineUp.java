@@ -36,7 +36,10 @@ public class ArtistNewReleaseLineUp extends LineUpObject {
 
         CardObject card = new CardObject() ;
 
-        card.background( this.getBackgroundCard( indexInWindow ) ) ;
+        card.image( () -> UtaPassUtil.withIndex(
+                allOf( withId( R.id.item_playlist_card_image ),
+                       isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
+                indexInWindow ) ) ;
 
         card.playButton( () -> UtaPassUtil.withIndex(
                 allOf( withId( R.id.item_playlist_card_play ),
@@ -54,17 +57,6 @@ public class ArtistNewReleaseLineUp extends LineUpObject {
                 indexInWindow ) ) ;
 
         return card ;
-    }
-
-    private ViewInteraction getBackgroundCard( int index ) {
-        return onView( this.getMatcherForBackgroundInCardView( index ) ) ;
-    }
-
-    private Matcher<View> getMatcherForBackgroundInCardView( int index ) {
-        return UtaPassUtil.withIndex(
-                allOf( withId( R.id.item_playlist_card_image ),
-                       isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                index ) ;
     }
 }
 

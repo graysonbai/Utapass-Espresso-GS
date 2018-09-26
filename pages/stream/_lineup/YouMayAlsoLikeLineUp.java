@@ -1,6 +1,5 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.stream._lineup ;
 
-import android.support.test.espresso.ViewInteraction ;
 import android.view.View ;
 
 import com.kddi.android.UtaPass.R ;
@@ -10,9 +9,9 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.stream._lineup._card.CardObje
 
 import org.hamcrest.Matcher ;
 
-import static android.support.test.espresso.Espresso.onView ;
 import static android.support.test.espresso.matcher.ViewMatchers.* ;
 import static org.hamcrest.Matchers.* ;
+
 
 public class YouMayAlsoLikeLineUp extends LineUpObject {
 
@@ -36,6 +35,11 @@ public class YouMayAlsoLikeLineUp extends LineUpObject {
 
         CardObject card = new CardObject() ;
 
+        card.image( () -> UtaPassUtil.withIndex(
+                allOf( withId( R.id.item_three_cover_playlist_cover_2 ),
+                       isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
+                indexInWindow ) ) ;
+
         card.playButton( () -> UtaPassUtil.withIndex(
                 allOf( withId( R.id.item_three_cover_playlist_play ),
                        isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
@@ -46,21 +50,7 @@ public class YouMayAlsoLikeLineUp extends LineUpObject {
                        isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
                 indexInWindow ) ) ;
 
-        card.background( this.getBackgroundFromCardView( index ) ) ;
         return card ;
-    }
-
-    private ViewInteraction getBackgroundFromCardView( int index ) {
-        return onView( this.getMatcherForBackgroundInCardView( index ) ) ;
-    }
-
-    private Matcher<View> getMatcherForBackgroundInCardView( int index ) {
-        int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
-
-        return UtaPassUtil.withIndex(
-                allOf( withId( R.id.item_three_cover_playlist_cover_2 ),
-                        isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                indexInWindow ) ;
     }
 }
 

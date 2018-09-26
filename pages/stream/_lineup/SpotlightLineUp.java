@@ -36,24 +36,16 @@ public class SpotlightLineUp extends LineUpObject {
     }
 
     public CardObject card(int index ) {
-        this.swipeToPosition( index ) ;
-
-        CardObject card = new CardObject() ;
-        card.background( this.getBackgroundCard( index ) ) ;
-        return card ;
-    }
-
-    private ViewInteraction getBackgroundCard( int index ) {
-        return onView( this.getMatcherForBackgroundInCardView( index ) ) ;
-    }
-
-    private Matcher<View> getMatcherForBackgroundInCardView( int index ) {
         int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
 
-        return UtaPassUtil.withIndex(
-                    allOf( withId( R.id.item_spotlight_image ),
-                           isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                    indexInWindow ) ;
+        CardObject card = new CardObject() ;
+
+        card.image( () -> UtaPassUtil.withIndex(
+                allOf( withId( R.id.item_spotlight_image ),
+                       isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
+                indexInWindow ) ) ;
+
+        return card ;
     }
 }
 

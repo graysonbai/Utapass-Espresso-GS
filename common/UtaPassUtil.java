@@ -159,7 +159,7 @@ public class UtaPassUtil {
     public static void closeApp() {
         UtaPassUtil.getUiDeviceInstance().pressHome() ;
         UtaPassUtil.sleep( 5, "for launching next case" ) ;
-        
+
 //        try {
 //            while( true ) {
 //                UtaPassUtil.pressBack() ;

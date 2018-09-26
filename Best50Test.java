@@ -17,12 +17,47 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.stream._lineup.Best50LineUp;
 @RunWith(AndroidJUnit4.class)
 public class Best50Test extends BasicTest {
 
+    private static boolean isLogin = false ;
+
     private Navigator navigator = new Navigator() ;
 
     @Before
     public void pre_conditions() {
-        // todo: reset myuta quotas
-        // here...
+        this.ensureLogin() ;
+    }
+
+    public void ensureLogin() {
+        if( Best50Test.isLogin ) {
+            return ;
+        }
+
+        this.navigator.streamPage()
+                      .sideBarButton()
+                      .tap() ;
+
+        // loginButton invisible means it is logged in already
+        if( ! this.navigator.sideBarMenu()
+                            .quotaInfo()
+                            .loginButton()
+                            .isVisible() ) {
+
+            Best50Test.isLogin = true ;
+            UtaPassUtil.pressBack() ;
+            return ;
+        }
+
+        this.navigator.sideBarMenu()
+                      .quotaInfo()
+                      .loginButton()
+                      .tap() ;
+
+        this.sleep( 5, "for stability to display AUID setting page" ) ;
+
+        // TODO: this is just a workaround to click "OK" on WebView
+        UtaPassUtil.tapOkButtonInAuidSettingPage() ;
+        Best50Test.isLogin = true ;
+
+        this.navigator.streamPage() ;
     }
 
     @Test

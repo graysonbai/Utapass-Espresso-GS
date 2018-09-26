@@ -35,6 +35,7 @@ public class ViewObject {
                 }
 
                 if( count++ == this.retryMaxCount ) {
+                    UtaPassUtil.takeScreenshot( "ComponentNotReady" ) ;
                     throw e;
                 }
 

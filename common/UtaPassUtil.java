@@ -1,5 +1,6 @@
 package com.kddi.android.UtaPass.sqa_espresso.common ;
 
+import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources ;
 import android.graphics.* ;
@@ -8,6 +9,7 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.* ;
 import android.support.test.espresso.action.* ;
 import android.support.test.rule.ActivityTestRule ;
+import android.support.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
 import android.support.test.uiautomator.UiDevice;
 import android.support.test.uiautomator.UiObjectNotFoundException;
 import android.support.test.uiautomator.UiSelector;
@@ -18,8 +20,14 @@ import android.widget.ImageView ;
 import com.kddi.android.UtaPass.main.MainActivity;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.RetryException;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.NowPlayingBar;
+import com.squareup.spoon.Spoon;
 
 import org.hamcrest.* ;
+
+import java.util.Collection;
+
+import static android.support.test.InstrumentationRegistry.getInstrumentation;
+import static android.support.test.runner.lifecycle.Stage.RESUMED;
 
 public class UtaPassUtil {
 
@@ -225,5 +233,24 @@ public class UtaPassUtil {
                 UtaPassUtil.sleep( retryInterval, msg ) ;
             }
         }
+    }
+
+    public static void takeScreenshot( String tag ) {
+        Spoon.screenshot( UtaPassUtil.getCurrentActivity(), tag ) ;
+    }
+
+    // copied from google
+    public static Activity getCurrentActivity() {
+        final Activity[] currentActivity = new Activity[ 1 ] ;
+
+        getInstrumentation().runOnMainSync( () -> {
+                Collection resumedActivities =
+                        ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage( RESUMED ) ;
+                if( resumedActivities.iterator().hasNext() ) {
+                    currentActivity[0] = (Activity) resumedActivities.iterator().next() ;
+                }
+        } ) ;
+
+        return currentActivity[ 0 ] ;
     }
 }

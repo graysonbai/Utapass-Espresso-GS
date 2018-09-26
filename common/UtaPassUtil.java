@@ -9,6 +9,8 @@ import android.support.test.espresso.* ;
 import android.support.test.espresso.action.* ;
 import android.support.test.rule.ActivityTestRule ;
 import android.support.test.uiautomator.UiDevice;
+import android.support.test.uiautomator.UiObjectNotFoundException;
+import android.support.test.uiautomator.UiSelector;
 import android.util.Log ;
 import android.view.View ;
 import android.widget.ImageView ;
@@ -155,21 +157,35 @@ public class UtaPassUtil {
     }
 
     public static void closeApp() {
-        try {
-            while( true ) {
-                UtaPassUtil.pressBack() ;
-                UtaPassUtil.sleep( 1, "for pressing back" ) ;
-            }
-
-        } catch( NoActivityResumedException ex ) {
-            UtaPassUtil.sleep( 5, "for launching next case" ) ;
-        }
+        UtaPassUtil.getUiDeviceInstance().pressHome() ;
+        UtaPassUtil.sleep( 5, "for launching next case" ) ;
+        
+//        try {
+//            while( true ) {
+//                UtaPassUtil.pressBack() ;
+//                UtaPassUtil.sleep( 1, "for pressing back" ) ;
+//            }
+//
+//        } catch( NoActivityResumedException ex ) {
+//            UtaPassUtil.sleep( 5, "for launching next case" ) ;
+//        }
     }
 
     public static void stopNowPlayingBar() {
         NowPlayingBar nowPlayingBar = new NowPlayingBar() ;
         if( nowPlayingBar.isPlaying() ) {
             nowPlayingBar.pause() ;
+        }
+    }
+
+    // Workaround
+    public static void tapOkButtonInAuidSettingPage() {
+        try {
+            UtaPassUtil.getUiDeviceInstance().findObject(
+                    new UiSelector().instance(0).className("android.widget.Button")).click();
+
+        } catch( UiObjectNotFoundException e ) {
+            UtaPassUtil.dprint( e.getMessage() ) ;
         }
     }
 

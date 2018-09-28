@@ -59,70 +59,70 @@ public class Navigator {
         if( this.streamPage == null ) {
             this.streamPage = new StreamPage() ;
         }
-        return this.streamPage.ready() ;
+        return this.streamPage ;
     }
 
     public LibraryPage libraryPage() {
         if( this.libraryPage == null ) {
             this.libraryPage = new LibraryPage() ;
         }
-        return this.libraryPage.ready() ;
+        return this.libraryPage ;
     }
 
     public SearchPage searchPage() {
         if( this.searchPage == null ) {
             this.searchPage = new SearchPage() ;
         }
-        return this.searchPage.ready() ;
+        return this.searchPage ;
     }
 
     public SpotlightPage spotlightPage() {
         if( this.spotlightPage == null ) {
             this.spotlightPage = new SpotlightPage() ;
         }
-        return this.spotlightPage.ready() ;
+        return this.spotlightPage ;
     }
 
     public LiveConcertPage liveConcertPage() {
         if( this.liveConcertPage == null ) {
             this.liveConcertPage = new LiveConcertPage() ;
         }
-        return this.liveConcertPage.ready() ;
+        return this.liveConcertPage ;
     }
 
     public Best50Page best50Page() {
         if( this.best50Page == null ) {
             this.best50Page = new Best50Page() ;
         }
-        return this.best50Page.ready() ;
+        return this.best50Page ;
     }
 
     public SongsPage songsPage() {
         if( this.songsPage == null ) {
             this.songsPage = new SongsPage() ;
         }
-        return this.songsPage.ready() ;
+        return this.songsPage ;
     }
 
     public AlbumsPage albumsPage() {
         if( this.albumsPage == null ) {
             this.albumsPage = new AlbumsPage() ;
         }
-        return this.albumsPage.ready() ;
+        return this.albumsPage ;
     }
 
     public AlbumInfoPage albumInfoPage() {
         if( this.albumInfoPage == null ) {
             this.albumInfoPage = new AlbumInfoPage() ;
         }
-        return this.albumInfoPage.ready() ;
+        return this.albumInfoPage ;
     }
 
     public ArtistsPage artistsPage() {
         if( this.artistsPage == null ) {
             this.artistsPage = new ArtistsPage() ;
         }
-        return this.artistsPage.ready() ;
+        return this.artistsPage ;
     }
 
     public ArtistAlbumsPage artistAlbumsPage() {
@@ -136,21 +136,21 @@ public class Navigator {
         if( this.myUtaPage == null ) {
             this.myUtaPage = new MyUtaPage() ;
         }
-        return this.myUtaPage.ready() ;
+        return this.myUtaPage ;
     }
 
     public SongMoreActionMenu songMoreActionMenu() {
         if( this.songMoreActionMenu == null ) {
             this.songMoreActionMenu = new SongMoreActionMenu() ;
         }
-        return this.songMoreActionMenu.ready() ;
+        return this.songMoreActionMenu ;
     }
 
     public NowPlayingBar nowPlayingBar() {
         if( this.nowPlayingBar == null ) {
             this.nowPlayingBar = new NowPlayingBar() ;
         }
-        return this.nowPlayingBar.ready() ;
+        return this.nowPlayingBar ;
     }
 
     public StreamTab streamTab() {
@@ -178,34 +178,34 @@ public class Navigator {
         if( this.saveMyUtaPopupMessage == null ) {
             this.saveMyUtaPopupMessage = new SaveMyUtaPopupMessage() ;
         }
-        return this.saveMyUtaPopupMessage.ready() ;
+        return this.saveMyUtaPopupMessage ;
     }
 
     public SaveMyUtaConfirmPopupMessage saveMyUtaConfirmPopupMessage() {
         if( this.saveMyUtaConfirmPopupMessage == null ) {
             this.saveMyUtaConfirmPopupMessage = new SaveMyUtaConfirmPopupMessage() ;
         }
-        return this.saveMyUtaConfirmPopupMessage.ready() ;
+        return this.saveMyUtaConfirmPopupMessage ;
     }
 
     public DeleteMyUtaConfirmPopupMessage deleteMyUtaConfirmPopupMessage() {
         if( this.deleteMyUtaConfirmPopupMessage == null ) {
             this.deleteMyUtaConfirmPopupMessage = new DeleteMyUtaConfirmPopupMessage() ;
         }
-        return this.deleteMyUtaConfirmPopupMessage.ready() ;
+        return this.deleteMyUtaConfirmPopupMessage ;
     }
 
     public SideBarMenu sideBarMenu() {
         if( this.sideBarMenu == null ) {
             this.sideBarMenu = new SideBarMenu() ;
         }
-        return this.sideBarMenu.ready() ;
+        return this.sideBarMenu ;
     }
 
     public SettingsPage settingsPage() {
         if( this.settingsPage == null ) {
             this.settingsPage = new SettingsPage() ;
         }
-        return this.settingsPage.ready() ;
+        return this.settingsPage ;
     }
 }

@@ -59,7 +59,7 @@ public class Navigator {
         if( this.streamPage == null ) {
             this.streamPage = new StreamPage() ;
         }
-        return this.streamPage ;
+        return this.streamPage.ready() ;
     }
 
     public LibraryPage libraryPage() {

@@ -4,6 +4,8 @@ import android.support.test.espresso.* ;
 import android.view.View ;
 import android.widget.TextView ;
 
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.NotReadyException;
+
 import junit.framework.AssertionFailedError ;
 
 import org.hamcrest.Matcher ;
@@ -35,8 +37,7 @@ public class ViewObject {
                 }
 
                 if( count++ == this.retryMaxCount ) {
-                    UtaPassUtil.takeScreenshot( "ComponentNotReady" ) ;
-                    throw e;
+                    throw new NotReadyException( "ComponentNotReady" ) ;
                 }
 
                 this.sleep( this.retryInterval, String.format( "(%s/%s)", count, retryMaxCount ) ) ;

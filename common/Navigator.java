@@ -185,27 +185,27 @@ public class Navigator {
         if( this.saveMyUtaConfirmPopupMessage == null ) {
             this.saveMyUtaConfirmPopupMessage = new SaveMyUtaConfirmPopupMessage() ;
         }
-        return this.saveMyUtaConfirmPopupMessage ;
+        return this.saveMyUtaConfirmPopupMessage.ready() ;
     }
 
     public DeleteMyUtaConfirmPopupMessage deleteMyUtaConfirmPopupMessage() {
         if( this.deleteMyUtaConfirmPopupMessage == null ) {
             this.deleteMyUtaConfirmPopupMessage = new DeleteMyUtaConfirmPopupMessage() ;
         }
-        return this.deleteMyUtaConfirmPopupMessage ;
+        return this.deleteMyUtaConfirmPopupMessage.ready() ;
     }
 
     public SideBarMenu sideBarMenu() {
         if( this.sideBarMenu == null ) {
             this.sideBarMenu = new SideBarMenu() ;
         }
-        return this.sideBarMenu ;
+        return this.sideBarMenu.ready() ;
     }
 
     public SettingsPage settingsPage() {
         if( this.settingsPage == null ) {
             this.settingsPage = new SettingsPage() ;
         }
-        return this.settingsPage ;
+        return this.settingsPage.ready() ;
     }
 }

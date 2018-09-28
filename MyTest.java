@@ -83,7 +83,7 @@ public class MyTest extends BasicTest {
 
         this.navigator.albumInfoPage()
                       .songsLineUp()
-                      .song( 1 )
+                      .song( 0 )
                       .tap() ;
 
         this.navigator.nowPlayingBar()

@@ -1,5 +1,7 @@
 package com.kddi.android.UtaPass.sqa_espresso.common ;
 
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.InvalidStateException;
+
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
@@ -13,6 +15,12 @@ public class SongObject extends ViewObject {
     private LazyMatcher matcherCoverPhoto ;
     private LazyMatcher matcherMyUtaButton ;
     private LazyMatcher matcherMoreActionButton ;
+
+    public void assertVisible() {
+        if( ! this.isVisible() ) {
+            throw new InvalidStateException( "Actual: InVisible, Expecting: Visible" ) ;
+        }
+    }
 
     public boolean isVisible() {
         return this.isVisible( this.matcherCoverPhoto.execute() ) ;
@@ -66,6 +74,7 @@ public class SongObject extends ViewObject {
     }
 
     public void tap() {
+        this.assertVisible() ;
         onView( this.matcherCoverPhoto.execute() ).perform( click() ) ;
     }
 

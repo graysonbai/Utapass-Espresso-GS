@@ -1,7 +1,5 @@
 package com.kddi.android.UtaPass.sqa_espresso ;
 
-import android.app.KeyguardManager;
-import android.content.Context;
 import android.support.test.runner.AndroidJUnit4 ;
 
 import com.kddi.android.UtaPass.sqa_espresso.common.Navigator;
@@ -9,26 +7,6 @@ import com.kddi.android.UtaPass.sqa_espresso.common.Navigator;
 import org.junit.Test ;
 import org.junit.runner.RunWith ;
 
-import static android.support.test.InstrumentationRegistry.getTargetContext;
-
-
-// temp
-import com.kddi.android.UtaPass.R ;
-
-import java.util.ArrayList;
-
-import static android.support.test.espresso.Espresso.onView ;
-import static android.support.test.espresso.action.ViewActions.pressKey;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
-import static android.support.test.espresso.matcher.ViewMatchers.withId ;
-import static android.support.test.espresso.matcher.ViewMatchers.withText ;
-import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
-
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition ;
-import static org.hamcrest.Matchers.* ;
 
 @RunWith(AndroidJUnit4.class)
 public class MyTest extends BasicTest {

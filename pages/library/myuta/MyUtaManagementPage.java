@@ -1,16 +1,11 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.library.myuta ;
 
 import com.kddi.android.UtaPass.R ;
-import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
-import com.kddi.android.UtaPass.sqa_espresso.pages.library.myuta.MyUtaHistoryButton;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.songs.SongsLineUp ;
-import com.kddi.android.UtaPass.sqa_espresso.pages.library.myuta.PlayButton ;
 
 import java.util.regex.Pattern ;
 
-import static android.support.test.espresso.action.ViewActions.click ;
-import static android.support.test.espresso.Espresso.onView ;
 import static android.support.test.espresso.matcher.ViewMatchers.* ;
 
 
@@ -19,9 +14,10 @@ public class MyUtaManagementPage extends BasicPage {
     private MyUtaHistoryButton myUtaHistoryButton ;
     private SongsLineUp songsLineUp ;
 
-    @Override
-    public void _ready() {
-        this.retryWhenNotReady = false ;
+    public MyUtaManagementPage() {
+        super() ;
+
+        this.retryWhenNotReady( false ) ;
     }
 
     public String remainingQuotas() {

@@ -4,8 +4,6 @@ import android.support.test.espresso.* ;
 import android.view.View ;
 import android.widget.TextView ;
 
-import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.NotReadyException;
-
 import junit.framework.AssertionFailedError ;
 
 import org.hamcrest.Matcher ;
@@ -17,65 +15,28 @@ import static android.support.test.espresso.matcher.ViewMatchers.* ;
 public class ViewObject {
 
     protected ViewInteraction item ;
-    protected boolean retryWhenNotReady = true ;
-    protected int retryMaxCount = 3 ;
-    protected int retryInterval = 10 ;
+    private boolean retryWhenNotReady = true ;
 
     public <T extends ViewObject> T ready() {
-        int count = 0 ;
+        UtaPassUtil.retry( () -> { this._ready(); return true ; },
+                           this.retryWhenNotReady() ) ;
 
-        while( true ) {
-            try {
-                this._ready() ;
-                return (T) this ;
+        return (T) this ;
+    }
 
-            } catch( Exception e ) {
-                this.dprint( e.getMessage() ) ;
+    protected boolean retryWhenNotReady() {
+        return this.retryWhenNotReady ;
+    }
 
-                if( ! this.retryWhenNotReady ) {
-                    throw e ;
-                }
-
-                if( count++ == this.retryMaxCount ) {
-                    throw new NotReadyException( "ComponentNotReady" ) ;
-                }
-
-                this.sleep( this.retryInterval, String.format( "(%s/%s)", count, retryMaxCount ) ) ;
-            }
-        }
+    protected void retryWhenNotReady( boolean bool ) {
+        this.retryWhenNotReady = bool ;
     }
 
     public void _ready() {
     }
 
-    public void sleep( int seconds) {
-        try {
-            this.dprint( String.format( "Sleep %s second(s)", seconds ) ) ;
-            Thread.sleep( seconds * 1000 ) ;
-
-        } catch (InterruptedException ex) {
-            this.dprint( ex.toString() ) ;
-        }
-    }
-
-    public void sleep( int seconds, String msg ) {
-        try {
-            this.dprint( String.format( "Sleep %s second(s): %s", seconds, msg ) ) ;
-            Thread.sleep( seconds * 1000 ) ;
-
-        } catch (InterruptedException ex) {
-            this.dprint( ex.toString() ) ;
-        }
-    }
-
-
     public void dprint( String msg ) {
-        StackTraceElement caller = Thread.currentThread().getStackTrace()[ 4 ];
-        android.util.Log.d("UtapassAutomation",
-                           String.format( "%s (%s:%s)",
-                                          msg,
-                                          caller.getFileName(),
-                                          caller.getLineNumber() ) ) ;
+        UtaPassUtil.dprint( msg ) ;
     }
 
 
@@ -123,6 +84,7 @@ public class ViewObject {
             return false ;
         }
     }
+
 
     // copied from google
     protected String getText(final Matcher<View> matcher) {

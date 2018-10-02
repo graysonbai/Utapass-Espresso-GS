@@ -3,7 +3,6 @@ package com.kddi.android.UtaPass.sqa_espresso.pages.library ;
 import com.kddi.android.UtaPass.R ;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.StringObject;
-import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.myuta.MyUtaHistoryButton;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.common.SongsLineUp ;
@@ -11,8 +10,6 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.library.myuta.PlayButton ;
 
 import java.util.regex.Pattern ;
 
-import static android.support.test.espresso.action.ViewActions.click ;
-import static android.support.test.espresso.Espresso.onView ;
 import static android.support.test.espresso.matcher.ViewMatchers.* ;
 
 
@@ -22,10 +19,14 @@ public class MyUtaPage extends BasicPage {
     private PlayButton playButton ;
     private SongsLineUp songsLineUp ;
 
+    public MyUtaPage() {
+        super() ;
+
+        this.retryWhenNotReady( false ) ;
+    }
+
     @Override
     public void _ready() {
-        this.retryWhenNotReady = false ;
-
         this.myUtaHistoryButton().ready() ;
     }
 

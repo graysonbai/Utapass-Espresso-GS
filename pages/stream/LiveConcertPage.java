@@ -19,11 +19,11 @@ public class LiveConcertPage extends ViewObject {
         this.liveTitleBar = new LiveTitleBar() ;
 //        this.liveChatroom = new LiveChatroom() ;
 //        this.liveChatBar = new LiveChatBar() ;
+
+        this.retryWhenNotReady( false ) ;
     }
 
     public void _ready() {
-        this.retryWhenNotReady = false ;
-
         this.liveVideo.ready() ;
 //        this.liveTitleBar.ready() ;
 //        this.liveChatroom.ready() ;
@@ -82,11 +82,11 @@ public class LiveConcertPage extends ViewObject {
         public LiveTitleBar() {
             this.icon = new LiveTitleBarIcon() ;
             this.title = new LiveTitleBarTitle() ;
+
+            this.retryWhenNotReady( false ) ;
         }
 
         public void _ready() {
-            this.retryWhenNotReady = false ;
-
             this.icon.ready() ;
             this.title.ready() ;
         }

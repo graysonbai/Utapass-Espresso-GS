@@ -18,7 +18,7 @@ import android.view.View ;
 import android.widget.ImageView ;
 
 import com.kddi.android.UtaPass.main.MainActivity;
-import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.RetryException;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.MaxRetryReachedException;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.NowPlayingBar;
 import com.squareup.spoon.Spoon;
 
@@ -30,6 +30,9 @@ import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.runner.lifecycle.Stage.RESUMED;
 
 public class UtaPassUtil {
+
+    private static final int RETRY_INTERVAL = 5 ;
+    private static final int RETRY_MAX_COUNT = 6 ;
 
     public static void dprint( String msg ) {
         android.util.Log.d( "UtapassAutomation", msg ) ;
@@ -167,16 +170,6 @@ public class UtaPassUtil {
     public static void closeApp() {
         UtaPassUtil.getUiDeviceInstance().pressHome() ;
         UtaPassUtil.sleep( 5, "for launching next case" ) ;
-
-//        try {
-//            while( true ) {
-//                UtaPassUtil.pressBack() ;
-//                UtaPassUtil.sleep( 1, "for pressing back" ) ;
-//            }
-//
-//        } catch( NoActivityResumedException ex ) {
-//            UtaPassUtil.sleep( 5, "for launching next case" ) ;
-//        }
     }
 
     public static void stopNowPlayingBar() {
@@ -212,26 +205,54 @@ public class UtaPassUtil {
     }
 
     public static void retry( RetryUnit unit ) {
-        int retryMaxCount = 6 ;
-        int retryInterval = 5 ;
+        UtaPassUtil.retry( unit,
+                           true,
+                           UtaPassUtil.RETRY_INTERVAL,
+                           UtaPassUtil.RETRY_MAX_COUNT ) ;
+    }
+
+    public static void retry( RetryUnit unit, boolean isRetry ) {
+        UtaPassUtil.retry( unit,
+                           isRetry,
+                           UtaPassUtil.RETRY_INTERVAL,
+                           UtaPassUtil.RETRY_MAX_COUNT ) ;
+    }
+
+    public static void retry( RetryUnit unit, boolean isRetry, int interval, int maxCount ) {
+        if( isRetry ) {
+            UtaPassUtil.retry( unit, interval, maxCount ) ;
+            return ;
+        }
+
+        UtaPassUtil.runStep( unit ) ;
+    }
+
+    public static void retry( RetryUnit unit, int interval, int maxCount ) {
         int count = 0 ;
 
         while( true ) {
             try {
-                if( ! unit.execute() ) {
-                    throw new RuntimeException() ;
-                }
-
+                UtaPassUtil.runStep( unit ) ;
                 return ;
 
             } catch( Exception e ) {
-                if( count++ == retryMaxCount ) {
-                    throw new RetryException( "" ) ;
+                if( count++ == maxCount ) {
+                    throw new MaxRetryReachedException( String.format(
+                            "MaxRetryReached: interval = %s, count = %s, %s",
+                            interval,
+                            maxCount,
+                            e.getMessage() ) ) ;
                 }
 
-                String msg = String.format( "for next try (%s/%s)", count, retryMaxCount ) ;
-                UtaPassUtil.sleep( retryInterval, msg ) ;
+                UtaPassUtil.sleep( interval,
+                                   String.format( "for next try (%s/%s)", count, maxCount ) ) ;
             }
+        }
+    }
+
+    public static void runStep( RetryUnit unit ) throws RuntimeException {
+        if( ! unit.execute() ) {
+            throw new RuntimeException() ;
         }
     }
 

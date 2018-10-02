@@ -39,11 +39,11 @@ public class StreamPage extends BasicPage {
         for(int i = 0; i < this.MAX_LINEUP_OBJECT; i++ ) {
             this.lineupExistence[i] = 1;
         }
+
+        this.retryWhenNotReady( false ) ;
     }
 
     public void _ready() {
-        this.retryWhenNotReady = false ;
-
         this.streamTab().ready() ;
         this.libraryTab().ready() ;
         this.searchTab().ready() ;

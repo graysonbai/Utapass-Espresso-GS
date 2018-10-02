@@ -28,7 +28,9 @@ public class SaveMyUtaConfirmPopupMessage extends ViewObject {
 
     public void _ready() {
         if( !this.isVisible( this.item ) ) {
-            throw new RuntimeException( "ConfirmPopupMessage: 'Save song to MyUta' is not displayed" ) ;
+            throw new RuntimeException(
+                    String.format( "NotDisplayed: '%s'",
+                                   this.getClass().getSimpleName() ) ) ;
         }
     }
 

@@ -2,6 +2,7 @@ package com.kddi.android.UtaPass.sqa_espresso.pages.stream.common ;
 
 import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
+import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
@@ -17,8 +18,8 @@ public class ReadMoreButton extends BasicButton {
         super( () -> withId( R.id.synapse_myuta_intro_more ) ) ;
     }
 
-    public String text() {
-        return this.getText( UtaPassUtil.withIndex(
+    public LazyString text() {
+        return new LazyString( () -> UtaPassUtil.withIndex(
                 allOf( withClassName( endsWith( "TextView" ) ),
                        isDescendantOfA( withId( R.id.synapse_myuta_intro_more ) ) ),
                0 ) ) ;

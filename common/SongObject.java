@@ -49,8 +49,8 @@ public class SongObject extends ViewObject {
     public BasicButton myUtaButton() {
         return new BasicButton( this.matcherMyUtaButton ) {
 
-            public String text() {
-                return this.getText( allOf(
+            public LazyString text() {
+                return new LazyString( () -> allOf(
                         withClassName( endsWith( "TextView" ) ),
                         isDescendantOfA( super.matcher.execute() ) ) ) ;
             }

@@ -1,39 +1,40 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.library.albums ;
 
-import android.support.test.espresso.ViewInteraction;
-
+import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher;
+import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 
+import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 
 public class AlbumObject extends ViewObject {
 
-    private String albumName ;
-    private String artistName ;
-    private ViewInteraction photo ;
+    private LazyMatcher matcherAlbumName ;
+    private LazyMatcher matcherArtistName ;
+    private LazyMatcher matcherCoverPhoto ;
 
-    public void albumName( String albumName ) {
-        this.albumName = albumName ;
+    public void albumName( LazyMatcher matcher ) {
+        this.matcherAlbumName = matcher ;
     }
 
-    public String albumName() {
-        return this.albumName ;
+    public LazyString albumName() {
+        return new LazyString( this.matcherAlbumName ) ;
     }
 
-    public void artistName( String artistName ) {
-        this.artistName = artistName ;
+    public void artistName( LazyMatcher matcher ) {
+        this.matcherArtistName = matcher ;
     }
 
-    public String artistName() {
-        return this.artistName ;
+    public LazyString artistName() {
+        return new LazyString( this.matcherArtistName ) ;
     }
 
-    public void photo( ViewInteraction coverPhoto ) {
-        this.photo = coverPhoto ;
+    public void cover( LazyMatcher matcher ) {
+        this.matcherCoverPhoto = matcher ;
     }
 
     public void tap() {
-        this.photo.perform( click() ) ;
+        onView( this.matcherCoverPhoto.execute() ).perform( click() ) ;
     }
 }
 

@@ -15,6 +15,7 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.library.SongsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.albums.AlbumInfoPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.artists.ArtistAlbumsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.myuta.SongMoreActionMenu;
+import com.kddi.android.UtaPass.sqa_espresso.pages.settings.IdSettingsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.Best50Page;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.LiveConcertPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.SideBarMenu;
@@ -54,6 +55,7 @@ public class Navigator {
 
     private SideBarMenu sideBarMenu ;
     private SettingsPage settingsPage ;
+    private IdSettingsPage idSettingsPage ;
 
     public StreamPage streamPage() {
         if( this.streamPage == null ) {
@@ -212,5 +214,12 @@ public class Navigator {
             this.settingsPage = new SettingsPage() ;
         }
         return this.settingsPage.ready() ;
+    }
+
+    public IdSettingsPage idSettingsPage() {
+        if( this.idSettingsPage == null ) {
+            this.idSettingsPage = new IdSettingsPage() ;
+        }
+        return this.idSettingsPage ;
     }
 }

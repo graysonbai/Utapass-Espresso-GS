@@ -10,8 +10,6 @@ import org.junit.runner.RunWith ;
 @RunWith(AndroidJUnit4.class)
 public class StreamRatTest extends BasicTest {
 
-    private Navigator navigator = new Navigator() ;
-
     @Test
     public void play_spotlight() {
         this.navigator.streamPage()

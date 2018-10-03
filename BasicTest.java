@@ -3,6 +3,8 @@ package com.kddi.android.UtaPass.sqa_espresso ;
 import android.support.test.rule.ActivityTestRule;
 
 import com.kddi.android.UtaPass.main.MainActivity;
+import com.kddi.android.UtaPass.sqa_espresso.common.Navigator;
+import com.kddi.android.UtaPass.sqa_espresso.common.UserStatus;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import org.junit.After;
 import org.junit.Before;
@@ -15,17 +17,61 @@ import org.junit.Rule;
 
 public class BasicTest {
 
+    protected Navigator navigator = new Navigator() ;
+
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule =
             new ActivityTestRule<>( MainActivity.class ) ;
 
-//    @Rule
-//    public GrantPermissionRule mRuntimePermissionRule =
-//            GrantPermissionRule.grant( ACCESS_FINE_LOCATION, READ_EXTERNAL_STORAGE ) ;
-
     @Before
     public void pre_condition() {
-//        UtaPassUtil.setScreenOrientationPortrait( this.mActivityRule ); ;
+        this.ensureLogin() ;
+    }
+
+    public void ensureLogin() {
+        if( UserStatus.isLogin ) {
+            return ;
+        }
+
+        // devices after Q3 will pop out AUID setting page once launching UtaPass
+        if( this.navigator.idSettingsPage().isVisible() ) {
+            this.navigator.idSettingsPage()
+                          .okButton()
+                          .tap() ;
+
+            UserStatus.isLogin = true ;
+            return ;
+        }
+
+        this.navigator.streamPage()
+                      .sideBarButton()
+                      .tap() ;
+
+        // loginButton invisible means it is logged in already
+        if( ! this.navigator.sideBarMenu()
+                            .quotaInfo()
+                            .loginButton()
+                            .isVisible() ) {
+
+            UserStatus.isLogin = true ;
+            UtaPassUtil.pressBack() ;
+            return ;
+        }
+
+        this.navigator.sideBarMenu()
+                      .quotaInfo()
+                      .loginButton()
+                      .tap() ;
+
+        this.sleep( 5, "for stability to display AUID setting page" ) ;
+
+        this.navigator.idSettingsPage()
+                      .okButton()
+                      .tap() ;
+
+        UserStatus.isLogin = true ;
+
+        this.navigator.streamPage() ;
     }
 
     @After

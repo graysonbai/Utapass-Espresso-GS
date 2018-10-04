@@ -11,6 +11,7 @@ import android.support.test.espresso.action.* ;
 import android.support.test.rule.ActivityTestRule ;
 import android.support.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
 import android.support.test.uiautomator.UiDevice;
+import android.support.test.uiautomator.UiObject;
 import android.support.test.uiautomator.UiObjectNotFoundException;
 import android.support.test.uiautomator.UiSelector;
 import android.util.Log ;
@@ -194,6 +195,12 @@ public class UtaPassUtil {
         return UiDevice.getInstance( InstrumentationRegistry.getInstrumentation() ) ;
     }
 
+    public static UiObject findObjectInWebView( String className, int index ) {
+        return UtaPassUtil.getUiDeviceInstance().findObject( new UiSelector()
+                    .className( className )
+                    .instance( index ) ) ;
+    }
+
     public static void setScreenOrientationPortrait( ActivityTestRule<MainActivity> mActivityRule ) {
         mActivityRule.getActivity().setRequestedOrientation(
                 ActivityInfo.SCREEN_ORIENTATION_PORTRAIT ) ;
@@ -245,7 +252,10 @@ public class UtaPassUtil {
                 }
 
                 UtaPassUtil.sleep( interval,
-                                   String.format( "for next try (%s/%s)", count, maxCount ) ) ;
+                                   String.format( "for next try (%s/%s), %s",
+                                                  count,
+                                                  maxCount,
+                                                  e.getMessage() ) ) ;
             }
         }
     }

@@ -6,7 +6,7 @@ public class Best50Page extends AlbumBasicPage {
 
     public StreamLineUp songsLineUp() {
         StreamLineUp lineup = super.songsLineUp() ;
-        lineup.setMaxIndexOfLineUpObject( 50 ) ;
+        lineup.setMaxIndexOfLineUpObject( 49 ) ;
 
         return lineup ;
     }

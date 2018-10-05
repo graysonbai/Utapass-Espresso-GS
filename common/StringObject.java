@@ -1,12 +1,14 @@
 package com.kddi.android.UtaPass.sqa_espresso.common ;
 
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.StringException;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.StringEqualException;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.StringInException;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.StringInvisibleException;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.StringNotEqualException;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.StringNotInException;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.StringVisibleException;
 
 import java.util.Arrays;
-
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
-
 
 public class StringObject {
 
@@ -36,19 +38,23 @@ public class StringObject {
         return this.string() != null ;
     }
 
+    public void ready() {
+        UtaPassUtil.retry( () -> this.isVisible() ) ;
+    }
+
 
     // ========================================
     // Visible
     // ========================================
     public void assertVisible() {
         if( ! this.isVisible() ) {
-            throw new StringException( "StringInvisible" ) ;
+            throw new StringInvisibleException( "Null" ) ;
         }
     }
 
     public void assertInvisible() {
         if( this.isVisible() ) {
-            throw new StringException( "StringVisible" ) ;
+            throw new StringVisibleException( this.string() ) ;
         }
     }
 
@@ -56,13 +62,11 @@ public class StringObject {
     // Equals
     // ========================================
     public void assertEquals( String expecting ) {
-        String actual = this.string() ;
+        this.ready() ;
 
+        String actual = this.string() ;
         if( ! actual.equals( expecting ) ) {
-            throw new StringException( String.format(
-                    "Actual: %s, Expecting: %s",
-                    actual,
-                    expecting ) ) ;
+            throw new StringNotEqualException( actual, expecting ) ;
         }
     }
 
@@ -79,13 +83,11 @@ public class StringObject {
     // NotEquals
     // ========================================
     public void assertNotEquals( String expecting ) {
-        String actual = this.string() ;
+        this.ready() ;
 
+        String actual = this.string() ;
         if( actual.equals( expecting ) ) {
-            throw new StringException( String.format(
-                    "Actual: %s, Expecting: %s",
-                    actual,
-                    expecting ) ) ;
+            throw new StringEqualException( actual, expecting ) ;
         }
     }
 
@@ -102,9 +104,10 @@ public class StringObject {
     // LessThan
     // ========================================
     public void assertLessThan( String expecting ) {
-        String actual = this.string() ;
+        this.ready() ;
 
-        if( Integer.parseInt( actual ) - Integer.parseInt( expecting ) > 0 ) {
+        String actual = this.string() ;
+        if( Integer.parseInt( actual ) >= Integer.parseInt( expecting ) ) {
             throw new StringException( String.format(
                     "Actual: %s, Expecting: %s",
                     actual,
@@ -113,8 +116,9 @@ public class StringObject {
     }
 
     public void assertLessThan( String expecting, int diff ) {
-        String actual = this.string() ;
+        this.ready() ;
 
+        String actual = this.string() ;
         if( Integer.parseInt( expecting ) - Integer.parseInt( actual ) != diff ) {
             throw new StringException( String.format(
                     "Actual: %s, Expecting: %s",
@@ -143,14 +147,12 @@ public class StringObject {
     // ========================================
     // In
     // ========================================
-    public void assertIn( String[] expectings ) {
-        String actual = this.string() ;
+    public void assertIn( String[] sets ) {
+        this.ready() ;
 
-        if( ! Arrays.asList( expectings ).contains( actual ) ) {
-            throw new StringException( String.format(
-                    "Actual: %s, Expecting: %s",
-                    actual,
-                    String.join(",", expectings ) ) ) ;
+        String actual = this.string() ;
+        if( ! Arrays.asList( sets ).contains( actual ) ) {
+            throw new StringNotInException( actual, sets ) ;
         }
     }
 
@@ -158,14 +160,12 @@ public class StringObject {
     // ========================================
     // NotIn
     // ========================================
-    public void assesrtNotIn( String[] expectings ) {
-        String actual = this.string() ;
+    public void assesrtNotIn( String[] sets ) {
+        this.ready() ;
 
-        if( Arrays.asList( expectings ).contains( actual ) ) {
-            throw new StringException( String.format(
-                    "Actual: %s, Expecting: %s",
-                    actual,
-                    String.join(",", expectings ) ) ) ;
+        String actual = this.string() ;
+        if( Arrays.asList( sets ).contains( actual ) ) {
+            throw new StringInException( actual, sets ) ;
         }
     }
 }

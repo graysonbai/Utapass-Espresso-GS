@@ -1,6 +1,6 @@
 package com.kddi.android.UtaPass.sqa_espresso.common ;
 
-import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.InvalidStateException;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.SongInvisibleException;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -18,7 +18,7 @@ public class SongObject extends ViewObject {
 
     public void assertVisible() {
         if( ! this.isVisible() ) {
-            throw new InvalidStateException( "Actual: InVisible, Expecting: Visible" ) ;
+            throw new SongInvisibleException( this.matcherCoverPhoto.toString() ) ;
         }
     }
 

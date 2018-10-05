@@ -1,6 +1,6 @@
 package com.kddi.android.UtaPass.sqa_espresso.common ;
 
-import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.StringException;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.UnexpectedStateException;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -14,6 +14,10 @@ public class LazyString extends ViewObject {
         this.matcher = matcher ;
     }
 
+    public void _ready() {
+        this.assertVisible() ;
+    }
+
     public void tap() {
         onView( this.matcher.execute() ).perform( click() ) ;
     }
@@ -23,18 +27,20 @@ public class LazyString extends ViewObject {
     }
 
     public StringObject text() {
+        this.ready() ;
+
         return new StringObject( this.getText( this.matcher.execute() ) ) ;
     }
 
     public void assertVisible() {
         if( ! this.isVisible() ) {
-            throw new StringException( "Actual: InVisible, Expecting: Visible" ) ;
+            throw new UnexpectedStateException( "Actual: InVisible, Expecting: Visible" ) ;
         }
     }
 
     public void assertInvisible() {
         if( this.isVisible() ) {
-            throw new StringException( "Actual: Visible, Expecting: InVisible" ) ;
+            throw new UnexpectedStateException( "Actual: Visible, Expecting: InVisible" ) ;
         }
     }
 

@@ -1,6 +1,7 @@
 package com.kddi.android.UtaPass.sqa_espresso.common ;
 
-import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.InvalidStateException;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.ButtonInvisibleException;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.ButtonVisibleException;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -19,7 +20,7 @@ public class BasicButton extends ViewObject {
     }
 
     public void tap() {
-        this.assertVisible() ;
+        this.ready() ;
 
         onView( this.matcher.execute() ).perform( click() ) ;
     }
@@ -45,13 +46,13 @@ public class BasicButton extends ViewObject {
 
     public void assertVisible() {
         if( ! this.isVisible() ) {
-            throw new InvalidStateException( "Actual: InVisible, Expecting: Visible" ) ;
+            throw new ButtonInvisibleException( this.name() ) ;
         }
     }
 
     public void assertInvisible() {
         if( this.isVisible() ) {
-            throw new InvalidStateException( "Actual: Visible, Expecting: InVisible" ) ;
+            throw new ButtonVisibleException( this.name() ) ;
         }
     }
 }

@@ -2,9 +2,10 @@ package com.kddi.android.UtaPass.sqa_espresso.common.exceptions ;
 
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 
-public class InvalidStateException extends RuntimeException {
-    public InvalidStateException( String msg ) {
-        super( msg ) ;
+public class StringInvisibleException extends RuntimeException {
+
+    public StringInvisibleException( String str ) {
+        super( str ) ;
 
         UtaPassUtil.takeScreenshot( this.getClass().getSimpleName() ) ;
     }

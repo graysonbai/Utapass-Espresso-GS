@@ -2,7 +2,8 @@ package com.kddi.android.UtaPass.sqa_espresso.common ;
 
 import android.support.test.uiautomator.UiObjectNotFoundException;
 
-import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.InvalidStateException;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.ButtonInvisibleException;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.ButtonVisibleException;
 
 
 public class WebButton extends ViewObject {
@@ -54,13 +55,13 @@ public class WebButton extends ViewObject {
 
     public void assertVisible() {
         if( ! this.isVisible() ) {
-            throw new InvalidStateException( "Actual: InVisible, Expecting: Visible" ) ;
+            throw new ButtonInvisibleException( this.name() ) ;
         }
     }
 
     public void assertInvisible() {
         if( this.isVisible() ) {
-            throw new InvalidStateException( "Actual: Visible, Expecting: InVisible" ) ;
+            throw new ButtonVisibleException( this.name() ) ;
         }
     }
 }

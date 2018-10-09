@@ -30,16 +30,16 @@ public class SongObject extends ViewObject {
         this.matcherSongName = matcher ;
     }
 
-    public LazyString songName() {
-        return new LazyString( this.matcherSongName ) ;
+    public StringObject songName() {
+        return new LazyString( this.matcherSongName ).text() ;
     }
 
     public void artistName( LazyMatcher matcher ) {
         this.matcherArtistName = matcher ;
     }
 
-    public LazyString artistName() {
-        return new LazyString( this.matcherArtistName ) ;
+    public StringObject artistName() {
+        return new LazyString( this.matcherArtistName ).text() ;
     }
 
     public void myUtaButton( LazyMatcher matcher ) {

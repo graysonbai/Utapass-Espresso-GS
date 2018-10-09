@@ -139,8 +139,8 @@ public class StreamLineUp extends LineUpObject {
                 SongObject song = this.song( i ) ;
 
                 set.add( String.format( "%s,%s",
-                                        song.songName().text().string(),
-                                        song.artistName().text().string() ) ) ;
+                                        song.songName().string(),
+                                        song.artistName().string() ) ) ;
             }
 
         } catch( NoMatchingViewException e ) {

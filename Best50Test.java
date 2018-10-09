@@ -2,9 +2,6 @@ package com.kddi.android.UtaPass.sqa_espresso ;
 
 import android.support.test.runner.AndroidJUnit4 ;
 
-import com.kddi.android.UtaPass.sqa_espresso.common.Navigator;
-
-import org.junit.Before;
 import org.junit.Test ;
 import org.junit.runner.RunWith ;
 
@@ -88,17 +85,18 @@ public class Best50Test extends BasicTest {
         UtaPassUtil.pressBack() ;
 
         SongObject song = this.saveMyUtaSongsFromBest50LineUp() ;
-        String songName = song.songName().text().string() ;
-        String artistName = song.artistName().text().string() ;
+        StringObject songName = song.songName() ;
+        StringObject artistName = song.artistName() ;
 
         this.navigator.streamPage()
                       .sideBarButton()
                       .tap() ;
 
+        this.sleep( 5, "QuotaInfo updated" ) ;
+
         this.navigator.sideBarMenu()
                       .quotaInfo()
                       .remainingQuotas()
-                      .text()
                       .assertLessThan( quotas_orig, 1 ) ;
 
         UtaPassUtil.pressBack() ;
@@ -112,7 +110,6 @@ public class Best50Test extends BasicTest {
 
         this.navigator.myUtaPage()
                       .remainingQuotas()
-                      .text()
                       .assertLessThan( quotas_orig, 1 ) ;
 
         this.navigator.myUtaPage()

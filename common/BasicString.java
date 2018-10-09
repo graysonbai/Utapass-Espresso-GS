@@ -22,7 +22,7 @@ public class BasicString extends ViewObject {
         this.string = String.valueOf( n ) ;
     }
 
-    protected String string() {
+    public String string() {
         return this.string ;
     }
 

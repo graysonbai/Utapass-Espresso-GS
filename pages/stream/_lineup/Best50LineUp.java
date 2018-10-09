@@ -121,14 +121,14 @@ public class Best50LineUp extends LineUpObject {
         Set<String> set = new HashSet<>() ;
 
         try {
-            for (int i = 0; i <= Best50LineUp.MAX_INDEX_OF_LINEOBJECT; i++) {
+            for( int i = 0; i <= Best50LineUp.MAX_INDEX_OF_LINEOBJECT; i++ ) {
 
                 // this might throw out NoMatchingViewException when it is out of index
-                SongObject song = this.song(i);
+                SongObject song = this.song( i ) ;
 
-                set.add(String.format("%s,%s",
-                        song.songName().text().string(),
-                        song.artistName().text().string()));
+                set.add( String.format( "%s,%s",
+                         song.songName().string(),
+                         song.artistName().string() ) ) ;
             }
 
         } catch( NoMatchingViewException e ) {

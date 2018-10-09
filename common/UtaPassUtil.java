@@ -268,20 +268,19 @@ public class UtaPassUtil {
                 return ;
 
             } catch( Exception e ) {
-                UtaPassUtil.dprint(
-                        e instanceof NoMatchingViewException ?
-                                e.getClass().getSimpleName() :
-                                e.getMessage() ) ;
+                String errorMsg = e instanceof NoMatchingViewException ?
+                        e.getClass().getSimpleName() :
+                        e.getMessage() ;
+
+                UtaPassUtil.dprint( errorMsg ) ;
 
                 if( count++ == maxCount ) {
                     throw new MaxRetryReachedException( String.format(
-                            "MaxRetryReached(%s sec x %s)",
-                            interval,
-                            maxCount ) ) ;
+                            "LastExceptionMsg: %s", errorMsg ) ) ;
                 }
 
-                String msg = String.format( "NextTrial (%s/%s)", count, maxCount ) ;
-                UtaPassUtil.sleep( interval, msg ) ;
+                String nextTryMsg = String.format( "NextTry (%s/%s)", count, maxCount ) ;
+                UtaPassUtil.sleep( interval, nextTryMsg ) ;
             }
         }
     }

@@ -33,16 +33,16 @@ public class CardObject extends ViewObject {
         this.matcherPlayButton = matcher ;
     }
 
-    public StringObject title() {
-        return new LazyString( this.matcherTitle ).text() ;
+    public LazyString title() {
+        return new LazyString( this.matcherTitle ) ;
     }
 
     public void title( LazyMatcher matcher ) {
         this.matcherTitle = matcher ;
     }
 
-    public StringObject likedCount() {
-        return new LazyString( this.matcherLikedCount ).text() ;
+    public LazyString likedCount() {
+        return new LazyString( this.matcherLikedCount ) ;
     }
 
     public void likedCount( LazyMatcher matcher ) {

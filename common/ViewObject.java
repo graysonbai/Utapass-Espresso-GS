@@ -32,16 +32,16 @@ public class ViewObject {
         this.retryWhenNotReady = bool ;
     }
 
-    public void _ready() {
+    protected void _ready() {
     }
 
-    public void dprint( String msg ) {
+    protected void dprint( String msg ) {
         UtaPassUtil.dprint( msg ) ;
     }
 
 
     // Deprecated
-    public boolean isVisibleByGetText( final Matcher<View> matcher ) {
+    protected boolean isVisibleByGetText( final Matcher<View> matcher ) {
         try {
             this.getText( matcher ) ;
             return true ;
@@ -51,11 +51,11 @@ public class ViewObject {
         }
     }
 
-    public boolean isVisible( final Matcher<View> matcher ) {
+    protected boolean isVisible( final Matcher<View> matcher ) {
         return this.isVisible( onView( matcher ) ) ;
     }
 
-    public boolean isVisible( final ViewInteraction view ) {
+    protected boolean isVisible( final ViewInteraction view ) {
         try {
             view.check( matches( isDisplayed() ) ) ;
             return true ;
@@ -68,11 +68,11 @@ public class ViewObject {
         }
     }
 
-    public boolean isDisplayedCompletely( final Matcher<View> matcher ) {
+    protected boolean isDisplayedCompletely( final Matcher<View> matcher ) {
         return this.isDisplayedCompletely( onView( matcher ) ) ;
     }
 
-    public boolean isDisplayedCompletely( final ViewInteraction view ) {
+    protected boolean isDisplayedCompletely( final ViewInteraction view ) {
         try {
             view.check( matches( isCompletelyDisplayed() ) ) ;
             return true ;

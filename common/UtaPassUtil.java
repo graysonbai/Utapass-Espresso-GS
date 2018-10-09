@@ -293,7 +293,7 @@ public class UtaPassUtil {
     }
 
     public static void takeScreenshot( String tag ) {
-//        Spoon.screenshot( UtaPassUtil.getCurrentActivity(), tag ) ;
+        Spoon.screenshot( UtaPassUtil.getCurrentActivity(), tag ) ;
     }
 
     // copied from google

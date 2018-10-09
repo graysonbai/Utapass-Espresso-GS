@@ -26,6 +26,7 @@ public class BasicTest {
     @Before
     public void pre_condition() {
         this.ensureLogin() ;
+        this.grantAllPermissions() ;
     }
 
     public void ensureLogin() {
@@ -34,12 +35,13 @@ public class BasicTest {
         }
 
         // 2017.Q3+ devices will pop out AuidSettingsPage once launching UtaPass
-        this.sleep( 10, "wait for AuidSettingsPage that may display." ) ;
+        this.sleep( 5, "AuidSettingsPage may display." ) ;
         if( this.navigator.idSettingsPage().isVisible() ) {
             this.navigator.idSettingsPage()
                           .okButton()
                           .tap() ;
 
+            this.sleep( 5, "LoginProcess may take time" ) ;
             UserStatus.isLogin = true ;
             return ;
         }
@@ -48,7 +50,7 @@ public class BasicTest {
                       .sideBarButton()
                       .tap() ;
 
-        // loginButton invisible means it is logged in already
+        // loginButton invisible means it is logged in
         if( ! this.navigator.sideBarMenu()
                             .quotaInfo()
                             .loginButton()
@@ -64,13 +66,43 @@ public class BasicTest {
                       .loginButton()
                       .tap() ;
 
-        this.sleep( 5, "for stability to display AUID setting page" ) ;
+        this.sleep(5, "display AUID setting page" ) ;
 
         this.navigator.idSettingsPage()
                       .okButton()
                       .tap() ;
 
         UserStatus.isLogin = true ;
+        this.navigator.streamPage() ;
+    }
+
+    public void grantAllPermissions() {
+        if( UserStatus.isReadExternalStorageGranted ) {
+            return ;
+        }
+
+        this.navigator.streamPage()
+                      .libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .songsCategory()
+                      .tap() ;
+
+        this.sleep( 5, "Library > Songs, PermissionPopupMessage may display" ) ;
+
+        if( this.navigator.permissionPopupMessage()
+                          .isVisible() ) {
+
+            this.navigator.permissionPopupMessage()
+                          .allowButton()
+                          .tap() ;
+        }
+
+        UserStatus.isReadExternalStorageGranted = true ;
+
+        this.navigator.streamTab()
+                      .tap() ;
 
         this.navigator.streamPage() ;
     }

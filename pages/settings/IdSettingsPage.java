@@ -1,59 +1,98 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.settings ;
 
-import com.kddi.android.UtaPass.R;
-import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
+import android.support.test.uiautomator.UiSelector;
+
+import com.kddi.android.UtaPass.sqa_espresso.common.LazyUiAutomatorString;
 import com.kddi.android.UtaPass.sqa_espresso.common.StringObject;
+import com.kddi.android.UtaPass.sqa_espresso.common.UiAutomatorButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
-import com.kddi.android.UtaPass.sqa_espresso.common.WebButton;
-
-import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
-import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static org.hamcrest.CoreMatchers.endsWith;
-import static org.hamcrest.core.AllOf.allOf;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.NotReadyException;
 
 
 public class IdSettingsPage extends ViewObject {
 
-    private LazyString titleBar ;
-    private WebButton okButton ;
+    public static final String TITLE_IN_JAPANESE = "ID設定" ;
+    public static final String MESSAGE_IN_JAPANESE = "次のau IDでログインします。" ;
 
-    public void _ready() {
-        this.titleBar().assertVisible() ;
-        this.titleBar().assertEquals( "ID設定" ) ;
-        this.okButton().assertVisible() ;
+    private UiAutomatorButton okButton ;
+    private LazyUiAutomatorString title ;
+    private LazyUiAutomatorString message ;
+    private LazyUiAutomatorString id ;
+
+    public IdSettingsPage() {
+        this.retryWhenNotReady( false ) ;
     }
 
-    public WebButton okButton() {
+    public void _ready() {
+        this.assertVisible() ;
+    }
+
+    public void assertVisible() {
+        if( ! this.isVisible() ) {
+            throw new NotReadyException( this.getClass().getSimpleName() ) ;
+        }
+    }
+
+    public boolean isVisible() {
+        return this.title().isVisible()
+               && this.message().isVisible()
+               && this.okButton().isVisible() ;
+    }
+
+    public UiAutomatorButton okButton() {
         if( this.okButton == null ) {
-            this.okButton = new WebButton( () ->
-                    UtaPassUtil.findObjectInWebView( "android.widget.Button", 0 ) ) {
+            this.okButton = new UiAutomatorButton( () -> UtaPassUtil.findObject(
+                    new UiSelector().className( "android.widget.Button" )
+                                    .text( "OK" ) ) ) {
 
                 public String name() {
-                    return "AuidSettingPage > OkButton" ;
+                    return "AuidSettingsPage > Ok Button" ;
                 }
             } ;
         }
         return this.okButton ;
     }
 
-    public StringObject titleBar() {
-        if( this.titleBar == null ) {
-            this.titleBar = new LazyString( () -> UtaPassUtil.withIndex(
-                    allOf( withClassName( endsWith( "TextView" ) ),
-                           isDescendantOfA( withId( R.id.action_bar ) ) ),
-                    0 ) ) {
+    private LazyUiAutomatorString title() {
+        if( this.title == null ) {
+            this.title = new LazyUiAutomatorString( () -> UtaPassUtil.findObject(
+                    new UiSelector().className( "android.widget.TextView" ) ) ) {
 
                 public String name() {
-                    return "AuidSettingPage > Title" ;
+                    return "AuidSettingsPage > Title" ;
                 }
             } ;
         }
 
-        return this.titleBar.text() ;
+        return this.title ;
     }
-    public boolean isVisible() {
-        return this.okButton().isVisible() && this.titleBar().isVisible() ;
+
+    private LazyUiAutomatorString message() {
+        if( this.message == null ) {
+            this.message = new LazyUiAutomatorString( () -> UtaPassUtil.findObject(
+                    new UiSelector().className( "android.view.View" ).index( 3 ) ) ) {
+
+                public String name() {
+                    return "AuidSettingsPage > Message" ;
+                }
+            } ;
+        }
+
+        return this.message ;
+    }
+
+    public StringObject id() {
+        if( this.id == null ) {
+            this.id = new LazyUiAutomatorString( () -> UtaPassUtil.findObject(
+                    new UiSelector().resourceId( "auidAlias" ) ) ) {
+
+                public String name() {
+                    return "AuidSettingsPage > ID" ;
+                }
+            } ;
+        }
+
+        return this.id ;
     }
 }

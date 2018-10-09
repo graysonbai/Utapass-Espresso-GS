@@ -3,6 +3,7 @@ package com.kddi.android.UtaPass.sqa_espresso.pages.library ;
 import com.kddi.android.UtaPass.R ;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.StringObject;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.StringInvisibleException;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.myuta.MyUtaHistoryButton;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.common.SongsLineUp ;
@@ -52,16 +53,17 @@ public class MyUtaPage extends BasicPage {
         return new LazyString( () -> withId( R.id.myuta_downloaded_songs_count ) ) {
 
             @Override
-            public StringObject text() {
+            public String string() {
+                this.ready() ;
                 java.util.regex.Matcher regexMatcher =
-                        Pattern.compile( "([0-9]+)" ).matcher(
-                                this.getText( this.matcher.execute() ) ) ;
+                        Pattern.compile( "([0-9]+)" ).matcher( super.string() ) ;
 
                 if( regexMatcher.find() ) {
-                    return new StringObject( regexMatcher.group( 1 ) ) ;
+                    return regexMatcher.group( 1 ) ;
                 }
 
-                return new StringObject( "" ) ;
+                throw new StringInvisibleException(
+                        "Library > MyUta > MyUta Page > Downloaded Songs" ) ;
             }
         } ;
     }

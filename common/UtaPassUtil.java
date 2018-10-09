@@ -195,10 +195,35 @@ public class UtaPassUtil {
         return UiDevice.getInstance( InstrumentationRegistry.getInstrumentation() ) ;
     }
 
-    public static UiObject findObjectInWebView( String className, int index ) {
+    public static UiObject findObjectByClassName( String className ) {
+        return UtaPassUtil.findObjectByClassName( className, 0 ) ;
+    }
+
+    public static UiObject findObjectByClassName( String className, int index ) {
         return UtaPassUtil.getUiDeviceInstance().findObject( new UiSelector()
                     .className( className )
                     .instance( index ) ) ;
+    }
+
+    public static UiObject findObjectByClassName( String className, int index, String text ) {
+        return UtaPassUtil.getUiDeviceInstance().findObject( new UiSelector()
+                .className( className )
+                .instance( index )
+                .text( text ) ) ;
+    }
+
+    public static UiObject findObject( UiSelector selector ) {
+        return UtaPassUtil.getUiDeviceInstance().findObject( selector ) ;
+    }
+
+    public static UiObject findObjectByResourceId( String id ) {
+        return UtaPassUtil.findObjectByResourceId( id, 0 ) ;
+    }
+
+    public static UiObject findObjectByResourceId( String id, int index ) {
+        return UtaPassUtil.getUiDeviceInstance().findObject( new UiSelector()
+                .resourceId( id )
+                .instance( index ) ) ;
     }
 
     public static void setScreenOrientationPortrait( ActivityTestRule<MainActivity> mActivityRule ) {
@@ -243,19 +268,20 @@ public class UtaPassUtil {
                 return ;
 
             } catch( Exception e ) {
+                UtaPassUtil.dprint(
+                        e instanceof NoMatchingViewException ?
+                                e.getClass().getSimpleName() :
+                                e.getMessage() ) ;
+
                 if( count++ == maxCount ) {
                     throw new MaxRetryReachedException( String.format(
-                            "MaxRetryReached: interval = %s, count = %s, %s",
+                            "MaxRetryReached(%s sec x %s)",
                             interval,
-                            maxCount,
-                            e.getMessage() ) ) ;
+                            maxCount ) ) ;
                 }
 
-                UtaPassUtil.sleep( interval,
-                                   String.format( "for next try (%s/%s), %s",
-                                                  count,
-                                                  maxCount,
-                                                  e.getMessage() ) ) ;
+                String msg = String.format( "NextTrial (%s/%s)", count, maxCount ) ;
+                UtaPassUtil.sleep( interval, msg ) ;
             }
         }
     }
@@ -267,7 +293,7 @@ public class UtaPassUtil {
     }
 
     public static void takeScreenshot( String tag ) {
-        Spoon.screenshot( UtaPassUtil.getCurrentActivity(), tag ) ;
+//        Spoon.screenshot( UtaPassUtil.getCurrentActivity(), tag ) ;
     }
 
     // copied from google

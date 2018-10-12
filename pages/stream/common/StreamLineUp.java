@@ -36,10 +36,6 @@ public class StreamLineUp extends LineUpObject {
     }
 
     protected Matcher<View> getMatcherToCountMaxIndexOfWindow() {
-        return withId( R.id.item_detail_stream_audio_image ) ;
-    }
-
-    protected Matcher<View> _getMatcherToCountMaxIndexOfWindow() {
         return allOf( withId( R.id.item_detail_stream_audio_layout ),
                       isCompletelyDisplayed(),
                       isDescendantOfA( this.getMatcherToFindRecycleView() ) ) ;
@@ -48,33 +44,19 @@ public class StreamLineUp extends LineUpObject {
     protected int swipeToCardViewAndGetIndexOfWindow( int index ) {
         if( this.titleBar().isVisible() ) {
             this.swipeUp() ;
+            this.swipeUp() ;
             this.resetMaxIndexOfWindow() ;
         }
+
         this.swipeToPosition( 1 ) ;
 
-        //                                 Max
-        //         swipe      IndexOf    IndexOf
-        // index    to        Window     Window
-        // ========================================
-        //  0        1          0           7
-        //  1        2          1           7
-        //  2        3          2           7
-        //  ...      ...        ...         ...
-        //  7        8          7           7
-        //  8        9          8           8
-        //  9       11          8           8
-        // 10       12          8           8
-        // 11       13          8           8
-        //
         if( index > this.getMaxIndexOfWindow() ) {
             this.swipeToPosition( index + 2 ) ;
             return this.getMaxIndexOfWindow() + 1 ;
         }
 
-        else {
-            this.swipeToPosition( index + 1 ) ;
-            return index ;
-        }
+        this.swipeToPosition( index + 1 ) ;
+        return index ;
     }
 
     public TitleBar titleBar() {
@@ -101,29 +83,31 @@ public class StreamLineUp extends LineUpObject {
 
         SongObject song = new SongObject() ;
 
-        song.songName( () ->
-                UtaPassUtil.withIndex(
-                        allOf( withId( R.id.item_detail_stream_audio_title ),
-                                isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                        indexInWindow ) ) ;
+        song.songName( () -> allOf(
+                withId( R.id.item_detail_stream_audio_title ),
+                isDescendantOfA( UtaPassUtil.withIndex(
+                        this.getMatcherToCountMaxIndexOfWindow(),
+                        indexInWindow ) ) ) ) ;
 
-        song.artistName( () ->
-                UtaPassUtil.withIndex(
-                        allOf( withId( R.id.item_detail_stream_audio_artist ),
-                               isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                        indexInWindow ) ) ;
 
-        song.cover( () ->
-                UtaPassUtil.withIndex(
-                        allOf( withId( R.id.item_detail_stream_audio_image ),
-                               isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                        indexInWindow ) ) ;
+        song.artistName( () -> allOf(
+                withId( R.id.item_detail_stream_audio_artist ),
+                isDescendantOfA( UtaPassUtil.withIndex(
+                        this.getMatcherToCountMaxIndexOfWindow(),
+                        indexInWindow ) ) ) ) ;
 
-        song.myUtaButton( () ->
-                allOf( withId( R.id.item_detail_stream_audio_myuta_register ),
-                       isDescendantOfA(
-                                UtaPassUtil.withIndex( this._getMatcherToCountMaxIndexOfWindow(),
-                                                            indexInWindow ) ) ) ) ;
+        song.cover( () -> allOf(
+                withId( R.id.item_detail_stream_audio_image ),
+                isDescendantOfA( UtaPassUtil.withIndex(
+                        this.getMatcherToCountMaxIndexOfWindow(),
+                        indexInWindow ) ) ) ) ;
+
+        song.myUtaButton( () -> allOf(
+                withId( R.id.item_detail_stream_audio_myuta_register ),
+                isDescendantOfA( UtaPassUtil.withIndex(
+                        this.getMatcherToCountMaxIndexOfWindow(),
+                        indexInWindow ) ) ) ) ;
+
         return song ;
     }
 

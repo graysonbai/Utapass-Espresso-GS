@@ -19,6 +19,7 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.library.songs.PermissionPopup
 import com.kddi.android.UtaPass.sqa_espresso.pages.settings.IdSettingsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.Best50Page;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.LiveConcertPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream.NewSongsHitSongsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.SideBarMenu;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.SpotlightPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.DeleteMyUtaConfirmPopupMessage;
@@ -60,6 +61,7 @@ public class Navigator {
 
     private PermissionPopupMessage permissionPopupMessage ;
 
+    private NewSongsHitSongsPage newSongsHitSongsPage ;
 
     public StreamPage streamPage() {
         if( this.streamPage == null ) {
@@ -232,5 +234,12 @@ public class Navigator {
             this.permissionPopupMessage = new PermissionPopupMessage() ;
         }
         return this.permissionPopupMessage ;
+    }
+
+    public NewSongsHitSongsPage newSongsHitSongsPage() {
+        if( this.newSongsHitSongsPage == null ) {
+            this.newSongsHitSongsPage = new NewSongsHitSongsPage() ;
+        }
+        return this.newSongsHitSongsPage.ready() ;
     }
 }

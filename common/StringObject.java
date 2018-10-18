@@ -2,8 +2,8 @@ package com.kddi.android.UtaPass.sqa_espresso.common ;
 
 
 public class StringObject extends BasicString {
-    public StringObject() {
-    }
+
+    public StringObject() {}
 
     public StringObject( String str ) {
         super( str ) ;

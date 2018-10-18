@@ -2,9 +2,13 @@ package com.kddi.android.UtaPass.sqa_espresso.pages.common ;
 
 import com.kddi.android.UtaPass.R ;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
+import com.kddi.android.UtaPass.sqa_espresso.common.BasicImage;
+import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.StringObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.NotReadyException;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.UnexpectedStateException;
 
 import android.support.test.espresso.AmbiguousViewMatcherException;
 import android.view.View ;
@@ -22,104 +26,87 @@ import static org.hamcrest.Matchers.* ;
 
 public class NowPlayingBar extends ViewObject {
 
-    private Matcher<View> itemMatcher ;
-
-    private StringObject songName ;
-    private StringObject artistName ;
-    private BasicButton playButton ;
-    private BasicButton pauseButton ;
-    private BasicButton nextButton ;
-
-    public NowPlayingBar() {
-        this.itemMatcher = withId( R.id.nowplaying_indicator ) ;
-        this.item = onView( this.itemMatcher ) ;
-    }
+    private BasicImage cover ;
 
     public void _ready() {
-        if( ! this.pauseButton().isVisible() &&
-            ! this.playButton().isVisible() ) {
+        this.assertVisible() ;
+    }
 
-            throw new RuntimeException( "NowPlayingBar is not ready" ) ;
+    public void assertVisible() {
+        if( ! isVisible() ) {
+            throw new NotReadyException( this.label() ) ;
         }
     }
 
-    public StringObject songName() {
-        if( this.songName == null ) {
-            this.songName = new StringObject( this.getText(
-                    allOf( withId( R.id.indicator_track_title ),
-                           isDescendantOfA( this.itemMatcher ) ) ) ) ;
-        }
-        return this.songName ;
+    public boolean isVisible() {
+        return this.isVisible( this.matcher() ) ;
+    }
+
+    public Matcher<View> matcher() {
+        return allOf( withId( R.id.view_indicator_layout ),
+                      isCompletelyDisplayed() ) ;
+    }
+
+    public String label() {
+        return "NowPlayingBar" ;
+    }
+
+    public BasicImage cover() {
+        return new BasicImage( String.format( "%s > Cover", this.label() ),
+                () -> allOf( withId( R.id.indicator_album_cover ),
+                        isDescendantOfA( this.matcher() ) ) ) ;
+    }
+
+    public LazyString songName() {
+        return new LazyString( String.format( "%s > SongName", this.label() ),
+                () -> allOf( withId( R.id.indicator_track_title ),
+                             isDescendantOfA( this.matcher() ) ) ) ;
     }
 
     public StringObject artistName() {
-        if( this.artistName == null ) {
-            this.artistName = new StringObject( this.getText(
-                    allOf( withId( R.id.indicator_artist_title ),
-                            isDescendantOfA( this.itemMatcher ) ) ) ) ;
-        }
-        return this.artistName ;
+        return new LazyString( String.format( "%s > Artistname", this.label() ),
+                () -> allOf( withId( R.id.indicator_artist_title ),
+                             isDescendantOfA( this.matcher() ) ) ) ;
     }
 
     public BasicButton playButton() {
-        if( this.playButton == null ) {
-            this.playButton = new BasicButton( () ->
-                    allOf( UtaPassUtil.withDrawable( R.drawable.ic_bar_play ),
-                           isDescendantOfA( this.itemMatcher ) ) ) ;
-        }
-
-        return this.playButton ;
+        return new BasicButton( String.format( "%s > PlayButton", this.label() ),
+                () -> allOf( UtaPassUtil.withDrawable( R.drawable.ic_bar_play ),
+                             isDescendantOfA( this.matcher() ) ) ) ;
     }
 
     public BasicButton pauseButton() {
-        if( this.pauseButton == null ) {
-            this.pauseButton = new BasicButton( () -> UtaPassUtil.withIndex(
-                    allOf( UtaPassUtil.withDrawable( R.drawable.ic_bar_pause ),
-                           isCompletelyDisplayed(),
-                           isDescendantOfA( this.itemMatcher ) ),
-                   0 ) ) {
-
-                public String name() {
-                    return "NowPlayingBar > PauseButton" ;
-                }
-            } ;
-        }
-
-        return this.pauseButton ;
+        return new BasicButton( String.format( "%s > PlayButton", this.label() ),
+                () -> allOf( UtaPassUtil.withDrawable( R.drawable.ic_bar_pause ),
+                             isDescendantOfA( this.matcher() ) ) ) ;
     }
 
     public BasicButton nextButton() {
-        if( this.nextButton == null ) {
-            this.nextButton = new BasicButton( () ->
-                    allOf( UtaPassUtil.withDrawable( R.drawable.ic_bar_next ),
-                           isDescendantOfA( this.itemMatcher ) ) ) {
-
-                public String name() {
-                    return "NowPlayingBar > NextButton" ;
-                }
-            } ;
-        }
-
-        return this.nextButton ;
+        return new BasicButton( String.format( "%s > PlayButton", this.label() ),
+                () -> allOf( UtaPassUtil.withDrawable( R.drawable.ic_bar_next ),
+                             isDescendantOfA( this.matcher() ) ) ) ;
     }
-
 
     public boolean isPlaying() {
         try {
-            return this.pauseButton().isVisible() ;
+            this.pauseButton().ready() ;
+            return true ;
 
-        } catch( AmbiguousViewMatcherException exp ) {
-            UtaPassUtil.dprint( exp.getMessage() ) ;
+        } catch( RuntimeException e ) {
             return false ;
         }
     }
 
     public void assertPlaying() {
-        UtaPassUtil.retry( () -> this.isPlaying() ) ;
+        if( ! this.isPlaying() ) {
+            throw new UnexpectedStateException( "NowPlayingBarNotPlaying" ) ;
+        }
     }
 
     public void tap() {
-        this.item.perform( click() ) ;
+        this.handleNoMatchViewException(
+                "NowPlayingBar > Tap",
+                () -> onView( this.matcher() ).perform( click() ) ) ;
     }
 
     public void play() {
@@ -131,6 +118,6 @@ public class NowPlayingBar extends ViewObject {
     }
 
     public void next() {
-        this.nextButton.tap() ;
+        this.nextButton().tap() ;
     }
 }

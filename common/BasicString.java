@@ -10,6 +10,7 @@ import java.util.Arrays;
 
 public class BasicString extends ViewObject {
 
+    protected String label ;
     private String string = "" ;
 
     public BasicString() {}
@@ -34,10 +35,19 @@ public class BasicString extends ViewObject {
         this.string = String.valueOf( n ) ;
     }
 
+    public String label() {
+        return this.label ;
+    }
+
+    public void label( String label ) {
+        this.label = label ;
+    }
+
     protected void _ready() {
         this.assertVisible() ;
     }
 
+    @Deprecated
     public String name() {
         return this.getClass().getSimpleName() ;
     }
@@ -51,7 +61,7 @@ public class BasicString extends ViewObject {
 
     public void assertVisible() {
         if( ! this.isVisible() ) {
-            throw new StringInvisibleException( this.name() ) ;
+            throw new StringInvisibleException( this.label() ) ;
         }
     }
 

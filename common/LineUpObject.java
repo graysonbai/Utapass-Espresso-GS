@@ -4,6 +4,7 @@ import android.support.test.espresso.ViewInteraction ;
 import android.view.View ;
 
 import com.kddi.android.UtaPass.R ;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.NotReadyException;
 
 import org.hamcrest.Matcher ;
 
@@ -16,38 +17,37 @@ import static org.hamcrest.Matchers.* ;
 public abstract class LineUpObject extends ViewObject {
 
     private int UN_INIT = -1 ;
-    private int currentPosition = 0 ;
     protected int maxIndexOfLineUpObject = 9 ;
     protected int maxIndexOfWindow = this.UN_INIT ;
+    private String label = "LineUp" ;
 
-    public <T extends LineUpObject> T swipeToLeftmost() {
-        this.getRecycleView().perform( scrollToPosition( 0 ) ) ;
-        return (T) this ;
+    public void _ready() {
+        this.assertVisible() ;
     }
 
-    public <T extends LineUpObject> T swipeToRightmost() {
-        this.getRecycleView().perform( scrollToPosition( this.getMaxIndexOfLineUpObject() ) ) ;
+    public void assertVisible() {
+        if( ! this.isVisible( this.getMatcherToCountMaxIndexOfWindow() ) ) {
+            throw new NotReadyException( this.label() ) ;
+        }
+    }
+
+    protected void addLabel( String label ) {
+        this.label = String.format( "%s > %s", label, this.label() ) ;
+    }
+
+    protected String label() {
+        return this.label ;
+    }
+
+    public <T extends LineUpObject> T swipeToLeftmost() {
+        this.handleNoMatchViewException( this.label() ,
+                () -> this.getRecycleView().perform( scrollToPosition( 0 ) ) ) ;
+
         return (T) this ;
     }
 
     public <T extends LineUpObject> T swipeToPosition( int position ) {
         this.getRecycleView().perform( scrollToPosition( position ) ) ;
-        return (T) this ;
-    }
-
-    public <T extends LineUpObject> T swipeLeft() {
-        if( this.currentPosition < this.getMaxIndexOfLineUpObject() ) {
-            this.getRecycleView().perform( scrollToPosition( this.currentPosition++ ) ) ;
-        }
-
-        return (T) this ;
-    }
-
-    public <T extends LineUpObject> T swipeRight() {
-        if( this.currentPosition > 0 ) {
-            this.getRecycleView().perform( scrollToPosition( this.currentPosition-- ) ) ;
-        }
-
         return (T) this ;
     }
 

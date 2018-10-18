@@ -1,7 +1,6 @@
 package com.kddi.android.UtaPass.sqa_espresso ;
 
 import android.support.test.runner.AndroidJUnit4 ;
-import com.kddi.android.UtaPass.sqa_espresso.common.* ;
 
 import org.junit.Test ;
 import org.junit.runner.RunWith ;
@@ -13,8 +12,9 @@ public class StreamRatTest extends BasicTest {
     @Test
     public void play_spotlight() {
         this.navigator.streamPage()
-                      .spotlightLineUp()
-                      .card( 1 )
+                      .spotlightModule()
+                      .lineUp()
+                      .card( 0 )
                       .tap() ;
 
         this.navigator.spotlightPage()
@@ -28,7 +28,8 @@ public class StreamRatTest extends BasicTest {
     @Test
     public void play_radio() {
         this.navigator.streamPage()
-                      .radioLineUp()
+                      .radioModule()
+                      .lineUp()
                       .card( 0 )
                       .playButton()
                       .tap() ;
@@ -48,7 +49,8 @@ public class StreamRatTest extends BasicTest {
     @Test
     public void play_live_event() {
         this.navigator.streamPage()
-                      .liveLineUp()
+                      .liveModule()
+                      .lineUp()
                       .card( 0 )
                       .playButton()
                       .tap() ;
@@ -62,8 +64,9 @@ public class StreamRatTest extends BasicTest {
     @Test
     public void play_artist_new_release() {
         this.navigator.streamPage()
-                      .artistNewReleaseLineUp()
-                      .getCard( 0 )
+                      .artistNewReleaseModule()
+                      .lineUp()
+                      .card( 0 )
                       .playButton()
                       .tap() ;
 
@@ -74,8 +77,9 @@ public class StreamRatTest extends BasicTest {
     @Test
     public void play_daily_mix() {
         this.navigator.streamPage()
-                      .dailyMixLineUp()
-                      .getCard()
+                      .dailyMixModule()
+                      .lineUp()
+                      .card( 0 )
                       .playButton()
                       .tap() ;
 
@@ -86,8 +90,9 @@ public class StreamRatTest extends BasicTest {
     @Test
     public void play_top_charts() {
         this.navigator.streamPage()
-                      .topChartsLineUp()
-                      .getCard( 3 )
+                      .topChartsModule()
+                      .lineUp()
+                      .card( 3 )
                       .playButton()
                       .tap() ;
 
@@ -98,7 +103,7 @@ public class StreamRatTest extends BasicTest {
     @Test
     public void play_best50() {
         this.navigator.streamPage()
-                      .best50()
+                      .best50Module()
                       .seeAll()
                       .tap() ;
 
@@ -113,8 +118,9 @@ public class StreamRatTest extends BasicTest {
     @Test
     public void play_popular_artist() {
         this.navigator.streamPage()
-                      .popularArtistLineUp()
-                      .getCard( 0 )
+                      .popularArtistModule()
+                      .lineUp()
+                      .card( 0 )
                       .playButton()
                       .tap() ;
 
@@ -125,8 +131,9 @@ public class StreamRatTest extends BasicTest {
     @Test
     public void play_whats_new() {
         this.navigator.streamPage()
-                      .whatsNewLineUp()
-                      .getCard( 0 )
+                      .whatsNewModule()
+                      .lineUp()
+                      .card( 0 )
                       .playButton()
                       .tap() ;
 
@@ -137,8 +144,27 @@ public class StreamRatTest extends BasicTest {
     @Test
     public void play_new_songs_hit_songs() {
         this.navigator.streamPage()
-                      .newSongsHitSongsLineUp()
-                      .getCard( 0 )
+                      .newSongsHitSongsModule()
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
+
+        this.navigator.nowPlayingBar()
+                      .assertPlaying() ;
+
+        this.navigator.nowPlayingBar()
+                      .pauseButton()
+                      .tap() ;
+
+        this.navigator.streamPage()
+                      .newSongsHitSongsModule()
+                      .seeAll()
+                      .tap() ;
+
+        this.navigator.newSongsHitSongsPage()
+                      .lineUp()
+                      .card( 0 )
                       .playButton()
                       .tap() ;
 
@@ -149,8 +175,9 @@ public class StreamRatTest extends BasicTest {
     @Test
     public void play_you_may_also_like() {
         this.navigator.streamPage()
-                      .youMayAlsoLikeLineUp()
-                      .getCard( 0 )
+                      .youMayAlsoLikeModule()
+                      .lineUp()
+                      .card( 0 )
                       .playButton()
                       .tap() ;
 

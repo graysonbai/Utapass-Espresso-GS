@@ -9,7 +9,13 @@ import static android.support.test.espresso.action.ViewActions.click;
 
 public class BasicButton extends ViewObject {
 
+    protected String label ;
     protected LazyMatcher matcher ;
+
+    public BasicButton( String label, LazyMatcher matcher ) {
+        this.label = label ;
+        this.matcher = matcher ;
+    }
 
     public BasicButton( LazyMatcher matcher ) {
         this.matcher = matcher ;
@@ -35,11 +41,16 @@ public class BasicButton extends ViewObject {
 
     public void _ready() {
         if( ! this.isVisible() ) {
-            String msg = "NotReady: " + this.name() ;
+            String msg = "NotReady: " + this.label() ;
             throw new RuntimeException( msg ) ;
         }
     }
 
+    public String label() {
+        return this.label ;
+    }
+
+    @Deprecated
     public String name() {
         return this.getClass().getSimpleName() ;
     }

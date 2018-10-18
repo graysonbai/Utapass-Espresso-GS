@@ -8,7 +8,13 @@ public class LazyString extends StringObject {
 
     protected LazyMatcher matcher ;
 
+    public LazyString( String label, LazyMatcher matcher ) {
+        this.label( label ) ;
+        this.matcher = matcher ;
+    }
+
     public LazyString( LazyMatcher matcher ) {
+        this.label( "NotAssigned" ) ;
         this.matcher = matcher ;
     }
 

@@ -109,8 +109,9 @@ public class MyTest extends BasicTest {
 
         // save any song to my uta
         this.navigator.streamPage()
-                      .spotlightLineUp()
-                      .card( 0 )
+                      .spotlightModule()
+                      .lineUp()
+                      .card( 9 )
                       .tap() ;
 
         if( this.navigator.spotlightPage()

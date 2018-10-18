@@ -3,9 +3,19 @@ package com.kddi.android.UtaPass.sqa_espresso.pages ;
 import com.kddi.android.UtaPass.R ;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
-import com.kddi.android.UtaPass.sqa_espresso.pages.stream._lineup.* ;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
-import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.Best50;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.ArtistNewReleaseModule;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.Best50Module;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.DailyMixModule;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.ListenWithModule;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.LiveModule;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.NewSongsHitSongsModule;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.PopularArtistModule;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.RadioModule;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.SpotlightModule;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.TopChartsModule;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.WhatsNewModule;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.YouMayAlsoLikeModule;
 
 import static android.support.test.espresso.Espresso.onView ;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -15,7 +25,7 @@ import static org.hamcrest.Matchers.*;
 
 
 public class StreamPage extends BasicPage {
-    private final int MAX_LINEUP_OBJECT             = 14 ;
+    private final int MAX_MODULE_OBJECT             = 14 ;
     private final int POSITION_SPOTLIGHT            = 0 ;
     private final int POSITION_RADIO                = 1 ;
     private final int POSITION_LISTEN_WITH          = 2 ;
@@ -30,14 +40,14 @@ public class StreamPage extends BasicPage {
     private final int POSITION_YOU_MAY_ALSO_LIKE    = 11 ;
     private final int POSITION_MEMBER_PRIVILEGES    = 12 ;
     private final int POSITION_RUN_AWAY             = 13 ;
-    private int[] lineupExistence ;
+    private int[] moduleExistence ;
 
     private BasicButton sideBarButton ;
 
     public StreamPage() {
-        this.lineupExistence = new int[ this.MAX_LINEUP_OBJECT ] ;
-        for(int i = 0; i < this.MAX_LINEUP_OBJECT; i++ ) {
-            this.lineupExistence[i] = 1;
+        this.moduleExistence = new int[ this.MAX_MODULE_OBJECT ] ;
+        for(int i = 0; i < this.MAX_MODULE_OBJECT; i++ ) {
+            this.moduleExistence[i] = 1;
         }
 
         this.retryWhenNotReady( false ) ;
@@ -50,13 +60,13 @@ public class StreamPage extends BasicPage {
 
         // According to spec, spotlight line-up must be at position 0
         // thus, it is a good checkpoint to see if stream page is ready
-        this.spotlightLineUp().ready() ;
+        this.spotlightModule().ready() ;
 
         // then, calculate position for all line-up objects
-        this.refreshPositionOfLineUpObjects() ;
+        this.refreshPositionOfModuleObjects() ;
     }
 
-    private void refreshPositionOfLineUpObjects() {
+    private void refreshPositionOfModuleObjects() {
 
         // Close notice (not to handle it right now)
         this.closeAllNotice() ;
@@ -64,16 +74,16 @@ public class StreamPage extends BasicPage {
         // Close enjoy Uta Pass (not to handle it right now)
         this.closeEnjoyUtaPass() ;
 
-        // Calculating position by lineup objects' existence.
-        this.lineupExistence[ this.POSITION_RADIO       ] = this.hasRadioLineUp()      ? 1 : 0 ;
-        this.lineupExistence[ this.POSITION_LISTEN_WITH ] = this.hasListenWithLineUp() ? 1 : 0 ;
-        this.lineupExistence[ this.POSITION_LIVE        ] = this.hasLiveLineUp()       ? 1 : 0 ;
+        // Calculating position by module objects' existence.
+        this.moduleExistence[ this.POSITION_RADIO       ] = this.hasRadioModule()      ? 1 : 0 ;
+        this.moduleExistence[ this.POSITION_LISTEN_WITH ] = this.hasListenWithModule() ? 1 : 0 ;
+        this.moduleExistence[ this.POSITION_LIVE        ] = this.hasLiveModule()       ? 1 : 0 ;
 
-        this.swipeToSpotlightLineUp() ;
+        this.swipeToSpotlightModule() ;
     }
 
     public void closeAllNotice() {
-        this.swipeToLineUpObject( 1 ) ;
+        this.swipeToModuleObject( 1 ) ;
         while( this.isVisible( UtaPassUtil.withIndex( withId( R.id.notice_close_btn ), 0 ) ) ) {
             onView( UtaPassUtil.withIndex( withId( R.id.notice_close_btn ), 0 ) )
                     .perform( click() ) ;
@@ -81,44 +91,44 @@ public class StreamPage extends BasicPage {
     }
 
     public void closeEnjoyUtaPass() {
-        this.swipeToLineUpObject(2) ;
+        this.swipeToModuleObject(2 ) ;
         while( this.isVisible( withId( R.id.rating_item_negative_button ) ) ) {
             onView( withId( R.id.rating_item_negative_button ) ).perform( click() ) ;
         }
     }
 
-    public boolean hasRadioLineUp() {
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_RADIO ) ) ;
+    public boolean hasRadioModule() {
+        this.swipeToModuleObject( this.getPosition( this.POSITION_RADIO ) ) ;
         return this.isVisibleByGetText(
                 allOf( withId( R.id.item_list_title ),
-                       anyOf( withText( RadioLineUp.titleInEnglish ),
-                              withText( RadioLineUp.titleInJapanese) ) ) ) ;
+                       anyOf( withText( RadioModule.titleInEnglish ),
+                              withText( RadioModule.titleInJapanese) ) ) ) ;
     }
 
-    public boolean hasListenWithLineUp() {
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_LISTEN_WITH ) ) ;
+    public boolean hasListenWithModule() {
+        this.swipeToModuleObject( this.getPosition( this.POSITION_LISTEN_WITH ) ) ;
         return this.isVisibleByGetText(
                 allOf( withId( R.id.item_list_title ),
-                        anyOf( withText( ListenWithLineUp.titleInJapanese ),
-                               withText( ListenWithLineUp.titleInEnglish ) ) ) ) ;
+                        anyOf( withText( ListenWithModule.titleInJapanese ),
+                               withText( ListenWithModule.titleInEnglish ) ) ) ) ;
     }
 
-    public boolean hasLiveLineUp() {
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_LIVE ) ) ;
+    public boolean hasLiveModule() {
+        this.swipeToModuleObject( this.getPosition( this.POSITION_LIVE ) ) ;
         return this.isVisibleByGetText(
                 allOf( withId( R.id.item_list_title ),
-                       anyOf( withText( LiveLineUp.titleInEnglish ),
-                              withText( LiveLineUp.titleInJapanese) ) ) ) ;
+                       anyOf( withText( LiveModule.titleInEnglish ),
+                              withText( LiveModule.titleInJapanese) ) ) ) ;
     }
 
-    public void swipeToLineUpObject( int position ) {
+    public void swipeToModuleObject( int position ) {
         onView( withId( R.id.stream_recycler_view ) ).perform( scrollToPosition( position ) ) ;
     }
 
-    private int getPosition( int lineupId ) {
+    private int getPosition( int moduleId ) {
         int positionInStreamPage = -1 ;
-        for( int i = 0; i <= lineupId; i++ ) {
-            positionInStreamPage += this.lineupExistence[ i ] ;
+        for( int i = 0; i <= moduleId; i++ ) {
+            positionInStreamPage += this.moduleExistence[ i ] ;
         }
 
         if( positionInStreamPage == -1 ) {
@@ -131,58 +141,58 @@ public class StreamPage extends BasicPage {
         return positionInStreamPage ;
     }
 
-    public void swipeToSpotlightLineUp() {
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_SPOTLIGHT ) ) ;
+    public void swipeToSpotlightModule() {
+        this.swipeToModuleObject( this.getPosition( this.POSITION_SPOTLIGHT ) ) ;
     }
 
-    public void swipeToRadioLineUp() {
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_LIVE ) ) ;
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_RADIO ) ) ;
+    public void swipeToRadioModule() {
+        this.swipeToModuleObject( this.getPosition( this.POSITION_LIVE ) ) ;
+        this.swipeToModuleObject( this.getPosition( this.POSITION_RADIO ) ) ;
     }
 
-    public void swipeToLiveLineUp() {
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_ARTIST_NEW_RELEASE ) ) ;
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_LIVE ) ) ;
+    public void swipeToLiveModule() {
+        this.swipeToModuleObject( this.getPosition( this.POSITION_ARTIST_NEW_RELEASE ) ) ;
+        this.swipeToModuleObject( this.getPosition( this.POSITION_LIVE ) ) ;
     }
 
-    public void swipeToArtistNewReleaseLineUp() {
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_DAILY_MIX ) ) ;
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_ARTIST_NEW_RELEASE ) ) ;
+    public void swipeToArtistNewReleaseModule() {
+        this.swipeToModuleObject( this.getPosition( this.POSITION_DAILY_MIX ) ) ;
+        this.swipeToModuleObject( this.getPosition( this.POSITION_ARTIST_NEW_RELEASE ) ) ;
     }
 
-    public void swipeToDailyMixLineUp(){
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_TOP_CHARTS ) ) ;
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_DAILY_MIX ) ) ;
+    public void swipeToDailyMixModule(){
+        this.swipeToModuleObject( this.getPosition( this.POSITION_TOP_CHARTS ) ) ;
+        this.swipeToModuleObject( this.getPosition( this.POSITION_DAILY_MIX ) ) ;
     }
 
-    public void swipeToTopChartsLineUp() {
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_BEST50 ) ) ;
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_TOP_CHARTS ) ) ;
+    public void swipeToTopChartsModule() {
+        this.swipeToModuleObject( this.getPosition( this.POSITION_BEST50 ) ) ;
+        this.swipeToModuleObject( this.getPosition( this.POSITION_TOP_CHARTS ) ) ;
     }
 
-    public void swipeToBest50LineUp() {
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_POPULAR_ARTIST ) ) ;
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_BEST50 ) ) ;
+    public void swipeToBest50Module() {
+        this.swipeToModuleObject( this.getPosition( this.POSITION_POPULAR_ARTIST ) ) ;
+        this.swipeToModuleObject( this.getPosition( this.POSITION_BEST50 ) ) ;
     }
 
-    public void swipeToPopularArtistLineUp() {
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_WHATS_NEW ) ) ;
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_POPULAR_ARTIST ) ) ;
+    public void swipeToPopularArtistModule() {
+        this.swipeToModuleObject( this.getPosition( this.POSITION_WHATS_NEW ) ) ;
+        this.swipeToModuleObject( this.getPosition( this.POSITION_POPULAR_ARTIST ) ) ;
     }
 
-    public void swipeToWhatsNewLineUp() {
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_NEW_SONGS_HITS_SONGS ) ) ;
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_WHATS_NEW ) ) ;
+    public void swipeToWhatsNewModule() {
+        this.swipeToModuleObject( this.getPosition( this.POSITION_NEW_SONGS_HITS_SONGS ) ) ;
+        this.swipeToModuleObject( this.getPosition( this.POSITION_WHATS_NEW ) ) ;
     }
 
-    public void swipeToNewSongsHitSongsLineUp() {
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_YOU_MAY_ALSO_LIKE ) ) ;
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_NEW_SONGS_HITS_SONGS ) ) ;
+    public void swipeToNewSongsHitSongsModule() {
+        this.swipeToModuleObject( this.getPosition( this.POSITION_YOU_MAY_ALSO_LIKE ) ) ;
+        this.swipeToModuleObject( this.getPosition( this.POSITION_NEW_SONGS_HITS_SONGS ) ) ;
     }
 
-    public void swipeToYouMayAlsoLikeLineUp() {
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_MEMBER_PRIVILEGES ) ) ;
-        this.swipeToLineUpObject( this.getPosition( this.POSITION_YOU_MAY_ALSO_LIKE ) ) ;
+    public void swipeToYouMayAlsoLikeModule() {
+        this.swipeToModuleObject( this.getPosition( this.POSITION_MEMBER_PRIVILEGES ) ) ;
+        this.swipeToModuleObject( this.getPosition( this.POSITION_YOU_MAY_ALSO_LIKE ) ) ;
      }
 
     public BasicButton sideBarButton() {
@@ -192,65 +202,58 @@ public class StreamPage extends BasicPage {
         return sideBarButton ;
     }
 
-    public SpotlightLineUp spotlightLineUp() {
-        this.swipeToSpotlightLineUp() ;
-        return new SpotlightLineUp() ;
+    public SpotlightModule spotlightModule() {
+        this.swipeToSpotlightModule() ;
+        return new SpotlightModule() ;
     }
 
-    public RadioLineUp radioLineUp() {
-        this.swipeToRadioLineUp() ;
-        return new RadioLineUp() ;
+    public RadioModule radioModule() {
+        this.swipeToRadioModule() ;
+        return new RadioModule() ;
     }
 
-    public LiveLineUp liveLineUp() {
-        this.swipeToLiveLineUp() ;
-        return new LiveLineUp() ;
+    public LiveModule liveModule() {
+        this.swipeToLiveModule() ;
+        return new LiveModule() ;
     }
 
-    public ArtistNewReleaseLineUp artistNewReleaseLineUp() {
-        this.swipeToArtistNewReleaseLineUp() ;
-        return new ArtistNewReleaseLineUp() ;
+    public ArtistNewReleaseModule artistNewReleaseModule() {
+        this.swipeToArtistNewReleaseModule() ;
+        return new ArtistNewReleaseModule() ;
     }
 
-    public DailyMixLineUp dailyMixLineUp() {
-        this.swipeToDailyMixLineUp() ;
-        return new DailyMixLineUp() ;
+    public DailyMixModule dailyMixModule() {
+        this.swipeToDailyMixModule() ;
+        return new DailyMixModule() ;
     }
 
-    public TopChartsLineUp topChartsLineUp() {
-        this.swipeToTopChartsLineUp() ;
-        return new TopChartsLineUp() ;
+    public TopChartsModule topChartsModule() {
+        this.swipeToTopChartsModule() ;
+        return new TopChartsModule() ;
     }
 
-    public Best50 best50() {
-        this.swipeToBest50LineUp() ;
-        return new Best50() ;
+    public Best50Module best50Module() {
+        this.swipeToBest50Module() ;
+        return new Best50Module() ;
     }
 
-    public Best50LineUp best50LineUp() {
-        this.swipeToBest50LineUp() ;
-        return new Best50LineUp() ;
+    public PopularArtistModule popularArtistModule() {
+        this.swipeToPopularArtistModule() ;
+        return new PopularArtistModule() ;
     }
 
-    public PopularArtistLineUp popularArtistLineUp() {
-        this.swipeToPopularArtistLineUp() ;
-        return new PopularArtistLineUp() ;
+    public WhatsNewModule whatsNewModule() {
+        this.swipeToWhatsNewModule() ;
+        return new WhatsNewModule() ;
     }
 
-    public WhatsNewLineUp whatsNewLineUp() {
-        this.swipeToWhatsNewLineUp() ;
-        return new WhatsNewLineUp() ;
+    public NewSongsHitSongsModule newSongsHitSongsModule() {
+        this.swipeToNewSongsHitSongsModule() ;
+        return new NewSongsHitSongsModule() ;
     }
 
-    public NewSongsHitSongsLineUp newSongsHitSongsLineUp() {
-        this.swipeToNewSongsHitSongsLineUp() ;
-        return new NewSongsHitSongsLineUp() ;
+    public YouMayAlsoLikeModule youMayAlsoLikeModule() {
+        this.swipeToYouMayAlsoLikeModule() ;
+        return new YouMayAlsoLikeModule() ;
     }
-
-    public YouMayAlsoLikeLineUp youMayAlsoLikeLineUp() {
-        this.swipeToYouMayAlsoLikeLineUp() ;
-        return new YouMayAlsoLikeLineUp() ;
-    }
-
-
 }

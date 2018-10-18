@@ -4,6 +4,8 @@ import android.support.test.espresso.* ;
 import android.view.View ;
 import android.widget.TextView ;
 
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.NoMatchViewException;
+
 import junit.framework.AssertionFailedError ;
 
 import org.hamcrest.Matcher ;
@@ -39,15 +41,14 @@ public class ViewObject {
         UtaPassUtil.dprint( msg ) ;
     }
 
-
-    // Deprecated
-    protected boolean isVisibleByGetText( final Matcher<View> matcher ) {
+    protected void handleNoMatchViewException( String label, ICommand command ) {
         try {
-            this.getText( matcher ) ;
-            return true ;
+            command.execute() ;
         }
+
         catch( NoMatchingViewException e ) {
-            return false ;
+            this.dprint( e.getMessage() ) ;
+            throw new NoMatchViewException( label ) ;
         }
     }
 
@@ -61,10 +62,10 @@ public class ViewObject {
             return true ;
         }
         catch( NoMatchingViewException e ) {
-                return false ;
+            return false ;
         }
         catch( AssertionFailedError e ) {
-                return false ;
+            return false ;
         }
     }
 
@@ -114,6 +115,16 @@ public class ViewObject {
         });
         return stringHolder[0];
     }
+
+
+    @Deprecated
+    protected boolean isVisibleByGetText( final Matcher<View> matcher ) {
+        try {
+            this.getText( matcher ) ;
+            return true ;
+        }
+        catch( NoMatchingViewException e ) {
+            return false ;
+        }
+    }
 }
-
-

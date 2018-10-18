@@ -226,6 +226,16 @@ public class UtaPassUtil {
                 .instance( index ) ) ;
     }
 
+    public static UiObject findObjectByResourceIdMatches( String id ) {
+        return UtaPassUtil.findObjectByResourceIdMatches( id, 0 ) ;
+    }
+
+    public static UiObject findObjectByResourceIdMatches( String id, int index ) {
+        return UtaPassUtil.getUiDeviceInstance().findObject( new UiSelector()
+                .resourceIdMatches( ".*:id/" + id )
+                .instance( index ) ) ;
+    }
+
     public static void setScreenOrientationPortrait( ActivityTestRule<MainActivity> mActivityRule ) {
         mActivityRule.getActivity().setRequestedOrientation(
                 ActivityInfo.SCREEN_ORIENTATION_PORTRAIT ) ;

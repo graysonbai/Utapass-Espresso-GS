@@ -35,13 +35,13 @@ public class BasicTest {
         }
 
         // 2017.Q3+ devices will pop out AuidSettingsPage once launching UtaPass
-        this.sleep( 5, "AuidSettingsPage may display." ) ;
+        this.sleep( 10, "AuidSettingsPage may display." ) ;
         if( this.navigator.idSettingsPage().isVisible() ) {
             this.navigator.idSettingsPage()
                           .okButton()
                           .tap() ;
 
-            this.sleep( 5, "LoginProcess may take time" ) ;
+            this.sleep( 10, "LoginProcess may take time" ) ;
             UserStatus.isLogin = true ;
             return ;
         }

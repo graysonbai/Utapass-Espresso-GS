@@ -5,10 +5,9 @@ import android.support.test.runner.AndroidJUnit4 ;
 import org.junit.Test ;
 import org.junit.runner.RunWith ;
 
-import com.kddi.android.UtaPass.sqa_espresso.common.SongObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.StringObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
-import com.kddi.android.UtaPass.sqa_espresso.pages.stream._lineup.Best50LineUp;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.Best50Module;
 
 
 @RunWith(AndroidJUnit4.class)
@@ -21,7 +20,7 @@ public class Best50Test extends BasicTest {
                 "My Uta BEST 50" } ;
 
         this.navigator.streamPage()
-                      .best50()
+                      .best50Module()
                       .title()
                       .text()
                       .assertIn( expectings ) ;
@@ -34,7 +33,7 @@ public class Best50Test extends BasicTest {
                 "Weekly update of the most popular songs saved as My Uta" } ;
 
         this.navigator.streamPage()
-                      .best50()
+                      .best50Module()
                       .subtitle()
                       .text()
                       .assertIn( expectings ) ;
@@ -43,7 +42,7 @@ public class Best50Test extends BasicTest {
     @Test
     public void fifteen_songs_on_stream() {
         this.navigator.streamPage()
-                      .best50()
+                      .best50Module()
                       .lineUp()
                       .countSongs()
                       .assertEquals( 15 ) ;
@@ -52,7 +51,7 @@ public class Best50Test extends BasicTest {
     @Test
     public void fifty_songs_in_seeAll() {
         this.navigator.streamPage()
-                      .best50()
+                      .best50Module()
                       .seeAll()
                       .tap() ;
 
@@ -84,9 +83,9 @@ public class Best50Test extends BasicTest {
 
         UtaPassUtil.pressBack() ;
 
-        SongObject song = this.saveMyUtaSongsFromBest50LineUp() ;
-        StringObject songName = song.songName() ;
-        StringObject artistName = song.artistName() ;
+        StringObject[] names = this.saveMyUtaSongsFromBest50Module() ;
+        StringObject songName = names[ 0 ] ;
+        StringObject artistName = names[ 1 ] ;
 
         this.navigator.streamPage()
                       .sideBarButton()
@@ -165,17 +164,17 @@ public class Best50Test extends BasicTest {
                       .tap() ;
     }
 
-    public SongObject saveMyUtaSongsFromBest50LineUp() {
-        Best50LineUp lineup = this.navigator.streamPage()
-                                            .best50()
-                                            .lineUp() ;
+    public StringObject[] saveMyUtaSongsFromBest50Module() {
         for( int i = 0; i < 15 ; i++ ) {
-            SongObject song = lineup.song( i ) ;
 
-            if( song.myUtaButton()
+            Best50Module.InternalCard card = this.navigator.streamPage()
+                                                           .best50Module()
+                                                           .lineUp()
+                                                           .card( i ) ;
+            if( card.myUtaButton()
                     .isVisible() ) {
 
-                song.myUtaButton()
+                card.myUtaButton()
                     .tap() ;
 
                 this.navigator.saveMyUtaPopupMessage()
@@ -191,7 +190,9 @@ public class Best50Test extends BasicTest {
                                   .tap() ;
                 }
 
-                return song ;
+                return new StringObject[] {
+                        card.songName().text(),
+                        card.artistName().text() } ;
             }
         }
 

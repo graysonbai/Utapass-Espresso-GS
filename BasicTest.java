@@ -111,8 +111,6 @@ public class BasicTest {
     public void tear_down() {
         UtaPassUtil.stopNowPlayingBar() ;
         UtaPassUtil.closeApp() ;
-
-//        UtaPassUtil.setScreenOrientationNatural( this.mActivityRule ) ;
     }
 
     public void sleep( int seconds, String info ) {

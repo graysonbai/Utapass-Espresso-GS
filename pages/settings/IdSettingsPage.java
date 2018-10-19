@@ -20,10 +20,6 @@ public class IdSettingsPage extends ViewObject {
     private LazyUiAutomatorString message ;
     private LazyUiAutomatorString id ;
 
-    public IdSettingsPage() {
-        this.retryWhenNotReady( false ) ;
-    }
-
     public void _ready() {
         this.assertVisible() ;
     }

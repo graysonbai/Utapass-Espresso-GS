@@ -51,6 +51,7 @@ public class StreamPage extends BasicPage {
         }
 
         this.retryWhenNotReady( false ) ;
+        this.label( "StreamPage" ) ;
     }
 
     public void _ready() {
@@ -204,56 +205,56 @@ public class StreamPage extends BasicPage {
 
     public SpotlightModule spotlightModule() {
         this.swipeToSpotlightModule() ;
-        return new SpotlightModule() ;
+        return new SpotlightModule( this.label() ) ;
     }
 
     public RadioModule radioModule() {
         this.swipeToRadioModule() ;
-        return new RadioModule() ;
+        return new RadioModule( this.label() ) ;
     }
 
     public LiveModule liveModule() {
         this.swipeToLiveModule() ;
-        return new LiveModule() ;
+        return new LiveModule( this.label() ) ;
     }
 
     public ArtistNewReleaseModule artistNewReleaseModule() {
         this.swipeToArtistNewReleaseModule() ;
-        return new ArtistNewReleaseModule() ;
+        return new ArtistNewReleaseModule( this.label() ) ;
     }
 
     public DailyMixModule dailyMixModule() {
         this.swipeToDailyMixModule() ;
-        return new DailyMixModule() ;
+        return new DailyMixModule( this.label() ) ;
     }
 
     public TopChartsModule topChartsModule() {
         this.swipeToTopChartsModule() ;
-        return new TopChartsModule() ;
+        return new TopChartsModule( this.label() ) ;
     }
 
     public Best50Module best50Module() {
         this.swipeToBest50Module() ;
-        return new Best50Module() ;
+        return new Best50Module( this.label() ) ;
     }
 
     public PopularArtistModule popularArtistModule() {
         this.swipeToPopularArtistModule() ;
-        return new PopularArtistModule() ;
+        return new PopularArtistModule( this.label() ) ;
     }
 
     public WhatsNewModule whatsNewModule() {
         this.swipeToWhatsNewModule() ;
-        return new WhatsNewModule() ;
+        return new WhatsNewModule( this.label() ) ;
     }
 
     public NewSongsHitSongsModule newSongsHitSongsModule() {
         this.swipeToNewSongsHitSongsModule() ;
-        return new NewSongsHitSongsModule() ;
+        return new NewSongsHitSongsModule( this.label() ) ;
     }
 
     public YouMayAlsoLikeModule youMayAlsoLikeModule() {
         this.swipeToYouMayAlsoLikeModule() ;
-        return new YouMayAlsoLikeModule() ;
+        return new YouMayAlsoLikeModule( this.label() ) ;
     }
 }

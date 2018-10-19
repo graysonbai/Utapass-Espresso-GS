@@ -20,11 +20,10 @@ import static org.hamcrest.Matchers.allOf;
 
 
 public class SpotlightModule extends ViewObject {
-
-    private static String label = "Stream > SpotlightModule" ;
     private InternalLineUp lineup ;
 
-    public SpotlightModule() {
+    public SpotlightModule( String label ) {
+        this.label( label + " > SpotlightModule" ) ;
         this.retryWhenNotReady( false ) ;
     }
 
@@ -42,15 +41,15 @@ public class SpotlightModule extends ViewObject {
 
     public InternalLineUp lineUp() {
         if( this.lineup == null ) {
-            this.lineup = new InternalLineUp() ;
+            this.lineup = new InternalLineUp( this.label() ) ;
         }
         return this.lineup ;
     }
 
     public class InternalLineUp extends LineUpObject {
 
-        public InternalLineUp() {
-            this.addLabel( SpotlightModule.label ) ;
+        public InternalLineUp( String label ) {
+            this.label( label + " > LineUp" ) ;
         }
 
         protected Matcher<View> getMatcherToFindRecycleView() {

@@ -30,10 +30,10 @@ public class TopChartsModule extends ViewObject {
 
     public static String titleInEnglish = "Top Charts" ;
     public static String titleInJapanese = "ランキング" ;
-    public static String label = "Stream > TopChartsModule" ;
     private InternalLineUp lineup ;
 
-    public TopChartsModule() {
+    public TopChartsModule( String label ) {
+        this.label( label + " > TopChartsModule" ) ;
         this.retryWhenNotReady( false ) ;
     }
 
@@ -51,14 +51,14 @@ public class TopChartsModule extends ViewObject {
     }
 
     public LazyString title() {
-        return new LazyString( TopChartsModule.label + " > Title",
+        return new LazyString( this.label() + " > Title",
                 () -> allOf(
                         withId( R.id.item_list_title ),
                         isDescendantOfA( this.matcher() ) ) ) ;
     }
 
     public BasicButton seeAll() {
-        return new BasicButton( TopChartsModule.label + " > See All",
+        return new BasicButton( this.label() + " > See All",
                 () -> allOf(
                         anyOf( withText( "See All" ),
                                withText( "すべて見る" ) ),
@@ -67,15 +67,15 @@ public class TopChartsModule extends ViewObject {
 
     public InternalLineUp lineUp() {
         if( this.lineup == null ) {
-            this.lineup = new InternalLineUp() ;
+            this.lineup = new InternalLineUp( this.label() ) ;
         }
         return this.lineup ;
     }
 
     public class InternalLineUp extends LineUpObject {
 
-        public InternalLineUp() {
-            this.addLabel( TopChartsModule.label ) ;
+        public InternalLineUp( String label ) {
+            this.label( label + " > LineUp" ) ;
         }
 
         protected String getTitleOfLineUpInEnglish() {

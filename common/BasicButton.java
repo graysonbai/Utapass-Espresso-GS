@@ -8,16 +8,15 @@ import static android.support.test.espresso.action.ViewActions.click;
 
 
 public class BasicButton extends ViewObject {
-
-    protected String label ;
     protected LazyMatcher matcher ;
 
     public BasicButton( String label, LazyMatcher matcher ) {
-        this.label = label ;
+        this.label( label ) ;
         this.matcher = matcher ;
     }
 
     public BasicButton( LazyMatcher matcher ) {
+        this.label( "BasicButton: LabelNotAssigned" ) ;
         this.matcher = matcher ;
     }
 
@@ -41,13 +40,8 @@ public class BasicButton extends ViewObject {
 
     public void _ready() {
         if( ! this.isVisible() ) {
-            String msg = "NotReady: " + this.label() ;
-            throw new RuntimeException( msg ) ;
+            throw new RuntimeException( "NotReady: " + this.label() ) ;
         }
-    }
-
-    public String label() {
-        return this.label ;
     }
 
     @Deprecated
@@ -57,13 +51,13 @@ public class BasicButton extends ViewObject {
 
     public void assertVisible() {
         if( ! this.isVisible() ) {
-            throw new ButtonInvisibleException( this.name() ) ;
+            throw new ButtonInvisibleException( this.label() ) ;
         }
     }
 
     public void assertInvisible() {
         if( this.isVisible() ) {
-            throw new ButtonVisibleException( this.name() ) ;
+            throw new ButtonVisibleException( this.label() ) ;
         }
     }
 }

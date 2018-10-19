@@ -15,7 +15,7 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches ;
 import static android.support.test.espresso.matcher.ViewMatchers.* ;
 
 public class ViewObject {
-
+    private String label = "ViewObject" ;
     protected ViewInteraction item ;
     private boolean retryWhenNotReady = true ;
 
@@ -94,6 +94,19 @@ public class ViewObject {
         catch( AssertionFailedError e ) {
             return false ;
         }
+    }
+
+    public String label() {
+        return this.label ;
+    }
+
+    public void label( String label ) {
+        this.label = label ;
+    }
+
+    @Deprecated
+    public void addLabel( String label ) {
+        this.label = label ;
     }
 
 

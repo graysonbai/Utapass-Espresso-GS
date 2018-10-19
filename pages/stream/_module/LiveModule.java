@@ -25,13 +25,12 @@ import static org.hamcrest.Matchers.anyOf;
 
 
 public class LiveModule extends ViewObject {
-
     public static String titleInEnglish = "LIVE" ;
     public static String titleInJapanese = "LIVE" ;
-    public static String label = "Stream > LiveModule" ;
     private InternalLineUp lineup ;
 
-    public LiveModule() {
+    public LiveModule( String label ) {
+        this.label( label + " > LiveModule" ) ;
         this.retryWhenNotReady( false ) ;
     }
 
@@ -49,7 +48,7 @@ public class LiveModule extends ViewObject {
     }
 
     public LazyString title() {
-        return new LazyString( LiveModule.label + " > Title",
+        return new LazyString( this.label() + " > Title",
                 () -> allOf(
                         withId( R.id.item_list_title ),
                         isDescendantOfA( this.matcher() ) ) ) ;
@@ -57,15 +56,15 @@ public class LiveModule extends ViewObject {
 
     public InternalLineUp lineUp() {
         if( this.lineup == null ) {
-            this.lineup = new InternalLineUp() ;
+            this.lineup = new InternalLineUp( this.label() ) ;
         }
         return this.lineup ;
     }
 
     public class InternalLineUp extends LineUpObject {
 
-        public InternalLineUp() {
-            this.addLabel( LiveModule.label ) ;
+        public InternalLineUp( String label ) {
+            this.label( label + " > LineUp" ) ;
         }
 
         protected String getTitleOfLineUpInEnglish() {

@@ -30,8 +30,11 @@ public class RadioModule extends ViewObject {
 
     public static String titleInEnglish = "Original radio program" ;
     public static String titleInJapanese = "オリジナルラジオ番組" ;
-    public static String label = "Stream > RadioModule" ;
     private InternalLineUp lineup ;
+
+    public RadioModule( String label ) {
+        this.label( label + " > RadioModule" ) ;
+    }
 
     public Matcher<View> matcher() {
          return allOf( withId( R.id.item_list_title_layout ),
@@ -41,7 +44,7 @@ public class RadioModule extends ViewObject {
     }
 
     public LazyString title() {
-        return new LazyString( RadioModule.label + " > Title",
+        return new LazyString( this.label() + " > Title",
                 () -> allOf(
                         withId( R.id.item_list_title ),
                         isDescendantOfA( this.matcher() ) ) ) ;
@@ -49,12 +52,16 @@ public class RadioModule extends ViewObject {
 
     public InternalLineUp lineUp() {
         if( this.lineup == null ) {
-            this.lineup = new InternalLineUp() ;
+            this.lineup = new InternalLineUp( this.label() ) ;
         }
         return this.lineup ;
     }
 
     public class InternalLineUp extends LineUpObject {
+
+        public InternalLineUp( String label ) {
+            this.label( label + " > LineUp" ) ;
+        }
 
         protected String getTitleOfLineUpInEnglish() {
             return RadioModule.titleInEnglish ;
@@ -75,8 +82,9 @@ public class RadioModule extends ViewObject {
 
             InternalCard card = new InternalCard() ;
 
-            String label = String.format(
-                    RadioModule.label + " > LineUp > Card(%s)", index ) ;
+            String label = String.format( "%s > Card(%s)",
+                    this.label(),
+                    index ) ;
 
             card.cover( label + " > Cover",
                     () -> allOf(

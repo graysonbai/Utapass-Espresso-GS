@@ -7,15 +7,15 @@ import static android.support.test.espresso.action.ViewActions.click;
 
 
 public class BasicImage extends ViewObject {
-    protected String label ;
     protected LazyMatcher matcher ;
 
     public BasicImage( String label, LazyMatcher matcher ) {
-        this.label = label ;
+        this.label( label ) ;
         this.matcher = matcher ;
     }
 
     public BasicImage( LazyMatcher matcher ) {
+        this.label( "BasicImage: LabelNotAssigned" ) ;
         this.matcher = matcher ;
     }
 
@@ -31,10 +31,6 @@ public class BasicImage extends ViewObject {
 
     public boolean isVisible() {
         return this.isVisible( this.matcher.execute() ) ;
-    }
-
-    public String label() {
-        return this.label ;
     }
 
     public void tap() {

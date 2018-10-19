@@ -22,13 +22,17 @@ public class DailyMixModule extends ViewObject {
     public static String label = "Stream > DailyMixModule" ;
     private InternalLineUp lineup ;
 
+    public DailyMixModule( String label ) {
+        this.label( label + " > DailyMixModule" ) ;
+    }
+
     public Matcher<View> matcher() {
          return withId( R.id.item_dailymix_root_layout ) ;
     }
 
     public InternalLineUp lineUp() {
         if( this.lineup == null ) {
-            this.lineup = new InternalLineUp() ;
+            this.lineup = new InternalLineUp( this.label() ) ;
         }
         return this.lineup ;
     }
@@ -36,12 +40,18 @@ public class DailyMixModule extends ViewObject {
     // DailyMixModule has only 1 card and cannot be swiped
     // Thus, no need to extend from LineUpObject
     public class InternalLineUp {
+        private String label ;
+
+        public InternalLineUp( String label ) {
+            this.label = label + " > LineUp" ;
+        }
+
         public InternalCard card( int index ) {
 
             InternalCard card = new InternalCard() ;
 
-            String label = String.format( "%s > LineUp > Card(%s)",
-                    DailyMixModule.label,
+            String label = String.format( "%s > Card(%s)",
+                    this.label,
                     index ) ;
 
             card.cover( label + " > Cover",

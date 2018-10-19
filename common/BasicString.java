@@ -10,7 +10,6 @@ import java.util.Arrays;
 
 public class BasicString extends ViewObject {
 
-    protected String label ;
     private String string = "" ;
 
     public BasicString() {}
@@ -33,14 +32,6 @@ public class BasicString extends ViewObject {
 
     public void string( int n ) {
         this.string = String.valueOf( n ) ;
-    }
-
-    public String label() {
-        return this.label ;
-    }
-
-    public void label( String label ) {
-        this.label = label ;
     }
 
     protected void _ready() {

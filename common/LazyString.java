@@ -5,7 +5,6 @@ import static android.support.test.espresso.action.ViewActions.click;
 
 
 public class LazyString extends StringObject {
-
     protected LazyMatcher matcher ;
 
     public LazyString( String label, LazyMatcher matcher ) {
@@ -14,7 +13,7 @@ public class LazyString extends StringObject {
     }
 
     public LazyString( LazyMatcher matcher ) {
-        this.label( "NotAssigned" ) ;
+        this.label( "LazyString: LabelNotAssigned" ) ;
         this.matcher = matcher ;
     }
 

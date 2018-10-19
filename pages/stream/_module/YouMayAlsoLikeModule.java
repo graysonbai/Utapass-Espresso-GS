@@ -29,10 +29,10 @@ public class YouMayAlsoLikeModule extends ViewObject {
 
     public static String titleInEnglish = "You may also like" ;
     public static String titleInJapanese = "あなたにオススメ" ;
-    public static String label = "Stream > YouMayAlsoLikeModule" ;
     private InternalLineUp lineup ;
 
-    public YouMayAlsoLikeModule() {
+    public YouMayAlsoLikeModule( String label ) {
+        this.label( label + " > YouMayAlsoLikeModule" ) ;
         this.retryWhenNotReady( false ) ;
     }
 
@@ -50,7 +50,7 @@ public class YouMayAlsoLikeModule extends ViewObject {
     }
 
     public LazyString title() {
-        return new LazyString( YouMayAlsoLikeModule.label + " > Title",
+        return new LazyString( this.label() + " > Title",
                 () -> allOf(
                         withId( R.id.item_list_title ),
                         isDescendantOfA( this.matcher() ) ) ) ;
@@ -58,15 +58,15 @@ public class YouMayAlsoLikeModule extends ViewObject {
 
     public InternalLineUp lineUp() {
         if( this.lineup == null ) {
-            this.lineup = new InternalLineUp() ;
+            this.lineup = new InternalLineUp( this.label() ) ;
         }
         return this.lineup ;
     }
 
     public class InternalLineUp extends LineUpObject {
 
-        public InternalLineUp() {
-            this.addLabel( YouMayAlsoLikeModule.label ) ;
+        public InternalLineUp( String label ) {
+            this.label( label + " > LineUp" ) ;
         }
 
         protected String getTitleOfLineUpInEnglish() {

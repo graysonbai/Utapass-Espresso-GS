@@ -19,7 +19,10 @@ public abstract class LineUpObject extends ViewObject {
     private int UN_INIT = -1 ;
     protected int maxIndexOfLineUpObject = 9 ;
     protected int maxIndexOfWindow = this.UN_INIT ;
-    private String label = "LineUp" ;
+
+    public LineUpObject() {
+        this.label( "LineUp" ) ;
+    }
 
     public void _ready() {
         this.assertVisible() ;
@@ -29,14 +32,6 @@ public abstract class LineUpObject extends ViewObject {
         if( ! this.isVisible( this.getMatcherToCountMaxIndexOfWindow() ) ) {
             throw new NotReadyException( this.label() ) ;
         }
-    }
-
-    protected void addLabel( String label ) {
-        this.label = String.format( "%s > %s", label, this.label() ) ;
-    }
-
-    protected String label() {
-        return this.label ;
     }
 
     public <T extends LineUpObject> T swipeToLeftmost() {

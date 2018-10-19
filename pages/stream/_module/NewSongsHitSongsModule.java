@@ -30,10 +30,10 @@ public class NewSongsHitSongsModule extends ViewObject {
 
     public static String titleInEnglish = "New songs/Hit songs" ;
     public static String titleInJapanese = "新曲/ヒットソング" ;
-    public static String label = "Stream > NewSongsHitSongsModule" ;
     private InternalLineUp lineup ;
 
-    public NewSongsHitSongsModule() {
+    public NewSongsHitSongsModule( String label ) {
+        this.label( label + " > NewSongsHitSongsModule" ) ;
         this.retryWhenNotReady( false ) ;
     }
 
@@ -51,14 +51,14 @@ public class NewSongsHitSongsModule extends ViewObject {
     }
 
     public LazyString title() {
-        return new LazyString( NewSongsHitSongsModule.label + " > Title",
+        return new LazyString( this.label() + " > Title",
                 () -> allOf(
                         withId( R.id.item_list_title ),
                         isDescendantOfA( this.matcher() ) ) ) ;
     }
 
     public BasicButton seeAll() {
-        return new BasicButton( NewSongsHitSongsModule.label + " > See All Button",
+        return new BasicButton( this.label() + " > See All Button",
                 () -> allOf(
                         anyOf( withText( "See All" ),
                                withText( "すべて見る" ) ),
@@ -67,15 +67,15 @@ public class NewSongsHitSongsModule extends ViewObject {
 
     public InternalLineUp lineUp() {
         if( this.lineup == null ) {
-            this.lineup = new InternalLineUp() ;
+            this.lineup = new InternalLineUp( this.label() ) ;
         }
         return this.lineup ;
     }
 
     public class InternalLineUp extends LineUpObject {
 
-        public InternalLineUp() {
-            this.addLabel( NewSongsHitSongsModule.label ) ;
+        public InternalLineUp( String label ) {
+            this.label( label + " > LineUp" ) ;
         }
 
         protected String getTitleOfLineUpInEnglish() {

@@ -27,13 +27,12 @@ import static org.hamcrest.Matchers.anyOf;
 
 
 public class PopularArtistModule extends ViewObject {
-
     public static String titleInEnglish = "Popular Artist" ;
     public static String titleInJapanese = "人気アーティスト" ;
-    public static String label = "Stream > PopularArtistModule" ;
     private InternalLineUp lineup ;
 
-    public PopularArtistModule() {
+    public PopularArtistModule( String label ) {
+        this.label( label + " > PopularArtistModule" ) ;
         this.retryWhenNotReady( false ) ;
     }
 
@@ -51,14 +50,14 @@ public class PopularArtistModule extends ViewObject {
     }
 
     public LazyString title() {
-        return new LazyString( PopularArtistModule.label + " > Title",
+        return new LazyString( this.label() + " > Title",
                 () -> allOf(
                         withId( R.id.item_list_title ),
                         isDescendantOfA( this.matcher() ) ) ) ;
     }
 
     public BasicButton seeAll() {
-        return new BasicButton( PopularArtistModule.label + " > See All",
+        return new BasicButton( this.label() + " > See All",
                 () -> allOf(
                         anyOf( withText( "See All" ),
                                withText( "すべて見る" ) ),
@@ -67,15 +66,15 @@ public class PopularArtistModule extends ViewObject {
 
     public InternalLineUp lineUp() {
         if( this.lineup == null ) {
-            this.lineup = new InternalLineUp() ;
+            this.lineup = new InternalLineUp( this.label() ) ;
         }
         return this.lineup ;
     }
 
     public class InternalLineUp extends LineUpObject {
 
-        public InternalLineUp() {
-            this.addLabel( PopularArtistModule.label ) ;
+        public InternalLineUp( String label ) {
+            this.label( label + " > LineUp" ) ;
         }
 
         protected String getTitleOfLineUpInEnglish() {

@@ -38,10 +38,10 @@ public class Best50Module extends ViewObject {
 
     public static String titleInEnglish = "My Uta BEST 50" ;
     public static String titleInJapanese = "週間 Myうた BEST50" ;
-    private static String label = "Stream > Best50Module" ;
     private InternalLineUp lineup ;
 
-    public Best50Module() {
+    public Best50Module( String label ) {
+        this.label( label + " > Best50Module" ) ;
         this.retryWhenNotReady( false ) ;
     }
 
@@ -59,14 +59,14 @@ public class Best50Module extends ViewObject {
     }
 
     public LazyString title() {
-        return new LazyString( Best50Module.label + " > Title",
+        return new LazyString( this.label() + " > Title",
                 () -> allOf(
                         withId( R.id.promotion_song_list_title ),
                         isDescendantOfA( this.matcher() ) ) ) ;
     }
 
     public BasicButton seeAll() {
-        return new BasicButton( Best50Module.label + " > See All",
+        return new BasicButton( this.label() + " > See All",
                 () -> allOf(
                         anyOf( withText( "See All" ),
                                withText( "すべて見る" ) ),
@@ -74,7 +74,7 @@ public class Best50Module extends ViewObject {
     }
 
     public LazyString subtitle() {
-        return new LazyString( Best50Module.label + " > Subtitle",
+        return new LazyString( this.label() + " > Subtitle",
                 () -> allOf(
                         withId( R.id.promotion_song_list_subtitle ),
                         isDescendantOfA( this.matcher() ) ) ) ;
@@ -82,7 +82,7 @@ public class Best50Module extends ViewObject {
 
     public InternalLineUp lineUp() {
         if( this.lineup == null ) {
-            this.lineup = new InternalLineUp() ;
+            this.lineup = new InternalLineUp( this.label() ) ;
         }
         return this.lineup ;
     }
@@ -92,8 +92,8 @@ public class Best50Module extends ViewObject {
         private static final int MAX_CARD_IN_COLUMN = 3 ;
         private static final int MAX_INDEX_OF_LINEOBJECT = 14 ;
 
-        public InternalLineUp() {
-            this.addLabel( Best50Module.label ) ;
+        public InternalLineUp( String label ) {
+            this.label( label + " > LineUp" ) ;
             this.setMaxIndexOfLineUpObject( InternalLineUp.MAX_INDEX_OF_LINEOBJECT ) ;
         }
 

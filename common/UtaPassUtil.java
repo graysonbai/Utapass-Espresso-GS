@@ -175,8 +175,10 @@ public class UtaPassUtil {
 
     public static void stopNowPlayingBar() {
         NowPlayingBar nowPlayingBar = new NowPlayingBar() ;
-        if( nowPlayingBar.isPlaying() ) {
-            nowPlayingBar.pause() ;
+        if( nowPlayingBar.isVisible() ) {
+            if( nowPlayingBar.pauseButton().isVisible() ) {
+                nowPlayingBar.pause() ;
+            }
         }
     }
 

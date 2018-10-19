@@ -60,7 +60,7 @@ public class Best50Test extends BasicTest {
                       .tap() ;
 
         this.navigator.best50Page()
-                      .songsLineUp()
+                      .lineUp()
                       .countSongs()
                       .assertEquals( 50 ) ;
     }

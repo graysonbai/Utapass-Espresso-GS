@@ -115,14 +115,14 @@ public class MyTest extends BasicTest {
                       .tap() ;
 
         if( this.navigator.spotlightPage()
-                          .songsLineUp()
-                          .song( 0 )
+                          .lineUp()
+                          .card( 0 )
                           .myUtaButton()
                           .isVisible() ) {
 
             this.navigator.spotlightPage()
-                          .songsLineUp()
-                          .song( 0 )
+                          .lineUp()
+                          .card( 0 )
                           .myUtaButton()
                           .tap() ;
 

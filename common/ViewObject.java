@@ -26,6 +26,16 @@ public class ViewObject {
         return (T) this ;
     }
 
+    public boolean isReady() {
+        try {
+            this.ready() ;
+            return true ;
+
+        } catch( RuntimeException e ) {
+            return false ;
+        }
+    }
+
     protected boolean retryWhenNotReady() {
         return this.retryWhenNotReady ;
     }

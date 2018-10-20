@@ -4,7 +4,7 @@ import android.support.test.espresso.ViewInteraction ;
 import android.view.View ;
 
 import com.kddi.android.UtaPass.R ;
-import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.NotReadyException;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.InvisibleException;
 
 import org.hamcrest.Matcher ;
 
@@ -30,7 +30,7 @@ public abstract class LineUpObject extends ViewObject {
 
     public void assertVisible() {
         if( ! this.isVisible( this.getMatcherToCountMaxIndexOfWindow() ) ) {
-            throw new NotReadyException( this.label() ) ;
+            throw new InvisibleException( this.label() ) ;
         }
     }
 

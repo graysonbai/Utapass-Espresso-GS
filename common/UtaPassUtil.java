@@ -19,8 +19,8 @@ import android.view.View ;
 import android.widget.ImageView ;
 
 import com.kddi.android.UtaPass.main.MainActivity;
-import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.MaxRetryReachedException;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.NoMatchViewException;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.NotReadyException;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.NowPlayingBar;
 import com.squareup.spoon.Spoon;
 
@@ -292,7 +292,7 @@ public class UtaPassUtil {
 
                 if( count++ == maxCount ) {
                     UtaPassUtil.enableScreenShot() ;
-                    throw new MaxRetryReachedException( msg ) ;
+                    throw new NotReadyException( msg ) ;
                 }
 
                 String nextTryMsg = String.format( "NextTry (%s/%s)", count, maxCount ) ;

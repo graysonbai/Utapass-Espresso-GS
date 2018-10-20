@@ -10,10 +10,15 @@ import org.hamcrest.Matcher;
 
 
 public class UiAutomatorButton extends ViewObject {
-
     protected LazyUiAutomatorMatcher matcher ;
 
+    public UiAutomatorButton( String label, LazyUiAutomatorMatcher matcher ) {
+        this.label( label ) ;
+        this.matcher = matcher ;
+    }
+
     public UiAutomatorButton( LazyUiAutomatorMatcher matcher ) {
+        this.label( "UiAutomatorButton: LabelNotAssigned" ) ;
         this.matcher = matcher ;
     }
 
@@ -22,13 +27,13 @@ public class UiAutomatorButton extends ViewObject {
     }
 
     public void tap() {
-        this.assertVisible() ;
+        this.ready() ;
 
         try {
             this.matcher.execute().click() ;
 
         } catch( UiObjectNotFoundException e ) {
-            this.dprint( e.getMessage() ) ;
+            throw new ButtonInvisibleException( this.label() ) ;
         }
     }
 
@@ -36,34 +41,23 @@ public class UiAutomatorButton extends ViewObject {
         return this.matcher.execute().exists() ;
     }
 
-    public StringObject text() {
-        try {
-            return new StringObject( this.matcher.execute().getText() ) ;
-
-        } catch( UiObjectNotFoundException e ) {
-            this.dprint( e.getMessage() ) ;
-
-            return new StringObject( "" ) ;
-        }
+    public LazyUiAutomatorString text() {
+        return new LazyUiAutomatorString( this.matcher() ) ;
     }
 
     public void _ready() {
         this.assertVisible() ;
     }
 
-    public String name() {
-        return this.getClass().getSimpleName() ;
-    }
-
     public void assertVisible() {
         if( ! this.isVisible() ) {
-            throw new ButtonInvisibleException( this.name() ) ;
+            throw new ButtonInvisibleException( this.label() ) ;
         }
     }
 
     public void assertInvisible() {
         if( this.isVisible() ) {
-            throw new ButtonVisibleException( this.name() ) ;
+            throw new ButtonVisibleException( this.label() ) ;
         }
     }
 }

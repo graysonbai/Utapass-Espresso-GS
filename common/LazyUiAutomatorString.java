@@ -6,10 +6,15 @@ import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.StringInvisibleEx
 
 
 public class LazyUiAutomatorString extends StringObject {
-
     protected LazyUiAutomatorMatcher matcher ;
 
+    public LazyUiAutomatorString( String label, LazyUiAutomatorMatcher matcher ) {
+        this.label( label ) ;
+        this.matcher = matcher ;
+    }
+
     public LazyUiAutomatorString( LazyUiAutomatorMatcher matcher ) {
+        this.label( "LazyUiAutomatorString: LabelNotAssigned" ) ;
         this.matcher = matcher ;
     }
 
@@ -37,7 +42,7 @@ public class LazyUiAutomatorString extends StringObject {
         } catch( UiObjectNotFoundException e ) {
             this.dprint( e.getMessage() ) ;
 
-            throw new StringInvisibleException( this.name() ) ;
+            throw new StringInvisibleException( this.label() ) ;
         }
     }
 

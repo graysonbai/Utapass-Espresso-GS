@@ -1,6 +1,6 @@
 package com.kddi.android.UtaPass.sqa_espresso.common ;
 
-import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.NotReadyException;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.InvisibleException;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -25,7 +25,7 @@ public class BasicImage extends ViewObject {
 
     public void assertVisible() {
         if( ! this.isVisible() ) {
-            throw new NotReadyException( this.label() ) ;
+            throw new InvisibleException( this.label() ) ;
         }
     }
 

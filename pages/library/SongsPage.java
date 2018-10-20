@@ -26,7 +26,7 @@ public class SongsPage extends BasicPage {
         }
 
         UtaPassUtil.sleep( 30, "for local song synced" ) ;
-        UserStatus.isReadExternalStorageGranted = true ;
+        UserStatus.isLibrarySongSynced = true ;
     }
 
     public StringObject tapHere() {

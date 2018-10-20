@@ -7,7 +7,6 @@ import com.kddi.android.UtaPass.sqa_espresso.common.StringObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UiAutomatorButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
-import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.NotReadyException;
 
 
 public class IdSettingsPage extends ViewObject {
@@ -20,14 +19,15 @@ public class IdSettingsPage extends ViewObject {
     private LazyUiAutomatorString message ;
     private LazyUiAutomatorString id ;
 
-    public void _ready() {
-        this.assertVisible() ;
+    public IdSettingsPage() {
+        this.label( "AuidSettingsPage" ) ;
+        this.retryWhenNotReady( false ) ;
     }
 
-    public void assertVisible() {
-        if( ! this.isVisible() ) {
-            throw new NotReadyException( this.getClass().getSimpleName() ) ;
-        }
+    public void _ready() {
+        this.title().ready() ;
+        this.message().ready() ;
+        this.okButton().ready() ;
     }
 
     public boolean isVisible() {

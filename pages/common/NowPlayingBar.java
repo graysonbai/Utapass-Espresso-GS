@@ -7,10 +7,9 @@ import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.StringObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
-import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.NotReadyException;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.InvisibleException;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.UnexpectedStateException;
 
-import android.support.test.espresso.AmbiguousViewMatcherException;
 import android.view.View ;
 
 import org.hamcrest.Matcher;
@@ -28,13 +27,17 @@ public class NowPlayingBar extends ViewObject {
 
     private BasicImage cover ;
 
+    public NowPlayingBar() {
+        this.label( "NowPlayingBar" ) ;
+    }
+
     public void _ready() {
         this.assertVisible() ;
     }
 
     public void assertVisible() {
         if( ! isVisible() ) {
-            throw new NotReadyException( this.label() ) ;
+            throw new InvisibleException( this.label() ) ;
         }
     }
 
@@ -45,10 +48,6 @@ public class NowPlayingBar extends ViewObject {
     public Matcher<View> matcher() {
         return allOf( withId( R.id.view_indicator_layout ),
                       isCompletelyDisplayed() ) ;
-    }
-
-    public String label() {
-        return "NowPlayingBar" ;
     }
 
     public BasicImage cover() {
@@ -64,7 +63,7 @@ public class NowPlayingBar extends ViewObject {
     }
 
     public StringObject artistName() {
-        return new LazyString( String.format( "%s > Artistname", this.label() ),
+        return new LazyString( String.format( "%s > ArtistName", this.label() ),
                 () -> allOf( withId( R.id.indicator_artist_title ),
                              isDescendantOfA( this.matcher() ) ) ) ;
     }
@@ -76,21 +75,20 @@ public class NowPlayingBar extends ViewObject {
     }
 
     public BasicButton pauseButton() {
-        return new BasicButton( String.format( "%s > PlayButton", this.label() ),
+        return new BasicButton( String.format( "%s > PauseButton", this.label() ),
                 () -> allOf( UtaPassUtil.withDrawable( R.drawable.ic_bar_pause ),
                              isDescendantOfA( this.matcher() ) ) ) ;
     }
 
     public BasicButton nextButton() {
-        return new BasicButton( String.format( "%s > PlayButton", this.label() ),
+        return new BasicButton( String.format( "%s > NextButton", this.label() ),
                 () -> allOf( UtaPassUtil.withDrawable( R.drawable.ic_bar_next ),
                              isDescendantOfA( this.matcher() ) ) ) ;
     }
 
     public boolean isPlaying() {
         try {
-            this.pauseButton().ready() ;
-            return true ;
+            return this.pauseButton().isVisible() ;
 
         } catch( RuntimeException e ) {
             return false ;
@@ -98,9 +96,7 @@ public class NowPlayingBar extends ViewObject {
     }
 
     public void assertPlaying() {
-        if( ! this.isPlaying() ) {
-            throw new UnexpectedStateException( "NowPlayingBarNotPlaying" ) ;
-        }
+        this.pauseButton().ready() ;
     }
 
     public void tap() {

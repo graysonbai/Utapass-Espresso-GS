@@ -39,14 +39,7 @@ public class BasicButton extends ViewObject {
     }
 
     public void _ready() {
-        if( ! this.isVisible() ) {
-            throw new RuntimeException( "NotReady: " + this.label() ) ;
-        }
-    }
-
-    @Deprecated
-    public String name() {
-        return this.getClass().getSimpleName() ;
+        this.assertVisible() ;
     }
 
     public void assertVisible() {

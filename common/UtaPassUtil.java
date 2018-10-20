@@ -319,6 +319,7 @@ public class UtaPassUtil {
         if( ! UtaPassUtil.takeScreenShot ) {
             return ;
         }
+        UtaPassUtil.dprint( "takeScreenShot: " + tag ) ;
         Spoon.screenshot( UtaPassUtil.getCurrentActivity(), tag ) ;
     }
 

@@ -35,7 +35,9 @@ public class LazyString extends StringObject {
     }
 
     public StringObject text() {
-        return new StringObject( this.string() ) ;
+        StringObject strObj = new StringObject( this.string() ) ;
+        strObj.label( this.label() ) ;
+        return strObj ;
     }
 
 

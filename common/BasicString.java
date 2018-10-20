@@ -166,13 +166,13 @@ public class BasicString extends ViewObject {
 
     public void assertIn( String[] sets ) {
         if( ! this.isIn( sets ) ) {
-            throw new StringNotInException( this.string(), sets ) ;
+            throw new StringNotInException( this.label(), this.string(), sets ) ;
         }
     }
 
     public void assesrtNotIn( String[] sets ) {
         if( this.isIn( sets ) ) {
-            throw new StringNotInException( this.string(), sets ) ;
+            throw new StringNotInException( this.label(), this.string(), sets ) ;
         }
     }
 }

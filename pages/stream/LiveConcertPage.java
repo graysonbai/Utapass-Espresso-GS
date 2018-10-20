@@ -130,12 +130,10 @@ public class LiveConcertPage extends ViewObject {
             }
 
             public StringObject text() {
-                return new StringObject( this.getText( this.item ) ) ;
+                StringObject strObj = new StringObject( this.getText( this.item ) ) ;
+                strObj.label( "Live > TitleBar" ) ;
+                return strObj ;
             }
         }
     }
 }
-
-
-
-

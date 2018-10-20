@@ -4,9 +4,6 @@ import android.support.test.uiautomator.UiObjectNotFoundException;
 
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.StringException;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
-
 
 public class LazyWebString extends ViewObject {
 
@@ -33,7 +30,9 @@ public class LazyWebString extends ViewObject {
 
     public StringObject text() {
         try {
-            return new StringObject( this.matcher.execute().getText() ) ;
+            StringObject strObj = new StringObject( this.matcher.execute().getText() ) ;
+            strObj.label( this.label() ) ;
+            return strObj ;
 
         } catch( UiObjectNotFoundException e ) {
             this.dprint( e.getMessage() ) ;

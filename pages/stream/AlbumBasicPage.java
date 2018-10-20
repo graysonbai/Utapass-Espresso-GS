@@ -221,7 +221,7 @@ public class AlbumBasicPage extends BasicPage {
                                     this.getMatcherToCountMaxIndexOfWindow(),
                                     indexInWindow ) ) ) ) ;
 
-            card.playButton(label + " > MyUtaButton",
+            card.myUtaButton(label + " > MyUtaButton",
                     () -> Matchers.allOf(
                             withId( R.id.item_detail_stream_audio_myuta_register ),
                             isDescendantOfA( UtaPassUtil.withIndex(

@@ -1,15 +1,7 @@
 package com.kddi.android.UtaPass.sqa_espresso.common.exceptions ;
 
-import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
-
-public class NotReadyException extends RuntimeException {
-    public NotReadyException( String msg ) {
-        super( msg ) ;
-
-        UtaPassUtil.takeScreenshot( this.getClass().getSimpleName() ) ;
+public class NotReadyException extends BasicException {
+    public NotReadyException( String label ) {
+        super( label ) ;
     }
 }
-
-
-
-

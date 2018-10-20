@@ -20,6 +20,7 @@ import android.widget.ImageView ;
 
 import com.kddi.android.UtaPass.main.MainActivity;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.MaxRetryReachedException;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.NoMatchViewException;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.NowPlayingBar;
 import com.squareup.spoon.Spoon;
 
@@ -31,9 +32,9 @@ import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.runner.lifecycle.Stage.RESUMED;
 
 public class UtaPassUtil {
-
     private static final int RETRY_INTERVAL = 5 ;
     private static final int RETRY_MAX_COUNT = 6 ;
+    private static boolean takeScreenShot = true ;
 
     public static void dprint( String msg ) {
         android.util.Log.d( "UtapassAutomation", msg ) ;
@@ -274,21 +275,24 @@ public class UtaPassUtil {
     public static void retry( RetryUnit unit, int interval, int maxCount ) {
         int count = 0 ;
 
+        UtaPassUtil.disableScreenShot() ;
         while( true ) {
             try {
                 UtaPassUtil.runStep( unit ) ;
+                UtaPassUtil.enableScreenShot() ;
                 return ;
 
             } catch( Exception e ) {
-                String errorMsg = e instanceof NoMatchingViewException ?
-                        e.getClass().getSimpleName() :
-                        e.getMessage() ;
+                String msg = e.getClass().getSimpleName() ;
+                if( ! ( e instanceof NoMatchViewException ) ) {
+                    msg = String.format( "%s: %s", msg, e.getMessage() );
+                }
 
-                UtaPassUtil.dprint( errorMsg ) ;
+                UtaPassUtil.dprint( msg ) ;
 
                 if( count++ == maxCount ) {
-                    throw new MaxRetryReachedException( String.format(
-                            "LastExceptionMsg: %s", errorMsg ) ) ;
+                    UtaPassUtil.enableScreenShot() ;
+                    throw new MaxRetryReachedException( msg ) ;
                 }
 
                 String nextTryMsg = String.format( "NextTry (%s/%s)", count, maxCount ) ;
@@ -303,7 +307,18 @@ public class UtaPassUtil {
         }
     }
 
+    private static void enableScreenShot() {
+        UtaPassUtil.takeScreenShot = true ;
+    }
+
+    private static void disableScreenShot() {
+        UtaPassUtil.takeScreenShot = false ;
+    }
+
     public static void takeScreenshot( String tag ) {
+        if( ! UtaPassUtil.takeScreenShot ) {
+            return ;
+        }
         Spoon.screenshot( UtaPassUtil.getCurrentActivity(), tag ) ;
     }
 

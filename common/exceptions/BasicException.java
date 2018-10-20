@@ -6,7 +6,7 @@ public class BasicException extends RuntimeException {
     public BasicException( String label ) {
         super( label ) ;
 
-        UtaPassUtil.takeScreenshot( label ) ;
+        UtaPassUtil.takeScreenshot( label.replace( " > ", "_" ) ) ;
     }
 }
 

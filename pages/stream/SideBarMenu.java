@@ -1,172 +1,172 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.stream ;
 
-import android.support.test.espresso.ViewInteraction;
 import android.view.View;
 
 import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
+import com.kddi.android.UtaPass.sqa_espresso.common.BasicImage;
+import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
-import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.ReadMoreButton;
+import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ICover;
+import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ISubtitle;
+import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ITitle;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.InvisibleException;
 
 import org.hamcrest.Matcher;
 
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
+import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anyOf;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static org.hamcrest.Matchers.endsWith;
 
 public class SideBarMenu extends ViewObject {
-
-    private MenuLineUp menuLineUp ;
-    private QuotaInfo quotaInfo ;
+    private Matcher<View> matcher ;
 
     public SideBarMenu() {
-        this.item = onView( withId( R.id.main_navigation_view ) ) ;
+        this.matcher = withId( R.id.main_navigation_view ) ;
+
+        this.label( "SideBarMenu" ) ;
     }
 
     public void _ready() {
-        if( ! this.isVisible( this.item ) ) {
-            new RuntimeException( "Sidebar Menu is not ready" ) ;
+        this.assertVisible() ;
+    }
+
+    public boolean isVisible() {
+        return this.isVisible( this.matcher ) ;
+    }
+
+    public void assertVisible() {
+        if( ! this.isVisible() ) {
+            throw new InvisibleException( this.label() ) ;
         }
     }
 
-    public MenuLineUp lineUp() {
-        if( this.menuLineUp == null ) {
-            this.menuLineUp = new MenuLineUp() ;
-        }
-        return new MenuLineUp() ;
+    public BasicButton loginButton() {
+        return new BasicButton(
+                this.label() + " > loginButton",
+                () -> withId( R.id.synapse_account_login_button )  ) ;
     }
 
-    public QuotaInfo quotaInfo() {
-        if( this.quotaInfo == null ) {
-            this.quotaInfo = new QuotaInfo() ;
-        }
-        return this.quotaInfo ;
-    }
+    public BasicButton readMoreButton() {
+        return new BasicButton(
+                this.label() + " > readMoreButton",
+                () -> withId( R.id.synapse_myuta_intro_more )  ) {
 
-    public class QuotaInfo extends ViewObject {
-
-        private BasicButton loginButton ;
-        private String promoteMessage ;
-        private ReadMoreButton readMoreButton ;
-
-//        private NicknameField nicknameField ;
-//        private String userStatus ;
-//        private String savedSongs ;
-//        private String RemainingQuotas ;
-//        private WhatIsMyUtaPlusButton whatIsMyUtaPlusButton ;
-
-        public BasicButton loginButton() {
-            if( this.loginButton == null ) {
-                this.loginButton = new BasicButton( () ->
-                        withId( R.id.synapse_account_login_button )  ) ;
+            public LazyString text() {
+                return new LazyString( () -> UtaPassUtil.withIndex(
+                        allOf( withClassName( endsWith( "TextView" ) ),
+                               isDescendantOfA( this.matcher().execute() ) ),
+                        0 ) ) ;
             }
-            return this.loginButton ;
-        }
-
-        public ReadMoreButton readMoreButton() {
-            if( this.readMoreButton == null ) {
-                this.readMoreButton = new ReadMoreButton() ;
-            }
-            return this.readMoreButton ;
-        }
-
-        public LazyString savedSongs() {
-            return new LazyString( () -> withId( R.id.synapse_myuta_info_used_count ) ) ;
-        }
-
-        public LazyString remainingQuotas() {
-            return new LazyString( () -> withId( R.id.synapse_myuta_info_remaining_count ) ) ;
-        }
+        } ;
     }
 
-    public SideBarMenuItem settingMenuItem() {
-        this.lineUp().swipeToPosition( 0 ) ;
-        return this.lineUp().menuItem( 0 ) ;
+    public LazyString savedSongs() {
+        return new LazyString(
+                this.label() + " > SavedSongs",
+                () -> withId( R.id.synapse_myuta_info_used_count ) ) ;
     }
 
-    public class MenuLineUp extends LineUpObject {
+    public LazyString remainingQuotas() {
+        return new LazyString(
+                this.label() + " > RemainingQuotas",
+                () -> withId( R.id.synapse_myuta_info_remaining_count ) ) ;
+    }
+
+    public class InternalLineUp extends LineUpObject {
+
+        public InternalLineUp( String label ) {
+            this.label( label + " > LineUp" ) ;
+        }
+
         protected Matcher<View> getMatcherToFindRecycleView() {
             return withId( R.id.synapse_recycler_view ) ;
         }
 
         protected Matcher<View> getMatcherToCountMaxIndexOfWindow() {
-            return anyOf( withId( R.id.item_drawer_default_layout ),
-                          withId( R.id.item_drawer_store_layout ) ) ;
+            return allOf( anyOf( withId( R.id.item_drawer_default_layout ),
+                                 withId( R.id.item_drawer_store_layout ) ),
+                          isCompletelyDisplayed() ) ;
         }
 
-        public SideBarMenuItem menuItem( int index ) {
+        public InternalCard card( int index ) {
             int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
-            SideBarMenuItem item = new SideBarMenuItem() ;
-            item.icon( this.matcherForIcon( indexInWindow ) ) ;
-            item.title( this.getText( this.matcherForTitle( indexInWindow ) ) ) ;
-            item.subtitle( this.getText( this.matcherForSubtitle( indexInWindow ) ) ) ;
-            return item ;
-        }
+            InternalCard card = new InternalCard() ;
 
-        private Matcher<View> matcherForIcon( int indexInWindow ) {
-            return UtaPassUtil.withIndex(
-                    allOf( withId( R.id.item_drawer_default_icon ),
-                            isCompletelyDisplayed(),
-                            isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                    indexInWindow ) ;
-        }
+            String label = String.format( "%s > MenuItem(%s)",
+                    this.label(),
+                    index ) ;
 
-        private Matcher<View> matcherForTitle( int indexInWindow ) {
-            return UtaPassUtil.withIndex(
-                    allOf( withId( R.id.item_drawer_default_section_title ),
-                            isCompletelyDisplayed(),
-                            isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                    indexInWindow ) ;
-        }
+            card.cover( label + " > Cover",
+                    () -> allOf(
+                            withId( R.id.item_drawer_default_icon ),
+                            isDescendantOfA( UtaPassUtil.withIndex(
+                                    this.getMatcherToCountMaxIndexOfWindow(),
+                                    indexInWindow ) ) ) ) ;
 
-        private Matcher<View> matcherForSubtitle( int indexInWindow ) {
-            return UtaPassUtil.withIndex(
-                    allOf( withId( R.id.item_drawer_default_section_subtitle ),
-                            isCompletelyDisplayed(),
-                            isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                    indexInWindow ) ;
-        }
-    }
+            card.title(  label + " > Title",
+                    () -> allOf(
+                            withId( R.id.item_drawer_default_section_title ),
+                            isDescendantOfA( UtaPassUtil.withIndex(
+                                    this.getMatcherToCountMaxIndexOfWindow(),
+                                    indexInWindow ) ) ) ) ;
 
-    public class SideBarMenuItem extends ViewObject {
-        private ViewInteraction icon ;
-        private String title ;
-        private String subtitle ;
+            card.subtitle( label + " > Subtitle",
+                    () -> allOf(
+                            withId( R.id.item_drawer_default_section_subtitle ),
+                            isDescendantOfA( UtaPassUtil.withIndex(
+                                    this.getMatcherToCountMaxIndexOfWindow(),
+                                    indexInWindow ) ) ) ) ;
 
-        public void icon( Matcher<View> matcher ) {
-            this.icon = onView( matcher ) ;
-        }
-
-        public void title( String title ) {
-            this.title = title ;
-        }
-
-        public String title() {
-            return this.title ;
-        }
-
-        public void subtitle( String subtitle ) {
-            this.subtitle = subtitle ;
-        }
-
-        public String subtitle() {
-            return this.subtitle ;
-        }
-
-        public void tap() {
-            this.icon.perform( click() ) ;
+            return card ;
         }
     }
 
+    public class InternalCard implements ICover, ITitle, ISubtitle {
 
+        String labelCover ;
+        String labelTitle ;
+        String labelSubtitle ;
+
+        private LazyMatcher matcherCover ;
+        private LazyMatcher matcherTitle ;
+        private LazyMatcher matcherSubtitle ;
+
+        public void cover( String label, LazyMatcher matcher ) {
+            this.labelCover = label ;
+            this.matcherCover = matcher ;
+        }
+
+        public BasicImage cover() {
+            return new BasicImage( this.labelCover, this.matcherCover ) ;
+        }
+
+        public void title( String label, LazyMatcher matcher ) {
+            this.labelTitle = label ;
+            this.matcherTitle = matcher ;
+        }
+
+        public LazyString title() {
+            return new LazyString( this.labelTitle, this.matcherTitle ) ;
+        }
+
+        public void subtitle( String label, LazyMatcher matcher ) {
+            this.labelSubtitle = label ;
+            this.matcherSubtitle = matcher ;
+        }
+
+        public LazyString subtitle() {
+            return new LazyString( this.labelSubtitle, this.matcherSubtitle ) ;
+        }
+    }
 }
 
 

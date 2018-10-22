@@ -77,7 +77,6 @@ public class Best50Test extends BasicTest {
                       .tap() ;
 
         StringObject quotas_orig = this.navigator.sideBarMenu()
-                                                 .quotaInfo()
                                                  .remainingQuotas()
                                                  .text() ;
 
@@ -94,7 +93,6 @@ public class Best50Test extends BasicTest {
         this.sleep( 5, "QuotaInfo updated" ) ;
 
         this.navigator.sideBarMenu()
-                      .quotaInfo()
                       .remainingQuotas()
                       .assertLessThan( quotas_orig, 1 ) ;
 

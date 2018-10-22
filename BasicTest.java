@@ -40,7 +40,6 @@ public class BasicTest {
 
         // loginButton invisible means it is logged in
         if( ! this.navigator.sideBarMenu()
-                            .quotaInfo()
                             .loginButton()
                             .isVisible() ) {
 
@@ -50,7 +49,6 @@ public class BasicTest {
         }
 
         this.navigator.sideBarMenu()
-                      .quotaInfo()
                       .loginButton()
                       .tap() ;
 

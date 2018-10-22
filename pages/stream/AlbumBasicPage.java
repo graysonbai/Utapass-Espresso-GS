@@ -251,7 +251,9 @@ public class AlbumBasicPage extends BasicPage {
                 this.dprint( e.getMessage() ) ;
             }
 
-            return new StringObject( set.size() ) ;
+            StringObject strObj = new StringObject( set.size() ) ;
+            strObj.label( this.label() ) ;
+            return strObj ;
         }
     }
 

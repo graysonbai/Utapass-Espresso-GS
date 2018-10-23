@@ -8,7 +8,6 @@ import com.kddi.android.UtaPass.sqa_espresso.common.StringObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.InvisibleException;
-import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.UnexpectedStateException;
 
 import android.view.View ;
 
@@ -24,8 +23,6 @@ import static org.hamcrest.Matchers.* ;
 
 
 public class NowPlayingBar extends ViewObject {
-
-    private BasicImage cover ;
 
     public NowPlayingBar() {
         this.label( "NowPlayingBar" ) ;

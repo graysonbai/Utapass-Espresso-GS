@@ -26,7 +26,8 @@ public class SaveMyUtaPopupMessage extends ViewObject {
     }
 
     public void _ready() {
-        this.assertVisible() ;
+        this.title().ready() ;
+        this.message().ready() ;
         this.saveButton().ready() ;
         this.cancelButton().ready() ;
     }

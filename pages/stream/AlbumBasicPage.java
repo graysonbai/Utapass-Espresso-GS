@@ -20,7 +20,6 @@ import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ISongName;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
 
 import org.hamcrest.Matcher;
-import org.hamcrest.Matchers;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -30,6 +29,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDis
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId ;
+import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.endsWith;
 
 
@@ -72,7 +72,7 @@ public class AlbumBasicPage extends BasicPage {
     public BasicButton favoriteButton() {
         return new BasicButton(
                 this.label() + " > favorite",
-                () -> withId( R.id.detail_editor_like_layout ) ) {} ;
+                () -> withId( R.id.detail_editor_like_layout ) ) ;
     }
 
     public LazyString description() {
@@ -90,7 +90,7 @@ public class AlbumBasicPage extends BasicPage {
                 () -> withId( R.id.view_shuffle_play_layout ) ) {
 
             public LazyString text() {
-                return new LazyString( () -> Matchers.allOf(
+                return new LazyString( () -> allOf(
                         withClassName( endsWith( "TextView" ) ),
                         isDescendantOfA( super.matcher().execute() ) ) ) ;
             }
@@ -105,7 +105,7 @@ public class AlbumBasicPage extends BasicPage {
                 () -> withId( R.id.view_shuffle_play_layout ) ) {
 
             public LazyString text() {
-                return new LazyString( () -> Matchers.allOf(
+                return new LazyString( () -> allOf(
                         withClassName( endsWith( "TextView" ) ),
                         isDescendantOfA( super.matcher().execute() ) ) ) ;
             }
@@ -153,7 +153,7 @@ public class AlbumBasicPage extends BasicPage {
         }
 
         protected Matcher<View> getMatcherToCountMaxIndexOfWindow() {
-            return Matchers.allOf( withId( R.id.item_detail_stream_audio_layout ),
+            return allOf( withId( R.id.item_detail_stream_audio_layout ),
                     isCompletelyDisplayed(),
                     isDescendantOfA( this.getMatcherToFindRecycleView() ) ) ;
         }
@@ -175,13 +175,12 @@ public class AlbumBasicPage extends BasicPage {
         protected int swipeToCardViewAndGetIndexOfWindow( int index ) {
             this.swipeToPosition( 1 ) ;
 
-            if( index > this.getMaxIndexOfWindow() ) {
-                this.swipeToPosition( index + 2 ) ;
-                return this.getMaxIndexOfWindow() ;
+            if( index <= this.maxIndexFirstWindow() ) {
+                return index ;
             }
 
-            this.swipeToPosition( index + 1 ) ;
-            return index ;
+            this.swipeToPosition( index + 2 ) ;
+            return this.maxIndexOtherWindow() ;
         }
 
         public InternalCard card( int index ) {
@@ -194,35 +193,35 @@ public class AlbumBasicPage extends BasicPage {
                     index ) ;
 
             card.cover( label + " > Cover",
-                    () -> Matchers.allOf(
+                    () -> allOf(
                             withId( R.id.item_detail_stream_audio_image ),
                             isDescendantOfA( UtaPassUtil.withIndex(
                                     this.getMatcherToCountMaxIndexOfWindow(),
                                     indexInWindow ) ) ) ) ;
 
             card.songName(label + " > SongName",
-                    () -> Matchers.allOf(
+                    () -> allOf(
                             withId( R.id.item_detail_stream_audio_title ),
                             isDescendantOfA( UtaPassUtil.withIndex(
                                     this.getMatcherToCountMaxIndexOfWindow(),
                                     indexInWindow ) ) ) ) ;
 
             card.artistName(label + " > ArtistName",
-                    () -> Matchers.allOf(
+                    () -> allOf(
                             withId( R.id.item_detail_stream_audio_artist ),
                             isDescendantOfA( UtaPassUtil.withIndex(
                                     this.getMatcherToCountMaxIndexOfWindow(),
                                     indexInWindow ) ) ) ) ;
 
             card.playButton(label + " > PlayButton",
-                    () -> Matchers.allOf(
+                    () -> allOf(
                             withId( R.id.item_detail_stream_audio_myuta_register ),
                             isDescendantOfA( UtaPassUtil.withIndex(
                                     this.getMatcherToCountMaxIndexOfWindow(),
                                     indexInWindow ) ) ) ) ;
 
             card.myUtaButton(label + " > MyUtaButton",
-                    () -> Matchers.allOf(
+                    () -> allOf(
                             withId( R.id.item_detail_stream_audio_myuta_register ),
                             isDescendantOfA( UtaPassUtil.withIndex(
                                     this.getMatcherToCountMaxIndexOfWindow(),
@@ -300,7 +299,7 @@ public class AlbumBasicPage extends BasicPage {
         public BasicButton myUtaButton() {
             return new BasicButton( this.labelMyUtaButton, this.matcherMyUtaButton ) {
                 public LazyString text() {
-                    return new LazyString( () -> Matchers.allOf(
+                    return new LazyString( () -> allOf(
                             withClassName( endsWith( "TextView" ) ),
                             isDescendantOfA( super.matcher().execute() ) ) ) ;
                 }

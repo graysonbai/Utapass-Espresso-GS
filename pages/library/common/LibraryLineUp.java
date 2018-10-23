@@ -34,8 +34,8 @@ public abstract class LibraryLineUp extends LineUpObject {
         //
         this.swipeToPosition( index ) ;
 
-        if( index > this.getMaxIndexOfWindow() ) {
-            return this.getMaxIndexOfWindow() + 1 ;
+        if( index > this.maxIndexFirstWindow() ) {
+            return this.maxIndexFirstWindow() + 1 ;
         }
 
         return index ;

@@ -114,7 +114,7 @@ public class NewSongsHitSongsPage extends BasicPage {
             int top = -1 ;
             String id = "item_playlist_content_layout" ;
 
-            for( int i = 0 ; i <= this.getMaxIndexOfWindow(); i++ ) {
+            for( int i = 0 ; i <= this.maxIndexFirstWindow(); i++ ) {
                 top = this.topPosition( id, i ) ;
 
                 if( top == -1 ) {
@@ -153,7 +153,7 @@ public class NewSongsHitSongsPage extends BasicPage {
             this.checkIndexValid( index ) ;
             this.swipeToPosition( index ) ;
 
-            if( index <= this.getMaxIndexOfWindow() ) {
+            if( index <= this.maxIndexFirstWindow() ) {
                 return index ;
             }
 

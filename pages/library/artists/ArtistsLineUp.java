@@ -50,8 +50,8 @@ public class ArtistsLineUp extends LibraryLineUp {
         //
         this.swipeToPosition( index ) ;
 
-        if( index > this.getMaxIndexOfWindow() ) {
-            return this.getMaxIndexOfWindow() ;
+        if( index > this.maxIndexFirstWindow() ) {
+            return this.maxIndexFirstWindow() ;
         }
 
         return index ;

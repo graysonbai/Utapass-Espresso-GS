@@ -133,18 +133,18 @@ public class Best50Module extends ViewObject {
             this.checkIndexValid( index ) ;
             this.swipeToPosition( index ) ;
 
-            if( index <= this.getMaxIndexOfWindow() ) {
+            if( index <= this.maxIndexFirstWindow() ) {
                 return index ;
             }
 
-            int offset = this.getMaxIndexOfWindow()
+            int offset = this.maxIndexFirstWindow()
                     / InternalLineUp.MAX_CARD_IN_COLUMN
                     * InternalLineUp.MAX_CARD_IN_COLUMN ;
 
             return offset + ( index % InternalLineUp.MAX_CARD_IN_COLUMN ) ;
         }
 
-        public InternalCard card(int index ) {
+        public InternalCard card( int index ) {
             int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
 
             InternalCard card = new InternalCard() ;

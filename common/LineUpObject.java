@@ -15,10 +15,11 @@ import static org.hamcrest.Matchers.* ;
 
 
 public abstract class LineUpObject extends ViewObject {
+    private final int UN_INIT = -1 ;
 
-    private int UN_INIT = -1 ;
     protected int maxIndexOfLineUpObject = 9 ;
-    protected int maxIndexOfWindow = this.UN_INIT ;
+    protected int maxIndexFirstWindow = this.UN_INIT ;
+    protected int maxIndexOtherWindow = this.UN_INIT ;
 
     public LineUpObject() {
         this.label( "LineUp" ) ;
@@ -50,7 +51,7 @@ public abstract class LineUpObject extends ViewObject {
         this.swipeToLeftmost() ;
         this.checkIndexValid( index ) ;
         this.swipeToPosition( index ) ;
-        return ( index >= this.getMaxIndexOfWindow() ) ? this.getMaxIndexOfWindow() : index ;
+        return ( index <= this.maxIndexFirstWindow() ) ? index : this.maxIndexOtherWindow() ;
     }
 
     protected void checkIndexValid( int index ) {
@@ -64,20 +65,32 @@ public abstract class LineUpObject extends ViewObject {
         }
     }
 
+    public void resetMaxIndexOfWindow() {
+        this.maxIndexFirstWindow = this.UN_INIT ;
+        this.maxIndexOtherWindow = this.UN_INIT ;
+    }
+
+    public int maxIndexFirstWindow() {
+        if( this.maxIndexFirstWindow == this.UN_INIT ) {
+            this.maxIndexFirstWindow = this.calculateMaxIndexOfWindow() ;
+        }
+        return this.maxIndexFirstWindow ;
+    }
+
+    public int maxIndexOtherWindow() {
+        if( this.maxIndexOtherWindow == this.UN_INIT ) {
+            this.swipeToPosition( this.maxIndexFirstWindow() + 2 ) ;
+            this.maxIndexOtherWindow = this.calculateMaxIndexOfWindow() ;
+        }
+        return this.maxIndexOtherWindow ;
+    }
+
     public void setMaxIndexOfLineUpObject( int maxIndex ) {
         this.maxIndexOfLineUpObject = maxIndex ;
     }
 
     public int getMaxIndexOfLineUpObject() {
         return this.maxIndexOfLineUpObject ;
-    }
-
-    protected int getMaxIndexOfWindow() {
-        if( this.maxIndexOfWindow == this.UN_INIT ) {
-            this.maxIndexOfWindow = this.calculateMaxIndexOfWindow() ;
-        }
-
-        return this.maxIndexOfWindow ;
     }
 
     protected int calculateMaxIndexOfWindow() {
@@ -97,10 +110,6 @@ public abstract class LineUpObject extends ViewObject {
         return this.getMaxIndexOfLineUpObject() ;
     }
 
-    public void resetMaxIndexOfWindow() {
-        this.maxIndexOfWindow = this.UN_INIT ;
-    }
-
     protected ViewInteraction getRecycleView() {
         return onView( this.getMatcherToFindRecycleView() ) ;
     }
@@ -115,8 +124,8 @@ public abstract class LineUpObject extends ViewObject {
     }
 
     protected abstract Matcher<View> getMatcherToCountMaxIndexOfWindow() ;
-    protected String getTitleOfLineUpInEnglish() { return "" ; } ;
-    protected String getTitleOfLineUpInJapanese() { return "" ; } ;
+    protected String getTitleOfLineUpInEnglish() { return "" ; }
+    protected String getTitleOfLineUpInJapanese() { return "" ; }
 }
 
 

@@ -50,9 +50,9 @@ public class StreamLineUp extends LineUpObject {
 
         this.swipeToPosition( 1 ) ;
 
-        if( index > this.getMaxIndexOfWindow() ) {
+        if( index > this.maxIndexFirstWindow() ) {
             this.swipeToPosition( index + 2 ) ;
-            return this.getMaxIndexOfWindow() + 1 ;
+            return this.maxIndexFirstWindow() + 1 ;
         }
 
         this.swipeToPosition( index + 1 ) ;

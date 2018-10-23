@@ -239,12 +239,15 @@ public class AlbumBasicPage extends BasicPage {
 
             try {
                 for( int i = 0 ; i <= this.getMaxIndexOfLineUpObject() ; i++ ) {
-                    this.dprint( String.format( "Fetching card(%s)", i ) ) ;
-
                     InternalCard card = this.card( i ) ;
                     set.add( String.format( "%s,%s",
                             card.songName().text(),
                             card.artistName().text() ) ) ;
+
+                    this.dprint( String.format( "Fetching card(%s), SongName = %s, Artistname = %s",
+                            i,
+                            card.songName().text().toString(),
+                            card.artistName().text().toString() ) ) ;
                 }
 
             } catch( NoMatchingViewException e ) {

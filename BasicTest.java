@@ -10,10 +10,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 
-// to support GrantPermissionRule, need to upgrade 'androidSupportTestVersion' to '>= 1.0.2'
-//import static android.Manifest.permission.*;
-//import android.support.test.rule.GrantPermissionRule;
-
 
 public class BasicTest {
 
@@ -26,7 +22,6 @@ public class BasicTest {
     @Before
     public void pre_condition() {
         this.ensureLogin() ;
-        this.grantAllPermissions() ;
     }
 
     public void ensureLogin() {
@@ -59,37 +54,6 @@ public class BasicTest {
                       .tap() ;
 
         UserStatus.isLogin = true ;
-        this.navigator.streamPage() ;
-    }
-
-    public void grantAllPermissions() {
-        if( UserStatus.isReadExternalStorageGranted ) {
-            return ;
-        }
-
-        this.navigator.streamPage()
-                      .libraryTab()
-                      .tap() ;
-
-        this.navigator.libraryPage()
-                      .songsCategory()
-                      .tap() ;
-
-        this.sleep( 5, "Library > Songs, PermissionPopupMessage may display" ) ;
-
-        if( this.navigator.permissionPopupMessage()
-                          .isVisible() ) {
-
-            this.navigator.permissionPopupMessage()
-                          .allowButton()
-                          .tap() ;
-        }
-
-        UserStatus.isReadExternalStorageGranted = true ;
-
-        this.navigator.streamTab()
-                      .tap() ;
-
         this.navigator.streamPage() ;
     }
 

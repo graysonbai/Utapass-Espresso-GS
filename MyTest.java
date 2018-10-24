@@ -2,8 +2,6 @@ package com.kddi.android.UtaPass.sqa_espresso ;
 
 import android.support.test.runner.AndroidJUnit4 ;
 
-import com.kddi.android.UtaPass.sqa_espresso.common.Navigator;
-
 import org.junit.Test ;
 import org.junit.runner.RunWith ;
 

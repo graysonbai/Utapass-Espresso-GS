@@ -283,16 +283,16 @@ public class UtaPassUtil {
                 return ;
 
             } catch( Exception e ) {
-                String msg = e.getClass().getSimpleName() ;
-                if( ! ( e instanceof NoMatchViewException ) ) {
-                    msg = String.format( "%s: %s", msg, e.getMessage() );
-                }
+                String expName = e.getClass().getSimpleName() ;
+                boolean isNoMatchViewExp = e instanceof NoMatchViewException ;
 
-                UtaPassUtil.dprint( msg ) ;
+                UtaPassUtil.dprint( isNoMatchViewExp ?
+                    expName :
+                    String.format( "%s: %s", expName, e.getMessage() ) ) ;
 
                 if( count++ == maxCount ) {
                     UtaPassUtil.enableScreenShot() ;
-                    throw new NotReadyException( msg ) ;
+                    throw new NotReadyException( expName ) ;
                 }
 
                 String nextTryMsg = String.format( "NextTry (%s/%s)", count, maxCount ) ;

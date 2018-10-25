@@ -14,22 +14,15 @@ import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IArtistName;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ICover;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IMoreActionsButton;
-import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IMyUtaButton;
-import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IPlayButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ISongName;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
-import com.kddi.android.UtaPass.sqa_espresso.pages.library.songs.SongsLineUp;
-import com.kddi.android.UtaPass.sqa_espresso.pages.stream.SideBarMenu;
 
 import org.hamcrest.Matcher;
 
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
-import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId ;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.anyOf;
-import static org.hamcrest.Matchers.endsWith;
 
 
 public class SongsPage extends BasicPage {

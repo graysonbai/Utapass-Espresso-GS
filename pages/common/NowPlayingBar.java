@@ -97,8 +97,9 @@ public class NowPlayingBar extends ViewObject {
     }
 
     public void tap() {
+        this.dprint_tap() ;
+
         this.handleNoMatchViewException(
-                "NowPlayingBar > Tap",
                 () -> onView( this.matcher() ).perform( click() ) ) ;
     }
 

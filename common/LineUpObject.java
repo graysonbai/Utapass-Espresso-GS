@@ -30,7 +30,7 @@ public abstract class LineUpObject extends ViewObject {
     }
 
     public void assertVisible() {
-        if( ! this.isVisible( this.getMatcherToCountMaxIndexOfWindow() ) ) {
+        if( ! this.isVisible( this.getMatcherToFindRecycleView() ) ) {
             throw new InvisibleException( this.label() ) ;
         }
     }

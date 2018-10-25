@@ -17,21 +17,25 @@ public class LazyString extends StringObject {
         this.matcher = matcher ;
     }
 
+    public LazyMatcher matcher() {
+        return this.matcher ;
+    }
+
     public void tap() {
-        onView( this.matcher.execute() ).perform( click() ) ;
+        onView( this.matcher().execute() ).perform( click() ) ;
     }
 
     public boolean isVisible() {
-        return this.isVisible( this.matcher.execute() ) ;
+        return this.isVisible( this.matcher().execute() ) ;
     }
 
     public String toString() {
-        return this.getText( this.matcher.execute() ) ;
+        return this.getText( this.matcher().execute() ) ;
     }
 
     public String string() {
         this.ready() ;
-        return this.getText( this.matcher.execute() ) ;
+        return this.getText( this.matcher().execute() ) ;
     }
 
     public StringObject text() {

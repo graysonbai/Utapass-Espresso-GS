@@ -1,39 +1,124 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages ;
 
-import com.kddi.android.UtaPass.sqa_espresso.pages.library._category.* ;
+import com.kddi.android.UtaPass.R;
+import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
+import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
+
+import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
+import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.endsWith;
 
 public class LibraryPage extends BasicPage{
 
-    public SongsCategory songsCategory() {
-        return new SongsCategory().ready() ;
+    public LibraryPage() {
+        this.label( "LibraryPage" ) ;
+        this.retryWhenNotReady( false ) ;
     }
 
-    public AlbumsCategory albumsCategory() {
-        return new AlbumsCategory().ready() ;
+    public BasicButton songsCategory() {
+        return new BasicButton(
+                this.label() + " > SongsCategory",
+                () -> withId( R.id.library_section_tracks ) ) {
+
+            public LazyString text() {
+                return new LazyString( this.label(), () -> allOf(
+                        withClassName( endsWith( "TextView" ) ),
+                        isDescendantOfA( super.matcher().execute() ) ) ) ;
+            }
+        } ;
     }
 
-    public ArtistsCategory artistsCategory() {
-        return new ArtistsCategory().ready() ;
+    public BasicButton albumsCategory() {
+        return new BasicButton(
+                this.label() + " > AlbumsCategory",
+                () -> withId( R.id.library_section_albums ) ) {
+
+            public LazyString text() {
+                return new LazyString( this.label(), () -> allOf(
+                        withClassName( endsWith( "TextView" ) ),
+                        isDescendantOfA( super.matcher().execute() ) ) ) ;
+            }
+        } ;
     }
 
-    public VideosCategory videosCategory() {
-        return new VideosCategory().ready() ;
+    public BasicButton artistsCategory() {
+        return new BasicButton(
+                this.label() + " > ArtistsCategory",
+                () -> withId( R.id.library_section_artists ) ) {
+
+            public LazyString text() {
+                return new LazyString( this.label(), () -> allOf(
+                        withClassName( endsWith( "TextView" ) ),
+                        isDescendantOfA( super.matcher().execute() ) ) ) ;
+            }
+        } ;
     }
 
-    public FavoriteCategory favoriteCategory() {
-        return new FavoriteCategory().ready() ;
+    public BasicButton videosCategory() {
+        return new BasicButton(
+                this.label() + " > VideosCategory",
+                () -> withId( R.id.library_section_videos ) ) {
+
+            public LazyString text() {
+                return new LazyString( this.label(), () -> allOf(
+                        withClassName( endsWith( "TextView" ) ),
+                        isDescendantOfA( super.matcher().execute() ) ) ) ;
+            }
+        } ;
     }
 
-    public MyPlaylistsCategory myPlaylistsCategory() {
-        return new MyPlaylistsCategory().ready() ;
+    public BasicButton favoriteCategory() {
+        return new BasicButton(
+                this.label() + " > FavoriteCategory",
+                () -> withId( R.id.library_section_liked ) ) {
+
+            public LazyString text() {
+                return new LazyString( this.label(), () -> allOf(
+                        withClassName( endsWith( "TextView" ) ),
+                        isDescendantOfA( super.matcher().execute() ) ) ) ;
+            }
+        } ;
     }
 
-    public MyUtaCategory myUtaCategory() {
-        return new MyUtaCategory().ready() ;
+    public BasicButton myPlaylistsCategory() {
+        return new BasicButton(
+                this.label() + " > MyPlaylistsCategory",
+                () -> withId( R.id.library_section_playlists ) ) {
+
+            public LazyString text() {
+                return new LazyString( this.label(), () -> allOf(
+                        withClassName( endsWith( "TextView" ) ),
+                        isDescendantOfA( super.matcher().execute() ) ) ) ;
+            }
+        } ;
     }
 
-    public PurchasedMusicCategory purchasedMusicCategory() {
-        return new PurchasedMusicCategory().ready() ;
+    public BasicButton myUtaCategory() {
+        return new BasicButton(
+                this.label() + " > MyUtaCategory",
+                () -> withId( R.id.library_section_myuta ) ) {
+
+            public LazyString text() {
+                return new LazyString( this.label(), () -> allOf(
+                        withClassName( endsWith( "TextView" ) ),
+                        isDescendantOfA( super.matcher().execute() ) ) ) ;
+            }
+        } ;
+    }
+
+    public BasicButton purchasedMusicCategory() {
+        return new BasicButton(
+                this.label() + " > PurchasedMusicCategory",
+                () -> withId( R.id.library_section_purchased ) ) {
+
+            public LazyString text() {
+                return new LazyString( this.label(), () -> allOf(
+                        withClassName( endsWith( "TextView" ) ),
+                        isDescendantOfA( super.matcher().execute() ) ) ) ;
+            }
+        } ;
     }
 }

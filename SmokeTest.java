@@ -188,32 +188,60 @@ public class SmokeTest extends BasicTest {
     @Test
     public void play_song_in_songs() {
         this.navigator.streamPage()
-                .libraryTab()
-                .tap() ;
+                      .libraryTab()
+                      .tap() ;
 
         this.navigator.libraryPage()
-                .songsCategory()
-                .tap() ;
+                      .songsCategory()
+                      .assertVisible() ;
+
+        this.navigator.libraryPage()
+                      .albumsCategory()
+                      .assertVisible() ;
+
+        this.navigator.libraryPage()
+                      .artistsCategory()
+                      .assertVisible() ;
+
+        this.navigator.libraryPage()
+                      .videosCategory()
+                      .assertVisible() ;
+
+        this.navigator.libraryPage()
+                      .favoriteCategory()
+                      .assertVisible() ;
+
+        this.navigator.libraryPage()
+                      .myPlaylistsCategory()
+                      .assertVisible() ;
+
+        this.navigator.libraryPage()
+                      .myUtaCategory()
+                      .assertVisible() ;
+
+        this.navigator.libraryPage()
+                      .songsCategory()
+                      .tap() ;
 
         this.navigator.songsPage()
-                .songsLineUp()
-                .song( 0 )
-                .tap() ;
+                      .lineUp()
+                      .card( 0 )
+                      .tap() ;
 
         this.navigator.nowPlayingBar()
-                .assertPlaying() ;
+                      .assertPlaying() ;
 
         this.navigator.songsPage()
-                .songsLineUp()
-                .song( 0 )
-                .songName()
-                .assertEquals( this.navigator.nowPlayingBar().songName() ) ;
+                      .lineUp()
+                      .card( 0 )
+                      .songName()
+                      .assertEquals( this.navigator.nowPlayingBar().songName() ) ;
 
         this.navigator.songsPage()
-                .songsLineUp()
-                .song( 0 )
-                .artistName()
-                .assertEquals( this.navigator.nowPlayingBar().artistName() ) ;
+                      .lineUp()
+                      .card( 0 )
+                      .artistName()
+                      .assertEquals( this.navigator.nowPlayingBar().artistName() ) ;
     }
 
     @Test
@@ -283,48 +311,48 @@ public class SmokeTest extends BasicTest {
 
         // save any song to my uta
         this.navigator.streamPage()
-                .spotlightModule()
-                .lineUp()
-                .card( 9 )
-                .tap() ;
+                      .spotlightModule()
+                      .lineUp()
+                      .card( 9 )
+                      .tap() ;
 
         if( this.navigator.spotlightPage()
-                .lineUp()
-                .card( 0 )
-                .myUtaButton()
-                .isVisible() ) {
+                          .lineUp()
+                          .card( 0 )
+                          .myUtaButton()
+                          .isVisible() ) {
 
             this.navigator.spotlightPage()
-                    .lineUp()
-                    .card( 0 )
-                    .myUtaButton()
-                    .tap() ;
+                          .lineUp()
+                          .card( 0 )
+                          .myUtaButton()
+                          .tap() ;
 
             this.navigator.saveMyUtaPopupMessage()
-                    .saveButton()
-                    .tap() ;
+                          .saveButton()
+                          .tap() ;
 
             this.sleep( 5 ) ;
             if( this.navigator.saveMyUtaConfirmPopupMessage().isVisible() ) {
                 this.navigator.saveMyUtaConfirmPopupMessage()
-                        .closeButton()
-                        .tap();
+                              .closeButton()
+                              .tap();
             }
         }
 
         this.navigator.spotlightPage()
-                .libraryTab()
-                .tap() ;
+                      .libraryTab()
+                      .tap() ;
 
         this.navigator.libraryPage()
-                .myUtaCategory()
-                .tap() ;
+                      .myUtaCategory()
+                      .tap() ;
 
         this.navigator.myUtaPage()
-                .playButton()
-                .tap() ;
+                      .playButton()
+                      .tap() ;
 
         this.navigator.nowPlayingBar()
-                .assertPlaying() ;
+                      .assertPlaying() ;
     }
 }

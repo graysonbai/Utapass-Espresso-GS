@@ -11,6 +11,8 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_spotlight() {
+        this.updateTestCaseName() ;
+
         this.navigator.streamPage()
                       .spotlightModule()
                       .lineUp()
@@ -27,6 +29,8 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_radio() {
+        this.updateTestCaseName() ;
+
         this.navigator.streamPage()
                       .radioModule()
                       .lineUp()
@@ -48,6 +52,8 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_live_event() {
+        this.updateTestCaseName() ;
+
         this.navigator.streamPage()
                       .liveModule()
                       .lineUp()
@@ -63,6 +69,8 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_artist_new_release() {
+        this.updateTestCaseName() ;
+
         this.navigator.streamPage()
                       .artistNewReleaseModule()
                       .lineUp()
@@ -76,6 +84,8 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_daily_mix() {
+        this.updateTestCaseName() ;
+
         this.navigator.streamPage()
                       .dailyMixModule()
                       .lineUp()
@@ -89,6 +99,8 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_top_charts() {
+        this.updateTestCaseName() ;
+
         this.navigator.streamPage()
                       .topChartsModule()
                       .lineUp()
@@ -102,6 +114,8 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_best50() {
+        this.updateTestCaseName() ;
+
         this.navigator.streamPage()
                       .best50Module()
                       .seeAll()
@@ -117,6 +131,8 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_popular_artist() {
+        this.updateTestCaseName() ;
+
         this.navigator.streamPage()
                       .popularArtistModule()
                       .lineUp()
@@ -130,6 +146,8 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_whats_new() {
+        this.updateTestCaseName() ;
+
         this.navigator.streamPage()
                       .whatsNewModule()
                       .lineUp()
@@ -143,6 +161,8 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_new_songs_hit_songs() {
+        this.updateTestCaseName() ;
+
         this.navigator.streamPage()
                       .newSongsHitSongsModule()
                       .lineUp()
@@ -174,6 +194,8 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_you_may_also_like() {
+        this.updateTestCaseName() ;
+
         this.navigator.streamPage()
                       .youMayAlsoLikeModule()
                       .lineUp()
@@ -187,6 +209,8 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_song_in_songs() {
+        this.updateTestCaseName() ;
+
         this.navigator.streamPage()
                       .libraryTab()
                       .tap() ;
@@ -246,6 +270,8 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_song_in_albums() {
+        this.updateTestCaseName() ;
+
         this.navigator.streamPage()
                 .libraryTab()
                 .tap() ;
@@ -270,6 +296,8 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_song_in_artist() {
+        this.updateTestCaseName() ;
+
         this.navigator.streamPage()
                 .libraryTab()
                 .tap() ;
@@ -308,6 +336,8 @@ public class SmokeTest extends BasicTest {
     @Test
     public void play_song_in_myuta() {
         // TestRails: 1934617
+
+        this.updateTestCaseName() ;
 
         // save any song to my uta
         this.navigator.streamPage()

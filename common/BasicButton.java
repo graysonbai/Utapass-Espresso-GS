@@ -27,6 +27,7 @@ public class BasicButton extends ViewObject {
     public void tap() {
         this.ready() ;
 
+        UtaPassUtil.dprint_tap( this.label() ) ;
         onView( this.matcher.execute() ).perform( click() ) ;
     }
 

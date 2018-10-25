@@ -22,6 +22,7 @@ public class LazyString extends StringObject {
     }
 
     public void tap() {
+        this.dprint_tap() ;
         onView( this.matcher().execute() ).perform( click() ) ;
     }
 

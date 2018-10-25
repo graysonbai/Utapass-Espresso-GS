@@ -113,6 +113,7 @@ public class LiveConcertPage extends ViewObject {
             }
 
             public void tap() {
+                this.dprint_tap() ;
                 this.item.perform( click() ) ;
             }
         }

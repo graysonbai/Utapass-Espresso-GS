@@ -4,6 +4,7 @@ import android.support.test.rule.ActivityTestRule;
 
 import com.kddi.android.UtaPass.main.MainActivity;
 import com.kddi.android.UtaPass.sqa_espresso.common.Navigator;
+import com.kddi.android.UtaPass.sqa_espresso.common.RunningStatus;
 import com.kddi.android.UtaPass.sqa_espresso.common.UserStatus;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import org.junit.After;
@@ -25,6 +26,8 @@ public class BasicTest {
     }
 
     public void ensureLogin() {
+        this.updateTestCaseName() ;
+
         if( UserStatus.isLogin ) {
             return ;
         }
@@ -61,6 +64,7 @@ public class BasicTest {
     public void tear_down() {
         UtaPassUtil.stopNowPlayingBar() ;
         UtaPassUtil.closeApp() ;
+        this.resetTestCaseName() ;
     }
 
     public void sleep( int seconds, String info ) {
@@ -69,6 +73,17 @@ public class BasicTest {
 
     public void sleep( int seconds ) {
         UtaPassUtil.sleep( seconds ) ;
+    }
+
+
+    protected void updateTestCaseName() {
+        RunningStatus.caseName = Thread.currentThread()
+                                       .getStackTrace()[ 3 ]
+                                       .getMethodName() ;
+    }
+
+    protected void resetTestCaseName() {
+        RunningStatus.caseName = "" ;
     }
 }
 

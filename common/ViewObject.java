@@ -51,14 +51,18 @@ public class ViewObject {
         UtaPassUtil.dprint( msg ) ;
     }
 
-    protected void handleNoMatchViewException( String label, ICommand command ) {
+    protected void dprint_tap() {
+        UtaPassUtil.dprint_tap( this.label() ) ;
+    }
+
+    protected void handleNoMatchViewException( ICommand command ) {
         try {
             command.execute() ;
         }
 
         catch( NoMatchingViewException e ) {
             this.dprint( e.getMessage() ) ;
-            throw new NoMatchViewException( label ) ;
+            throw new NoMatchViewException( this.label() ) ;
         }
     }
 

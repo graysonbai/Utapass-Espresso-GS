@@ -34,12 +34,8 @@ public class BasicImage extends ViewObject {
     }
 
     public void tap() {
+        this.dprint_tap() ;
         onView( this.matcher.execute() ).perform( click() ) ;
-    }
-
-    @Deprecated
-    public String name() {
-        return this.getClass().getSimpleName() ;
     }
 }
 

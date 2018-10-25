@@ -37,7 +37,14 @@ public class UtaPassUtil {
     private static boolean takeScreenShot = true ;
 
     public static void dprint( String msg ) {
-        android.util.Log.d( "UtapassAutomation", msg ) ;
+        android.util.Log.d( "UtapassAutomation",
+                String.format( "<%s> %s",
+                        RunningStatus.caseName,
+                        msg ) ) ;
+    }
+
+    public static void dprint_tap( String label ) {
+        UtaPassUtil.dprint( label + " > tap" ) ;
     }
 
     private static void _sleep( int seconds ) {

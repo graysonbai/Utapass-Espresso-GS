@@ -1,23 +1,11 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.library.songs ;
 
-import android.support.test.uiautomator.UiSelector;
 
-import com.kddi.android.UtaPass.R;
-import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyUiAutomatorString;
 import com.kddi.android.UtaPass.sqa_espresso.common.StringObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UiAutomatorButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
-import com.kddi.android.UtaPass.sqa_espresso.common.WebButton;
-
-import java.security.Permission;
-
-import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
-import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static org.hamcrest.CoreMatchers.endsWith;
-import static org.hamcrest.core.AllOf.allOf;
 
 
 public class PermissionPopupMessage extends ViewObject {

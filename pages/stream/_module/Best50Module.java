@@ -256,7 +256,7 @@ public class Best50Module extends ViewObject {
         public BasicButton myUtaButton() {
             return new BasicButton( this.labelMyUtaButton, this.matcherMyUtaButton ) {
                 public LazyString text() {
-                    return new LazyString( () -> allOf(
+                    return new LazyString( this.label(), () -> allOf(
                             withClassName( endsWith( "TextView" ) ),
                             isDescendantOfA( super.matcher().execute() ) ) ) ;
                 }

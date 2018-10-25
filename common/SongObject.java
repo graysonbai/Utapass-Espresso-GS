@@ -50,7 +50,7 @@ public class SongObject extends ViewObject {
         return new BasicButton( this.matcherMyUtaButton ) {
 
             public LazyString text() {
-                return new LazyString( () -> allOf(
+                return new LazyString( this.label(), () -> allOf(
                         withClassName( endsWith( "TextView" ) ),
                         isDescendantOfA( super.matcher.execute() ) ) ) ;
             }

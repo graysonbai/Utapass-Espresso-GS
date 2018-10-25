@@ -35,7 +35,7 @@ public class BasicButton extends ViewObject {
     }
 
     public LazyString text() {
-        return new LazyString( this.matcher ) ;
+        return new LazyString( this.label(), this.matcher ) ;
     }
 
     public void _ready() {

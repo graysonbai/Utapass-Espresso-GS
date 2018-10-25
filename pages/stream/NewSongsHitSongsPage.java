@@ -54,11 +54,7 @@ public class NewSongsHitSongsPage extends BasicPage {
                 () -> withId( R.id.sort ) ) {
 
             public LazyString text() {
-                return new LazyString( () -> withId( R.id.label_sort ) ) {
-                    public String name() {
-                        return "Stream > NewSongsHitSongs > See All > Sort Button > Text" ;
-                    }
-                } ;
+                return new LazyString( this.label(), () -> withId( R.id.label_sort ) ) ;
             }
         } ;
     }

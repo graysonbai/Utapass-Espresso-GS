@@ -39,14 +39,14 @@ public class SideBarMenu extends ViewObject {
         this.assertVisible() ;
     }
 
-    public boolean isVisible() {
-        return this.isVisible( this.matcher ) ;
-    }
-
     public void assertVisible() {
         if( ! this.isVisible() ) {
             throw new InvisibleException( this.label() ) ;
         }
+    }
+
+    public boolean isVisible() {
+        return this.isVisible( this.matcher ) ;
     }
 
     public BasicButton loginButton() {
@@ -61,10 +61,10 @@ public class SideBarMenu extends ViewObject {
                 () -> withId( R.id.synapse_myuta_intro_more )  ) {
 
             public LazyString text() {
-                return new LazyString( () -> UtaPassUtil.withIndex(
-                        allOf( withClassName( endsWith( "TextView" ) ),
-                               isDescendantOfA( this.matcher().execute() ) ),
-                        0 ) ) ;
+                return new LazyString( this.label(), () ->
+                        UtaPassUtil.withIndex( allOf( withClassName( endsWith( "TextView" ) ),
+                                                      isDescendantOfA( this.matcher().execute() ) ),
+                                         0 ) ) ;
             }
         } ;
     }

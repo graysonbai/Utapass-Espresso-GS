@@ -90,7 +90,7 @@ public class AlbumBasicPage extends BasicPage {
                 () -> withId( R.id.view_shuffle_play_layout ) ) {
 
             public LazyString text() {
-                return new LazyString( () -> allOf(
+                return new LazyString( this.label(), () -> allOf(
                         withClassName( endsWith( "TextView" ) ),
                         isDescendantOfA( super.matcher().execute() ) ) ) ;
             }
@@ -105,7 +105,7 @@ public class AlbumBasicPage extends BasicPage {
                 () -> withId( R.id.view_shuffle_play_layout ) ) {
 
             public LazyString text() {
-                return new LazyString( () -> allOf(
+                return new LazyString( this.label(), () -> allOf(
                         withClassName( endsWith( "TextView" ) ),
                         isDescendantOfA( super.matcher().execute() ) ) ) ;
             }
@@ -299,7 +299,7 @@ public class AlbumBasicPage extends BasicPage {
         public BasicButton myUtaButton() {
             return new BasicButton( this.labelMyUtaButton, this.matcherMyUtaButton ) {
                 public LazyString text() {
-                    return new LazyString( () -> allOf(
+                    return new LazyString( this.label(), () -> allOf(
                             withClassName( endsWith( "TextView" ) ),
                             isDescendantOfA( super.matcher().execute() ) ) ) ;
                 }

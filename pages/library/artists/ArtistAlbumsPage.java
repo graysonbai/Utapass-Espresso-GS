@@ -54,7 +54,7 @@ public class ArtistAlbumsPage extends BasicPage {
                     withId( R.id.item_detail_artist_all_song_root_layout ) ) {
 
                 public LazyString text() {
-                    return new LazyString( () -> allOf(
+                    return new LazyString( this.label(), () -> allOf(
                             withClassName( endsWith( "TextView" ) ),
                             isDescendantOfA( super.matcher.execute() ) ) ) ;
                 }

@@ -30,6 +30,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId ;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.endsWith;
 
 
@@ -87,7 +88,8 @@ public class AlbumBasicPage extends BasicPage {
 
         return new BasicButton(
                 this.label() + " > play",
-                () -> withId( R.id.view_shuffle_play_layout ) ) {
+                () -> anyOf( withId( R.id.view_shuffle_play_layout ),
+                             withId( R.id.one_play_action_layout ) ) ) {
 
             public LazyString text() {
                 return new LazyString( this.label(), () -> allOf(
@@ -102,7 +104,8 @@ public class AlbumBasicPage extends BasicPage {
 
         return new BasicButton(
                 this.label() + " > shuffleAll",
-                () -> withId( R.id.view_shuffle_play_layout ) ) {
+                () -> anyOf( withId( R.id.view_shuffle_play_layout ),
+                             withId( R.id.one_play_action_layout ) ) ) {
 
             public LazyString text() {
                 return new LazyString( this.label(), () -> allOf(

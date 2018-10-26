@@ -10,24 +10,6 @@ import org.junit.runner.RunWith ;
 public class SmokeTest extends BasicTest {
 
     @Test
-    public void play_spotlight() {
-        this.updateTestCaseName() ;
-
-        this.navigator.streamPage()
-                      .spotlightModule()
-                      .lineUp()
-                      .card( 0 )
-                      .tap() ;
-
-        this.navigator.spotlightPage()
-                      .playButton()
-                      .tap() ;
-
-        this.navigator.nowPlayingBar()
-                      .assertPlaying() ;
-    }
-
-    @Test
     public void play_radio() {
         this.updateTestCaseName() ;
 
@@ -331,63 +313,5 @@ public class SmokeTest extends BasicTest {
 
         this.navigator.nowPlayingBar()
                 .assertPlaying() ;
-    }
-
-    @Test
-    public void play_song_in_myuta() {
-        // TestRails: 1934617
-
-        this.updateTestCaseName() ;
-
-        // save any song to my uta
-        this.navigator.streamPage()
-                      .spotlightModule()
-                      .lineUp()
-                      .card( 9 )
-                      .tap() ;
-
-        if( this.navigator.spotlightPage()
-                          .lineUp()
-                          .card( 0 )
-                          .myUtaButton()
-                          .isVisible() ) {
-
-            this.navigator.spotlightPage()
-                          .lineUp()
-                          .card( 0 )
-                          .myUtaButton()
-                          .tap() ;
-
-            this.navigator.saveMyUtaPopupMessage()
-                          .saveButton()
-                          .tap() ;
-
-            this.sleep( 5 ) ;
-            if( this.navigator.saveMyUtaConfirmPopupMessage().isVisible() ) {
-                this.navigator.saveMyUtaConfirmPopupMessage()
-                              .closeButton()
-                              .tap();
-            }
-        }
-
-        this.navigator.spotlightPage()
-                      .libraryTab()
-                      .tap() ;
-
-        this.navigator.libraryPage()
-                      .myUtaCategory()
-                      .tap() ;
-
-        this.navigator.myUtaPage()
-                      .lineUp()
-                      .card( 0 )
-                      .songName() ;
-
-        this.navigator.myUtaPage()
-                      .playButton()
-                      .tap() ;
-
-        this.navigator.nowPlayingBar()
-                      .assertPlaying() ;
     }
 }

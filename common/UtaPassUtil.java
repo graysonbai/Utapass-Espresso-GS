@@ -19,6 +19,7 @@ import android.view.View ;
 import android.widget.ImageView ;
 
 import com.kddi.android.UtaPass.main.MainActivity;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.BasicException;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.NoMatchViewException;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.NotReadyException;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.NowPlayingBar;
@@ -290,16 +291,18 @@ public class UtaPassUtil {
                 return ;
 
             } catch( Exception e ) {
-                String expName = e.getClass().getSimpleName() ;
-                boolean isNoMatchViewExp = e instanceof NoMatchViewException ;
+                String expName = e.getClass().getSimpleName().replace( "Exception", "" ) ;
+                boolean isBasicExp = e instanceof BasicException ;
 
-                UtaPassUtil.dprint( isNoMatchViewExp ?
-                    expName :
-                    String.format( "%s: %s", expName, e.getMessage() ) ) ;
+                String msg = isBasicExp ?
+                        String.format( "%s: %s", expName, e.getMessage() ) :
+                        expName ;
+
+                UtaPassUtil.dprint( msg ) ;
 
                 if( count++ == maxCount ) {
                     UtaPassUtil.enableScreenShot() ;
-                    throw new NotReadyException( expName ) ;
+                    throw new NotReadyException( msg ) ;
                 }
 
                 String nextTryMsg = String.format( "NextTry (%s/%s)", count, maxCount ) ;

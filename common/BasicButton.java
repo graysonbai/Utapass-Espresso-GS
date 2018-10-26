@@ -16,7 +16,7 @@ public class BasicButton extends ViewObject {
     }
 
     public BasicButton( LazyMatcher matcher ) {
-        this.label( "BasicButton: LabelNotAssigned" ) ;
+        this.label( "UnknownButton" ) ;
         this.matcher = matcher ;
     }
 

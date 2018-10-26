@@ -115,13 +115,13 @@ public class Best50Test extends BasicTest {
 
         this.navigator.myUtaPage()
                       .lineUp()
-                      .song( 0 )
+                      .card( 0 )
                       .songName()
                       .assertEquals( songName ) ;
 
         this.navigator.myUtaPage()
                       .lineUp()
-                      .song( 0 )
+                      .card( 0 )
                       .artistName()
                       .assertEquals( artistName ) ;
     }
@@ -143,8 +143,8 @@ public class Best50Test extends BasicTest {
 
             this.navigator.myUtaPage()
                           .lineUp()
-                          .song( 0 )
-                          .moreActionButton()
+                          .card( 0 )
+                          .moreActionsButton()
                           .tap() ;
 
             this.navigator.songMoreActionMenu()

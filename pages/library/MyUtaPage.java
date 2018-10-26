@@ -1,56 +1,55 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.library ;
 
-import com.kddi.android.UtaPass.R ;
+import android.support.test.espresso.action.ViewActions;
+import android.view.View;
+
+import com.kddi.android.UtaPass.R;
+import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
+import com.kddi.android.UtaPass.sqa_espresso.common.BasicImage;
+import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
-import com.kddi.android.UtaPass.sqa_espresso.common.StringObject;
+import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
+import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
+import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IArtistName;
+import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ICover;
+import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IMoreActionsButton;
+import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ISongName;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.StringInvisibleException;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
-import com.kddi.android.UtaPass.sqa_espresso.pages.library.myuta.MyUtaHistoryButton;
-import com.kddi.android.UtaPass.sqa_espresso.pages.library.common.SongsLineUp ;
-import com.kddi.android.UtaPass.sqa_espresso.pages.library.myuta.PlayButton ;
 
-import java.util.regex.Pattern ;
+import org.hamcrest.Matcher;
 
+import java.util.regex.Pattern;
+
+import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.matcher.ViewMatchers.* ;
-
+import static org.hamcrest.Matchers.allOf;
 
 public class MyUtaPage extends BasicPage {
-
-    private MyUtaHistoryButton myUtaHistoryButton ;
-    private PlayButton playButton ;
-    private SongsLineUp songsLineUp ;
+    private InternalLineUp lineUp ;
 
     public MyUtaPage() {
-        super() ;
-
-        this.retryWhenNotReady( false ) ;
-    }
-
-    @Override
-    public void _ready() {
-        this.myUtaHistoryButton().ready() ;
+        this.label( "MyUtaPage" ) ;
     }
 
     public LazyString remainingQuotas() {
-        return new LazyString( () -> withId( R.id.myuta_available_quota_count ) ) ;
+        return new LazyString( this.label() + " > RemainingQuotas",
+                () -> withId( R.id.myuta_available_quota_count ) ) ;
     }
 
-    public MyUtaHistoryButton myUtaHistoryButton() {
-        if( this.myUtaHistoryButton == null ) {
-            this.myUtaHistoryButton = new MyUtaHistoryButton() ;
-        }
-        return this.myUtaHistoryButton ;
+    public BasicButton myUtaHistoryButton() {
+        return new BasicButton( this.label() + " > MyUtaHistoryButton",
+                () -> withId( R.id.myuta_to_management  ) ) ;
     }
 
-    public PlayButton playButton() {
-        if( this.playButton == null ) {
-            this.playButton = new PlayButton() ;
-        }
-        return this.playButton ;
+    public BasicButton playButton() {
+        return new BasicButton( this.label() + " > PlayButton",
+                () -> withId( R.id.myuta_play_all  ) ) ;
     }
 
     public LazyString downloadedSongs() {
-        return new LazyString( () -> withId( R.id.myuta_downloaded_songs_count ) ) {
+        return new LazyString( this.label() + "DownloadedSongs",
+                () -> withId( R.id.myuta_downloaded_songs_count ) ) {
 
             @Override
             public String string() {
@@ -62,19 +61,147 @@ public class MyUtaPage extends BasicPage {
                     return regexMatcher.group( 1 ) ;
                 }
 
-                throw new StringInvisibleException(
-                        "Library > MyUta > MyUta Page > Downloaded Songs" ) ;
+                throw new StringInvisibleException( this.label() ) ;
             }
         } ;
     }
 
-    public SongsLineUp lineUp() {
-
-        // Since the maxIndexOfLineUpObject will be changed after swiping,
-        // We need to reuse the SongsLineUp object ...
-        if( this.songsLineUp == null ) {
-            this.songsLineUp = new SongsLineUp() ;
+    public InternalLineUp lineUp() {
+        if( this.myUtaHistoryButton().isVisible() ) {
+            this.swipeUp() ;
+            this.swipeUp() ;
         }
-        return this.songsLineUp ;
+
+        if( this.lineUp == null ) {
+            this.lineUp = new InternalLineUp( this.label() ) ;
+        }
+        return this.lineUp ;
+    }
+
+    public void swipeUp() {
+        onView( withId( R.id.myuta_coordinator_layout ) ).perform( ViewActions.swipeUp() ) ;
+    }
+
+    public class InternalLineUp extends LineUpObject {
+        public InternalLineUp( String label ) {
+            this.label( label + " > LineUp" ) ;
+        }
+
+        protected Matcher<View> getMatcherToFindRecycleView() {
+            return withId( R.id.local_track_recycler_view ) ;
+        }
+
+        protected Matcher<View> getMatcherToCountMaxIndexOfWindow() {
+            return allOf( withId( R.id.item_library_lazy_track_layout ),
+                          isCompletelyDisplayed(),
+                          isDescendantOfA( this.getMatcherToFindRecycleView() ) ) ;
+        }
+
+        protected int swipeToCardViewAndGetIndexOfWindow( int index ) {
+
+            // TODO: Swipe up/down doesn't work
+            //   In this case, our target, RecyclerView, is nested in ScrollView
+            //   and probably causes this issue
+            this.swipeToPosition( 1 ) ;
+
+            if( index <= this.maxIndexFirstWindow() ) {
+                return index ;
+            }
+
+            this.swipeToPosition( index + 2 ) ;
+            return this.maxIndexOtherWindow() ;
+        }
+
+        public InternalCard card(int index ) {
+            int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
+            InternalCard card = new InternalCard() ;
+
+            String label = String.format( "%s > Card(%s)",
+                    this.label(),
+                    index ) ;
+
+            card.cover( label + " > Cover",
+                    () -> allOf(
+                            withId( R.id.item_library_lazy_track_icon ),
+                            isDescendantOfA( UtaPassUtil.withIndex(
+                                    this.getMatcherToCountMaxIndexOfWindow(),
+                                    indexInWindow ) ) ) ) ;
+
+            card.songName(  label + " > SongName",
+                    () -> allOf(
+                            withId( R.id.item_library_lazy_track_title ),
+                            isDescendantOfA( UtaPassUtil.withIndex(
+                                    this.getMatcherToCountMaxIndexOfWindow(),
+                                    indexInWindow ) ) ) ) ;
+
+            card.artistName( label + " > ArtistName",
+                    () -> allOf(
+                            withId( R.id.item_library_lazy_track_subtitle ),
+                            isDescendantOfA( UtaPassUtil.withIndex(
+                                    this.getMatcherToCountMaxIndexOfWindow(),
+                                    indexInWindow ) ) ) ) ;
+
+            card.moreActionsButton( label + " > MoreActionsButton",
+                    () -> allOf(
+                            withId( R.id.item_library_lazy_track_overflow ),
+                            isDescendantOfA( UtaPassUtil.withIndex(
+                                    this.getMatcherToCountMaxIndexOfWindow(),
+                                    indexInWindow ) ) ) ) ;
+
+            return card ;
+        }
+    }
+
+    public class InternalCard implements ICover, IMoreActionsButton, ISongName, IArtistName {
+
+        String labelCover ;
+        String labelSongName ;
+        String labelArtistName ;
+        String labelMoreActionsButton ;
+
+        private LazyMatcher matcherCover ;
+        private LazyMatcher matcherSongName ;
+        private LazyMatcher matcherArtistName ;
+        private LazyMatcher matcherMoreActionsButton ;
+
+        public void cover( String label, LazyMatcher matcher ) {
+            this.labelCover = label ;
+            this.matcherCover = matcher ;
+        }
+
+        public BasicImage cover() {
+            return new BasicImage( this.labelCover, this.matcherCover ) ;
+        }
+
+        public void moreActionsButton( String label, LazyMatcher matcher ) {
+            this.labelMoreActionsButton = label ;
+            this.matcherMoreActionsButton = matcher ;
+        }
+
+        public BasicButton moreActionsButton() {
+            return new BasicButton( this.labelMoreActionsButton, this.matcherMoreActionsButton ) ;
+        }
+
+        public void songName( String label, LazyMatcher matcher ) {
+            this.labelSongName = label;
+            this.matcherSongName = matcher;
+        }
+
+        public LazyString songName() {
+            return new LazyString( this.labelSongName, this.matcherSongName ) ;
+        }
+
+        public void artistName( String label, LazyMatcher matcher ) {
+            this.labelArtistName = label;
+            this.matcherArtistName = matcher;
+        }
+
+        public LazyString artistName() {
+            return new LazyString( this.labelArtistName, this.matcherArtistName ) ;
+        }
+
+        public void tap() {
+            this.cover().tap() ;
+        }
     }
 }

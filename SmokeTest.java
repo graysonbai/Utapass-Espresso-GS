@@ -379,6 +379,11 @@ public class SmokeTest extends BasicTest {
                       .tap() ;
 
         this.navigator.myUtaPage()
+                      .lineUp()
+                      .card( 0 )
+                      .songName() ;
+
+        this.navigator.myUtaPage()
                       .playButton()
                       .tap() ;
 

@@ -255,63 +255,106 @@ public class SmokeTest extends BasicTest {
         this.updateTestCaseName() ;
 
         this.navigator.streamPage()
-                .libraryTab()
-                .tap() ;
+                      .libraryTab()
+                      .tap() ;
 
         this.navigator.libraryPage()
-                .albumsCategory()
-                .tap() ;
+                      .albumsCategory()
+                      .tap() ;
 
         this.navigator.albumsPage()
-                .albumsLineUp()
-                .album( 0 )
-                .tap() ;
+                      .albumsLineUp()
+                      .album( 0 )
+                      .tap() ;
 
         this.navigator.albumInfoPage()
-                .songsLineUp()
-                .song( 0 )
-                .tap() ;
+                      .songsLineUp()
+                      .song( 0 )
+                      .tap() ;
 
         this.navigator.nowPlayingBar()
-                .assertPlaying() ;
+                      .assertPlaying() ;
     }
 
     @Test
-    public void play_song_in_artist() {
+    public void play_song_in_artists() {
         this.updateTestCaseName() ;
 
         this.navigator.streamPage()
-                .libraryTab()
-                .tap() ;
+                      .libraryTab()
+                      .tap() ;
 
         this.navigator.libraryPage()
-                .artistsCategory()
-                .tap() ;
+                      .artistsCategory()
+                      .tap() ;
 
         int albums = Integer.parseInt( this.navigator.artistsPage()
-                .artistsLineUp()
-                .artist( 0 )
-                .albums() ) ;
+                                                     .artistsLineUp()
+                                                     .artist( 0 )
+                                                     .albums() ) ;
 
         this.navigator.artistsPage()
-                .artistsLineUp()
-                .artist( 0 )
-                .tap() ;
+                      .artistsLineUp()
+                      .artist( 0 )
+                      .tap() ;
 
         // ArtistAlbumsPage
         if( albums > 1 ) {
             this.navigator.artistAlbumsPage()
-                    .artistAlbumsLineUp()
-                    .album(0 )
-                    .tap();
+                          .artistAlbumsLineUp()
+                          .album(0 )
+                          .tap();
         }
 
         // AlbumInfoPage
         this.navigator.albumInfoPage()
-                .shuffleAllButton()
-                .tap() ;
+                      .shuffleAllButton()
+                      .tap() ;
 
         this.navigator.nowPlayingBar()
-                .assertPlaying() ;
+                      .assertPlaying() ;
+    }
+
+    @Test
+    public void play_videos() {
+        this.updateTestCaseName() ;
+
+        this.navigator.streamPage()
+                      .libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .videosCategory()
+                      .tap() ;
+
+        this.navigator.videosPage()
+                      .playButton()
+                      .tap() ;
+    }
+
+    @Test
+    public void play_favorite() {
+        this.updateTestCaseName() ;
+
+        this.navigator.streamPage()
+                      .libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .favoriteCategory()
+                      .tap() ;
+
+        this.navigator.favoritePage()
+                      .playlists()
+                      .tap() ;
+
+        this.navigator.playlistsPage()
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
+
+        this.navigator.nowPlayingBar()
+                      .assertPlaying() ;
     }
 }

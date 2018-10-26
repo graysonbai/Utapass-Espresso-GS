@@ -12,8 +12,11 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.library.AlbumsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.ArtistsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.MyUtaPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.SongsPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.VideosPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.FavoritePage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.albums.AlbumInfoPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.artists.ArtistAlbumsPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.favorite.PlaylistsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.myuta.SongMoreActionMenu;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.songs.PermissionPopupMessage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.settings.IdSettingsPage;
@@ -42,6 +45,9 @@ public class Navigator {
     private AlbumInfoPage albumInfoPage ;
     private ArtistsPage artistsPage ;
     private ArtistAlbumsPage artistAlbumsPage ;
+    private VideosPage videosPage ;
+    private FavoritePage favoritePage ;
+    private PlaylistsPage playlistsPage ;
 
     private MyUtaPage myUtaPage ;
     private SongMoreActionMenu songMoreActionMenu ;
@@ -241,5 +247,26 @@ public class Navigator {
             this.newSongsHitSongsPage = new NewSongsHitSongsPage() ;
         }
         return this.newSongsHitSongsPage.ready() ;
+    }
+
+    public VideosPage videosPage() {
+        if( this.videosPage == null ) {
+            this.videosPage = new VideosPage() ;
+        }
+        return this.videosPage.ready() ;
+    }
+
+    public FavoritePage favoritePage() {
+        if( this.favoritePage == null ) {
+            this.favoritePage = new FavoritePage() ;
+        }
+        return this.favoritePage.ready() ;
+    }
+
+    public PlaylistsPage playlistsPage() {
+        if( this.playlistsPage == null ) {
+            this.playlistsPage = new PlaylistsPage() ;
+        }
+        return this.playlistsPage.ready() ;
     }
 }

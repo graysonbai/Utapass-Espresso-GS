@@ -317,11 +317,11 @@ public class UtaPassUtil {
         }
     }
 
-    private static void enableScreenShot() {
+    public static void enableScreenShot() {
         UtaPassUtil.takeScreenShot = true ;
     }
 
-    private static void disableScreenShot() {
+    public static void disableScreenShot() {
         UtaPassUtil.takeScreenShot = false ;
     }
 

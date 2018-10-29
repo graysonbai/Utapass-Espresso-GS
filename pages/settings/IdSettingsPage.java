@@ -37,58 +37,27 @@ public class IdSettingsPage extends ViewObject {
     }
 
     public UiAutomatorButton okButton() {
-        if( this.okButton == null ) {
-            this.okButton = new UiAutomatorButton( () -> UtaPassUtil.findObject(
-                    new UiSelector().className( "android.widget.Button" )
-                                    .text( "OK" ) ) ) {
-
-                public String name() {
-                    return "AuidSettingsPage > Ok Button" ;
-                }
-            } ;
-        }
-        return this.okButton ;
+        return new UiAutomatorButton(this.label() + " > okButton",
+                () -> UtaPassUtil.findObject(
+                        new UiSelector().className( "android.widget.Button" ).text( "OK" ) ) ) ;
     }
 
     private LazyUiAutomatorString title() {
-        if( this.title == null ) {
-            this.title = new LazyUiAutomatorString( () -> UtaPassUtil.findObject(
-                    new UiSelector().className( "android.widget.TextView" ) ) ) {
+        return new LazyUiAutomatorString( this.label() + " > Title",
+                () -> UtaPassUtil.findObject(
+                        new UiSelector().className( "android.widget.TextView" ) ) ) ;
 
-                public String name() {
-                    return "AuidSettingsPage > Title" ;
-                }
-            } ;
-        }
-
-        return this.title ;
     }
 
     private LazyUiAutomatorString message() {
-        if( this.message == null ) {
-            this.message = new LazyUiAutomatorString( () -> UtaPassUtil.findObject(
-                    new UiSelector().className( "android.view.View" ).index( 3 ) ) ) {
-
-                public String name() {
-                    return "AuidSettingsPage > Message" ;
-                }
-            } ;
-        }
-
-        return this.message ;
+        return new LazyUiAutomatorString( this.label() + " > Message",
+                () -> UtaPassUtil.findObject(
+                        new UiSelector().className( "android.view.View" ).index( 3 ) ) ) ;
     }
 
     public StringObject id() {
-        if( this.id == null ) {
-            this.id = new LazyUiAutomatorString( () -> UtaPassUtil.findObject(
-                    new UiSelector().resourceId( "auidAlias" ) ) ) {
-
-                public String name() {
-                    return "AuidSettingsPage > ID" ;
-                }
-            } ;
-        }
-
-        return this.id ;
+        return new LazyUiAutomatorString( this.label() + " > ID",
+                () -> UtaPassUtil.findObject(
+                        new UiSelector().resourceId( "auidAlias" ) ) ) ;
     }
 }

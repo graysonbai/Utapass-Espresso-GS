@@ -18,7 +18,7 @@ public class UiAutomatorButton extends ViewObject {
     }
 
     public UiAutomatorButton( LazyUiAutomatorMatcher matcher ) {
-        this.label( "UiAutomatorButton: LabelNotAssigned" ) ;
+        this.label( "UnknownButton" ) ;
         this.matcher = matcher ;
     }
 
@@ -30,7 +30,8 @@ public class UiAutomatorButton extends ViewObject {
         this.ready() ;
 
         try {
-            this.matcher.execute().click() ;
+            UtaPassUtil.dprint_tap( this.label() ) ;
+            this.matcher().execute().click() ;
 
         } catch( UiObjectNotFoundException e ) {
             throw new ButtonInvisibleException( this.label() ) ;
@@ -38,7 +39,7 @@ public class UiAutomatorButton extends ViewObject {
     }
 
     public boolean isVisible() {
-        return this.matcher.execute().exists() ;
+        return this.matcher().execute().exists() ;
     }
 
     public LazyUiAutomatorString text() {

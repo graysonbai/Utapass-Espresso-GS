@@ -56,7 +56,6 @@ public class StreamRatTest extends BasicTest {
                       .tap() ;
 
         this.navigator.liveConcertPage()
-                      .liveTitleBar()
                       .title()
                       .assertEquals( "KICK OFF VIVA!!! 2017" ) ;
     }

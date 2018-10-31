@@ -44,7 +44,6 @@ public class SmokeTest extends BasicTest {
                       .tap() ;
 
         this.navigator.liveConcertPage()
-                      .liveTitleBar()
                       .title()
                       .assertEquals( "KICK OFF VIVA!!! 2017" ) ;
     }

@@ -9,6 +9,7 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.Best50Module;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.DailyMixModule;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.ListenWithModule;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.LiveModule;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.MamaModule;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.NewSongsHitSongsModule;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.PopularArtistModule;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.RadioModule;
@@ -25,21 +26,22 @@ import static org.hamcrest.Matchers.*;
 
 
 public class StreamPage extends BasicPage {
-    private final int MAX_MODULE_OBJECT             = 14 ;
-    private final int POSITION_SPOTLIGHT            = 0 ;
-    private final int POSITION_RADIO                = 1 ;
-    private final int POSITION_LISTEN_WITH          = 2 ;
-    private final int POSITION_LIVE                 = 3 ;
-    private final int POSITION_ARTIST_NEW_RELEASE   = 4 ;
-    private final int POSITION_DAILY_MIX            = 5 ;
-    private final int POSITION_TOP_CHARTS           = 6 ;
-    private final int POSITION_BEST50               = 7 ;
-    private final int POSITION_POPULAR_ARTIST       = 8 ;
-    private final int POSITION_WHATS_NEW            = 9 ;
-    private final int POSITION_NEW_SONGS_HITS_SONGS = 10 ;
-    private final int POSITION_YOU_MAY_ALSO_LIKE    = 11 ;
-    private final int POSITION_MEMBER_PRIVILEGES    = 12 ;
-    private final int POSITION_RUN_AWAY             = 13 ;
+    private final int MAX_MODULE_OBJECT                = 15 ;
+    private final int POSITION_SPOTLIGHT               = 0 ;
+    private final int POSITION_RADIO                   = 1 ;
+    private final int POSITION_LISTEN_WITH             = 2 ;
+    private final int POSITION_LIVE                    = 3 ;
+    private final int POSITION_ARTIST_NEW_RELEASE      = 4 ;
+    private final int POSITION_MNET_ASIAN_MUSIC_AWARDS = 5 ;
+    private final int POSITION_DAILY_MIX               = 6 ;
+    private final int POSITION_TOP_CHARTS              = 7 ;
+    private final int POSITION_BEST50                  = 8 ;
+    private final int POSITION_POPULAR_ARTIST          = 9 ;
+    private final int POSITION_WHATS_NEW               = 10 ;
+    private final int POSITION_NEW_SONGS_HITS_SONGS    = 11 ;
+    private final int POSITION_YOU_MAY_ALSO_LIKE       = 12 ;
+    private final int POSITION_MEMBER_PRIVILEGES       = 13 ;
+    private final int POSITION_RUN_AWAY                = 14 ;
     private int[] moduleExistence ;
 
     private BasicButton sideBarButton ;
@@ -80,6 +82,9 @@ public class StreamPage extends BasicPage {
         this.moduleExistence[ this.POSITION_LISTEN_WITH ] = this.hasListenWithModule() ? 1 : 0 ;
         this.moduleExistence[ this.POSITION_LIVE        ] = this.hasLiveModule()       ? 1 : 0 ;
 
+        this.moduleExistence[ this.POSITION_MNET_ASIAN_MUSIC_AWARDS ] =
+                this.hasMamaModule() ? 1 : 0 ;
+
         this.swipeToSpotlightModule() ;
     }
 
@@ -100,7 +105,7 @@ public class StreamPage extends BasicPage {
 
     public boolean hasRadioModule() {
         this.swipeToModuleObject( this.getPosition( this.POSITION_RADIO ) ) ;
-        return this.isVisibleByGetText(
+        return this.isVisible(
                 allOf( withId( R.id.item_list_title ),
                        anyOf( withText( RadioModule.titleInEnglish ),
                               withText( RadioModule.titleInJapanese) ) ) ) ;
@@ -108,7 +113,7 @@ public class StreamPage extends BasicPage {
 
     public boolean hasListenWithModule() {
         this.swipeToModuleObject( this.getPosition( this.POSITION_LISTEN_WITH ) ) ;
-        return this.isVisibleByGetText(
+        return this.isVisible(
                 allOf( withId( R.id.item_list_title ),
                         anyOf( withText( ListenWithModule.titleInJapanese ),
                                withText( ListenWithModule.titleInEnglish ) ) ) ) ;
@@ -116,10 +121,18 @@ public class StreamPage extends BasicPage {
 
     public boolean hasLiveModule() {
         this.swipeToModuleObject( this.getPosition( this.POSITION_LIVE ) ) ;
-        return this.isVisibleByGetText(
+        return this.isVisible(
                 allOf( withId( R.id.item_list_title ),
                        anyOf( withText( LiveModule.titleInEnglish ),
                               withText( LiveModule.titleInJapanese) ) ) ) ;
+    }
+
+    public boolean hasMamaModule() {
+        this.swipeToModuleObject( this.getPosition( this.POSITION_MNET_ASIAN_MUSIC_AWARDS ) ) ;
+        return this.isVisible(
+                allOf( withId( R.id.item_list_title ),
+                        anyOf( withText( MamaModule.titleInEnglish ),
+                               withText( MamaModule.titleInJapanese) ) ) ) ;
     }
 
     public void swipeToModuleObject( int position ) {

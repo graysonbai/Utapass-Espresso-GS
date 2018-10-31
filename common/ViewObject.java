@@ -142,16 +142,4 @@ public class ViewObject {
         });
         return stringHolder[0];
     }
-
-
-    @Deprecated
-    protected boolean isVisibleByGetText( final Matcher<View> matcher ) {
-        try {
-            this.getText( matcher ) ;
-            return true ;
-        }
-        catch( NoMatchingViewException e ) {
-            return false ;
-        }
-    }
 }

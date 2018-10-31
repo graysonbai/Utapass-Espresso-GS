@@ -10,6 +10,8 @@ public class BasicException extends RuntimeException {
                 label.replace( " ", "" )
                      .replace( ">", "_" )
                      .replace( ":", "-" )
+                     .replace( "(", "_" )
+                     .replace( ")", "_" )
         ) ;
     }
 }

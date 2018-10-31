@@ -21,13 +21,12 @@ public class IdSettingsPage extends ViewObject {
 
     public IdSettingsPage() {
         this.label( "AuidSettingsPage" ) ;
-        this.retryWhenNotReady( false ) ;
     }
 
     public void _ready() {
-        this.title().ready() ;
-        this.message().ready() ;
-        this.okButton().ready() ;
+        this.title().assertVisible() ;
+        this.message().assertVisible() ;
+        this.okButton().assertVisible() ;
     }
 
     public boolean isVisible() {

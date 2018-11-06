@@ -102,7 +102,7 @@ public class RadioModule extends ViewObject {
 
             card.title( label + " > Title",
                     () -> allOf(
-                            withId( R.id.item_radio_name ),
+                            withId( R.id.item_list_title ),
                             isDescendantOfA( UtaPassUtil.withIndex(
                                     this.getMatcherToCountMaxIndexOfWindow(),
                                     indexInWindow ) ) ) ) ;

@@ -10,6 +10,7 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.common.SearchTab;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.StreamTab;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.AlbumsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.ArtistsPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.MyPlayListPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.MyUtaPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.SongsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.VideosPage;
@@ -17,6 +18,9 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.library.FavoritePage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.albums.AlbumInfoPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.artists.ArtistAlbumsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.favorite.PlaylistsPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.myplaylist.AddMusicPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.myplaylist.CreatePlayListPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.myplaylist.addmusic.MyPlayListSongsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.myuta.SongMoreActionMenu;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.songs.PermissionPopupMessage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.settings.IdSettingsPage;
@@ -68,6 +72,38 @@ public class Navigator {
     private PermissionPopupMessage permissionPopupMessage ;
 
     private NewSongsHitSongsPage newSongsHitSongsPage ;
+    private MyPlayListPage myPlayListPage;
+    private CreatePlayListPage createPlayListPage;
+    private AddMusicPage addMusicPage;
+    private MyPlayListSongsPage myPlaylistSongsPage;
+
+    public MyPlayListSongsPage myPlayListSongsPage() {
+        if( this.myPlaylistSongsPage == null ) {
+            this.myPlaylistSongsPage = new MyPlayListSongsPage() ;
+        }
+        return this.myPlaylistSongsPage.ready() ;
+    }
+
+    public MyPlayListPage myPlayListPage() {
+        if( this.myPlayListPage == null ) {
+            this.myPlayListPage = new MyPlayListPage() ;
+        }
+        return this.myPlayListPage.ready() ;
+    }
+
+    public CreatePlayListPage createPlayListPage(){
+        if( this.createPlayListPage == null ) {
+            this.createPlayListPage = new CreatePlayListPage() ;
+        }
+        return this.createPlayListPage.ready() ;
+    }
+
+    public AddMusicPage addMusicPage(){
+        if( this.addMusicPage == null ) {
+            this.addMusicPage = new AddMusicPage() ;
+        }
+        return this.addMusicPage.ready() ;
+    }
 
     public StreamPage streamPage() {
         if( this.streamPage == null ) {

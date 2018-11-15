@@ -356,4 +356,52 @@ public class SmokeTest extends BasicTest {
         this.navigator.nowPlayingBar()
                       .assertPlaying() ;
     }
+
+    @Test
+    public void play_myplaylist(){
+        this.updateTestCaseName() ;
+
+        this.navigator.streamPage()
+                      .libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .myPlaylistsCategory()
+                      .tap() ;
+
+        this.navigator.myPlayListPage()
+                      .createNowButton()
+                      .tap() ;
+
+        this.navigator.createPlayListPage()
+                      .addMusicButton()
+                      .tap() ;
+
+        this.navigator.addMusicPage()
+                      .songsType()
+                      .tap() ;
+
+        this.navigator.myPlayListSongsPage()
+                      .lineUp()
+                      .card(1)
+                      .cover()
+                      .tap() ;
+
+        this.navigator.myPlayListSongsPage()
+                      .nextButton()
+                      .tap() ;
+
+        this.navigator.createPlayListPage()
+                      .doneButton()
+                      .tap() ;
+
+        this.navigator.myPlayListPage()
+                      .lineUp()
+                      .card(0)
+                      .playButton()
+                      .tap() ;
+
+        this.navigator.nowPlayingBar()
+                      .assertPlaying() ;
+    }
 }

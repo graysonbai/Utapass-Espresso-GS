@@ -31,8 +31,8 @@ public class StreamPage extends BasicPage {
     private final int POSITION_RADIO                   = 1 ;
     private final int POSITION_LISTEN_WITH             = 2 ;
     private final int POSITION_LIVE                    = 3 ;
-    private final int POSITION_ARTIST_NEW_RELEASE      = 4 ;
-    private final int POSITION_MNET_ASIAN_MUSIC_AWARDS = 5 ;
+    private final int POSITION_MNET_ASIAN_MUSIC_AWARDS = 4 ;
+    private final int POSITION_ARTIST_NEW_RELEASE      = 5 ;
     private final int POSITION_DAILY_MIX               = 6 ;
     private final int POSITION_TOP_CHARTS              = 7 ;
     private final int POSITION_BEST50                  = 8 ;

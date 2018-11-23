@@ -36,7 +36,7 @@ public abstract class LineUpObject extends ViewObject {
     }
 
     public <T extends LineUpObject> T swipeToLeftmost() {
-        this.handleNoMatchViewException(
+        this.handleException(
                 () -> this.getRecycleView().perform( scrollToPosition( 0 ) ) ) ;
 
         return (T) this ;
@@ -111,7 +111,8 @@ public abstract class LineUpObject extends ViewObject {
     }
 
     protected ViewInteraction getRecycleView() {
-        return onView( this.getMatcherToFindRecycleView() ) ;
+        return this.handleExceptionWhenMatching(
+                () -> onView( this.getMatcherToFindRecycleView() ) ) ;
     }
 
     protected Matcher<View> getMatcherToFindRecycleView() {

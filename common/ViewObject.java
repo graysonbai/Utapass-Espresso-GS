@@ -4,7 +4,10 @@ import android.support.test.espresso.* ;
 import android.view.View ;
 import android.widget.TextView ;
 
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.ExecuteException;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.NoMatchViewException;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.AmbiguousViewMatcherException;
+
 
 import junit.framework.AssertionFailedError ;
 
@@ -55,7 +58,7 @@ public class ViewObject {
         UtaPassUtil.dprint_tap( this.label() ) ;
     }
 
-    protected void handleNoMatchViewException( ICommand command ) {
+    protected void handleException( ICommand command ) {
         try {
             command.execute() ;
         }
@@ -64,10 +67,38 @@ public class ViewObject {
             this.dprint( e.getMessage() ) ;
             throw new NoMatchViewException( this.label() ) ;
         }
+
+        catch( AmbiguousViewMatcherException e ) {
+            this.dprint( e.getMessage() ) ;
+            throw new AmbiguousViewMatcherException( this.label() ) ;
+        }
+
+        catch( PerformException e ) {
+            this.dprint( e.getMessage() ) ;
+            throw new ExecuteException( this.label() ) ;
+        }
+    }
+
+    protected ViewInteraction handleExceptionWhenMatching( IMatcher command) {
+        try {
+            return command.execute() ;
+        }
+
+        catch( NoMatchingViewException e ) {
+            this.dprint( e.getMessage() ) ;
+            throw new NoMatchViewException( this.label() ) ;
+        }
+
+        catch( AmbiguousViewMatcherException e ) {
+            this.dprint( e.getMessage() ) ;
+            throw new AmbiguousViewMatcherException( this.label() ) ;
+        }
     }
 
     protected boolean isVisible( final Matcher<View> matcher ) {
-        return this.isVisible( onView( matcher ) ) ;
+        return this.isVisible(
+                this.handleExceptionWhenMatching(
+                    () -> onView( matcher ) ) ) ;
     }
 
     protected boolean isVisible( final ViewInteraction view ) {

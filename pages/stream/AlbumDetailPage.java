@@ -34,7 +34,7 @@ import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.endsWith;
 
 
-public class AlbumBasicPage extends BasicPage {
+public class AlbumDetailPage extends BasicPage {
     private final int SHOWMORE_BUTTON_POSITION = 12 ;
     private InternalLineUp lineUp ;
 
@@ -43,7 +43,7 @@ public class AlbumBasicPage extends BasicPage {
     // Thus, use a flag to indicate page is ready at the first time.
     private boolean readyFlag ;
 
-    public AlbumBasicPage() {
+    public AlbumDetailPage() {
         this.label( "AlbumPage" ) ;
         this.retryWhenNotReady( false ) ;
     }
@@ -53,8 +53,8 @@ public class AlbumBasicPage extends BasicPage {
             return ;
         }
 
-        this.title().ready() ;
-        this.description().ready() ;
+        this.title().assertVisible() ;
+        this.description().assertVisible() ;
         this.readyFlag = true ;
     }
 
@@ -136,7 +136,7 @@ public class AlbumBasicPage extends BasicPage {
         }
 
         if( this.lineUp == null ) {
-            this.lineUp = new InternalLineUp() ;
+            this.lineUp = new InternalLineUp( this.label() ) ;
         }
 
         return this.lineUp ;
@@ -147,8 +147,10 @@ public class AlbumBasicPage extends BasicPage {
     }
 
     public class InternalLineUp extends LineUpObject {
-        public InternalLineUp() {
+
+        public InternalLineUp(  String label ) {
             this.setMaxIndexOfLineUpObject( 25 ) ;
+            this.label( label + " > LineUp" ) ;
         }
 
         protected Matcher<View> getMatcherToFindRecycleView() {

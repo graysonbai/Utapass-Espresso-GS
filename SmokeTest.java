@@ -20,6 +20,8 @@ public class SmokeTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
+        this.sleep( 10, "to load Radio Station" ) ;
+
         this.navigator.nowPlayingBar()
                       .songName()
                       .assertVisible() ;
@@ -46,6 +48,16 @@ public class SmokeTest extends BasicTest {
         this.navigator.liveConcertPage()
                       .title()
                       .assertEquals( "KICK OFF VIVA!!! 2017" ) ;
+
+        this.navigator.liveConcertPage()
+                      .video()
+                      .tap() ;
+
+        this.navigator.liveConcertPage()
+                      .arrowButton()
+                      .tap() ;
+
+        this.navigator.streamPage() ;
     }
 
     @Test

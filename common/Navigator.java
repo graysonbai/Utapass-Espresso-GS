@@ -29,9 +29,15 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.stream.LiveConcertPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.NewSongsHitSongsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.SideBarMenu;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.SpotlightPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.ArtistNewReleaseDetailPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.DailyMixDetailPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.NewSongsHitSongsDetailPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.PopularArtistDetailPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.TopChartsDetailPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.DeleteMyUtaConfirmPopupMessage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.SaveMyUtaConfirmPopupMessage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.SaveMyUtaPopupMessage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.WhatsNewDetailPage;
 
 
 public class Navigator {
@@ -76,6 +82,54 @@ public class Navigator {
     private CreatePlayListPage createPlayListPage;
     private AddMusicPage addMusicPage;
     private MyPlayListSongsPage myPlaylistSongsPage;
+    private TopChartsDetailPage topChartsDetailPage;
+    private ArtistNewReleaseDetailPage artistNewReleaseDetailPage;
+    private NewSongsHitSongsDetailPage newSongsHitSongsDetailPage;
+    private PopularArtistDetailPage popularArtistDetailPage ;
+    private WhatsNewDetailPage whatsNewDetailPage;
+    private DailyMixDetailPage dailyMixDetailPage;
+
+    public DailyMixDetailPage dailyMixDetailPage(){
+        if( this.dailyMixDetailPage == null ) {
+            this.dailyMixDetailPage = new DailyMixDetailPage() ;
+        }
+        return this.dailyMixDetailPage.ready() ;
+    }
+
+    public NewSongsHitSongsDetailPage newSongsHitSongsDetailPage(){
+        if( this.newSongsHitSongsDetailPage == null ) {
+            this.newSongsHitSongsDetailPage = new NewSongsHitSongsDetailPage() ;
+        }
+        return this.newSongsHitSongsDetailPage.ready() ;
+    }
+
+    public PopularArtistDetailPage popularArtistDetailPage(){
+        if( this.popularArtistDetailPage == null ) {
+            this.popularArtistDetailPage = new PopularArtistDetailPage() ;
+        }
+        return this.popularArtistDetailPage.ready() ;
+    }
+
+    public WhatsNewDetailPage whatsNewDetailPage(){
+        if( this.whatsNewDetailPage == null ) {
+            this.whatsNewDetailPage = new WhatsNewDetailPage() ;
+        }
+        return this.whatsNewDetailPage.ready() ;
+    }
+
+    public ArtistNewReleaseDetailPage artistNewReleaseDetailPage(){
+        if( this.artistNewReleaseDetailPage == null ) {
+            this.artistNewReleaseDetailPage = new ArtistNewReleaseDetailPage() ;
+        }
+        return this.artistNewReleaseDetailPage.ready() ;
+    }
+
+    public TopChartsDetailPage topChartsDetailPage() {
+        if( this.topChartsDetailPage == null ) {
+            this.topChartsDetailPage = new TopChartsDetailPage() ;
+        }
+        return this.topChartsDetailPage.ready() ;
+    }
 
     public MyPlayListSongsPage myPlayListSongsPage() {
         if( this.myPlaylistSongsPage == null ) {

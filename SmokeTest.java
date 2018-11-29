@@ -38,6 +38,8 @@ public class SmokeTest extends BasicTest {
     public void play_live_event() {
         this.updateTestCaseName() ;
 
+        String randomToken = String.valueOf( System.currentTimeMillis() ) ;
+
         this.navigator.streamPage()
                       .liveModule()
                       .lineUp()
@@ -48,6 +50,22 @@ public class SmokeTest extends BasicTest {
         this.navigator.liveConcertPage()
                       .title()
                       .assertEquals( "KICK OFF VIVA!!! 2017" ) ;
+
+        this.navigator.liveConcertPage()
+                      .messageTextField()
+                      .type( randomToken ) ;
+
+        this.navigator.liveConcertPage()
+                      .sendButton()
+                      .tap() ;
+
+        this.sleep( 5, "wait for message uploaded to chatroom" ) ;
+
+        this.navigator.liveConcertPage()
+                      .chatroom()
+                      .lastMessage()
+                      .content()
+                      .assertEquals( randomToken ) ;
 
         this.navigator.liveConcertPage()
                       .video()

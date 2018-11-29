@@ -12,6 +12,8 @@ public class BasicException extends RuntimeException {
                      .replace( ":", "-" )
                      .replace( "(", "_" )
                      .replace( ")", "_" )
+                     .replace( "=", "_" )
+                     .replace( "'", "" )
         ) ;
     }
 }

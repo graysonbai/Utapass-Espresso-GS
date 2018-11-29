@@ -48,6 +48,10 @@ public class UtaPassUtil {
         UtaPassUtil.dprint( label + " > tap" ) ;
     }
 
+    public static void dprint_type( String label, String text ) {
+        UtaPassUtil.dprint( label + " > type '" + text + "'" ) ;
+    }
+
     private static void _sleep( int seconds ) {
         try {
             Thread.sleep( seconds * 1000 ) ;

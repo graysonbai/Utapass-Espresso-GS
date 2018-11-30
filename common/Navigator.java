@@ -38,8 +38,10 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.DeleteMyUtaConf
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.SaveMyUtaConfirmPopupMessage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.SaveMyUtaPopupMessage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.WhatsNewDetailPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream.page.PopularArtistPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.page.TopChartPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.page.WhatsNewPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream.page.popularartist.FilterMenuPage;
 
 
 public class Navigator {
@@ -92,6 +94,14 @@ public class Navigator {
     private DailyMixDetailPage dailyMixDetailPage;
     private TopChartPage topChartPage;
     private WhatsNewPage whatsNewPage;
+    private PopularArtistPage popularArtistPage;
+
+    public PopularArtistPage popularArtistPage(){
+        if( this.popularArtistPage == null ) {
+            this.popularArtistPage = new PopularArtistPage() ;
+        }
+        return this.popularArtistPage.ready() ;
+    }
 
     public WhatsNewPage whatsNewPage(){
         if( this.whatsNewPage == null ) {

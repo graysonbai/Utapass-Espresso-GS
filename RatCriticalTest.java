@@ -128,6 +128,32 @@ public class RatCriticalTest extends BasicTest {
                       .tap() ;
 
         this.navigator.nowPlayingBar()
-                      .assertPlaying();
+                      .assertPlaying() ;
+    }
+
+    @Test
+    public void play_popular_artist_songs(){
+        this.updateTestCaseName() ;
+
+        this.navigator.streamPage()
+                      .popularArtistModule()
+                      .lineUp().card( 0 )
+                      .playButton().tap() ;
+
+        this.navigator.nowPlayingBar()
+                      .assertPlaying() ;
+
+        this.navigator.streamPage()
+                      .popularArtistModule()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
+
+        this.navigator.popularArtistDetailPage()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .assertVisible() ;
     }
 }

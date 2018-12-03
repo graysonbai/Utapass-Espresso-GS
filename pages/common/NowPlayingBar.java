@@ -43,8 +43,9 @@ public class NowPlayingBar extends ViewObject {
     }
 
     public Matcher<View> matcher() {
-        return allOf( withId( R.id.view_indicator_layout ),
-                      isCompletelyDisplayed() ) ;
+        return UtaPassUtil.withIndex(
+                allOf( withId( R.id.view_indicator_layout ),
+                        isCompletelyDisplayed() ), 0 );
     }
 
     public BasicImage cover() {

@@ -45,17 +45,11 @@ public class AlbumDetailPage extends BasicPage {
 
     public AlbumDetailPage() {
         this.label( "AlbumPage" ) ;
-        this.retryWhenNotReady( false ) ;
     }
 
     public void _ready() {
-        if( this.readyFlag ) {
-            return ;
-        }
-
         this.title().assertVisible() ;
         this.description().assertVisible() ;
-        this.readyFlag = true ;
     }
 
     public BasicImage cover() {

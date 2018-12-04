@@ -28,10 +28,10 @@ import static org.hamcrest.Matchers.endsWith;
 
 public class SideBarMenu extends ViewObject {
     private Matcher<View> matcher ;
+    private InternalLineUp lineUp;
 
     public SideBarMenu() {
         this.matcher = withId( R.id.main_navigation_view ) ;
-
         this.label( "SideBarMenu" ) ;
     }
 
@@ -79,6 +79,13 @@ public class SideBarMenu extends ViewObject {
         return new LazyString(
                 this.label() + " > RemainingQuotas",
                 () -> withId( R.id.synapse_myuta_info_remaining_count ) ) ;
+    }
+
+    public InternalLineUp lineUp() {
+        if (this.lineUp == null) {
+            this.lineUp = new InternalLineUp( this.label() );
+        }
+        return this.lineUp;
     }
 
     public class InternalLineUp extends LineUpObject {

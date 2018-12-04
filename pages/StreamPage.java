@@ -211,7 +211,7 @@ public class StreamPage extends BasicPage {
 
     public BasicButton sideBarButton() {
         if( this.sideBarButton == null ) {
-            this.sideBarButton = new BasicButton( () -> withId( R.id.main_drawer_icon ) ) ;
+            this.sideBarButton = new BasicButton( this.label() + " > SideBarButton" , () -> withId( R.id.main_drawer_icon ) ) ;
         }
         return sideBarButton ;
     }

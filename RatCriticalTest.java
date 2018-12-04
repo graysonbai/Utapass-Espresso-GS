@@ -137,8 +137,10 @@ public class RatCriticalTest extends BasicTest {
 
         this.navigator.streamPage()
                       .popularArtistModule()
-                      .lineUp().card( 0 )
-                      .playButton().tap() ;
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
 
         this.navigator.nowPlayingBar()
                       .assertPlaying() ;
@@ -155,5 +157,72 @@ public class RatCriticalTest extends BasicTest {
                       .card( 0 )
                       .cover()
                       .assertVisible() ;
+    }
+
+    @Test
+    public void play_artist_new_release(){
+        this.updateTestCaseName() ;
+
+        this.navigator.streamPage()
+                      .artistNewReleaseModule()
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
+
+        this.navigator.nowPlayingBar()
+                      .assertPlaying() ;
+
+        this.navigator.streamPage()
+                      .artistNewReleaseModule()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
+
+        this.navigator.whatsNewDetailPage()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .assertVisible() ;
+    }
+
+    @Test
+    public void play_daily_mix(){
+        this.updateTestCaseName() ;
+
+        this.navigator.streamPage()
+                      .dailyMixModule()
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
+    }
+
+    @Test
+    public void verify＿settings_page_high_Quality_Button(){
+        this.updateTestCaseName() ;
+
+        this.navigator.streamPage()
+                      .sideBarButton()
+                      .tap() ;
+
+        this.navigator.sideBarMenu()
+                      .lineUp()
+                      .card( 0 )
+                      .title()
+                      .tap() ;
+
+        this.navigator.settingsPage()
+                      .highQualityButton()
+                      .tap() ;
+
+        this.navigator.settingsPage()
+                      .OkButton()
+                      .tap() ;
+
+        this.navigator.settingsPage()
+                      .highQualityButton()
+                      .tap() ;
     }
 }

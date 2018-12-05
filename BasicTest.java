@@ -79,6 +79,7 @@ public class BasicTest {
         UtaPassUtil.disableScreenShot() ;
         UtaPassUtil.stopNowPlayingBar() ;
         UtaPassUtil.enableScreenShot() ;
+        this.navigator.streamPage().liveModule().lineUp().card( 0 ).playButton().tap() ;
         UtaPassUtil.closeApp() ;
         this.resetTestCaseName() ;
     }

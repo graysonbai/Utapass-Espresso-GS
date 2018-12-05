@@ -116,10 +116,11 @@ public abstract class LineUpObject extends ViewObject {
     }
 
     protected Matcher<View> getMatcherToFindRecycleView() {
-        return allOf( withId( R.id.item_stream_list ),
+        return allOf(
+                withId( R.id.item_stream_list ),
                 hasSibling( allOf(
                         withId( R.id.item_list_title_layout ),
-                        withChild( anyOf(
+                        hasDescendant( anyOf(
                                 withText( this.getTitleOfLineUpInEnglish() ),
                                 withText( this.getTitleOfLineUpInJapanese() ) ) ) ) ) ) ;
     }

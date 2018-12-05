@@ -73,13 +73,32 @@ public class BasicTest {
         this.navigator.streamPage() ;
     }
 
+    private void ensureBackToStreamPage(){
+        this.navigator.streamTab()
+                      .tap() ;
+        this.navigator.libraryTab()
+                      .tap() ;
+        this.navigator.streamTab()
+                      .tap() ;
+    }
+
+    private void ensureCloseNowPlayingBar(){
+        this.ensureBackToStreamPage() ;
+        this.navigator.streamPage()
+                      .liveModule()
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
+    }
+
     @After
     public void tear_down() {
         this.updateTestCaseName() ;
         UtaPassUtil.disableScreenShot() ;
         UtaPassUtil.stopNowPlayingBar() ;
         UtaPassUtil.enableScreenShot() ;
-        this.navigator.streamPage().liveModule().lineUp().card( 0 ).playButton().tap() ;
+        this.ensureCloseNowPlayingBar() ;
         UtaPassUtil.closeApp() ;
         this.resetTestCaseName() ;
     }

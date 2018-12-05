@@ -189,6 +189,21 @@ public class SmokeTest extends BasicTest {
                       .tap() ;
 
         this.navigator.streamPage()
+                      .liveModule()
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
+
+        this.navigator.liveConcertPage()
+                      .video()
+                      .tap() ;
+
+        this.navigator.liveConcertPage()
+                      .arrowButton()
+                      .tap() ;
+
+        this.navigator.streamPage()
                       .newSongsHitSongsModule()
                       .seeAll()
                       .tap() ;
@@ -433,5 +448,13 @@ public class SmokeTest extends BasicTest {
 
         this.navigator.nowPlayingBar()
                       .assertPlaying() ;
+    }
+
+    @Test
+    public void demo(){
+        this.navigator.streamPage().newSongsHitSongsModule().lineUp().card( 0 ).playButton().tap();
+        this.navigator.nowPlayingBar().tap();
+        this.navigator.nowPlayingPage().favoriteButton().tap();
+        this.navigator.nowPlayingPage().playModeButton().tap();
     }
 }

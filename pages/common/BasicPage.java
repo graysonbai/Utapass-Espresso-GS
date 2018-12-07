@@ -9,7 +9,7 @@ public class BasicPage extends ViewObject{
     private StreamTab streamTab ;
     private LibraryTab libraryTab ;
     private SearchTab searchTab ;
-    private NowPlayingBar nowPlayingBar ;
+    private SongNowPlayingBar songNowPlayingBar ;
 
     public StreamTab streamTab() {
         if( this.streamTab == null ) {
@@ -32,11 +32,11 @@ public class BasicPage extends ViewObject{
         return this.searchTab ;
     }
 
-    public NowPlayingBar nowPlayingBar() {
-        if( this.nowPlayingBar == null ) {
-            this.nowPlayingBar = new NowPlayingBar().ready() ;
+    public SongNowPlayingBar nowPlayingBar() {
+        if( this.songNowPlayingBar == null ) {
+            this.songNowPlayingBar = new SongNowPlayingBar().ready() ;
         }
-        return this.nowPlayingBar ;
+        return this.songNowPlayingBar ;
     }
 
     public void menu() {

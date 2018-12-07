@@ -79,11 +79,13 @@ public class SmokeTest extends BasicTest {
                       .messageTextField()
                       .type( randomToken ) ;
 
+        this.sleep( 3, "stable reason for tapping 'send' button" ) ;
+
         this.navigator.liveConcertPage()
                       .sendButton()
                       .tap() ;
 
-        this.sleep( 5, "wait for message uploaded to chatroom" ) ;
+        this.sleep( 3, "stable reason for uploading message to chatroom" ) ;
 
         this.navigator.liveConcertPage()
                       .chatroom()

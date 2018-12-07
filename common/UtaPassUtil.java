@@ -22,7 +22,7 @@ import com.kddi.android.UtaPass.main.MainActivity;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.BasicException;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.NoMatchViewException;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.NotReadyException;
-import com.kddi.android.UtaPass.sqa_espresso.pages.common.NowPlayingBar;
+import com.kddi.android.UtaPass.sqa_espresso.pages.common.SongNowPlayingBar;
 import com.squareup.spoon.Spoon;
 
 import org.hamcrest.* ;
@@ -184,26 +184,6 @@ public class UtaPassUtil {
     public static void closeApp() {
         UtaPassUtil.getUiDeviceInstance().pressHome() ;
         UtaPassUtil.sleep( 5, "for launching next case" ) ;
-    }
-
-    public static void stopNowPlayingBar() {
-        NowPlayingBar nowPlayingBar = new NowPlayingBar() ;
-        if( nowPlayingBar.isVisible() ) {
-            if( nowPlayingBar.pauseButton().isVisible() ) {
-                nowPlayingBar.pause() ;
-            }
-        }
-    }
-
-    // Workaround
-    public static void tapOkButtonInAuidSettingPage() {
-        try {
-            UtaPassUtil.getUiDeviceInstance().findObject(
-                    new UiSelector().instance(0).className("android.widget.Button")).click();
-
-        } catch( UiObjectNotFoundException e ) {
-            UtaPassUtil.dprint( e.getMessage() ) ;
-        }
     }
 
     public static UiDevice getUiDeviceInstance() {

@@ -96,9 +96,8 @@ public class BasicTest {
     public void tear_down() {
         this.updateTestCaseName() ;
         UtaPassUtil.disableScreenShot() ;
-        UtaPassUtil.stopNowPlayingBar() ;
-        UtaPassUtil.enableScreenShot() ;
         this.ensureCloseNowPlayingBar() ;
+        UtaPassUtil.enableScreenShot() ;
         UtaPassUtil.closeApp() ;
         this.resetTestCaseName() ;
     }

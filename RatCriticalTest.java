@@ -24,7 +24,7 @@ public class RatCriticalTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
 
         this.navigator.streamPage()
@@ -52,7 +52,7 @@ public class RatCriticalTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
 
         this.navigator.streamPage()
@@ -80,7 +80,7 @@ public class RatCriticalTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
 
         this.navigator.streamPage()
@@ -113,7 +113,7 @@ public class RatCriticalTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
 
         this.navigator.topChartPage()
@@ -127,7 +127,7 @@ public class RatCriticalTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 
@@ -142,7 +142,7 @@ public class RatCriticalTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
 
         this.navigator.streamPage()
@@ -170,7 +170,7 @@ public class RatCriticalTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
 
         this.navigator.streamPage()

@@ -30,17 +30,10 @@ public class ListenWithModule extends ViewObject {
 
     public static String titleInEnglish = "Listen with" ;
     public static String titleInJapanese = "Listen with" ;
-    public static String label = "Stream > ListenWithModule" ;
     private InternalLineUp lineup ;
 
-    public ListenWithModule() {
-        this.retryWhenNotReady( false ) ;
-    }
-
-    @Override
-    public void _ready() {
-        this.lineUp().ready() ;
-        this.lineUp().card( 0 ).cover().ready() ;
+    public ListenWithModule( String label ) {
+        this.label( label + " > ListenWithModule" ) ;
     }
 
     public Matcher<View> matcher() {
@@ -51,7 +44,7 @@ public class ListenWithModule extends ViewObject {
     }
 
     public LazyString title() {
-        return new LazyString( ListenWithModule.label + " > Title",
+        return new LazyString( this.label() + " > Title",
                 () -> allOf(
                         withId( R.id.item_list_title ),
                         isDescendantOfA( this.matcher() ) ) ) ;
@@ -59,15 +52,15 @@ public class ListenWithModule extends ViewObject {
 
     public InternalLineUp lineUp() {
         if( this.lineup == null ) {
-            this.lineup = new InternalLineUp() ;
+            this.lineup = new InternalLineUp( this.label() ) ;
         }
         return this.lineup ;
     }
 
     public class InternalLineUp extends LineUpObject {
 
-        public InternalLineUp() {
-            this.addLabel( ListenWithModule.label ) ;
+        public InternalLineUp( String label ) {
+            this.label( label + " > LineUp" ) ;
         }
 
         protected String getTitleOfLineUpInEnglish() {
@@ -114,7 +107,7 @@ public class ListenWithModule extends ViewObject {
                                     this.getMatcherToCountMaxIndexOfWindow(),
                                     indexInWindow ) ) ) ) ;
 
-            card.title( label + " > Subitle",
+            card.subtitle( label + " > SubTitle",
                     () -> allOf(
                             withId( R.id.item_mybox_follow_count ),
                             isDescendantOfA( UtaPassUtil.withIndex(

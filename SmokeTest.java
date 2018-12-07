@@ -22,16 +22,40 @@ public class SmokeTest extends BasicTest {
 
         this.sleep( 10, "to load Radio Station" ) ;
 
-        this.navigator.nowPlayingBar()
-                      .songName()
+        this.navigator.radioNowPlayingBar()
+                      .programName()
                       .assertVisible() ;
 
-        this.navigator.nowPlayingBar()
-                      .artistName()
+        this.navigator.radioNowPlayingBar()
+                      .djName()
                       .assertVisible() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.radioNowPlayingBar()
                       .assertPlaying() ;
+    }
+
+    @Test
+    public void play_listen_with() {
+        this.updateTestCaseName() ;
+
+        this.navigator.streamPage()
+                      .listenWithModule()
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
+
+        this.navigator.listenWithNowPlayingBar()
+                      .assertFollowing() ;
+
+        this.navigator.listenWithNowPlayingBar()
+                      .stopFollowingButton()
+                      .tap() ;
+
+        this.sleep( 5, "stable reason for closing ListenWithNowPlayingBar" ) ;
+
+        this.navigator.listenWithNowPlayingBar()
+                      .assertInvisible() ;
     }
 
     @Test
@@ -89,7 +113,7 @@ public class SmokeTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 
@@ -104,7 +128,7 @@ public class SmokeTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 
@@ -119,7 +143,7 @@ public class SmokeTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 
@@ -136,7 +160,7 @@ public class SmokeTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 
@@ -151,7 +175,7 @@ public class SmokeTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 
@@ -166,7 +190,7 @@ public class SmokeTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 
@@ -181,10 +205,10 @@ public class SmokeTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .pauseButton()
                       .tap() ;
 
@@ -214,7 +238,7 @@ public class SmokeTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 
@@ -229,7 +253,7 @@ public class SmokeTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 
@@ -278,20 +302,20 @@ public class SmokeTest extends BasicTest {
                       .card( 0 )
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
 
         this.navigator.songsPage()
                       .lineUp()
                       .card( 0 )
                       .songName()
-                      .assertEquals( this.navigator.nowPlayingBar().songName() ) ;
+                      .assertEquals( this.navigator.songNowPlayingBar().songName() ) ;
 
         this.navigator.songsPage()
                       .lineUp()
                       .card( 0 )
                       .artistName()
-                      .assertEquals( this.navigator.nowPlayingBar().artistName() ) ;
+                      .assertEquals( this.navigator.songNowPlayingBar().artistName() ) ;
     }
 
     @Test
@@ -316,7 +340,7 @@ public class SmokeTest extends BasicTest {
                       .song( 0 )
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 
@@ -355,7 +379,7 @@ public class SmokeTest extends BasicTest {
                       .shuffleAllButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 
@@ -398,7 +422,7 @@ public class SmokeTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 
@@ -446,7 +470,7 @@ public class SmokeTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 }

@@ -21,7 +21,7 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 
@@ -34,15 +34,15 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .songName()
                       .assertVisible() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .artistName()
                       .assertVisible() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 
@@ -69,7 +69,7 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 
@@ -82,7 +82,7 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 
@@ -95,7 +95,7 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 
@@ -110,7 +110,7 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 
@@ -123,7 +123,7 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 
@@ -136,7 +136,7 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 
@@ -149,10 +149,10 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .pauseButton()
                       .tap() ;
 
@@ -167,7 +167,7 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 
@@ -180,7 +180,7 @@ public class StreamRatTest extends BasicTest {
                       .playButton()
                       .tap() ;
 
-        this.navigator.nowPlayingBar()
+        this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
 }

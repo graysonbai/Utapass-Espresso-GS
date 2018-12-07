@@ -5,8 +5,10 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.SearchPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.SettingsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.StreamPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.LibraryTab;
-import com.kddi.android.UtaPass.sqa_espresso.pages.common.NowPlayingBar;
+import com.kddi.android.UtaPass.sqa_espresso.pages.common.ListenWithNowPlayingBar;
+import com.kddi.android.UtaPass.sqa_espresso.pages.common.RadioNowPlayingBar;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.SearchTab;
+import com.kddi.android.UtaPass.sqa_espresso.pages.common.SongNowPlayingBar;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.StreamTab;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.AlbumsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.ArtistsPage;
@@ -41,7 +43,6 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.WhatsNewDetailP
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.page.PopularArtistPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.page.TopChartPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.page.WhatsNewPage;
-import com.kddi.android.UtaPass.sqa_espresso.pages.stream.page.popularartist.FilterMenuPage;
 
 
 public class Navigator {
@@ -66,7 +67,10 @@ public class Navigator {
     private MyUtaPage myUtaPage ;
     private SongMoreActionMenu songMoreActionMenu ;
 
-    private NowPlayingBar nowPlayingBar ;
+    private SongNowPlayingBar songNowPlayingBar ;
+    private RadioNowPlayingBar radioNowPlayingBar ;
+    private ListenWithNowPlayingBar listenWithNowPlayingBar ;
+
     private StreamTab streamTab ;
     private LibraryTab libraryTab ;
     private SearchTab searchTab ;
@@ -278,11 +282,25 @@ public class Navigator {
         return this.songMoreActionMenu.ready() ;
     }
 
-    public NowPlayingBar nowPlayingBar() {
-        if( this.nowPlayingBar == null ) {
-            this.nowPlayingBar = new NowPlayingBar() ;
+    public SongNowPlayingBar songNowPlayingBar() {
+        if( this.songNowPlayingBar == null ) {
+            this.songNowPlayingBar = new SongNowPlayingBar() ;
         }
-        return this.nowPlayingBar.ready() ;
+        return this.songNowPlayingBar.ready() ;
+    }
+
+    public RadioNowPlayingBar radioNowPlayingBar() {
+        if( this.radioNowPlayingBar == null ) {
+            this.radioNowPlayingBar = new RadioNowPlayingBar() ;
+        }
+        return this.radioNowPlayingBar.ready() ;
+    }
+
+    public ListenWithNowPlayingBar listenWithNowPlayingBar() {
+        if( this.listenWithNowPlayingBar == null ) {
+            this.listenWithNowPlayingBar = new ListenWithNowPlayingBar() ;
+        }
+        return this.listenWithNowPlayingBar ;
     }
 
     public StreamTab streamTab() {

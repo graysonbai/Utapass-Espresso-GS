@@ -160,8 +160,13 @@ public class StreamPage extends BasicPage {
     }
 
     public void swipeToRadioModule() {
-        this.swipeToModuleObject( this.getPosition( this.POSITION_LIVE ) ) ;
+        this.swipeToModuleObject( this.getPosition( this.POSITION_LISTEN_WITH ) ) ;
         this.swipeToModuleObject( this.getPosition( this.POSITION_RADIO ) ) ;
+    }
+
+    public void swipeToListenWithModule() {
+        this.swipeToModuleObject( this.getPosition( this.POSITION_LIVE ) ) ;
+        this.swipeToModuleObject( this.getPosition( this.POSITION_LISTEN_WITH ) ) ;
     }
 
     public void swipeToLiveModule() {
@@ -224,6 +229,11 @@ public class StreamPage extends BasicPage {
     public RadioModule radioModule() {
         this.swipeToRadioModule() ;
         return new RadioModule( this.label() ) ;
+    }
+
+    public ListenWithModule listenWithModule() {
+        this.swipeToListenWithModule() ;
+        return new ListenWithModule( this.label() ) ;
     }
 
     public LiveModule liveModule() {

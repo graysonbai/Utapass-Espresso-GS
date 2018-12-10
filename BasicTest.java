@@ -90,6 +90,8 @@ public class BasicTest {
                       .card( 0 )
                       .playButton()
                       .tap() ;
+
+        this.navigator.liveConcertPage() ;
     }
 
     @After

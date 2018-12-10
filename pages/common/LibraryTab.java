@@ -7,6 +7,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId ;
 
 public class LibraryTab extends BasicButton {
     public LibraryTab() {
-        super( () -> withId( R.id.navigation_library ) ) ;
+        super( "LibraryTab", () -> withId( R.id.navigation_library ) ) ;
     }
 }

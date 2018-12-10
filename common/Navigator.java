@@ -6,6 +6,7 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.SettingsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.StreamPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.LibraryTab;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.ListenWithNowPlayingBar;
+import com.kddi.android.UtaPass.sqa_espresso.pages.common.NowPlayingPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.RadioNowPlayingBar;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.SearchTab;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.SongNowPlayingBar;
@@ -99,6 +100,14 @@ public class Navigator {
     private TopChartPage topChartPage;
     private WhatsNewPage whatsNewPage;
     private PopularArtistPage popularArtistPage;
+    private NowPlayingPage nowPlayingPage;
+
+    public NowPlayingPage nowPlayingPage(){
+        if( this.nowPlayingPage == null ) {
+            this.nowPlayingPage = new NowPlayingPage() ;
+        }
+        return this.nowPlayingPage.ready() ;
+    }
 
     public PopularArtistPage popularArtistPage(){
         if( this.popularArtistPage == null ) {

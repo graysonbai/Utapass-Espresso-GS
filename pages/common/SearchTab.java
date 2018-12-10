@@ -7,6 +7,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId ;
 
 public class SearchTab extends BasicButton {
     public SearchTab() {
-        super( () -> withId( R.id.navigation_search ) ) ;
+        super( "SearchTab", () -> withId( R.id.navigation_search ) ) ;
     }
 }

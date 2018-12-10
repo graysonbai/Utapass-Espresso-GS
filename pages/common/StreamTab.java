@@ -7,6 +7,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId ;
 
 public class StreamTab extends BasicButton {
     public StreamTab() {
-        super( () -> withId( R.id.navigation_stream ) ) ;
+        super( "StreamTab", () -> withId( R.id.navigation_stream ) ) ;
     }
 }

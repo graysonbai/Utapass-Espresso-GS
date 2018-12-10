@@ -16,6 +16,10 @@ public class ListenWithNowPlayingBar extends BasicNowPlayingBar {
         this.label( "ListenWithNowPlayingBar" ) ;
     }
 
+    public void _ready() {
+        this.stopFollowingButton().assertVisible() ;
+    }
+
     public LazyString songName() {
         return new LazyString( String.format( "%s > SongName", this.label() ),
                 () -> allOf( withId( R.id.indicator_track_title ),

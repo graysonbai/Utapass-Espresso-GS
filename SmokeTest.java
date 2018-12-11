@@ -132,6 +132,19 @@ public class SmokeTest extends BasicTest {
 
         this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
+
+        this.navigator.songNowPlayingBar()
+                      .tap();
+
+        this.navigator.nowPlayingPage()
+                      .playListDetailButton()
+                      .tap();
+
+        this.navigator.dailyMixDetailPage()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .assertVisible();
     }
 
     @Test

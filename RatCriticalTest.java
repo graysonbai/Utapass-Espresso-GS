@@ -225,4 +225,69 @@ public class RatCriticalTest extends BasicTest {
                       .highQualityButton()
                       .tap() ;
     }
+
+    @Test
+    public void play_song_in_library_songs_page(){
+        this.updateTestCaseName() ;
+
+        this.navigator.libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .songsCategory()
+                      .tap() ;
+
+        this.navigator.songsPage()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                      .assertPlaying() ;
+    }
+
+    @Test
+    public void play_video_in_library_videos_page(){
+        this.updateTestCaseName()  ;
+
+        this.navigator.libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .videosCategory()
+                      .tap() ;
+
+        this.navigator.videosPage()
+                      .playButton()
+                      .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                      .assertPlaying() ;
+    }
+
+    @Test
+    public void play_album_song_in_library_album_page(){
+        this.updateTestCaseName()  ;
+
+        this.navigator.libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .albumsCategory()
+                      .tap() ;
+
+        this.navigator.albumsPage()
+                      .albumsLineUp()
+                      .album( 0 )
+                      .tap() ;
+
+        this.navigator.albumInfoPage()
+                      .songsLineUp()
+                      .song( 0 )
+                      .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                      .assertPlaying() ;
+    }
 }

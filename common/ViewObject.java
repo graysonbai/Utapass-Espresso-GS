@@ -5,8 +5,8 @@ import android.view.View ;
 import android.widget.TextView ;
 
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.ExecuteException;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.MultipleMatchViewException;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.NoMatchViewException;
-import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.AmbiguousViewMatcherException;
 
 
 import junit.framework.AssertionFailedError ;
@@ -70,7 +70,7 @@ public class ViewObject {
 
         catch( AmbiguousViewMatcherException e ) {
             this.dprint( e.getMessage() ) ;
-            throw new AmbiguousViewMatcherException( this.label() ) ;
+            throw new MultipleMatchViewException( this.label() ) ;
         }
 
         catch( PerformException e ) {
@@ -91,7 +91,7 @@ public class ViewObject {
 
         catch( AmbiguousViewMatcherException e ) {
             this.dprint( e.getMessage() ) ;
-            throw new AmbiguousViewMatcherException( this.label() ) ;
+            throw new MultipleMatchViewException( this.label() ) ;
         }
     }
 

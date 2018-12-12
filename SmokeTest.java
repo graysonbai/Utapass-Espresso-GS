@@ -16,7 +16,7 @@ public class SmokeTest extends BasicTest {
         this.navigator.streamPage()
                       .radioModule()
                       .lineUp()
-                      .card( 0 )
+                      .lastCard()
                       .playButton()
                       .tap() ;
 

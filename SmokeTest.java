@@ -35,30 +35,6 @@ public class SmokeTest extends BasicTest {
     }
 
     @Test
-    public void play_listen_with() {
-        this.updateTestCaseName() ;
-
-        this.navigator.streamPage()
-                      .listenWithModule()
-                      .lineUp()
-                      .card( 0 )
-                      .playButton()
-                      .tap() ;
-
-        this.navigator.listenWithNowPlayingBar()
-                      .assertFollowing() ;
-
-        this.navigator.listenWithNowPlayingBar()
-                      .stopFollowingButton()
-                      .tap() ;
-
-        this.sleep( 5, "stable reason for closing ListenWithNowPlayingBar" ) ;
-
-        this.navigator.listenWithNowPlayingBar()
-                      .assertInvisible() ;
-    }
-
-    @Test
     public void play_live_event() {
         this.updateTestCaseName() ;
 

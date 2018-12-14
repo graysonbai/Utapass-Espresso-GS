@@ -200,33 +200,6 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
-    public void verify＿settings_page_high_Quality_Button(){
-        this.updateTestCaseName() ;
-
-        this.navigator.streamPage()
-                      .sideBarButton()
-                      .tap() ;
-
-        this.navigator.sideBarMenu()
-                      .lineUp()
-                      .card( 0 )
-                      .title()
-                      .tap() ;
-
-        this.navigator.settingsPage()
-                      .highQualityButton()
-                      .tap() ;
-
-        this.navigator.settingsPage()
-                      .OkButton()
-                      .tap() ;
-
-        this.navigator.settingsPage()
-                      .highQualityButton()
-                      .tap() ;
-    }
-
-    @Test
     public void play_song_in_library_songs_page(){
         this.updateTestCaseName() ;
 
@@ -289,5 +262,45 @@ public class RatCriticalTest extends BasicTest {
 
         this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
+    }
+
+    @Test
+    public void play_unregister_song_in_playhistory_songs_panel() {
+        this.updateTestCaseName() ;
+
+        this.navigator.streamPage()
+                      .popularArtistModule()
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                      .assertPlaying();
+
+        this.navigator.libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .playHistorySeeAllButton()
+                      .tap() ;
+
+        this.navigator.playHistoryPage()
+                      .songsPanelButton()
+                      .tap() ;
+
+        this.navigator.playHistoryPage()
+                      .SongsPanel()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
+
+        this.navigator.playHistoryPage()
+                      .SongsPanel()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .assertVisible();
     }
 }

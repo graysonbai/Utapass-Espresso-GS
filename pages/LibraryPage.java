@@ -121,4 +121,10 @@ public class LibraryPage extends BasicPage{
             }
         } ;
     }
+
+    public BasicButton playHistorySeeAllButton() {
+        return new BasicButton(
+                this.label() + " > PlayHistorySeeAllButton",
+                () -> withId( R.id.library_section_history_see_all ) );
+    }
 }

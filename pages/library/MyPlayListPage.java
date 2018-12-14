@@ -33,6 +33,7 @@ public class MyPlayListPage extends BasicPage{
 
     public void _ready() {
         this.createNowButton().assertVisible();
+        UtaPassUtil.sleep( 30, "for my playlist synced" ) ;
     }
 
     public BasicButton createNowButton(){

@@ -15,6 +15,7 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.library.AlbumsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.ArtistsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.MyPlayListPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.MyUtaPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.PlayHistoryPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.SongsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.VideosPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.FavoritePage;
@@ -101,6 +102,14 @@ public class Navigator {
     private WhatsNewPage whatsNewPage;
     private PopularArtistPage popularArtistPage;
     private NowPlayingPage nowPlayingPage;
+    private PlayHistoryPage playHistoryPage;
+
+    public PlayHistoryPage playHistoryPage(){
+        if( this.playHistoryPage == null ) {
+            this.playHistoryPage = new PlayHistoryPage() ;
+        }
+        return this.playHistoryPage.ready() ;
+    }
 
     public NowPlayingPage nowPlayingPage(){
         if( this.nowPlayingPage == null ) {

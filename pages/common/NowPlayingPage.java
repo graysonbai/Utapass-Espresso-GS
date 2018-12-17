@@ -33,6 +33,14 @@ public class NowPlayingPage extends ViewObject {
                         isCompletelyDisplayed() ), 0 );
     }
 
+    public BasicButton arrowButton(){
+        return new BasicButton(
+                this.label() + "ArrowButton",
+                () -> allOf(
+                        withId( R.id.main_drawer_icon ),
+                        isDescendantOfA( withId( R.id.main_toolbar ) ) ) ) ;
+    }
+
     public BasicButton playListDetailButton() {
         return new BasicButton(
                 this.label() + " > playListDetailButton",

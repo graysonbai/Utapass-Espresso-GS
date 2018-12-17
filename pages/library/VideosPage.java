@@ -8,6 +8,7 @@ import com.kddi.android.UtaPass.sqa_espresso.common.BasicImage;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
+import com.kddi.android.UtaPass.sqa_espresso.common.UserStatus;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IArtistName;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ICover;
@@ -26,6 +27,13 @@ public class VideosPage extends BasicPage {
 
     public VideosPage() {
         this.label( "VideosPage" ) ;
+    }
+
+    public void _ready(){
+        if( ! UserStatus.isLibrarySongSynced ) {
+            UtaPassUtil.sleep( 30, "for local song synced" ) ;
+            UserStatus.isLibrarySongSynced = true ;
+        }
     }
 
     public BasicButton playButton() {

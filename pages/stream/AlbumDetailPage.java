@@ -67,7 +67,13 @@ public class AlbumDetailPage extends BasicPage {
     public BasicButton favoriteButton() {
         return new BasicButton(
                 this.label() + " > favorite",
-                () -> withId( R.id.detail_editor_like_layout ) ) ;
+                () -> withId( R.id.detail_editor_like_layout ) ){
+
+            public void tap(){
+                super.tap();
+                UtaPassUtil.sleep( 5 , "wait for action take effect" );
+            }
+        } ;
     }
 
     public LazyString description() {

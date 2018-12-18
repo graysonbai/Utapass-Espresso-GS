@@ -6,4 +6,5 @@ public class ArtistNewReleaseDetailPage extends AlbumDetailPage {
     public ArtistNewReleaseDetailPage(){
         this.label( "ArtistNewReleaseDetailPage" );
     }
+
 }

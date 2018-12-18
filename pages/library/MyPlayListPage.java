@@ -41,7 +41,7 @@ public class MyPlayListPage extends BasicPage{
     }
 
     public BasicButton createNowButton(){
-        return new BasicButton( this.label() + "> CreatNowButton" ,
+        return new BasicButton( this.label() + "> CreateNowButton" ,
                 () -> allOf(
                         anyOf( withId( R.id.my_playlist_fab_add_playlist ),
                                withId( R.id.view_no_my_playlist_add ) ),

@@ -11,6 +11,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.endsWith;
 
 public class PlayHistoryPage extends BasicPage {
@@ -23,7 +24,9 @@ public class PlayHistoryPage extends BasicPage {
                 this.label() + " > playlistsPanel",
                 () -> allOf(
                         withClassName( endsWith( "TextView" ) ),
-                        withText( "Playlists" ),
+                        anyOf(
+                                withText( "Playlists" ),
+                                withText( "プレイリスト" ) ),
                         isDescendantOfA( withId( R.id.basetab_tabs ) ) ) );
     }
 
@@ -32,7 +35,9 @@ public class PlayHistoryPage extends BasicPage {
                 this.label() + " > songsPanel",
                 () -> allOf(
                         withClassName( endsWith( "TextView" ) ),
-                        withText( "Songs" ),
+                        anyOf(
+                                withText( "Songs" ),
+                                withText("曲") ),
                         isDescendantOfA( withId( R.id.basetab_tabs ) ) ) );
     }
 

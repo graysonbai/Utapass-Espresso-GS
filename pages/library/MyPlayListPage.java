@@ -8,6 +8,7 @@ import com.kddi.android.UtaPass.sqa_espresso.common.BasicImage;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
+import com.kddi.android.UtaPass.sqa_espresso.common.UserStatus;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ICover;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IPlayButton;
@@ -33,7 +34,10 @@ public class MyPlayListPage extends BasicPage{
 
     public void _ready() {
         this.createNowButton().assertVisible();
-        UtaPassUtil.sleep( 30, "for my playlist synced" ) ;
+        if( !UserStatus.isLibrarySongSynced ){
+            UtaPassUtil.sleep( 30, "for local song synced" );
+            UserStatus.isLibrarySongSynced = true;
+        }
     }
 
     public BasicButton createNowButton(){

@@ -28,7 +28,6 @@ public class SongsPanel extends BasicPage {
 
     public SongsPanel(){
         this.label( "SongsPanel" );
-        this.lineUp().card( 0 ).cover().assertVisible();
     }
 
     public void _ready(){

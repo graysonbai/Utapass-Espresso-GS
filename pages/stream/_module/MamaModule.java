@@ -29,7 +29,7 @@ import static org.hamcrest.Matchers.anyOf;
 public class MamaModule extends ViewObject {
 
     public static String titleInEnglish = "Mnet Asian Music Awards" ;
-    public static String titleInJapanese = "Mnet Asian Music Awards 特集" ;
+    public static String titleInJapanese = "Mnet Asian Music Awards特集" ;
     private InternalLineUp lineup ;
 
     public MamaModule( String label ) {

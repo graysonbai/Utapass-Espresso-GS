@@ -406,4 +406,160 @@ public class RatCriticalTest extends BasicTest {
                       .title()
                       .assertNotEquals( artistTitleName ) ;
     }
+
+    @Test
+    public void ensure_play_status_in_stream_now_playing_page(){
+        this.updateTestCaseName() ;
+
+        this.navigator.streamPage()
+                      .popularArtistModule()
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                      .assertPlaying() ;
+
+        this.navigator.songNowPlayingBar()
+                      .tap() ;
+
+        this.navigator.streamNowPlayingPage()
+                      .nextButton()
+                      .assertVisible() ;
+
+        this.navigator.streamNowPlayingPage()
+                      .pauseButton()
+                      .assertVisible() ;
+
+        this.navigator.streamNowPlayingPage()
+                      .pauseButton()
+                      .tap() ;
+
+        this.navigator.streamNowPlayingPage()
+                      .playButton()
+                      .assertVisible() ;
+
+        this.navigator.streamNowPlayingPage()
+                      .arrowButton()
+                      .tap() ;
+    }
+
+    @Test
+    public void ensure_play_next_song_in_stream_now_playing_page(){
+        this.updateTestCaseName() ;
+
+        this.navigator.streamPage()
+                      .popularArtistModule()
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                      .assertPlaying() ;
+
+        this.navigator.songNowPlayingBar()
+                      .tap() ;
+
+        String songName = this.navigator.streamNowPlayingPage()
+                      .songTitle()
+                      .string() ;
+
+        this.navigator.streamNowPlayingPage()
+                      .nextButton()
+                      .tap() ;
+
+        this.navigator.streamNowPlayingPage()
+                      .songTitle()
+                      .assertNotEquals( songName ) ;
+
+        this.navigator.streamNowPlayingPage()
+                      .arrowButton()
+                      .tap() ;
+    }
+
+    @Test
+    public void ensure_play_status_in_local_now_playing_page(){
+        this.updateTestCaseName() ;
+
+        this.navigator.libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .songsCategory()
+                      .tap() ;
+
+        this.navigator.songsPage()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                      .assertPlaying() ;
+
+        this.navigator.songNowPlayingBar()
+                      .tap() ;
+
+        this.navigator.localNowPlayingPage()
+                      .nextButton()
+                      .assertVisible() ;
+
+        this.navigator.localNowPlayingPage()
+                      .pauseButton()
+                      .assertVisible() ;
+
+        this.navigator.localNowPlayingPage()
+                      .pauseButton()
+                      .tap() ;
+
+        this.navigator.localNowPlayingPage()
+                      .playButton()
+                      .assertVisible() ;
+
+        this.navigator.localNowPlayingPage()
+                      .arrowButton()
+                      .tap() ;
+    }
+
+    @Test
+    public void ensure_play_next_song_in_local_now_playing_page(){
+        this.updateTestCaseName() ;
+
+        this.navigator.libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .songsCategory()
+                      .tap() ;
+
+        this.navigator.songsPage()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                      .assertPlaying() ;
+
+        this.navigator.songNowPlayingBar()
+                      .tap() ;
+
+        String localSongName = this.navigator.localNowPlayingPage()
+                      .songTitle()
+                      .string() ;
+
+        this.navigator.localNowPlayingPage()
+                      .nextButton()
+                      .tap() ;
+
+        this.navigator.localNowPlayingPage()
+                      .songTitle()
+                      .assertNotEquals( localSongName ) ;
+
+        this.navigator.localNowPlayingPage()
+                      .arrowButton()
+                      .tap() ;
+    }
 }

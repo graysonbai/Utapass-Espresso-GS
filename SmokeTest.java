@@ -112,7 +112,7 @@ public class SmokeTest extends BasicTest {
         this.navigator.songNowPlayingBar()
                       .tap();
 
-        this.navigator.nowPlayingPage()
+        this.navigator.streamNowPlayingPage()
                       .playListDetailButton()
                       .tap();
 

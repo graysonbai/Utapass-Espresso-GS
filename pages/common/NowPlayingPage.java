@@ -23,8 +23,6 @@ public class NowPlayingPage extends ViewObject {
 
     public void _ready(){
         this.favoriteButton().assertVisible();
-        this.playListDetailButton().assertVisible();
-        this.myUtaButton().assertVisible();
     }
 
     public Matcher<View> matcher() {
@@ -41,12 +39,12 @@ public class NowPlayingPage extends ViewObject {
                         isDescendantOfA( withId( R.id.main_toolbar ) ) ) ) ;
     }
 
-    public BasicButton playListDetailButton() {
-        return new BasicButton(
-                this.label() + " > playListDetailButton",
+    public LazyString songTitle(){
+        return new LazyString(
+                this.label() + "SongTitle",
                 () -> allOf(
-                        UtaPassUtil.withIndex( withId( R.id.indicator_expand_detail_layout ), 0 ),
-                        isDescendantOfA( withId( R.id.indicator_expand_action_layout ) ) ) );
+                        withId( R.id.nowplaying_track_title ),
+                        isDescendantOfA( withId( R.id.nowplaying_track_info_layout ) ) ) );
     }
 
     public BasicButton lyricsButton() {
@@ -58,7 +56,8 @@ public class NowPlayingPage extends ViewObject {
     public BasicButton playButton() {
         return new BasicButton(
                 this.label() + " > PlayButton",
-                () -> allOf( withId( R.id.media_control_play_pause ),
+                () -> allOf(
+                        UtaPassUtil.withDrawable( R.drawable.btn_play ),
                         isDescendantOfA( this.matcher() ) ) ) ;
     }
 
@@ -73,7 +72,7 @@ public class NowPlayingPage extends ViewObject {
         return new BasicButton(
                 this.label() + " > NextButton",
                 () -> allOf(
-                        withId( R.id.media_control_next ),
+                        UtaPassUtil.withDrawable( R.drawable.btn_next ),
                         isDescendantOfA( this.matcher() ) ) ) ;
     }
 
@@ -82,14 +81,6 @@ public class NowPlayingPage extends ViewObject {
                 this.label() + " > FavoriteButton",
                 () -> allOf(
                         UtaPassUtil.withIndex( withId( R.id.media_action_bar_like_layout ), 0  ),
-                        isDescendantOfA( withId( R.id.nowplaying_media_action_bar ) ) ) );
-    }
-
-    public BasicButton myUtaButton(){
-        return new BasicButton(
-                this.label() + " > MyUtaButton",
-                () -> allOf(
-                        UtaPassUtil.withIndex( withId( R.id.media_action_bar_my_uta_layout ), 0  ),
                         isDescendantOfA( withId( R.id.nowplaying_media_action_bar ) ) ) );
     }
 
@@ -103,17 +94,5 @@ public class NowPlayingPage extends ViewObject {
                 return new LazyString( this.label(), () -> UtaPassUtil.withIndex( withId(R.id.media_action_bar_repeat_mode_text), 0 ) ) ;
             }
         };
-    }
-
-    public BasicButton castButton(){
-        return new BasicButton(
-                this.label() + " > CastButton",
-                () -> allOf(
-                        UtaPassUtil.withIndex( withId( R.id.media_action_bar_cast_layout ), 0  ),
-                        isDescendantOfA( withId( R.id.nowplaying_media_action_bar ) ) ) );
-    }
-
-    public void assertPlaying() {
-        this.pauseButton().ready() ;
     }
 }

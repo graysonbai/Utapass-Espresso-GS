@@ -6,10 +6,12 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.SettingsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.StreamPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.LibraryTab;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.ListenWithNowPlayingBar;
+import com.kddi.android.UtaPass.sqa_espresso.pages.common.LocalNowPlayingPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.NowPlayingPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.RadioNowPlayingBar;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.SearchTab;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.SongNowPlayingBar;
+import com.kddi.android.UtaPass.sqa_espresso.pages.common.StreamNowPlayingPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.StreamTab;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.AlbumsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.ArtistsPage;
@@ -103,6 +105,22 @@ public class Navigator {
     private PopularArtistPage popularArtistPage;
     private NowPlayingPage nowPlayingPage;
     private PlayHistoryPage playHistoryPage;
+    private LocalNowPlayingPage localNowPlayingPage;
+    private StreamNowPlayingPage streamNowPlayingPage;
+
+    public StreamNowPlayingPage streamNowPlayingPage(){
+        if( this.streamNowPlayingPage == null ) {
+            this.streamNowPlayingPage = new StreamNowPlayingPage() ;
+        }
+        return this.streamNowPlayingPage.ready() ;
+    }
+
+    public LocalNowPlayingPage localNowPlayingPage(){
+        if( this.localNowPlayingPage == null ) {
+            this.localNowPlayingPage = new LocalNowPlayingPage() ;
+        }
+        return this.localNowPlayingPage.ready() ;
+    }
 
     public PlayHistoryPage playHistoryPage(){
         if( this.playHistoryPage == null ) {

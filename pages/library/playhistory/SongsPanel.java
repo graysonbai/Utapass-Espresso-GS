@@ -32,6 +32,8 @@ public class SongsPanel extends BasicPage {
 
     public void _ready(){
         this.lineUp().card( 0 ).cover().assertVisible();
+        this.lineUp().card( 0 ).title().assertVisible();
+        this.lineUp().card( 0 ).subtitle().assertVisible();
     }
 
     public InternalLineUp lineUp() {
@@ -75,14 +77,14 @@ public class SongsPanel extends BasicPage {
 
             card.myUtaButton( label + " > PlayButton",
                     () -> allOf(
-                            withId( R.id.item_detail_stream_audio_myuta_register),
+                            withId( R.id.item_detail_stream_audio_myuta_register ),
                             isDescendantOfA( UtaPassUtil.withIndex(
                                     this.getMatcherToCountMaxIndexOfWindow(),
                                     indexInWindow ) ) ) ) ;
 
             card.playButton( label + " > PlayButton",
                     () -> allOf(
-                            withId( R.id.item_detail_stream_audio_myuta_play),
+                            withId( R.id.item_detail_stream_audio_myuta_play ),
                             isDescendantOfA( UtaPassUtil.withIndex(
                                     this.getMatcherToCountMaxIndexOfWindow(),
                                     indexInWindow ) ) ) ) ;
@@ -153,7 +155,7 @@ public class SongsPanel extends BasicPage {
         }
 
         public BasicButton myUtaButton() {
-            return new BasicButton( this.labelMyUtaButton , this.matcherMyUtaButton) ;
+            return new BasicButton( this.labelMyUtaButton , this.matcherMyUtaButton ) ;
         }
 
         public void subtitle( String label, LazyMatcher matcher ) {

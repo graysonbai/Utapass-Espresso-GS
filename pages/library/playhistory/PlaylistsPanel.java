@@ -22,16 +22,17 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.allOf;
 
-public class PlaylistsPane extends BasicPage {
+public class PlaylistsPanel extends BasicPage {
     private InternalLineUp lineup ;
 
-    public PlaylistsPane(){
+    public PlaylistsPanel(){
         this.label( "PlaylistsPane" );
         this.lineUp().card( 0 ).cover().assertVisible();
     }
 
     public void _ready(){
         this.lineUp().card( 0 ).cover().assertVisible();
+        this.lineUp().card( 0 ).playButton().assertVisible();
     }
 
     public InternalLineUp lineUp() {
@@ -75,7 +76,7 @@ public class PlaylistsPane extends BasicPage {
 
             card.playButton( label + " > PlayButton",
                     () -> allOf(
-                            withId( R.id.view_playlist_play_icon),
+                            withId( R.id.view_playlist_play_icon ),
                             isDescendantOfA( UtaPassUtil.withIndex(
                                     this.getMatcherToCountMaxIndexOfWindow(),
                                     indexInWindow ) ) ) ) ;

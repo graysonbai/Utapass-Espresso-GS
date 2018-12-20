@@ -3,7 +3,7 @@ package com.kddi.android.UtaPass.sqa_espresso.pages.library;
 import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
-import com.kddi.android.UtaPass.sqa_espresso.pages.library.playhistory.PlaylistsPane;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.playhistory.PlaylistsPanel;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.playhistory.SongsPanel;
 
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
@@ -41,8 +41,8 @@ public class PlayHistoryPage extends BasicPage {
                         isDescendantOfA( withId( R.id.basetab_tabs ) ) ) );
     }
 
-    public PlaylistsPane playlistsPane (){
-        return new PlaylistsPane();
+    public PlaylistsPanel playlistsPanel (){
+        return new PlaylistsPanel();
     }
 
     public SongsPanel SongsPanel (){

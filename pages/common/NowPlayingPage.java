@@ -42,9 +42,9 @@ public class NowPlayingPage extends ViewObject {
     public LazyString songTitle(){
         return new LazyString(
                 this.label() + "SongTitle",
-                () -> allOf(
+                () -> UtaPassUtil.withIndex(
                         withId( R.id.nowplaying_track_title ),
-                        isDescendantOfA( withId( R.id.nowplaying_track_info_layout ) ) ) );
+                        0 ) ) ;
     }
 
     public BasicButton lyricsButton() {

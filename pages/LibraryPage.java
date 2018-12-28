@@ -4,6 +4,7 @@ import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.DailyRankingModule;
 
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
@@ -126,5 +127,9 @@ public class LibraryPage extends BasicPage{
         return new BasicButton(
                 this.label() + " > PlayHistorySeeAllButton",
                 () -> withId( R.id.library_section_history_see_all ) );
+    }
+
+    public DailyRankingModule dailyRankingModule(){
+        return new DailyRankingModule( this.label() );
     }
 }

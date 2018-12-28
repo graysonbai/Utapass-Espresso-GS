@@ -31,17 +31,9 @@ public class NewSongsHitSongsPage extends BasicPage {
 
     private InternalLineUp lineUp ;
 
-    // After swiping, structure of this page will be modified.
-    // Then, there's no good generic point to verify this page is ready before and after swiping.
-    // Thus, use a flag to indicate page is ready at the first time.
-    private boolean readyFlag ;
-
     public void _ready() {
-        if( this.readyFlag ) {
-            return ;
-        }
-
-        this.readyFlag = true ;
+      this.lineUp().assertVisible();
+      this.lineUp().card( 0 ).cover().assertVisible();
     }
 
     public BasicImage cover() {

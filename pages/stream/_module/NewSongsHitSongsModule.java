@@ -39,8 +39,8 @@ public class NewSongsHitSongsModule extends ViewObject {
 
     @Override
     public void _ready() {
-        this.lineUp().ready() ;
-        this.lineUp().card( 0 ).cover().ready() ;
+        this.lineUp().assertVisible() ;
+        this.lineUp().card( 0 ).cover().assertVisible() ;
     }
 
     public Matcher<View> matcher() {

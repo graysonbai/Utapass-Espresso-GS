@@ -562,4 +562,18 @@ public class RatCriticalTest extends BasicTest {
                       .arrowButton()
                       .tap() ;
     }
+
+    @Test
+    public void ensure_daily_ranking_number_of_cards(){
+        this.updateTestCaseName() ;
+
+        this.navigator.libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .dailyRankingModule()
+                      .lineUp()
+                      .countSongs()
+                      .assertEquals( 10 ) ;
+    }
 }

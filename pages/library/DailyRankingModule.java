@@ -1,6 +1,7 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.library;
 
 import android.support.test.espresso.NoMatchingViewException;
+import android.support.test.espresso.action.ViewActions;
 import android.view.View;
 
 import com.kddi.android.UtaPass.R;
@@ -23,6 +24,7 @@ import org.hamcrest.Matcher ;
 import java.util.HashSet;
 import java.util.Set;
 
+import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.matcher.ViewMatchers.hasSibling;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
@@ -63,6 +65,10 @@ public class DailyRankingModule extends BasicPage {
                                 withText("デイリーランキング"),
                                 withText("Daily Ranking") ),
                         isDescendantOfA( withId( R.id.lismo_ranking_title_layout ) ) ) ) ;
+    }
+
+    public void swipeUp() {
+        onView( withId( R.id.main_drawer_layout ) ).perform( ViewActions.swipeUp() ) ;
     }
 
     public class InternalLineUp extends LineUpObject {

@@ -572,6 +572,18 @@ public class RatCriticalTest extends BasicTest {
 
         this.navigator.libraryPage()
                       .dailyRankingModule()
+                      .swipeUp();
+
+        this.navigator.libraryPage()
+                      .dailyRankingModule()
+                      .swipeUp();
+
+        this.navigator.libraryPage()
+                      .dailyRankingModule()
+                      .swipeUp();
+
+        this.navigator.libraryPage()
+                      .dailyRankingModule()
                       .lineUp()
                       .countSongs()
                       .assertEquals( 10 ) ;

@@ -12,12 +12,12 @@ public class RatCriticalTest extends BasicTest {
 
     @Test
     public void play_() {
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
     }
 
     @Test
     public void play_whats_new_songs(){
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .whatsNewModule()
@@ -45,7 +45,7 @@ public class RatCriticalTest extends BasicTest {
 
     @Test
     public void play_new_songs_hit_songs(){
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .newSongsHitSongsModule()
@@ -73,7 +73,7 @@ public class RatCriticalTest extends BasicTest {
 
     @Test
     public void play_top_chart_songs(){
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .topChartsModule()
@@ -101,7 +101,7 @@ public class RatCriticalTest extends BasicTest {
 
     @Test
     public void play_top_chart_songs_in_see_all(){
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .topChartsModule()
@@ -135,7 +135,7 @@ public class RatCriticalTest extends BasicTest {
 
     @Test
     public void play_popular_artist_songs(){
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .popularArtistModule()
@@ -163,7 +163,7 @@ public class RatCriticalTest extends BasicTest {
 
     @Test
     public void play_artist_new_release(){
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .artistNewReleaseModule()
@@ -191,7 +191,7 @@ public class RatCriticalTest extends BasicTest {
 
     @Test
     public void play_daily_mix(){
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .dailyMixModule()
@@ -203,7 +203,7 @@ public class RatCriticalTest extends BasicTest {
 
     @Test
     public void play_song_in_library_songs_page(){
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.libraryTab()
                       .tap() ;
@@ -224,7 +224,7 @@ public class RatCriticalTest extends BasicTest {
 
     @Test
     public void play_video_in_library_videos_page(){
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.libraryTab()
                       .tap() ;
@@ -243,7 +243,7 @@ public class RatCriticalTest extends BasicTest {
 
     @Test
     public void play_album_song_in_library_album_page(){
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.libraryTab()
                       .tap() ;
@@ -268,7 +268,7 @@ public class RatCriticalTest extends BasicTest {
 
     @Test
     public void play_unregister_song_in_playhistory_songs_panel() {
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .popularArtistModule()
@@ -301,7 +301,7 @@ public class RatCriticalTest extends BasicTest {
 
     @Test
     public void verify_title_name_in_myplaylist_page(){
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.libraryTab()
                       .tap() ;
@@ -350,7 +350,7 @@ public class RatCriticalTest extends BasicTest {
 
     @Test
     public void unfavorite_playlist_does_not_exist_favorite_page(){
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         String artistTitleName = this.navigator.streamPage()
                       .artistNewReleaseModule()
@@ -409,7 +409,7 @@ public class RatCriticalTest extends BasicTest {
 
     @Test
     public void ensure_play_status_in_stream_now_playing_page(){
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .popularArtistModule()
@@ -447,7 +447,7 @@ public class RatCriticalTest extends BasicTest {
 
     @Test
     public void ensure_play_next_song_in_stream_now_playing_page(){
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .popularArtistModule()
@@ -481,7 +481,7 @@ public class RatCriticalTest extends BasicTest {
 
     @Test
     public void ensure_play_status_in_local_now_playing_page(){
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.libraryTab()
                       .tap() ;
@@ -525,7 +525,7 @@ public class RatCriticalTest extends BasicTest {
 
     @Test
     public void ensure_play_next_song_in_local_now_playing_page(){
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.libraryTab()
                       .tap() ;
@@ -565,7 +565,7 @@ public class RatCriticalTest extends BasicTest {
 
     @Test
     public void ensure_daily_ranking_number_of_cards(){
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.libraryTab()
                       .tap() ;

@@ -2,6 +2,8 @@ package com.kddi.android.UtaPass.sqa_espresso ;
 
 import android.support.test.runner.AndroidJUnit4 ;
 
+import com.kddi.android.UtaPass.sqa_espresso.common.TestRailId;
+
 import org.junit.Test ;
 import org.junit.runner.RunWith ;
 
@@ -11,7 +13,7 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_radio() {
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .radioModule()
@@ -35,8 +37,9 @@ public class SmokeTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C8621687", "C3101156", "C3101147" } )
     public void play_live_event() {
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         String randomToken = String.valueOf( System.currentTimeMillis() ) ;
 
@@ -82,7 +85,7 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_artist_new_release() {
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .artistNewReleaseModule()
@@ -97,7 +100,7 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_daily_mix() {
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .dailyMixModule()
@@ -125,7 +128,7 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_top_charts() {
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .topChartsModule()
@@ -140,7 +143,7 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_best50() {
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .best50Module()
@@ -157,7 +160,7 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_popular_artist() {
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .popularArtistModule()
@@ -172,7 +175,7 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_whats_new() {
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .whatsNewModule()
@@ -187,7 +190,7 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_new_songs_hit_songs() {
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .newSongsHitSongsModule()
@@ -235,7 +238,7 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_you_may_also_like() {
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .youMayAlsoLikeModule()
@@ -250,7 +253,7 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_song_in_songs() {
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .libraryTab()
@@ -311,7 +314,7 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_song_in_albums() {
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .libraryTab()
@@ -337,7 +340,7 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_song_in_artists() {
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .libraryTab()
@@ -376,7 +379,7 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_videos() {
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .libraryTab()
@@ -393,7 +396,7 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_favorite() {
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .libraryTab()
@@ -419,7 +422,7 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_myplaylist(){
-        this.updateTestCaseName() ;
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .libraryTab()

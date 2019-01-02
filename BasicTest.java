@@ -5,11 +5,14 @@ import android.support.test.rule.ActivityTestRule;
 import com.kddi.android.UtaPass.main.MainActivity;
 import com.kddi.android.UtaPass.sqa_espresso.common.Navigator;
 import com.kddi.android.UtaPass.sqa_espresso.common.RunningStatus;
+import com.kddi.android.UtaPass.sqa_espresso.common.TestRailId;
 import com.kddi.android.UtaPass.sqa_espresso.common.UserStatus;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
+
+import java.lang.reflect.Method;
 
 
 public class BasicTest {
@@ -113,7 +116,34 @@ public class BasicTest {
     }
 
 
-    protected void updateTestCaseName() {
+    protected void updateTestCaseInfo() {
+
+        // since we use stacktrace to retrieve className and methodName,
+        // it will be complex if we move related logic to another method.
+        // Thus, keep it here ...
+        String clazzName = Thread.currentThread()
+                                 .getStackTrace()[ 3 ]
+                                 .getClassName() ;
+
+        String methodName = Thread.currentThread()
+                                  .getStackTrace()[ 3 ]
+                                  .getMethodName() ;
+
+        // record methodName so that we can see which method the debug message comes from
+        RunningStatus.caseName = methodName ;
+
+        // check if method is annotated
+        Method method = this.handleExceptionWhenReflecting( clazzName, methodName ) ;
+        if( ! method.isAnnotationPresent( TestRailId.class ) ) {
+            return ;
+        }
+
+        for( String id: method.getAnnotation( TestRailId.class ).value() ) {
+            UtaPassUtil.dprint( "TestRailId: " + id ) ;
+        }
+    }
+
+    private void updateTestCaseName() {
         RunningStatus.caseName = Thread.currentThread()
                                        .getStackTrace()[ 3 ]
                                        .getMethodName() ;
@@ -121,6 +151,21 @@ public class BasicTest {
 
     protected void resetTestCaseName() {
         RunningStatus.caseName = "" ;
+    }
+
+
+    protected Method handleExceptionWhenReflecting( String clazzName, String methodName ) {
+        try {
+            return Class.forName( clazzName ).getDeclaredMethod( methodName ) ;
+        }
+
+        catch( ClassNotFoundException exp ) {
+            return null ;
+        }
+
+        catch( NoSuchMethodException exp ) {
+            return null ;
+        }
     }
 }
 

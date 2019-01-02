@@ -39,6 +39,9 @@ public class DailyRankingModule extends BasicPage {
 
     public DailyRankingModule( String label ) {
         this.label( label + " > DailyRankingModule" ) ;
+        this.swipeUp();
+        this.swipeUp();
+        this.swipeUp();
     }
 
     public void _ready() {
@@ -68,7 +71,7 @@ public class DailyRankingModule extends BasicPage {
     }
 
     public void swipeUp() {
-        onView( withId( R.id.main_drawer_layout ) ).perform( ViewActions.swipeUp() ) ;
+        onView( withId( R.id.main_container ) ).perform( ViewActions.swipeUp() ) ;
     }
 
     public class InternalLineUp extends LineUpObject {

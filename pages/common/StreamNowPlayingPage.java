@@ -14,7 +14,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.allOf;
 
-
 public class StreamNowPlayingPage extends NowPlayingPage {
     public StreamNowPlayingPage(){
         this.label( "StreamNowPlayingPage" );
@@ -56,7 +55,15 @@ public class StreamNowPlayingPage extends NowPlayingPage {
                         UtaPassUtil.withIndex( withId( R.id.media_action_bar_repeat_mode_layout ), 0  ),
                         isDescendantOfA( withId( R.id.nowplaying_media_action_bar ) ) ) ){
             public LazyString text() {
-                return new LazyString( this.label(), () -> UtaPassUtil.withIndex( withId(R.id.media_action_bar_repeat_mode_text), 0 ) ) ;
+                if( this.isVisible( UtaPassUtil.withIndex( withId(R.id.media_action_bar_repeat_mode_text ) , 1 ) ) ){
+                    return new LazyString(
+                            this.label(),
+                            () -> UtaPassUtil.withIndex( withId(R.id.media_action_bar_repeat_mode_text ) , 1 ) ) ;
+                } else {
+                    return new LazyString(
+                            this.label(),
+                            () -> UtaPassUtil.withIndex( withId(R.id.media_action_bar_repeat_mode_text ) , 0 ) ) ;
+                }
             }
         };
     }

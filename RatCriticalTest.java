@@ -11,11 +11,6 @@ import org.junit.runner.RunWith ;
 public class RatCriticalTest extends BasicTest {
 
     @Test
-    public void play_() {
-        this.updateTestCaseInfo() ;
-    }
-
-    @Test
     public void play_whats_new_songs(){
         this.updateTestCaseInfo() ;
 
@@ -575,5 +570,38 @@ public class RatCriticalTest extends BasicTest {
                       .lineUp()
                       .countSongs()
                       .assertEquals( 10 ) ;
+    }
+
+    @Test
+    public void ensure_500_account_stream_songs_play_mode(){
+        this.updateTestCaseInfo() ;
+
+        this.navigator.streamPage()
+                      .dailyMixModule()
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                      .tap() ;
+
+        this.navigator.streamNowPlayingPage()
+                      .playModeButton()
+                      .text()
+                      .assertEquals( "RepeatAll" ) ;
+
+        this.navigator.streamNowPlayingPage()
+                      .playModeButton()
+                      .tap() ;
+
+        this.navigator.streamNowPlayingPage()
+                      .playModeButton()
+                      .text()
+                      .assertEquals( "ShuffleRepeat" ) ;
+
+        this.navigator.streamNowPlayingPage()
+                      .arrowButton()
+                      .tap() ;
     }
 }

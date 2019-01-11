@@ -248,9 +248,10 @@ public class RatCriticalTest extends BasicTest {
                       .tap() ;
 
         this.navigator.albumsPage()
-                      .albumsLineUp()
-                      .album( 0 )
-                      .tap() ;
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap();
 
         this.navigator.albumInfoPage()
                       .songsLineUp()
@@ -263,6 +264,7 @@ public class RatCriticalTest extends BasicTest {
 
     @Test
     public void play_unregister_song_in_playhistory_songs_panel() {
+
         this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
@@ -553,6 +555,7 @@ public class RatCriticalTest extends BasicTest {
                       .songTitle()
                       .assertNotEquals( localSongName ) ;
 
+
         this.navigator.localNowPlayingPage()
                       .arrowButton()
                       .tap() ;
@@ -603,5 +606,24 @@ public class RatCriticalTest extends BasicTest {
         this.navigator.streamNowPlayingPage()
                       .arrowButton()
                       .tap() ;
+    }
+
+    @Test
+    public void demo(){
+        this.navigator.libraryTab().tap();
+        this.navigator.libraryPage().myPlaylistsCategory().tap();
+        this.navigator.myPlayListPage().createNowButton().tap();
+        this.navigator.createPlayListPage().addMusicButton().tap();
+        this.navigator.addMusicPage().songsType().tap();
+        this.navigator.myPlayListSongsPage().lineUp().card( 1 ).cover().tap();
+        this.navigator.myPlayListSongsPage().nextButton().tap();
+        this.navigator.createPlayListPage().doneButton().tap();
+
+        this.navigator.streamTab().tap();
+        this.navigator.libraryTab().tap();
+
+        this.navigator.libraryPage().albumsCategory().tap();
+        this.navigator.albumsPage().lineUp().card( 0 ).moreButton().tap();
+        this.navigator.albumsPage().addToPlaylistButton().tap();
     }
 }

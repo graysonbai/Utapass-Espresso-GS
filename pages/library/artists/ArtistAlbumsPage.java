@@ -4,13 +4,20 @@ import android.view.View;
 
 import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
+import com.kddi.android.UtaPass.sqa_espresso.common.BasicImage;
+import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
+import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IAlbumsName;
+import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IArtistName;
+import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ICover;
+import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IMoreButton;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
-import com.kddi.android.UtaPass.sqa_espresso.pages.library.albums.AlbumObject;
 
 import org.hamcrest.Matcher;
+
+import java.util.regex.Pattern;
 
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
@@ -21,7 +28,7 @@ import static org.hamcrest.Matchers.endsWith;
 
 public class ArtistAlbumsPage extends BasicPage {
 
-    private ArtistAlbumsLineUp artistAlbumsLineUp ;
+    private InternalLineUp lineup ;
     private BasicButton allSongsButton ;
 
     public String getTotalSongs() {
@@ -38,61 +45,149 @@ public class ArtistAlbumsPage extends BasicPage {
         this.allSongsButton().ready() ;
     }
 
-    public ArtistAlbumsLineUp artistAlbumsLineUp() {
-
-        // Since the maxIndexOfLineUpObject will be changed after swiping,
-        // We need to reuse the LibrarySongsLineUpObject ...
-        if( this.artistAlbumsLineUp == null ) {
-            this.artistAlbumsLineUp = new ArtistAlbumsLineUp() ;
-        }
-        return this.artistAlbumsLineUp ;
-    }
-
     public BasicButton allSongsButton() {
-        if( this.allSongsButton == null ) {
-            this.allSongsButton = new BasicButton( () ->
+        return new BasicButton( () ->
                     withId( R.id.item_detail_artist_all_song_root_layout ) ) {
-
-                public LazyString text() {
-                    return new LazyString( this.label(), () -> allOf(
-                            withClassName( endsWith( "TextView" ) ),
-                            isDescendantOfA( super.matcher.execute() ) ) ) ;
+            public LazyString text() {
+                    return new LazyString( this.label(),
+                            () -> allOf(
+                                    withClassName( endsWith( "TextView" ) ),
+                                    isDescendantOfA( super.matcher.execute() ) ) ) ;
                 }
             } ;
-        }
-        return this.allSongsButton ;
     }
 
-    public class ArtistAlbumsLineUp extends LineUpObject {
+    public InternalLineUp lineUp(){
+        if( this.lineup == null){
+            this.lineup = new InternalLineUp( this.label() );
+        }
+        return this.lineup;
+    }
+
+    public class InternalLineUp extends LineUpObject {
+        public InternalLineUp( String label ){
+            this.label( this.label() + "LineUp" );
+        }
+
         protected Matcher<View> getMatcherToFindRecycleView() {
-            return withId( R.id.detail_artist_recycler_view ) ;
+            return withId(R.id.local_track_recycler_view);
         }
 
         protected Matcher<View> getMatcherToCountMaxIndexOfWindow() {
-            return withId( R.id.item_detail_album_image ) ;
+            return withId(R.id.item_library_local_album_icon);
         }
 
-        public AlbumObject album( int index ) {
-            int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
+        public InternalCard card(int index) {
+            int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index );
 
-            AlbumObject album = new AlbumObject() ;
+            InternalCard card = new InternalCard();
 
-            album.albumName( () -> UtaPassUtil.withIndex(
-                    allOf( withId( R.id.item_detail_album_title ),
-                           isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                    indexInWindow ) ) ;
+            card.albumsName( this.label(),
+                    () -> UtaPassUtil.withIndex(
+                            allOf(
+                                    withId(R.id.item_library_local_album_title),
+                                    isDescendantOfA(this.getMatcherToFindRecycleView())), indexInWindow));
 
-            album.artistName( () -> UtaPassUtil.withIndex(
-                    allOf( withId( R.id.item_detail_album_artist ),
-                           isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                    indexInWindow ) ) ;
+            card.artistName( this.label(),
+                    () -> UtaPassUtil.withIndex(
+                            allOf(
+                                    withId(R.id.item_library_local_album_subtitle),
+                                    isDescendantOfA(this.getMatcherToFindRecycleView())), indexInWindow));
 
-            album.cover( () -> UtaPassUtil.withIndex(
-                    allOf( withId( R.id.item_detail_album_image ),
-                            isDescendantOfA( this.getMatcherToFindRecycleView() ) ),
-                    indexInWindow ) ) ;
+            card.cover( this.label(),
+                    () -> UtaPassUtil.withIndex(
+                            allOf(
+                                    withId(R.id.item_library_local_album_icon),
+                                    isDescendantOfA(this.getMatcherToFindRecycleView())), indexInWindow));
 
-            return album ;
+            card.moreButton( this.label(),
+                    () -> UtaPassUtil.withIndex(
+                            allOf(
+                                    withId(R.id.item_library_local_album_overflow),
+                                    isDescendantOfA(this.getMatcherToFindRecycleView())), indexInWindow));
+
+
+//            private String albums( int indexInWindow ) {
+//                java.util.regex.Matcher matcher =
+//                        Pattern.compile( "([0-9]+).+([0-9]+).+" )
+//                                .matcher( this.subtitle( indexInWindow ) ) ;
+//
+//                if( matcher.find() ) {
+//                    return matcher.group( 1 ) ;
+//                }
+//
+//                return "" ;
+//            }
+//
+//            private String songs( int indexInWindow ) {
+//                java.util.regex.Matcher matcher =
+//                        Pattern.compile( "([0-9]+).+([0-9]+).+" )
+//                                .matcher( this.subtitle( indexInWindow ) ) ;
+//
+//                if( matcher.find() ) {
+//                    return matcher.group( 2 ) ;
+//                }
+//
+//                return "" ;
+//            }
+
+            return card;
+        }
+
+        public class InternalCard implements ICover, IArtistName, IAlbumsName, IMoreButton {
+
+            String labelAlbumName;
+            String labelArtistName;
+            String labelCover;
+            String labelMoreButton;
+
+            LazyMatcher matcherAlbumName;
+            LazyMatcher matcherArtistName;
+            LazyMatcher matcherCover;
+            LazyMatcher matcherMoreButton;
+
+            @Override
+            public void cover(String label, LazyMatcher matcher) {
+                this.labelCover = label;
+                this.matcherCover = matcher;
+            }
+
+            @Override
+            public BasicImage cover() {
+                return new BasicImage(this.labelCover, this.matcherCover);
+            }
+
+            @Override
+            public void artistName(String label, LazyMatcher matcher) {
+                this.matcherArtistName = matcher;
+                this.labelArtistName = label;
+            }
+
+            public LazyString artistName() {
+                return new LazyString(this.labelArtistName, this.matcherArtistName);
+            }
+
+            @Override
+            public void albumsName(String label, LazyMatcher matcher) {
+                this.labelAlbumName = label;
+                this.matcherAlbumName = matcher;
+            }
+
+            @Override
+            public LazyString albumsName() {
+                return new LazyString(this.labelAlbumName, this.matcherAlbumName);
+            }
+
+            @Override
+            public void moreButton(String label, LazyMatcher matcher) {
+                this.labelMoreButton = label;
+                this.matcherMoreButton = matcher;
+            }
+
+            @Override
+            public BasicButton moreButton() {
+                return new BasicButton(this.labelMoreButton, this.matcherMoreButton);
+            }
         }
     }
 }

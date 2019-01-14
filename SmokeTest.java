@@ -329,10 +329,11 @@ public class SmokeTest extends BasicTest {
                       .cover()
                       .tap() ;
 
-        this.navigator.albumInfoPage()
+        this.navigator.albumsDetailPage()
                       .songsLineUp()
                       .song( 0 )
-                      .tap() ;
+                      .cover()
+                      .tap();
 
         this.navigator.songNowPlayingBar()
                       .assertPlaying() ;

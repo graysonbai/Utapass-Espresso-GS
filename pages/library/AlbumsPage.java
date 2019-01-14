@@ -81,7 +81,7 @@ public class AlbumsPage extends BasicPage {
                     () -> UtaPassUtil.withIndex(
                             allOf(
                                     withId(R.id.item_library_local_album_title),
-                                    isDescendantOfA(this.getMatcherToFindRecycleView())), indexInWindow));
+                                    isDescendantOfA( this.getMatcherToFindRecycleView())), indexInWindow));
 
             card.artistName( this.label(),
                     () -> UtaPassUtil.withIndex(

@@ -251,11 +251,13 @@ public class RatCriticalTest extends BasicTest {
                       .lineUp()
                       .card( 0 )
                       .cover()
-                      .tap();
+                      .tap() ;
 
-        this.navigator.albumInfoPage()
+
+        this.navigator.albumsDetailPage()
                       .songsLineUp()
                       .song( 0 )
+                      .cover()
                       .tap() ;
 
         this.navigator.songNowPlayingBar()
@@ -609,21 +611,103 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
-    public void demo(){
-        this.navigator.libraryTab().tap();
-        this.navigator.libraryPage().myPlaylistsCategory().tap();
-        this.navigator.myPlayListPage().createNowButton().tap();
-        this.navigator.createPlayListPage().addMusicButton().tap();
-        this.navigator.addMusicPage().songsType().tap();
-        this.navigator.myPlayListSongsPage().lineUp().card( 1 ).cover().tap();
-        this.navigator.myPlayListSongsPage().nextButton().tap();
-        this.navigator.createPlayListPage().doneButton().tap();
+    public void albums_songs_add_to_my_playlist(){
+        this.updateTestCaseInfo() ;
 
-        this.navigator.streamTab().tap();
-        this.navigator.libraryTab().tap();
+        this.navigator.libraryTab()
+                      .tap() ;
 
-        this.navigator.libraryPage().albumsCategory().tap();
-        this.navigator.albumsPage().lineUp().card( 0 ).moreButton().tap();
-        this.navigator.albumsPage().addToPlaylistButton().tap();
+        this.navigator.libraryPage()
+                      .myPlaylistsCategory()
+                      .tap() ;
+
+        this.navigator.myPlayListPage()
+                      .createNowButton()
+                      .tap() ;
+
+        this.navigator.createPlayListPage()
+                      .addMusicButton()
+                      .tap() ;
+
+        this.navigator.addMusicPage()
+                      .songsType()
+                      .tap() ;
+
+        this.navigator.myPlayListSongsPage()
+                      .lineUp()
+                      .card( 1 )
+                      .cover()
+                      .tap() ;
+
+        this.navigator.myPlayListSongsPage()
+                      .nextButton()
+                      .tap() ;
+
+        this.navigator.createPlayListPage()
+                      .doneButton()
+                      .tap() ;
+
+        this.navigator.streamTab()
+                      .tap() ;
+
+        this.navigator.libraryTab()
+                      .tap() ;
+
+
+        this.navigator.libraryPage()
+                      .albumsCategory()
+                      .tap() ;
+
+        this.navigator.albumsPage()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
+
+        String songname  = this.navigator.albumsDetailPage()
+                      .songsLineUp()
+                      .song( 0 )
+                      .songName()
+                      .string() ;
+
+        UtaPassUtil.pressBack() ;
+
+        this.navigator.albumsPage()
+                      .lineUp()
+                      .card( 0 )
+                      .moreButton()
+                      .tap() ;
+
+        this.navigator.albumsPage()
+                      .addToPlaylistButton()
+                      .tap() ;
+
+        this.navigator.addToPlaylistPage()
+                      .lineUp()
+                      .card( 0 ).cover()
+                      .tap() ;
+
+        this.navigator.streamTab()
+                      .tap() ;
+
+        this.navigator.libraryTab()
+                      .tap() ;
+
+
+        this.navigator.libraryPage()
+                      .myPlaylistsCategory()
+                      .tap() ;
+
+        this.navigator.myPlayListPage()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
+
+        this.navigator.myPlaylistDetailPage()
+                      .lineUp()
+                      .card( 1 )
+                      .songName()
+                      .assertEquals( songname ) ;
     }
 }

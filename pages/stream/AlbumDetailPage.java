@@ -88,8 +88,9 @@ public class AlbumDetailPage extends BasicPage {
 
         return new BasicButton(
                 this.label() + " > play",
-                () -> anyOf( withId( R.id.view_shuffle_play_layout ),
-                             withId( R.id.one_play_action_layout ) ) ) {
+                () -> allOf(
+                        withId( R.id.button_play_in_order ),
+                        isDescendantOfA( withId( R.id.two_play_action_layout ) ) ) ){
 
             public LazyString text() {
                 return new LazyString( this.label(), () -> allOf(
@@ -104,8 +105,9 @@ public class AlbumDetailPage extends BasicPage {
 
         return new BasicButton(
                 this.label() + " > shuffleAll",
-                () -> anyOf( withId( R.id.view_shuffle_play_layout ),
-                             withId( R.id.one_play_action_layout ) ) ) {
+                () -> allOf(
+                        withId( R.id.button_shuffle_play ),
+                        isDescendantOfA( withId( R.id.two_play_action_layout ) ) ) ) {
 
             public LazyString text() {
                 return new LazyString( this.label(), () -> allOf(

@@ -7,7 +7,6 @@ import com.kddi.android.UtaPass.sqa_espresso.common.TestRailId;
 import org.junit.Test ;
 import org.junit.runner.RunWith ;
 
-
 @RunWith(AndroidJUnit4.class)
 public class SmokeTest extends BasicTest {
 
@@ -325,14 +324,16 @@ public class SmokeTest extends BasicTest {
                       .tap() ;
 
         this.navigator.albumsPage()
-                      .albumsLineUp()
-                      .album( 0 )
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
                       .tap() ;
 
-        this.navigator.albumInfoPage()
+        this.navigator.albumsDetailPage()
                       .songsLineUp()
                       .song( 0 )
-                      .tap() ;
+                      .cover()
+                      .tap();
 
         this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
@@ -350,26 +351,26 @@ public class SmokeTest extends BasicTest {
                       .artistsCategory()
                       .tap() ;
 
-        int albums = Integer.parseInt( this.navigator.artistsPage()
-                                                     .artistsLineUp()
-                                                     .artist( 0 )
-                                                     .albums() ) ;
-
+        int albums =  Integer.parseInt( this.navigator.artistsPage()
+                                                      .lineUp()
+                                                      .card( 0 ).albumsCount()
+                                                      .string() );
         this.navigator.artistsPage()
-                      .artistsLineUp()
-                      .artist( 0 )
-                      .tap() ;
+                      .lineUp()
+                      .card( 0 ).cover()
+                      .tap();
 
         // ArtistAlbumsPage
         if( albums > 1 ) {
             this.navigator.artistAlbumsPage()
-                          .artistAlbumsLineUp()
-                          .album(0 )
-                          .tap();
+                          .lineUp()
+                          .card( 0 )
+                          .cover().tap() ;
+
         }
 
         // AlbumInfoPage
-        this.navigator.albumInfoPage()
+        this.navigator.albumsDetailPage()
                       .shuffleAllButton()
                       .tap() ;
 

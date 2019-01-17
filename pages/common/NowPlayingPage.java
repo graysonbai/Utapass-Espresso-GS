@@ -39,12 +39,18 @@ public class NowPlayingPage extends ViewObject {
                         isDescendantOfA( withId( R.id.main_toolbar ) ) ) ) ;
     }
 
+//    public LazyString songTitle(){
+//        return new LazyString(
+//                this.label() + "SongTitle",
+//                () -> UtaPassUtil.withIndex(
+//                        withId( R.id.nowplaying_track_title ),
+//                        0 ) ) ;
+//    }
+
     public LazyString songTitle(){
         return new LazyString(
                 this.label() + "SongTitle",
-                () -> UtaPassUtil.withIndex(
-                        withId( R.id.nowplaying_track_title ),
-                        0 ) ) ;
+                () -> withId( R.id.nowplaying_track_title ) ) ;
     }
 
     public BasicButton lyricsButton() {

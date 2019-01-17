@@ -9,6 +9,11 @@ public class StringObject extends BasicString {
         super( str ) ;
     }
 
+    public StringObject( String label , String str ) {
+        super( str ) ;
+        this.label( label ) ;
+    }
+
     public StringObject( int n ) {
         super( String.valueOf( n ) ) ;
     }

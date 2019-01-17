@@ -133,10 +133,8 @@ public class ArtistsPage extends BasicPage {
                                     indexInWindow ) ) ;
 
             card.albumsCount(label + "albumsCount" ,
-                    this.albums( indexInWindow ) ) ;
-
-            card.songsCount( label + "songsCount" ,
-                    this.albums( indexInWindow ) ) ;
+                    this.albums( indexInWindow ) ) ;        card.songsCount( label + "songsCount" ,
+                    this.songs( indexInWindow ) ) ;
 
             return card;
         }

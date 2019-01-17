@@ -341,42 +341,41 @@ public class SmokeTest extends BasicTest {
 
     @Test
     public void play_song_in_artists() {
-//        this.updateTestCaseInfo() ;
-//
-//        this.navigator.streamPage()
-//                      .libraryTab()
-//                      .tap() ;
-//
-//        this.navigator.libraryPage()
-//                      .artistsCategory()
-//                      .tap() ;
-//
-//        int albums = Integer.parseInt( this.navigator.artistsPage()
-//                                                     .artistsLineUp()
-//                                                     .artist( 0 )
-//                                                     .albums() ) ;
-//
-//        this.navigator.artistsPage()
-//                      .artistsLineUp()
-//                      .artist( 0 )
-//                      .tap() ;
-//
-//        // ArtistAlbumsPage
-//        if( albums > 1 ) {
-//            this.navigator.artistAlbumsPage()
-//                          .lineUp()
-//                          .card( 0 )
-//                          .cover() ;
-//
-//        }
-//
-//        // AlbumInfoPage
-//        this.navigator.albumInfoPage()
-//                      .shuffleAllButton()
-//                      .tap() ;
-//
-//        this.navigator.songNowPlayingBar()
-//                      .assertPlaying() ;
+        this.updateTestCaseInfo() ;
+
+        this.navigator.streamPage()
+                      .libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .artistsCategory()
+                      .tap() ;
+
+        int albums =  Integer.parseInt( this.navigator.artistsPage()
+                                                      .lineUp()
+                                                      .card( 0 ).albumsCount()
+                                                      .string() );
+        this.navigator.artistsPage()
+                      .lineUp()
+                      .card( 0 ).cover()
+                      .tap();
+
+        // ArtistAlbumsPage
+        if( albums > 1 ) {
+            this.navigator.artistAlbumsPage()
+                          .lineUp()
+                          .card( 0 )
+                          .cover().tap() ;
+
+        }
+
+        // AlbumInfoPage
+        this.navigator.albumsDetailPage()
+                      .shuffleAllButton()
+                      .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                      .assertPlaying() ;
     }
 
     @Test

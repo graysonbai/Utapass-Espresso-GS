@@ -710,11 +710,4 @@ public class RatCriticalTest extends BasicTest {
                       .songName()
                       .assertEquals( songname ) ;
     }
-
-    @Test
-    public void test(){
-        this.navigator.libraryTab().tap();
-        this.navigator.libraryPage().artistsCategory().tap();
-        this.navigator.artistsPage().lineUp().card( 0 ).albumsCount().string();
-    }
 }

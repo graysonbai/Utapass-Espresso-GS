@@ -18,6 +18,8 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.TopChartsModul
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.WhatsNewModule;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.YouMayAlsoLikeModule;
 
+import java.util.regex.Pattern;
+
 import static android.support.test.espresso.Espresso.onView ;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.* ;
@@ -128,11 +130,16 @@ public class StreamPage extends BasicPage {
     }
 
     public boolean hasMamaModule() {
-        this.swipeToModuleObject( this.getPosition( this.POSITION_MNET_ASIAN_MUSIC_AWARDS ) ) ;
-        return this.isVisible(
-                allOf( withId( R.id.item_list_title ),
-                        anyOf( withText( MamaModule.titleInEnglish ),
-                               withText( MamaModule.titleInJapanese) ) ) ) ;
+//        this.swipeToModuleObject( this.getPosition( this.POSITION_MNET_ASIAN_MUSIC_AWARDS ) ) ;
+//        return this.isVisible(
+//                allOf( withId( R.id.item_list_title ),
+//                        anyOf( withText( MamaModule.titleInEnglish ),
+//                               withText( MamaModule.titleInJapanese) ) ) ) ;
+        if ( this.getPosition( this.POSITION_ARTIST_NEW_RELEASE ) == 4){
+            return true;
+        }
+
+        return false;
     }
 
     public void swipeToModuleObject( int position ) {

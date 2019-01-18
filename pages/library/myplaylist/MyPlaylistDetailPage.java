@@ -36,7 +36,7 @@ public class MyPlaylistDetailPage extends BasicPage {
     }
 
     public BasicButton ShuffleAllButton(){
-        return new BasicButton( () ->
+        return new BasicButton( this.label() + "ShuffleAllButton" , () ->
                 allOf( withId( R.id.view_shuffle_play_layout ),
                         withParent( withId( R.id.detail_playlist_recycler_view ) ) ) ) ;
     }

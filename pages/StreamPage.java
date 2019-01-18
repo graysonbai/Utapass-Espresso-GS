@@ -130,16 +130,10 @@ public class StreamPage extends BasicPage {
     }
 
     public boolean hasMamaModule() {
-//        this.swipeToModuleObject( this.getPosition( this.POSITION_MNET_ASIAN_MUSIC_AWARDS ) ) ;
-//        return this.isVisible(
-//                allOf( withId( R.id.item_list_title ),
-//                        anyOf( withText( MamaModule.titleInEnglish ),
-//                               withText( MamaModule.titleInJapanese) ) ) ) ;
-        if ( this.getPosition( this.POSITION_ARTIST_NEW_RELEASE ) == 4){
-            return true;
-        }
-
-        return false;
+        this.swipeToModuleObject( this.getPosition( this.POSITION_MNET_ASIAN_MUSIC_AWARDS ) ) ;
+        return this.isVisible(
+                allOf( withId( R.id.item_list_title ),
+                        withText( endsWith( "特集" ) ) ) ) ;
     }
 
     public void swipeToModuleObject( int position ) {

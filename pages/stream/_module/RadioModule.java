@@ -103,6 +103,7 @@ public class RadioModule extends ViewObject {
 
 
         public InternalCard card( int index ) {
+            this.swipeToCardViewAndGetIndexOfWindow( index ) ;
             int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
 
             InternalCard card = new InternalCard() ;

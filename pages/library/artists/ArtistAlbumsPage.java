@@ -31,6 +31,10 @@ public class ArtistAlbumsPage extends BasicPage {
     private InternalLineUp lineup ;
     private BasicButton allSongsButton ;
 
+    public ArtistAlbumsPage(){
+        this.label( "ArtistAlbumsPage" ) ;
+    }
+
     public String getTotalSongs() {
         String raw = this.getText( withId( R.id.detail_artist_description ) ) ;
         return raw.split( " · " )[ 0 ] ;
@@ -53,8 +57,8 @@ public class ArtistAlbumsPage extends BasicPage {
                             () -> allOf(
                                     withClassName( endsWith( "TextView" ) ),
                                     isDescendantOfA( super.matcher.execute() ) ) ) ;
-                }
-            } ;
+            }
+        } ;
     }
 
     public InternalLineUp lineUp(){
@@ -105,31 +109,6 @@ public class ArtistAlbumsPage extends BasicPage {
                             allOf(
                                     withId(R.id.item_library_local_album_overflow),
                                     isDescendantOfA(this.getMatcherToFindRecycleView())), indexInWindow));
-
-
-//            private String albums( int indexInWindow ) {
-//                java.util.regex.Matcher matcher =
-//                        Pattern.compile( "([0-9]+).+([0-9]+).+" )
-//                                .matcher( this.subtitle( indexInWindow ) ) ;
-//
-//                if( matcher.find() ) {
-//                    return matcher.group( 1 ) ;
-//                }
-//
-//                return "" ;
-//            }
-//
-//            private String songs( int indexInWindow ) {
-//                java.util.regex.Matcher matcher =
-//                        Pattern.compile( "([0-9]+).+([0-9]+).+" )
-//                                .matcher( this.subtitle( indexInWindow ) ) ;
-//
-//                if( matcher.find() ) {
-//                    return matcher.group( 2 ) ;
-//                }
-//
-//                return "" ;
-//            }
 
             return card;
         }

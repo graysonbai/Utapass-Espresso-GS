@@ -16,9 +16,6 @@ import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IMoreButton;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
 
 import org.hamcrest.Matcher;
-
-import java.util.regex.Pattern;
-
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -74,11 +71,11 @@ public class ArtistAlbumsPage extends BasicPage {
         }
 
         protected Matcher<View> getMatcherToFindRecycleView() {
-            return withId(R.id.local_track_recycler_view);
+            return withId( R.id.detail_artist_recycler_view );
         }
 
         protected Matcher<View> getMatcherToCountMaxIndexOfWindow() {
-            return withId(R.id.item_library_local_album_icon);
+            return withId( R.id.item_detail_album_layout );
         }
 
         public InternalCard card(int index) {
@@ -89,25 +86,25 @@ public class ArtistAlbumsPage extends BasicPage {
             card.albumsName( this.label(),
                     () -> UtaPassUtil.withIndex(
                             allOf(
-                                    withId(R.id.item_library_local_album_title),
+                                    withId( R.id.item_detail_album_title ),
                                     isDescendantOfA(this.getMatcherToFindRecycleView())), indexInWindow));
 
             card.artistName( this.label(),
                     () -> UtaPassUtil.withIndex(
                             allOf(
-                                    withId(R.id.item_library_local_album_subtitle),
+                                    withId( R.id.item_detail_album_artist ),
                                     isDescendantOfA(this.getMatcherToFindRecycleView())), indexInWindow));
 
             card.cover( this.label(),
                     () -> UtaPassUtil.withIndex(
                             allOf(
-                                    withId(R.id.item_library_local_album_icon),
+                                    withId( R.id.item_detail_album_image ),
                                     isDescendantOfA(this.getMatcherToFindRecycleView())), indexInWindow));
 
             card.moreButton( this.label(),
                     () -> UtaPassUtil.withIndex(
                             allOf(
-                                    withId(R.id.item_library_local_album_overflow),
+                                    withId( R.id.item_detail_album_overflow ),
                                     isDescendantOfA(this.getMatcherToFindRecycleView())), indexInWindow));
 
             return card;

@@ -353,11 +353,13 @@ public class SmokeTest extends BasicTest {
 
         int albums =  Integer.parseInt( this.navigator.artistsPage()
                                                       .lineUp()
-                                                      .card( 0 ).albumsCount()
+                                                      .card( 0 )
+                                                      .albumsCount()
                                                       .string() );
         this.navigator.artistsPage()
                       .lineUp()
-                      .card( 0 ).cover()
+                      .card( 0 )
+                      .cover()
                       .tap();
 
         // ArtistAlbumsPage
@@ -365,7 +367,8 @@ public class SmokeTest extends BasicTest {
             this.navigator.artistAlbumsPage()
                           .lineUp()
                           .card( 0 )
-                          .cover().tap() ;
+                          .cover()
+                          .tap() ;
 
         }
 

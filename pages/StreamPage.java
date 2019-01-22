@@ -9,7 +9,6 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.Best50Module;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.DailyMixModule;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.ListenWithModule;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.LiveModule;
-import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.MamaModule;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.NewSongsHitSongsModule;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.PopularArtistModule;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.RadioModule;
@@ -17,8 +16,6 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.SpotlightModul
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.TopChartsModule;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.WhatsNewModule;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.YouMayAlsoLikeModule;
-
-import java.util.regex.Pattern;
 
 import static android.support.test.espresso.Espresso.onView ;
 import static android.support.test.espresso.action.ViewActions.click;

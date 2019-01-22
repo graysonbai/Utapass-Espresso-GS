@@ -51,7 +51,7 @@ public class ArtistsPage extends BasicPage {
 
     public class InternalLineUp extends LineUpObject {
         public InternalLineUp( String label ){
-            this.label( this.label() + " > LineUp" );
+            this.label( label + " > LineUp" );
         }
 
         protected Matcher<View> getMatcherToFindRecycleView() {

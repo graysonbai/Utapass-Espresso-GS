@@ -15,6 +15,10 @@ public class BasicException extends RuntimeException {
                      .replace( "=", "_" )
                      .replace( ",", "_" )
                      .replace( "'", "" )
+                     .replaceAll( "[^\\w]", "_" )
+                     .replaceAll( "[\\p{Katakana}]", "_" )
+                     .replaceAll( "[\\p{Hiragana}]", "_" )
+                     .replaceAll( "[\\p{sc=Han}]", "_" )
         ) ;
     }
 }

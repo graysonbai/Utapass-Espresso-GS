@@ -1,5 +1,6 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.library.myplaylist;
 
+import android.support.test.espresso.action.ViewActions;
 import android.view.View;
 
 import com.kddi.android.UtaPass.R;
@@ -17,6 +18,7 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
 
 import org.hamcrest.Matcher;
 
+import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -28,6 +30,8 @@ public class MyPlaylistDetailPage extends BasicPage {
 
     public MyPlaylistDetailPage(){
         this.label( "MyPlaylistDetailPage" );
+        this.swipeUp() ;
+        this.swipeUp() ;
     }
 
     public void _ready(){
@@ -39,6 +43,10 @@ public class MyPlaylistDetailPage extends BasicPage {
         return new BasicButton( this.label() + "ShuffleAllButton" , () ->
                 allOf( withId( R.id.view_shuffle_play_layout ),
                         withParent( withId( R.id.detail_playlist_recycler_view ) ) ) ) ;
+    }
+
+    public void swipeUp() {
+        onView( withId( R.id.main_container ) ).perform( ViewActions.swipeUp() ) ;
     }
 
     public InternalLineUp lineUp(){

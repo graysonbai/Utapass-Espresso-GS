@@ -30,11 +30,11 @@ public class MyPlaylistDetailPage extends BasicPage {
 
     public MyPlaylistDetailPage(){
         this.label( "MyPlaylistDetailPage" );
-        this.swipeUp() ;
-        this.swipeUp() ;
     }
 
     public void _ready(){
+        this.swipeUp() ;
+        this.swipeUp() ;
         this.ShuffleAllButton().assertVisible();
         this.lineUp().card( 0 ).cover().assertVisible();
     }
@@ -46,7 +46,7 @@ public class MyPlaylistDetailPage extends BasicPage {
     }
 
     public void swipeUp() {
-        onView( withId( R.id.main_container ) ).perform( ViewActions.swipeUp() ) ;
+        onView( withId( R.id.detail_playlist_coordinator_layout  ) ).perform( ViewActions.swipeUp() ) ;
     }
 
     public InternalLineUp lineUp(){

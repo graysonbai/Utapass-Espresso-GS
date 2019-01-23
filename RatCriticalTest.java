@@ -290,12 +290,15 @@ public class RatCriticalTest extends BasicTest {
                       .songsPanelButton()
                       .tap() ;
 
+        // just verify no crash, thus not to verify tap result...
         this.navigator.playHistoryPage()
                       .SongsPanel()
                       .lineUp()
                       .card( 0 )
                       .cover()
                       .tap() ;
+
+        this.sleep( 5, "for stability" ) ;
     }
 
     @Test

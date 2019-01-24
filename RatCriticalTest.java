@@ -2,6 +2,7 @@ package com.kddi.android.UtaPass.sqa_espresso ;
 
 import android.support.test.runner.AndroidJUnit4 ;
 
+import com.kddi.android.UtaPass.sqa_espresso.common.TestRailId;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 
 import org.junit.Test ;
@@ -95,6 +96,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C3101220" } )
     public void play_top_chart_songs_in_see_all(){
         this.updateTestCaseInfo() ;
 
@@ -351,6 +353,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C3101170", "C3101171" } )
     public void unfavorite_playlist_does_not_exist_favorite_page(){
         this.updateTestCaseInfo() ;
 
@@ -567,6 +570,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C3101166" } )
     public void ensure_daily_ranking_number_of_cards(){
         this.updateTestCaseInfo() ;
 

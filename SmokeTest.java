@@ -36,7 +36,7 @@ public class SmokeTest extends BasicTest {
     }
 
     @Test
-    @TestRailId( { "C3101154", "C3101156", "C3101159" } )
+    @TestRailId( { "C1917543", "C1917560", "C1917613" } )
     public void play_live_event() {
         this.updateTestCaseInfo() ;
 
@@ -126,7 +126,7 @@ public class SmokeTest extends BasicTest {
     }
 
     @Test
-    @TestRailId( { "C3101219" } )
+    @TestRailId( { "C1917179" } )
     public void play_top_charts() {
         this.updateTestCaseInfo() ;
 
@@ -174,7 +174,7 @@ public class SmokeTest extends BasicTest {
     }
 
     @Test
-    @TestRailId( { "C3101218" } )
+    @TestRailId( { "C1917148" } )
     public void play_whats_new() {
         this.updateTestCaseInfo() ;
 

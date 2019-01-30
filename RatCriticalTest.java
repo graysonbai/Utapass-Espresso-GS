@@ -96,7 +96,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
-    @TestRailId( { "C3101220" } )
+    @TestRailId( { "C1917183" } )
     public void play_top_chart_songs_in_see_all(){
         this.updateTestCaseInfo() ;
 
@@ -353,7 +353,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
-    @TestRailId( { "C3101170", "C3101171" } )
+    @TestRailId( { "C1922170", "C1922171" } )
     public void unfavorite_playlist_does_not_exist_favorite_page(){
         this.updateTestCaseInfo() ;
 
@@ -570,7 +570,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
-    @TestRailId( { "C3101166" } )
+    @TestRailId( { "C1917677" } )
     public void ensure_daily_ranking_number_of_cards(){
         this.updateTestCaseInfo() ;
 

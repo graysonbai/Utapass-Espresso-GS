@@ -50,7 +50,7 @@ public class MyUtaPage extends BasicPage {
     }
 
     public LazyString downloadedSongs() {
-        return new LazyString( this.label() + "DownloadedSongs",
+        return new LazyString( this.label() + " > DownloadedSongs",
                 () -> withId( R.id.myuta_downloaded_songs_count ) ) {
 
             @Override
@@ -73,10 +73,16 @@ public class MyUtaPage extends BasicPage {
     }
 
     public BasicButton tooltip(){
-       return new BasicButton( this.label() + "Tooltip",
+        UtaPassUtil.sleep( 5 );
+       return new BasicButton( this.label() + " > Tooltip",
                () -> allOf(
                        withId( android.R.id.text1 ),
-                       withText( "You can find My Uta History here, including those that are not downloaded.")));
+                       withText( "You can find My Uta History here, including those that are not downloaded."))){
+           public void tap(){
+               super.tap();
+               UtaPassUtil.sleep( 5, "for stable" );
+           }
+       };
     }
 
     public InternalLineUp lineUp() {

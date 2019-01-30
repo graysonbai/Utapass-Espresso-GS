@@ -713,4 +713,47 @@ public class RatCriticalTest extends BasicTest {
                       .songName()
                       .assertEquals( songname ) ;
     }
+    @Test
+    public void Reminder_about_the_quota(){
+        this.navigator.libraryTab()
+                      .tap();
+
+        this.navigator.libraryPage()
+                      .myUtaCategory()
+                      .tap();
+
+        this.navigator.myUtaPage()
+                      .tooltip()
+                      .tap();
+
+        this.navigator.myUtaPage()
+                      .myUtaHistoryButton()
+                      .tap();
+
+        this.navigator.myUtaPage()
+                      .myUtaHistoryPage()
+                      .title()
+                      .assertVisible();
+
+        this.navigator.myUtaPage()
+                      .myUtaHistoryPage()
+                      .checkbox()
+                      .tap();
+
+        this.navigator.myUtaPage()
+                      .myUtaHistoryPage()
+                      .closeButton()
+                      .tap();
+
+        UtaPassUtil.pressBack();
+
+        this.navigator.myUtaPage()
+                      .myUtaHistoryButton()
+                      .tap();
+
+        this.navigator.myUtaPage()
+                      .myUtaHistoryPage()
+                      .title()
+                      .assertInvisible();
+    }
 }

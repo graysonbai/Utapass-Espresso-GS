@@ -90,7 +90,7 @@ public class BasicTest {
         this.navigator.streamPage()
                       .liveModule()
                       .lineUp()
-                      .card( 0 )
+                      .card( 1 )
                       .playButton()
                       .tap() ;
 

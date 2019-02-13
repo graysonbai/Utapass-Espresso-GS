@@ -718,6 +718,7 @@ public class RatCriticalTest extends BasicTest {
                       .assertEquals( songname ) ;
     }
     @Test
+    @TestRailId( { "C2290751" } )
     public void Reminder_about_the_quota(){
         this.navigator.libraryTab()
                       .tap();

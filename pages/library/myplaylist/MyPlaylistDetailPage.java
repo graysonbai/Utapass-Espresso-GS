@@ -33,10 +33,10 @@ public class MyPlaylistDetailPage extends BasicPage {
     }
 
     public void _ready(){
-        this.swipeUp() ;
-        this.swipeUp() ;
         this.ShuffleAllButton().assertVisible();
         this.lineUp().card( 0 ).cover().assertVisible();
+        this.swipeUp() ;
+        this.swipeUp() ;
     }
 
     public BasicButton ShuffleAllButton(){

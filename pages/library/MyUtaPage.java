@@ -77,12 +77,7 @@ public class MyUtaPage extends BasicPage {
        return new BasicButton( this.label() + " > Tooltip",
                () -> allOf(
                        withId( android.R.id.text1 ),
-                       withText( "You can find My Uta History here, including those that are not downloaded."))){
-           public void tap(){
-               super.tap();
-               UtaPassUtil.sleep( 5, "for stable" );
-           }
-       };
+                       withText( "You can find My Uta History here, including those that are not downloaded.")));
     }
 
     public InternalLineUp lineUp() {

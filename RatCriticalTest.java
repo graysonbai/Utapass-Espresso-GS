@@ -780,29 +780,4 @@ public class RatCriticalTest extends BasicTest {
                       .title()
                       .assertInvisible();
     }
-
-    @Test
-    @TestRailId( { "C2603291" } )
-    public void play_radio_songs_from_radio_page(){
-        this.updateTestCaseInfo() ;
-
-        this.navigator.streamPage()
-                      .radioModule()
-                      .lineUp()
-                      .lastCard()
-                      .cover()
-                      .tap() ;
-
-        this.navigator.radioDetailPage()
-                      .playButton()
-                      .tap();
-
-        this.navigator.radioNowPlayingBar()
-                      .assertPlaying();
-
-        this.navigator.radioDetailPage()
-                      .playButton()
-                      .text()
-                      .assertVisible();
-    }
 }

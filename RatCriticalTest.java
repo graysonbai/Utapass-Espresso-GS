@@ -12,6 +12,7 @@ import org.junit.runner.RunWith ;
 public class RatCriticalTest extends BasicTest {
 
     @Test
+    @TestRailId( { "C1917148" } )
     public void play_whats_new_songs(){
         this.updateTestCaseInfo() ;
 
@@ -40,6 +41,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C1917170" } )
     public void play_new_songs_hit_songs(){
         this.updateTestCaseInfo() ;
 
@@ -68,6 +70,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C1917179"} )
     public void play_top_chart_songs(){
         this.updateTestCaseInfo() ;
 
@@ -131,6 +134,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C1917165" } )
     public void play_popular_artist_songs(){
         this.updateTestCaseInfo() ;
 
@@ -159,6 +163,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C1917160" } )
     public void play_artist_new_release(){
         this.updateTestCaseInfo() ;
 
@@ -187,6 +192,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C1917031" } )
     public void play_daily_mix(){
         this.updateTestCaseInfo() ;
 
@@ -199,6 +205,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C1917913" } )
     public void play_song_in_library_songs_page(){
         this.updateTestCaseInfo() ;
 
@@ -220,6 +227,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C1917729" } )
     public void play_video_in_library_videos_page(){
         this.updateTestCaseInfo() ;
 
@@ -239,6 +247,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C1917735" } )
     public void play_album_song_in_library_album_page(){
         this.updateTestCaseInfo() ;
 
@@ -267,6 +276,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C2208774" } )
     public void play_unregister_song_in_playhistory_songs_panel() {
 
         this.updateTestCaseInfo() ;
@@ -304,6 +314,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C1922260" } )
     public void verify_title_name_in_myplaylist_page(){
         this.updateTestCaseInfo() ;
 
@@ -413,6 +424,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C1917242" } )
     public void ensure_play_status_in_stream_now_playing_page(){
         this.updateTestCaseInfo() ;
 
@@ -451,6 +463,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C1917243" } )
     public void ensure_play_next_song_in_stream_now_playing_page(){
         this.updateTestCaseInfo() ;
 
@@ -485,6 +498,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C1917244" } )
     public void ensure_play_status_in_local_now_playing_page(){
         this.updateTestCaseInfo() ;
 
@@ -529,6 +543,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C1917247" } )
     public void ensure_play_next_song_in_local_now_playing_page(){
         this.updateTestCaseInfo() ;
 
@@ -585,6 +600,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C2207544" } )
     public void ensure_500_account_stream_songs_play_mode(){
         this.updateTestCaseInfo() ;
 
@@ -618,6 +634,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C1917704" } )
     public void albums_songs_add_to_my_playlist(){
         this.updateTestCaseInfo() ;
 
@@ -720,6 +737,8 @@ public class RatCriticalTest extends BasicTest {
     @Test
     @TestRailId( { "C2290751" } )
     public void Reminder_about_the_quota(){
+        this.updateTestCaseInfo() ;
+
         this.navigator.libraryTab()
                       .tap();
 
@@ -760,5 +779,30 @@ public class RatCriticalTest extends BasicTest {
                       .myUtaHistoryPage()
                       .title()
                       .assertInvisible();
+    }
+
+    @Test
+    @TestRailId( { "C2603291" } )
+    public void play_radio_songs_from_radio_page(){
+        this.updateTestCaseInfo() ;
+
+        this.navigator.streamPage()
+                      .radioModule()
+                      .lineUp()
+                      .lastCard()
+                      .cover()
+                      .tap() ;
+
+        this.navigator.radioDetailPage()
+                      .playButton()
+                      .tap();
+
+        this.navigator.radioNowPlayingBar()
+                      .assertPlaying();
+
+        this.navigator.radioDetailPage()
+                      .playButton()
+                      .text()
+                      .assertVisible();
     }
 }

@@ -11,6 +11,7 @@ import org.junit.runner.RunWith ;
 public class SmokeTest extends BasicTest {
 
     @Test
+    @TestRailId( { "C2603307" } )
     public void play_radio() {
         this.updateTestCaseInfo() ;
 
@@ -83,6 +84,7 @@ public class SmokeTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C1917160" } )
     public void play_artist_new_release() {
         this.updateTestCaseInfo() ;
 
@@ -98,6 +100,7 @@ public class SmokeTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C1917031" } )
     public void play_daily_mix() {
         this.updateTestCaseInfo() ;
 
@@ -142,6 +145,7 @@ public class SmokeTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C2571416" } )
     public void play_best50() {
         this.updateTestCaseInfo() ;
 
@@ -159,6 +163,7 @@ public class SmokeTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C1917165" } )
     public void play_popular_artist() {
         this.updateTestCaseInfo() ;
 

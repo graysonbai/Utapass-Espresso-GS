@@ -275,43 +275,43 @@ public class RatCriticalTest extends BasicTest {
                       .assertPlaying() ;
     }
 
-    @Test
-    @TestRailId( { "C2208774" } )
-    public void play_unregister_song_in_playhistory_songs_panel() {
-
-        this.updateTestCaseInfo() ;
-
-        this.navigator.streamPage()
-                      .popularArtistModule()
-                      .lineUp()
-                      .card( 0 )
-                      .playButton()
-                      .tap() ;
-
-        this.navigator.songNowPlayingBar()
-                      .assertPlaying() ;
-
-        this.navigator.libraryTab()
-                      .tap() ;
-
-        this.navigator.libraryPage()
-                      .playHistorySeeAllButton()
-                      .tap() ;
-
-        this.navigator.playHistoryPage()
-                      .songsPanelButton()
-                      .tap() ;
-
-        // just verify no crash, thus not to verify tap result...
-        this.navigator.playHistoryPage()
-                      .SongsPanel()
-                      .lineUp()
-                      .card( 0 )
-                      .cover()
-                      .tap() ;
-
-        this.sleep( 5, "for stability" ) ;
-    }
+//    @Test
+//    @TestRailId( { "C2208774" } )
+//    public void play_unregister_song_in_playhistory_songs_panel() {
+//
+//        this.updateTestCaseInfo() ;
+//
+//        this.navigator.streamPage()
+//                      .popularArtistModule()
+//                      .lineUp()
+//                      .card( 0 )
+//                      .playButton()
+//                      .tap() ;
+//
+//        this.navigator.songNowPlayingBar()
+//                      .assertPlaying() ;
+//
+//        this.navigator.libraryTab()
+//                      .tap() ;
+//
+//        this.navigator.libraryPage()
+//                      .playHistorySeeAllButton()
+//                      .tap() ;
+//
+//        this.navigator.playHistoryPage()
+//                      .songsPanelButton()
+//                      .tap() ;
+//
+//        // just verify no crash, thus not to verify tap result...
+//        this.navigator.playHistoryPage()
+//                      .SongsPanel()
+//                      .lineUp()
+//                      .card( 0 )
+//                      .cover()
+//                      .tap() ;
+//
+//        this.sleep( 5, "for stability" ) ;
+//    }
 
     @Test
     @TestRailId( { "C1922260" } )
@@ -804,5 +804,38 @@ public class RatCriticalTest extends BasicTest {
                       .playButton()
                       .text()
                       .assertVisible();
+    }
+
+    @Test
+    @TestRailId( {  "C12323453" } )
+    public void live(){
+        this.updateTestCaseInfo();
+
+        this.navigator.streamPage()
+                      .liveModule()
+                      .lineUp()
+                      .card( 1 )
+                      .playButton()
+                      .tap() ;
+
+        this.navigator.liveConcertPage()
+                      .icon()
+                      .tap() ;
+
+        this.navigator.liveDetailPage()
+                      .onAirVideio()
+                      .tap() ;
+
+        this.navigator.liveConcertPage()
+                      .title()
+                      .assertEquals( "KICK OFF VIVA!!! 2017" ) ;
+
+        this.navigator.liveConcertPage()
+                      .video()
+                      .assertVisible() ;
+
+        this.navigator.liveConcertPage()
+                      .icon()
+                      .tap() ;
     }
 }

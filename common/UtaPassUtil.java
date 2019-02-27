@@ -186,6 +186,10 @@ public class UtaPassUtil {
         UtaPassUtil.sleep( 5, "for launching next case" ) ;
     }
 
+    public static void closesoftboard(){
+        Espresso.closeSoftKeyboard();
+    }
+
     public static UiDevice getUiDeviceInstance() {
         return UiDevice.getInstance( InstrumentationRegistry.getInstrumentation() ) ;
     }

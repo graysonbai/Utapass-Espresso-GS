@@ -9,6 +9,7 @@ import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
+import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IContent;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ISongName;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
 
@@ -172,16 +173,16 @@ public class SearchPage extends BasicPage {
             return this.maxIndexOtherWindow() ;
         }
 
-        public InternalCard searchResult( int index ) {
+        public Internallist searchResult( int index ) {
             int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
 
-            InternalCard searResult = new InternalCard() ;
+            Internallist searResult = new Internallist() ;
 
             String label = String.format( "%s > Card(%s)",
                     this.label(),
                     index ) ;
 
-            searResult.songName(label + " > SongName",
+            searResult.content(label + " > SongName",
                     () -> allOf(
                             withId( R.id.search_autocomplete_text ),
                             isDescendantOfA( UtaPassUtil.withIndex(
@@ -192,18 +193,18 @@ public class SearchPage extends BasicPage {
         }
     }
 
-    public class InternalCard implements ISongName {
+    public class Internallist implements IContent {
 
         String labelSongName ;
 
         private LazyMatcher matcherSongName ;
 
-        public void songName( String label, LazyMatcher matcher ) {
+        public void content( String label, LazyMatcher matcher ) {
             this.labelSongName = label;
             this.matcherSongName = matcher;
         }
 
-        public LazyString songName() {
+        public LazyString content() {
             return new LazyString( this.labelSongName, this.matcherSongName ) ;
         }
     }

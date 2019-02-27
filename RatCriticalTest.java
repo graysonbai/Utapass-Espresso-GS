@@ -808,7 +808,7 @@ public class RatCriticalTest extends BasicTest {
 
     @Test
     @TestRailId( {  "C12323453" } )
-    public void live(){
+    public void play_live_video_in_detail_page(){
         this.updateTestCaseInfo();
 
         this.navigator.streamPage()
@@ -837,5 +837,34 @@ public class RatCriticalTest extends BasicTest {
         this.navigator.liveConcertPage()
                       .icon()
                       .tap() ;
+    }
+    @Test
+    public void demo(){
+        this.navigator.searchTab().tap();
+        this.navigator.searchPage().searchBar().type("P" );
+        UtaPassUtil.closesoftboard();
+        UtaPassUtil.sleep( 5 );
+        for ( int a = 0; a < 5; a++ ){
+            this.navigator.searchPage().lineUp().searchResult( a ).content().string().matches("(^P|p).*");
+        }
+//        this.navigator.searchPage().lineUp().searchResult( 0 ).content().string().matches("(^C|c).*");
+
+    }
+
+    @Test
+    public void demo1(){
+        this.navigator.searchTab().tap();
+        this.navigator.searchPage().searchBar().type("Coldplay" );
+        this.navigator.searchPage().lineUp().searchResult( 0 ).content().tap();
+
+        UtaPassUtil.closesoftboard();
+        UtaPassUtil.sleep( 5 );
+        for ( int a = 0; a < 5; a++ ){
+            this.navigator.searchPage().lineUp().searchResult( a ).content().string().matches("(^P|p).*");
+            this.navigator.searchPage().lineUp().searchResult( a ).content();
+
+        }
+//        this.navigator.searchPage().lineUp().searchResult( 0 ).content().string().matches("(^C|c).*");
+
     }
 }

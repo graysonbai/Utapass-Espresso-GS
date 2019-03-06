@@ -11,7 +11,6 @@ import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IRecommendString;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
-import com.kddi.android.UtaPass.sqa_espresso.pages.search.SearchStreamPanel;
 
 import org.hamcrest.Matcher;
 
@@ -30,11 +29,6 @@ public class SearchPage extends BasicPage {
 
     public void _ready() {
         this.searchBar().assertVisible() ;
-        this.Categories1().assertVisible() ;
-        this.Categories2().assertVisible() ;
-        this.Categories3().assertVisible() ;
-        this.Categories4().assertVisible() ;
-
     }
 
     public BasicTextField searchBar(){

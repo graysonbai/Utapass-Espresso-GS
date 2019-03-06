@@ -37,10 +37,6 @@ public class SearchPage extends BasicPage {
 
     }
 
-    public SearchStreamPanel searchStreamPanel(){
-        return new SearchStreamPanel( this.label() ) ;
-    }
-
     public BasicTextField searchBar(){
         return new BasicTextField( this.label() + " > SearchButton",
                 () -> allOf(

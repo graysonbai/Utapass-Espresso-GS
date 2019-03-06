@@ -4,6 +4,7 @@ import android.support.test.runner.AndroidJUnit4 ;
 
 import com.kddi.android.UtaPass.sqa_espresso.common.TestRailId;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.ExecuteException;
 
 import org.junit.Test ;
 import org.junit.runner.RunWith ;
@@ -808,7 +809,7 @@ public class RatCriticalTest extends BasicTest {
 
     @Test
     @TestRailId( {  "C12323453" } )
-    public void live(){
+    public void play_live_video_in_detail_page(){
         this.updateTestCaseInfo();
 
         this.navigator.streamPage()
@@ -837,5 +838,26 @@ public class RatCriticalTest extends BasicTest {
         this.navigator.liveConcertPage()
                       .icon()
                       .tap() ;
+    }
+
+    @Test
+    @TestRailId( { "C1922033" } )
+    public void search_result_recommend_string(){
+        this.navigator.searchTab()
+                      .tap() ;
+
+        this.navigator.searchPage()
+                      .searchBar()
+                      .type("P" );
+
+        UtaPassUtil.closesoftboard() ;
+
+        for ( int count = 0; count < 10; count++ ){
+            this.navigator.searchPage()
+                          .lineUp()
+                          .searchResult( count )
+                          .recommendString()
+                          .assertStringTitle( "(^P|p).*" );
+        }
     }
 }

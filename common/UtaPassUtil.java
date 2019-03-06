@@ -188,6 +188,7 @@ public class UtaPassUtil {
 
     public static void closesoftboard(){
         Espresso.closeSoftKeyboard();
+        UtaPassUtil.sleep( 2, "for Stability" );
     }
 
     public static UiDevice getUiDeviceInstance() {

@@ -9,9 +9,9 @@ import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
-import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IContent;
-import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ISongName;
+import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IRecommendString;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.search.SearchStreamPanel;
 
 import org.hamcrest.Matcher;
 
@@ -25,102 +25,111 @@ public class SearchPage extends BasicPage {
     private InternalLineUp lineUp ;
 
     public SearchPage() {
-        this.label( "SearchPage" );
+        this.label( "SearchPage" ) ;
     }
 
     public void _ready() {
+        this.searchBar().assertVisible() ;
+        this.Categories1().assertVisible() ;
+        this.Categories2().assertVisible() ;
+        this.Categories3().assertVisible() ;
+        this.Categories4().assertVisible() ;
 
+    }
+
+    public SearchStreamPanel searchStreamPanel(){
+        return new SearchStreamPanel( this.label() ) ;
     }
 
     public BasicTextField searchBar(){
         return new BasicTextField( this.label() + " > SearchButton",
                 () -> allOf(
                         withId( R.id.search_src_text ),
-                        isDescendantOfA( withId( R.id.search_plate ) ) ) );
+                        isDescendantOfA( withId( R.id.search_plate ) ) ) ) ;
     }
 
-    public BasicButton a1(){
-        return new BasicButton( this.label() + " > ",
+    public BasicButton Categories1(){
+        return new BasicButton( this.label() + " > Categories1",
                 () -> allOf(
                         UtaPassUtil.withIndex( withId( R.id.item_category_layout), 0 ),
-                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) );
+                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) ) ;
     }
 
-    public BasicButton a2(){
-        return new BasicButton( this.label() + " > ",
+    public BasicButton Categories2(){
+        return new BasicButton( this.label() + " > Categories2",
                 () -> allOf(
                         UtaPassUtil.withIndex( withId( R.id.item_category_layout), 1 ),
-                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) );
+                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) ) ;
     }
 
-    public BasicButton a3(){
-        return new BasicButton( this.label() + " > ",
+    public BasicButton Categories3(){
+        return new BasicButton( this.label() + " > Categories3",
                 () -> allOf(
                         UtaPassUtil.withIndex( withId( R.id.item_category_layout), 2 ),
-                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) );
+                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) ) ;
     }
 
-    public BasicButton a4(){
-        return new BasicButton( this.label() + " > ",
+    public BasicButton Categories4(){
+        return new BasicButton( this.label() + " > Categories4",
                 () -> allOf(
                         UtaPassUtil.withIndex( withId( R.id.item_category_layout), 3 ),
-                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) );
+                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) ) ;
     }
 
-    public BasicButton a5(){
-        return new BasicButton( this.label() + " > ",
+    public BasicButton Categories5(){
+        return new BasicButton( this.label() + " > Categories5",
                 () -> allOf(
                         UtaPassUtil.withIndex( withId( R.id.item_category_layout), 4 ),
-                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) );
+                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) ) ;
     }
 
-    public BasicButton a6(){
-        return new BasicButton( this.label() + " > ",
+    public BasicButton Categories6(){
+        return new BasicButton( this.label() + " > Categories6",
                 () -> allOf(
                         UtaPassUtil.withIndex( withId( R.id.item_category_layout), 5 ),
-                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) );
+                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) ) ;
     }
 
-    public BasicButton a7(){
-        return new BasicButton( this.label() + " > ",
+    public BasicButton Categories7(){
+        return new BasicButton( this.label() + " > Categories7",
                 () -> allOf(
                         UtaPassUtil.withIndex( withId( R.id.item_category_layout), 6 ),
-                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) );
+                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) ) ;
     }
 
-    public BasicButton a8(){
-        return new BasicButton( this.label() + " > ",
+    public BasicButton Categories8(){
+        return new BasicButton( this.label() + " > Categories8",
                 () -> allOf(
                         UtaPassUtil.withIndex( withId( R.id.item_category_layout), 7 ),
-                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) );
+                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) ) ;
     }
 
-    public BasicButton a9(){
-        return new BasicButton( this.label() + " > ",
+    public BasicButton Categories9(){
+        return new BasicButton( this.label() + " > Categories9",
                 () -> allOf(
                         UtaPassUtil.withIndex( withId( R.id.item_category_layout), 8 ),
-                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) );
+                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) ) ;
     }
 
-    public BasicButton a10(){
-        return new BasicButton( this.label() + " > ",
+    public BasicButton Categories10(){
+        return new BasicButton( this.label() + " > Categories10",
                 () -> allOf(
                         UtaPassUtil.withIndex( withId( R.id.item_category_layout), 9 ),
-                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) );
+                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) ) ;
     }
 
-    public BasicButton a11(){
-        return new BasicButton( this.label() + " > ",
+    public BasicButton Categories11(){
+        return new BasicButton( this.label() + " > Categories11",
                 () -> allOf(
                         UtaPassUtil.withIndex( withId( R.id.item_category_layout), 10 ),
-                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) );
+                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) ) ;
     }
 
-    public BasicButton a12(){
-        return new BasicButton( this.label() + " > ",
+    public BasicButton Categories12(){
+        return new BasicButton( this.label() + " > Categories12",
                 () -> allOf(
                         UtaPassUtil.withIndex( withId( R.id.item_category_layout), 11 ),
-                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) );
+                        isDescendantOfA( withId(R.id.item_stream_list ) ) ) ) ;
     }
 
     public InternalLineUp lineUp() {
@@ -150,7 +159,7 @@ public class SearchPage extends BasicPage {
 
         protected int calculateMaxIndexOfWindow() {
             int count = -1 ;
-            for( int i = 0 ; i <= this.getMaxIndexOfLineUpObject(); i++ ) {
+            for( int i = 0 ; i <= this.getMaxIndexOfLineUpObject() ; i++ ) {
                 if( ! this.isDisplayedCompletely(
                         UtaPassUtil.withIndex( this.getMatcherToCountMaxIndexOfWindow(), i ) ) ) {
                     return count ;
@@ -182,7 +191,7 @@ public class SearchPage extends BasicPage {
                     this.label(),
                     index ) ;
 
-            searResult.content(label + " > SongName",
+            searResult.recommendString(label + " > SongName",
                     () -> allOf(
                             withId( R.id.search_autocomplete_text ),
                             isDescendantOfA( UtaPassUtil.withIndex(
@@ -193,18 +202,18 @@ public class SearchPage extends BasicPage {
         }
     }
 
-    public class Internallist implements IContent {
+    public class Internallist implements IRecommendString {
 
         String labelSongName ;
 
         private LazyMatcher matcherSongName ;
 
-        public void content( String label, LazyMatcher matcher ) {
+        public void recommendString( String label, LazyMatcher matcher ) {
             this.labelSongName = label;
             this.matcherSongName = matcher;
         }
 
-        public LazyString content() {
+        public LazyString recommendString() {
             return new LazyString( this.labelSongName, this.matcherSongName ) ;
         }
     }

@@ -1,5 +1,8 @@
 package com.kddi.android.UtaPass.sqa_espresso.common ;
 
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.StringNotEqualException;
+import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.StringNotInException;
+
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 
@@ -78,5 +81,12 @@ public class LazyString extends StringObject {
 
     public void assertLessThan( LazyString expecting, int diff ) {
         this.assertLessThan( expecting.string(), diff ) ;
+    }
+
+    public void assertStringTitle( String regex ){
+        this.ready() ;
+        if ( ! this.getText( this.matcher().execute() ).matches( regex ) ){
+            throw new StringNotEqualException( this.string(), regex ) ;
+        }
     }
 }

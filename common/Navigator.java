@@ -29,6 +29,7 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.library.artists.ArtistDetailP
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.favorite.PlaylistsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.myplaylist.AddMusicPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.myplaylist.CreatePlayListPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.myplaylist.MoreMenuPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.myplaylist.MyPlaylistDetailPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.myplaylist.addmusic.MyPlayListSongsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.myuta.SongMoreActionMenu;
@@ -118,6 +119,14 @@ public class Navigator {
     private ArtistDetailPage artistDetailPage;
     private RadioDetailPage radioDetailPage;
     private LiveDetailPage liveDetailPage;
+    private MoreMenuPage moreMenuPage;
+
+    public MoreMenuPage moreMenuPage(){
+        if( this.moreMenuPage == null ){
+            this.moreMenuPage = new MoreMenuPage();
+        }
+        return this.moreMenuPage.ready();
+    }
 
     public LiveDetailPage liveDetailPage(){
         if( this.liveDetailPage == null ){

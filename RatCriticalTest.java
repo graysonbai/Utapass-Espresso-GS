@@ -741,45 +741,55 @@ public class RatCriticalTest extends BasicTest {
         this.updateTestCaseInfo() ;
 
         this.navigator.libraryTab()
-                      .tap();
+                      .tap() ;
+
 
         this.navigator.libraryPage()
                       .myUtaCategory()
-                      .tap();
+                      .tap() ;
+
 
         this.navigator.myUtaPage()
                       .tooltip()
-                      .tap();
+                      .tap() ;
+
 
         this.navigator.myUtaPage()
                       .myUtaHistoryButton()
-                      .tap();
+                      .tap() ;
+
 
         this.navigator.myUtaPage()
                       .myUtaHistoryPage()
                       .title()
-                      .assertVisible();
+                      .assertVisible() ;
+
 
         this.navigator.myUtaPage()
                       .myUtaHistoryPage()
                       .checkbox()
-                      .tap();
+                      .tap() ;
+
 
         this.navigator.myUtaPage()
                       .myUtaHistoryPage()
                       .closeButton()
-                      .tap();
+                      .tap() ;
 
-        UtaPassUtil.pressBack();
+
+        UtaPassUtil.pressBack() ;
+
 
         this.navigator.myUtaPage()
                       .myUtaHistoryButton()
-                      .tap();
+                      .tap() ;
+
 
         this.navigator.myUtaPage()
                       .myUtaHistoryPage()
                       .title()
-                      .assertInvisible();
+                      .assertInvisible() ;
+
     }
 
     @Test
@@ -796,21 +806,25 @@ public class RatCriticalTest extends BasicTest {
 
         this.navigator.radioDetailPage()
                       .playButton()
-                      .tap();
+                      .tap() ;
+
 
         this.navigator.radioNowPlayingBar()
-                      .assertPlaying();
+                      .assertPlaying() ;
+
 
         this.navigator.radioDetailPage()
                       .playButton()
                       .text()
-                      .assertVisible();
+                      .assertVisible() ;
+
     }
 
     @Test
     @TestRailId( {  "C12323453" } )
     public void play_live_video_in_detail_page(){
-        this.updateTestCaseInfo();
+        this.updateTestCaseInfo() ;
+
 
         this.navigator.streamPage()
                       .liveModule()
@@ -848,7 +862,7 @@ public class RatCriticalTest extends BasicTest {
 
         this.navigator.searchPage()
                       .searchBar()
-                      .type("P" );
+                      .type("P" ) ;
 
         UtaPassUtil.closesoftboard() ;
 
@@ -857,7 +871,131 @@ public class RatCriticalTest extends BasicTest {
                           .lineUp()
                           .searchResult( count )
                           .recommendString()
-                          .assertStringTitle( "(^P|p).*" );
+                          .assertStringTitle( "(^P|p).*" ) ;
         }
+    }
+
+    @Test
+    @TestRailId( { "C1922033" } )
+    public void local_songs_open_add_to_playlist_page(){
+
+        this.navigator.libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .myPlaylistsCategory()
+                      .tap() ;
+
+        while( this.navigator.myPlayListPage().lineUp().card( 0 ).cover().isVisible() ){
+            this.navigator.myPlayListPage()
+                          .lineUp()
+                          .card( 0 )
+                          .cover()
+                          .tap() ;
+
+            this.navigator.myPlaylistDetailPage()
+                          .moreButton()
+                          .tap() ;
+
+            this.navigator.moreMenuPage()
+                          .moreDeletePlaylistButton()
+                          .tap() ;
+
+            this.navigator.moreMenuPage()
+                          .deleteButton()
+                          .tap() ;
+        }
+
+        this.navigator.streamTab()
+                      .tap() ;
+
+        this.navigator.libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .songsCategory()
+                      .tap() ;
+
+        this.navigator.songsPage()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                      .assertPlaying();
+
+        this.navigator.songNowPlayingBar()
+                      .cover()
+                      .tap() ;
+
+        this.navigator.localNowPlayingPage()
+                      .addMyplaylistButton()
+                      .tap() ;
+
+        this.navigator.createPlayListPage()
+                      .createPlaylistTitle()
+                      .assertVisible() ;
+
+        UtaPassUtil.pressBack() ;
+
+        this.navigator.localNowPlayingPage()
+                      .arrowButton()
+                      .tap();
+
+        this.navigator.streamTab()
+                      .tap() ;
+
+        this.navigator.libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .myPlaylistsCategory()
+                      .tap() ;
+
+        this.navigator.myPlayListPage()
+                      .createNowButton()
+                      .tap() ;
+
+        this.navigator.createPlayListPage()
+                      .createPlaylistTitle()
+                      .type( "Hello World" ) ;
+
+        this.navigator.createPlayListPage()
+                      .addMusicButton()
+                      .tap() ;
+
+        this.navigator.addMusicPage()
+                      .songsType()
+                      .tap() ;
+
+        this.navigator.myPlayListSongsPage()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
+
+        this.navigator.myPlayListSongsPage()
+                      .nextButton()
+                      .tap() ;
+
+        this.navigator.createPlayListPage()
+                      .doneButton()
+                      .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                      .cover()
+                      .tap() ;
+
+        this.navigator.localNowPlayingPage()
+                      .addMyplaylistButton()
+                      .tap() ;
+
+        this.navigator.addToPlaylistPage()
+                      .createNowButton()
+                      .assertVisible() ;
+
+        UtaPassUtil.pressBack() ;
+        UtaPassUtil.pressBack() ;
     }
 }

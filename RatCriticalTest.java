@@ -998,4 +998,21 @@ public class RatCriticalTest extends BasicTest {
         UtaPassUtil.pressBack() ;
         UtaPassUtil.pressBack() ;
     }
+
+    @Test
+    public void demo(){
+        this.navigator.streamPage().radioModule().lineUp().card( 4 ).playButton().tap();
+        this.navigator.radioNowPlayingBar().programName().tap();
+        this.navigator.radioDetailPage().onAirSongListButton().tap();
+        this.navigator.onAriSonglistPage().onAriSonglistPlaylistButton().tap();
+        this.navigator.albumsDetailPage().shuffleAllButton().tap();
+        this.navigator.songNowPlayingBar().assertPlaying();
+        this.navigator.songNowPlayingBar().songName().tap();
+        String songname = this.navigator.streamNowPlayingPage().songTitle().string();
+        this.navigator.streamNowPlayingPage().arrowButton().tap();
+        this.navigator.libraryTab().tap();
+        this.navigator.libraryPage().playHistorySeeAllButton().tap();
+        this.navigator.playHistoryPage().playlistsPanel().lineUp().card( 0 ).title().assertEquals( songname );
+        this.navigator.streamPage().radioModule().lineUp().card( 4 ).playButton().tap();
+    }
 }

@@ -44,6 +44,7 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.ArtistNewReleas
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.DailyMixDetailPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.LiveDetailPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.NewSongsHitSongsDetailPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.OnAriSonglistPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.PopularArtistDetailPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.RadioDetailPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.TopChartsDetailPage;
@@ -120,6 +121,14 @@ public class Navigator {
     private RadioDetailPage radioDetailPage;
     private LiveDetailPage liveDetailPage;
     private MoreMenuPage moreMenuPage;
+    private OnAriSonglistPage onAriSonglistPage;
+
+    public OnAriSonglistPage onAriSonglistPage(){
+        if( this.onAriSonglistPage == null ){
+            this.onAriSonglistPage = new OnAriSonglistPage();
+        }
+        return this.onAriSonglistPage.ready();
+    }
 
     public MoreMenuPage moreMenuPage(){
         if( this.moreMenuPage == null ){

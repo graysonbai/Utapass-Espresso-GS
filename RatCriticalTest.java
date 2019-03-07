@@ -876,7 +876,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
-    @TestRailId( { "C1922033" } )
+    @TestRailId( { "C1917372" } )
     public void local_songs_open_add_to_playlist_page(){
 
         this.navigator.libraryTab()

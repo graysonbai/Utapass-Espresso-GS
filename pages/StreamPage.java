@@ -128,7 +128,7 @@ public class StreamPage extends BasicPage {
 
     public boolean hasMamaModule() {
         this.swipeToModuleObject( this.getPosition( this.POSITION_MNET_ASIAN_MUSIC_AWARDS ) ) ;
-        return true;
+        return this.isVisible( withContentDescription( "12" ) );
     }
 
     public void swipeToModuleObject( int position ) {

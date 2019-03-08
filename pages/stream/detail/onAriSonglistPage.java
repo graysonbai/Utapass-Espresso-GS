@@ -90,31 +90,31 @@ public class OnAriSonglistPage extends ViewObject {
             card.songName(label + " > songName ",
                     () -> UtaPassUtil.withIndex(
                             allOf(
-                                    withId( R.id.item_detail_local_audio_title ),
+                                    withId( R.id.songName ),
                                     isDescendantOfA( this.getMatcherToFindRecycleView())), indexInWindow));
 
             card.artistName(label + " > artistName ",
                     () -> UtaPassUtil.withIndex(
                             allOf(
-                                    withId( R.id.item_detail_local_audio_artist ),
+                                    withId( R.id.artistName ),
                                     isDescendantOfA( this.getMatcherToFindRecycleView())), indexInWindow));
 
-            card.time(label + " > cover ",
+            card.time(label + " > time text ",
                     () -> UtaPassUtil.withIndex(
                             allOf(
-                                    withId( R.id.layout_detail_local_audio_image ),
+                                    withId( R.id.time_text ),
                                     isDescendantOfA( this.getMatcherToFindRecycleView())), indexInWindow));
 
             card.date(label + " > moreButton ",
                     () -> UtaPassUtil.withIndex(
                             allOf(
-                                    withId( R.id.item_detail_local_audio_overflow ),
+                                    withId( R.id.date_text ),
                                     isDescendantOfA( this.getMatcherToFindRecycleView())), indexInWindow));
 
             card.myUtaButton(label + " > moreButton ",
                     () -> UtaPassUtil.withIndex(
                             allOf(
-                                    withId( R.id.item_detail_local_audio_overflow ),
+                                    withId( R.id.item_detail_stream_audio_button_wrapper ),
                                     isDescendantOfA( this.getMatcherToFindRecycleView())), indexInWindow));
 
             return card;

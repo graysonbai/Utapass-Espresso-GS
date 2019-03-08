@@ -23,10 +23,10 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.core.AllOf.allOf;
 
-public class OnAriSonglistPage extends ViewObject {
+public class OnAirSonglistPage extends ViewObject {
     private InternalLineUp lineUp;
 
-    public OnAriSonglistPage(){
+    public OnAirSonglistPage(){
         this.label( "on-ari songlist Page" );
     }
 

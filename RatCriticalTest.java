@@ -857,6 +857,8 @@ public class RatCriticalTest extends BasicTest {
     @Test
     @TestRailId( { "C1922033" } )
     public void search_result_recommend_string(){
+        this.updateTestCaseInfo() ;
+
         this.navigator.searchTab()
                       .tap() ;
 
@@ -878,6 +880,7 @@ public class RatCriticalTest extends BasicTest {
     @Test
     @TestRailId( { "C1917372" } )
     public void local_songs_open_add_to_playlist_page(){
+        this.updateTestCaseInfo() ;
 
         this.navigator.libraryTab()
                       .tap() ;
@@ -886,7 +889,10 @@ public class RatCriticalTest extends BasicTest {
                       .myPlaylistsCategory()
                       .tap() ;
 
-        while( this.navigator.myPlayListPage().lineUp().card( 0 ).cover().isVisible() ){
+        while( this.navigator.myPlayListPage()
+                      .lineUp()
+                      .card( 0 ).cover()
+                      .isVisible() ){
             this.navigator.myPlayListPage()
                           .lineUp()
                           .card( 0 )
@@ -923,7 +929,8 @@ public class RatCriticalTest extends BasicTest {
                       .tap() ;
 
         this.navigator.songNowPlayingBar()
-                      .assertPlaying();
+                      .assertPlaying() ;
+
 
         this.navigator.songNowPlayingBar()
                       .cover()
@@ -941,7 +948,7 @@ public class RatCriticalTest extends BasicTest {
 
         this.navigator.localNowPlayingPage()
                       .arrowButton()
-                      .tap();
+                      .tap() ;
 
         this.navigator.streamTab()
                       .tap() ;
@@ -997,5 +1004,98 @@ public class RatCriticalTest extends BasicTest {
 
         UtaPassUtil.pressBack() ;
         UtaPassUtil.pressBack() ;
+    }
+
+    @Test
+    @TestRailId( { "C2603367" } )
+    public void Play_history_1st_view_Radio_Playlist(){
+        this.updateTestCaseInfo() ;
+
+        this.navigator.streamPage()
+                      .radioModule()
+                      .lineUp()
+                      .card( 4 )
+                      .playButton()
+                      .tap() ;
+
+        this.navigator.radioNowPlayingBar()
+                      .tap() ;
+
+        this.navigator.radioNowPlayingPage()
+                      .onAirSonglistButton()
+                      .tap() ;
+
+        this.navigator.onAriSonglistPage()
+                      .onAriSonglistPlaylistButton()
+                      .tap() ;
+
+        String songname = this.navigator.artistNewReleaseDetailPage()
+                      .title()
+                      .string() ;
+
+        this.navigator.artistNewReleaseDetailPage()
+                      .shuffleAllButton()
+                      .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                      .assertPlaying() ;
+
+        this.navigator.libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .playHistorySeeAllButton()
+                      .tap() ;
+
+        this.navigator.playHistoryPage()
+                      .playlistsPanel()
+                      .lineUp()
+                      .card( 0 )
+                      .title()
+                      .assertEquals( songname );
+
+        this.navigator.streamTab()
+                      .tap() ;
+
+        this.navigator.streamPage()
+                      .liveModule()
+                      .lineUp()
+                      .card( 1 )
+                      .playButton()
+                      .tap() ;
+
+        this.navigator.liveConcertPage()
+                      .video()
+                      .tap() ;
+
+        this.navigator.liveConcertPage()
+                      .arrowButton()
+                      .tap() ;
+
+        this.navigator.libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .playHistorySeeAllButton()
+                      .tap() ;
+
+        this.navigator.playHistoryPage()
+                      .playlistsPanel()
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                      .tap() ;
+
+        this.navigator.streamNowPlayingPage()
+                      .playModeButton()
+                      .text()
+                      .assertEquals( "RepeatAll" ) ;
+
+        this.navigator.streamNowPlayingPage()
+                      .arrowButton()
+                      .tap() ;
     }
 }

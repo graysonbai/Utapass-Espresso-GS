@@ -36,8 +36,7 @@ public class OnAriSonglistPage extends ViewObject {
     }
 
     public LazyString onAriSonglistTitle(){
-        return new LazyString(
-                this.label() + " > on-Ari Songlist Title",
+        return new LazyString(this.label() + " > on-Ari Songlist Title",
                 () -> allOf(
                         withId(R.id.title_text),
                         isDescendantOfA( withId( R.id.historyDescription) ),
@@ -87,35 +86,35 @@ public class OnAriSonglistPage extends ViewObject {
 
             String label = String.format( "%s > Card(%s)", this.label(), indexInWindow );
 
-            card.songName(label + " > songName ",
+            card.songName(label + " > song Name ",
                     () -> UtaPassUtil.withIndex(
                             allOf(
                                     withId( R.id.songName ),
-                                    isDescendantOfA( this.getMatcherToFindRecycleView())), indexInWindow));
+                                    isDescendantOfA( this.getMatcherToFindRecycleView())), indexInWindow ) );
 
-            card.artistName(label + " > artistName ",
+            card.artistName(label + " > artist Name ",
                     () -> UtaPassUtil.withIndex(
                             allOf(
                                     withId( R.id.artistName ),
-                                    isDescendantOfA( this.getMatcherToFindRecycleView())), indexInWindow));
+                                    isDescendantOfA( this.getMatcherToFindRecycleView())), indexInWindow ) );
 
             card.time(label + " > time text ",
                     () -> UtaPassUtil.withIndex(
                             allOf(
                                     withId( R.id.time_text ),
-                                    isDescendantOfA( this.getMatcherToFindRecycleView())), indexInWindow));
+                                    isDescendantOfA( this.getMatcherToFindRecycleView())), indexInWindow ) );
 
-            card.date(label + " > moreButton ",
+            card.date(label + " > date ",
                     () -> UtaPassUtil.withIndex(
                             allOf(
                                     withId( R.id.date_text ),
-                                    isDescendantOfA( this.getMatcherToFindRecycleView())), indexInWindow));
+                                    isDescendantOfA( this.getMatcherToFindRecycleView())), indexInWindow ) );
 
-            card.myUtaButton(label + " > moreButton ",
+            card.myUtaButton(label + " > myUta Button ",
                     () -> UtaPassUtil.withIndex(
                             allOf(
                                     withId( R.id.item_detail_stream_audio_button_wrapper ),
-                                    isDescendantOfA( this.getMatcherToFindRecycleView())), indexInWindow));
+                                    isDescendantOfA( this.getMatcherToFindRecycleView())), indexInWindow ) );
 
             return card;
         }

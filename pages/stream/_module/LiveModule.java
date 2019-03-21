@@ -76,9 +76,7 @@ public class LiveModule extends ViewObject {
         }
 
         protected Matcher<View> getMatcherToCountMaxIndexOfWindow() {
-            return allOf(
-                    withId( R.id.item_live_event_layout ),
-                    isCompletelyDisplayed() ) ;
+            return withId( R.id.item_live_event_layout );
         }
 
         public InternalCard card( int index ) {

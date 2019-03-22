@@ -11,9 +11,13 @@ import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IRecommendString;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.search.SearchStreamPanel;
 
 import org.hamcrest.Matcher;
 
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.pressImeActionButton;
+import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.withId ;
@@ -31,8 +35,12 @@ public class SearchPage extends BasicPage {
         this.searchBar().assertVisible() ;
     }
 
+    public SearchStreamPanel searchStreamPanel(){
+        return new SearchStreamPanel( this.label() );
+    }
+
     public BasicTextField searchBar(){
-        return new BasicTextField( this.label() + " > SearchButton",
+        return new BasicTextField( this.label() + " > SearchBar",
                 () -> allOf(
                         withId( R.id.search_src_text ),
                         isDescendantOfA( withId( R.id.search_plate ) ) ) ) ;

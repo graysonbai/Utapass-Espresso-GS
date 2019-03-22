@@ -50,6 +50,33 @@ public class FavoritePage extends BasicPage {
                              isCompletelyDisplayed() ) ) ;
     }
 
+    public BasicButton sortButton() {
+        return new BasicButton( this.label() + " > sort Button",
+                () -> allOf(
+                        withId(R.id.sort ),
+                        isDescendantOfA( withId(R.id.basetab_toolbar ) ) ) );
+    }
+
+    public BasicButton likedTimeButton() {
+        return new BasicButton( this.label() + " > liked Time Button",
+                () -> allOf( UtaPassUtil.withIndex( withId( R.id.menu_item_text ),0 ) ) ){
+            public void tap(){
+                super.tap();
+                UtaPassUtil.sleep( 2 , "wait for action take effect" );
+            }
+        } ;
+    }
+
+    public BasicButton likedCountButton() {
+        return new BasicButton( this.label() + " > liked Count Button",
+                () -> allOf( UtaPassUtil.withIndex( withId( R.id.menu_item_text ),1 ) ) ){
+            public void tap(){
+                super.tap();
+                UtaPassUtil.sleep( 2 , "wait for action take effect" );
+            }
+        } ;
+    }
+
     public InternalLineUp lineUp() {
         if( this.lineup == null ) {
             this.lineup = new InternalLineUp( this.label() ) ;

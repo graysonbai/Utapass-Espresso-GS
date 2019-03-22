@@ -3,7 +3,6 @@ package com.kddi.android.UtaPass.sqa_espresso.pages.search;
 import android.view.View;
 
 import com.kddi.android.UtaPass.R;
-import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
@@ -14,14 +13,9 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
 
 import org.hamcrest.Matcher;
 
-
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.core.AllOf.allOf;
 
 public class SearchStreamPanel extends BasicPage {
@@ -32,40 +26,7 @@ public class SearchStreamPanel extends BasicPage {
     }
 
     public void _ready(){
-
     }
-
-//    public LazyString swipeToSongsByArtistTitle( int n ){
-//        return new LazyString( this.label() + " > Songs by artist",
-//                () -> UtaPassUtil.withIndex( allOf(
-//                        withId( R.id.item_stream_title ),
-//                        withText( containsString( "Songs by artist" ) ),
-//                        isDescendantOfA( withId(R.id.item_stream_title_layout) ) ), n ) );
-//    }
-//
-//    public LazyString swipeToPlaylistsResult(){
-//        return new LazyString( this.label() + " > Playlists results",
-//                () -> allOf(
-//                        withId( R.id.item_stream_title ),
-//                        withText( containsString( "Playlists results" ) ),
-//                        isDescendantOfA( withId(R.id.item_stream_title_layout) ) ) );
-//    }
-//
-//    public LazyString swipeToSongsResult(){
-//        return new LazyString( this.label() + " > Songs reesults",
-//                () -> allOf(
-//                        withId( R.id.item_stream_title ),
-//                        withText( containsString( "Songs reesults" ) ),
-//                        isDescendantOfA( withId(R.id.item_stream_title_layout) ) ) );
-//    }
-//
-//    public LazyString swipeToResultFromMusicStore(){
-//        return new LazyString( this.label() + " > Result from Music Store",
-//                () -> allOf(
-//                        withId( R.id.item_stream_title ),
-//                        withText( containsString( "Result from Music Store" ) ),
-//                        isDescendantOfA( withId(R.id.item_stream_title_layout) ) ) );
-//    }
 
     public InternalLineUp lineUp() {
         if( this.lineUp == null ) {
@@ -91,64 +52,6 @@ public class SearchStreamPanel extends BasicPage {
                     isDescendantOfA( this.getMatcherToFindRecycleView() ) ) ;
         }
 
-        public String swipeToSongsByArtistTitle( int n ){
-            this.swipeToPosition( 0 );
-            this.swipeToPosition( n );
-
-
-            Matcher a = UtaPassUtil.withIndex(
-                    allOf(
-                            withId( R.id.item_stream_title ),
-                            withText( containsString( "Songs by artist" ) ),
-                            isDescendantOfA( withId(R.id.item_stream_title_layout) ),
-                            isCompletelyDisplayed() ), n );
-
-            if (  this.isVisible( a ) ){
-                return new LazyString( this.label() + " > Songs by artist",
-                        () -> UtaPassUtil.withIndex(
-                                allOf(
-                                        withId( R.id.item_stream_title ),
-                                        withText( containsString( "Songs by artist" ) ),
-                                        isDescendantOfA( withId(R.id.item_stream_title_layout) ),
-                                        isCompletelyDisplayed() ), n ) ).string();
-            }
-            return this.swipeToSongsByArtistTitle(n);
-        }
-
-        protected int calculateMaxIndexOfWindow() {
-            int count = -1 ;
-            for( int i = 0 ; i <= this.getMaxIndexOfLineUpObject(); i++ ) {
-                if( ! this.isDisplayedCompletely(
-                        UtaPassUtil.withIndex( this.getMatcherToCountMaxIndexOfWindow(), i ) ) ) {
-                    return count ;
-                }
-
-                count++ ;
-            }
-
-            return count ;
-        }
-
-//        public void swipeToSongsByArtist() {
-//
-//            int conunt = 0;
-//            for ( int i = 0; i <= 1; i++){
-//               if( this.swipeToSongsByArtistTitle( i ).string().matches("(^Songs by).*") ){
-//                   UtaPassUtil.dprint( this.swipeToSongsByArtistTitle( i ).string() + " > 這是 debug log" );
-//                   conunt = i;
-//               }
-//            }
-//        }
-
-        protected int swipeToCardViewAndGetIndexOfWindow( int index ) {
-
-            if( index <= this.maxIndexFirstWindow() ) {
-                return index ;
-            }
-
-            this.swipeToPosition( index + 2 ) ;
-            return this.maxIndexOtherWindow() ;
-        }
 
         public InternalCard card( int index ) {
             int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;

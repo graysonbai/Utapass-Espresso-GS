@@ -5,6 +5,7 @@ import com.kddi.android.UtaPass.sqa_espresso.BasicTest;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicString;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicTextField;
+import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
@@ -25,7 +26,9 @@ public class CreatePlayListPage extends ViewObject {
     public BasicTextField createPlaylistTitle(){
         return new BasicTextField(
                 this.label() + "CreatePlaylistTitle",
-                () -> withId( R.id.create_playlist_title ) );
+                () -> allOf(
+                        UtaPassUtil.withIndex( withId( R.id.create_playlist_title ), 0 ),
+                        isDescendantOfA( withId( R.id.create_playlist_appbar_layout ) ) ) );
     }
 
     public BasicButton doneButton(){

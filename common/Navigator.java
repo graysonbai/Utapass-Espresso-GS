@@ -12,6 +12,7 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.common.NowPlayingPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.RadioNowPlayingBar;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.RadioNowPlayingPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.SearchTab;
+import com.kddi.android.UtaPass.sqa_espresso.pages.common.SongInfoPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.SongNowPlayingBar;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.StreamNowPlayingPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.StreamTab;
@@ -124,6 +125,14 @@ public class Navigator {
     private MoreMenuPage moreMenuPage;
     private OnAirSonglistPage onAriSonglistPage;
     private RadioNowPlayingPage radioNowPlayingPage;
+    private SongInfoPage songInfoPage;
+
+    public SongInfoPage songInfoPage(){
+        if( this.songInfoPage == null ){
+            this.songInfoPage = new SongInfoPage();
+        }
+        return this.songInfoPage.ready();
+    }
 
     public RadioNowPlayingPage radioNowPlayingPage(){
         if( this.radioNowPlayingPage == null ){

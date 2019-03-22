@@ -20,7 +20,9 @@ import org.hamcrest.Matcher;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.anyOf;
 
 public class MyUtaHistoryPage extends MyUtaPlayHistoryPopupMessage {
     private InternalLineUp lineUp;
@@ -36,6 +38,61 @@ public class MyUtaHistoryPage extends MyUtaPlayHistoryPopupMessage {
     public LazyString remainingQuotas() {
         return new LazyString( this.label() + " > RemainingQuotas",
                 () -> withId( R.id.myuta_management_available_count ) ) ;
+    }
+
+    public BasicButton toolBar(){
+        return new BasicButton( this.label() + "filterButton",
+                () -> allOf(
+                        withId( R.id.myuta_management_toolbar_spinner ),
+                        isDescendantOfA( withId( R.id.myuta_management_toolbar ) ) ) );
+    }
+
+    public BasicButton allMyUtaButton(){
+        return new BasicButton( this.label() + " > All My Uta",
+                () -> allOf(
+                        UtaPassUtil.withIndex( withId( R.id.all_track_filter_layout), 0 ),
+                        isDescendantOfA( withId( R.id.myuta_management_toolbar ) ) )){
+            public LazyString text(){
+                return new LazyString( this.label(),
+                        () -> allOf(
+                                withId( R.id.all_track_filter_text ),
+                                anyOf(
+                                        withText( "All My Uta" ),
+                                        withText( "全てのMyうた" ) ) ) );
+            }
+        };
+    }
+
+    public BasicButton notDownLoadedButton(){
+        return new BasicButton( this.label() + " > Not downloaded",
+                () -> allOf(
+                        UtaPassUtil.withIndex( withId( R.id.all_track_filter_layout), 1 ),
+                        isDescendantOfA( withId( R.id.myuta_management_toolbar ) ) ) ){
+            public LazyString text(){
+                return new LazyString( this.label(),
+                        () -> allOf(
+                                withId( R.id.all_track_filter_text ),
+                                anyOf(
+                                        withText( "Not downloaded" ),
+                                        withText( "未ダウンロードのMyうた" ) ) ) );
+            }
+        };
+    }
+
+    public BasicButton forQuotaRefundButton(){
+        return new BasicButton( this.label() + " > For Quota Refund",
+                () -> allOf(
+                        UtaPassUtil.withIndex( withId( R.id.all_track_filter_layout), 2 ),
+                        isDescendantOfA( withId( R.id.myuta_management_toolbar ) ) ) ){
+            public LazyString text(){
+                return new LazyString( this.label(),
+                        () -> allOf(
+                                withId( R.id.all_track_filter_text ),
+                                anyOf(
+                                        withText( "For Quota Refund" ),
+                                        withText( "Myうた保存枠の返却" ) ) ) );
+            }
+        };
     }
 
     public InternalLineUp lineUp() {

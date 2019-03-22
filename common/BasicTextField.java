@@ -5,6 +5,7 @@ import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.ButtonVisibleExce
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.pressImeActionButton;
 import static android.support.test.espresso.action.ViewActions.typeText;
 
 
@@ -37,6 +38,14 @@ public class BasicTextField extends ViewObject {
 
         UtaPassUtil.dprint_type( this.label(), text ) ;
         onView( this.matcher.execute() ).perform( typeText( text ) ) ;
+    }
+
+    public void typeReturn( String text ) {
+        this.ready() ;
+
+        UtaPassUtil.dprint_type( this.label(), text ) ;
+        onView( this.matcher.execute() ).perform( typeText( text ), pressImeActionButton() ) ;
+        UtaPassUtil.sleep( 3 );
     }
 
     public boolean isVisible() {

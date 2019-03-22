@@ -4,7 +4,6 @@ import android.support.test.runner.AndroidJUnit4 ;
 
 import com.kddi.android.UtaPass.sqa_espresso.common.TestRailId;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
-import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.ExecuteException;
 
 import org.junit.Test ;
 import org.junit.runner.RunWith ;
@@ -736,60 +735,74 @@ public class RatCriticalTest extends BasicTest {
                       .assertEquals( songname ) ;
     }
     @Test
-    @TestRailId( { "C2290751" } )
+    @TestRailId( { "C2290751", "C1922750" } )
     public void Reminder_about_the_quota(){
         this.updateTestCaseInfo() ;
 
         this.navigator.libraryTab()
                       .tap() ;
 
-
         this.navigator.libraryPage()
                       .myUtaCategory()
                       .tap() ;
-
 
         this.navigator.myUtaPage()
                       .tooltip()
                       .tap() ;
 
-
         this.navigator.myUtaPage()
                       .myUtaHistoryButton()
                       .tap() ;
-
 
         this.navigator.myUtaPage()
                       .myUtaHistoryPage()
                       .title()
                       .assertVisible() ;
 
-
         this.navigator.myUtaPage()
                       .myUtaHistoryPage()
                       .checkbox()
                       .tap() ;
-
 
         this.navigator.myUtaPage()
                       .myUtaHistoryPage()
                       .closeButton()
                       .tap() ;
 
+        this.navigator.myUtaPage()
+                      .myUtaHistoryPage()
+                      .toolBar()
+                      .tap() ;
+
+        this.navigator.myUtaPage()
+                      .myUtaHistoryPage()
+                      .allMyUtaButton()
+                      .text()
+                      .assertVisible() ;
+
+        this.navigator.myUtaPage()
+                      .myUtaHistoryPage()
+                      .notDownLoadedButton()
+                      .text()
+                      .assertVisible() ;
+
+        this.navigator.myUtaPage()
+                      .myUtaHistoryPage()
+                      .forQuotaRefundButton()
+                      .text()
+                      .assertVisible() ;
 
         UtaPassUtil.pressBack() ;
-
+        UtaPassUtil.pressBack() ;
 
         this.navigator.myUtaPage()
                       .myUtaHistoryButton()
                       .tap() ;
 
-
         this.navigator.myUtaPage()
                       .myUtaHistoryPage()
                       .title()
                       .assertInvisible() ;
-
     }
 
     @Test
@@ -800,7 +813,7 @@ public class RatCriticalTest extends BasicTest {
         this.navigator.streamPage()
                       .radioModule()
                       .lineUp()
-                      .lastCard()
+                      .card( 6 )
                       .cover()
                       .tap() ;
 
@@ -893,6 +906,7 @@ public class RatCriticalTest extends BasicTest {
                       .lineUp()
                       .card( 0 ).cover()
                       .isVisible() ){
+
             this.navigator.myPlayListPage()
                           .lineUp()
                           .card( 0 )
@@ -1014,7 +1028,7 @@ public class RatCriticalTest extends BasicTest {
         this.navigator.streamPage()
                       .radioModule()
                       .lineUp()
-                      .card( 4 )
+                      .card( 6 )
                       .playButton()
                       .tap() ;
 
@@ -1097,5 +1111,103 @@ public class RatCriticalTest extends BasicTest {
         this.navigator.streamNowPlayingPage()
                       .arrowButton()
                       .tap() ;
+    }
+
+    @Test
+    public void ensure_favorite_playlists_likedCount_and_Liked_Time(){
+        this.updateTestCaseInfo() ;
+
+        this.navigator.libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .favoriteCategory()
+                      .tap() ;
+
+        this.navigator.favoritePage()
+                      .playlists()
+                      .tap() ;
+
+        this.navigator.favoritePage()
+                      .sortButton()
+                      .tap() ;
+
+        this.navigator.favoritePage()
+                      .likedCountButton()
+                      .tap() ;
+
+        String likecount = this.navigator.favoritePage()
+                      .lineUp()
+                      .card( 0 )
+                      .likeCount()
+                      .string() ;
+
+        this.navigator.favoritePage()
+                      .lineUp()
+                      .card( 1 )
+                      .likeCount()
+                      .assertLessThan( likecount );
+
+        this.navigator.favoritePage()
+                      .lineUp()
+                      .card( 2 )
+                      .cover()
+                      .tap() ;
+
+        String titlename = this.navigator.artistNewReleaseDetailPage()
+                      .title()
+                      .string() ;
+
+        this.navigator.artistNewReleaseDetailPage()
+                      .favoriteButton()
+                      .tap() ;
+
+        this.navigator.artistNewReleaseDetailPage()
+                      .favoriteButton()
+                      .tap() ;
+
+        UtaPassUtil.pressBack() ;
+
+        this.navigator.favoritePage()
+                      .sortButton()
+                      .tap() ;
+
+        this.navigator.favoritePage()
+                      .likedTimeButton()
+                      .tap() ;
+
+        this.navigator.favoritePage()
+                      .lineUp()
+                      .card( 0 )
+                      .title()
+                      .assertEquals( titlename );
+    }
+
+    @Test
+    public void Play_search_results_in_playlists(){
+        this.updateTestCaseInfo() ;
+
+        this.navigator.searchTab()
+                      .tap() ;
+
+        this.navigator.searchPage()
+                      .searchBar()
+                      .typeReturn( "Coldplay" );
+
+        this.navigator.searchPage()
+                      .searchStreamPanel()
+                      .lineUp()
+                      .card( 2 )
+                      .songName()
+                      .tap() ;
+
+        this.navigator.songInfoPage()
+                      .songInfoPlayButton()
+                      .tap() ;
+
+        this.navigator.songInfoPage()
+                      .songInfoPauseButton()
+                      .assertVisible() ;
+
     }
 }

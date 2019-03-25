@@ -1114,6 +1114,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C1917983" } )
     public void ensure_favorite_playlists_likedCount_and_Liked_Time(){
         this.updateTestCaseInfo() ;
 
@@ -1184,6 +1185,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
+    @TestRailId( { "C1922153" } )
     public void Play_search_results_in_playlists(){
         this.updateTestCaseInfo() ;
 

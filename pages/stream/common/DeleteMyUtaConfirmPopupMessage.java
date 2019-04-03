@@ -52,13 +52,13 @@ public class DeleteMyUtaConfirmPopupMessage extends ViewObject {
     public class CancelButton extends BasicButton {
 
         public CancelButton() {
-            super( () -> withId( android.R.id.button2 ) ) ;
+            super( "cancelButton", () -> withId( android.R.id.button2 ) ) ;
         }
     }
 
     public class DeleteButton extends BasicButton {
         public DeleteButton() {
-            super( () -> withId( android.R.id.button1 ) ) ;
+            super( "DeleteButton", () -> withId( android.R.id.button1 ) ) ;
         }
     }
 }

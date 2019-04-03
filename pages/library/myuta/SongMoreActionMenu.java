@@ -11,6 +11,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 public class SongMoreActionMenu extends ViewObject {
 
     public SongMoreActionMenu() {
+        this.label( " SongMoreActionMenu " );
         this.item = onView( withId( R.id.design_bottom_sheet ) ) ;
     }
 
@@ -27,7 +28,7 @@ public class SongMoreActionMenu extends ViewObject {
 
     public class DeleteSongMenuItem extends BasicButton {
         public DeleteSongMenuItem() {
-            super( () -> UtaPassUtil.withIndex( withId( R.id.context_menu_title ), 4 ) ) ;
+            super( " > DeleteSongMenuItem " ,() -> UtaPassUtil.withIndex( withId( R.id.context_menu_title ), 4 ) ) ;
         }
     }
 }

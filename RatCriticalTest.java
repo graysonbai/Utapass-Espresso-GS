@@ -1212,4 +1212,33 @@ public class RatCriticalTest extends BasicTest {
                       .assertVisible() ;
 
     }
+
+    @Test
+    public void remove_myuta_songs_in_myutapage(){
+        this.updateTestCaseInfo() ;
+
+        this.navigator.libraryTab().tap();
+        this.navigator.libraryPage().myUtaCategory().tap();
+        while( ! this.navigator.emptyMyUtaPage().title().isVisible() ){
+            this.navigator.myUtaPage().lineUp().card( 0 ).moreActionsButton().tap();
+            this.navigator.songMoreActionMenu().deleteSongMenuItem().tap();
+            this.navigator.deleteMyUtaConfirmPopupMessage().deleteButton().tap();
+        }
+        this.navigator.emptyMyUtaPage().title().assertVisible();
+
+        this.navigator.streamTab().tap();
+        this.navigator.streamPage().artistNewReleaseModule().lineUp().card( 0 ).cover().tap();
+        this.navigator.artistNewReleaseDetailPage().lineUp().card( 0 ).myUtaButton().tap();
+        this.navigator.saveMyUtaPopupMessage().saveButton().tap();
+        UtaPassUtil.pressBack();
+        this.navigator.streamPage().artistNewReleaseModule().lineUp().card( 0 ).cover().tap();
+        String songname = this.navigator.artistNewReleaseDetailPage().lineUp().card( 0 ).songName().string();
+        this.navigator.libraryTab().tap();
+        this.navigator.libraryPage().myUtaCategory().tap();
+        this.navigator.myUtaPage().lineUp().card( 0 ).songName().string().equals( songname );
+        this.navigator.myUtaPage().lineUp().card( 0 ).moreActionsButton().tap();
+        this.navigator.songMoreActionMenu().deleteSongMenuItem().tap();
+        this.navigator.deleteMyUtaConfirmPopupMessage().deleteButton().tap();
+        this.navigator.emptyMyUtaPage().title().assertVisible();
+    }
 }

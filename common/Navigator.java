@@ -34,6 +34,7 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.library.myplaylist.CreatePlay
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.myplaylist.MoreMenuPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.myplaylist.MyPlaylistDetailPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.myplaylist.addmusic.MyPlayListSongsPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.myuta.EmptyMyUtaPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.myuta.SongMoreActionMenu;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.songs.PermissionPopupMessage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.settings.IdSettingsPage;
@@ -126,6 +127,14 @@ public class Navigator {
     private OnAirSonglistPage onAriSonglistPage;
     private RadioNowPlayingPage radioNowPlayingPage;
     private SongInfoPage songInfoPage;
+    private EmptyMyUtaPage emptyMyUtaPage;
+
+    public EmptyMyUtaPage emptyMyUtaPage(){
+        if( this.emptyMyUtaPage == null ){
+            this.emptyMyUtaPage = new EmptyMyUtaPage();
+        }
+        return this.emptyMyUtaPage.ready();
+    }
 
     public SongInfoPage songInfoPage(){
         if( this.songInfoPage == null ){

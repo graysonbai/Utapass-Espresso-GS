@@ -28,8 +28,8 @@ import static org.hamcrest.Matchers.anyOf;
 
 public class RadioModule extends ViewObject {
 
-    public static String titleInEnglish = "Original radio program" ;
-    public static String titleInJapanese = "オリジナルラジオ番組" ;
+    public static String titleInEnglish = "Featured Stations" ;
+    public static String titleInJapanese = "Pick Up ラジオ" ;
     private InternalLineUp lineup ;
 
     public RadioModule( String label ) {

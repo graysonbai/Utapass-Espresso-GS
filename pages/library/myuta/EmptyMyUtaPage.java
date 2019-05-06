@@ -17,7 +17,7 @@ public class EmptyMyUtaPage extends ViewObject {
     }
 
     public LazyString title(){
-        return new LazyString( this.label(),
+        return new LazyString( this.label() + " > title",
                 () -> allOf(
                         withId( R.id.view_empty_myuta_title ),
                         anyOf(
@@ -27,7 +27,7 @@ public class EmptyMyUtaPage extends ViewObject {
     }
 
     public LazyString content(){
-        return new LazyString( this.label(),
+        return new LazyString( this.label() + " > content",
                 () -> allOf(
                         withId( R.id.view_empty_myuta_content ),
                         anyOf(

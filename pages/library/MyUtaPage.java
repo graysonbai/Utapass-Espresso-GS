@@ -126,7 +126,7 @@ public class MyUtaPage extends BasicPage {
             return this.maxIndexOtherWindow() ;
         }
 
-        public InternalCard card(int index ) {
+        public InternalCard card( int index ) {
             int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
             InternalCard card = new InternalCard() ;
 
@@ -158,6 +158,7 @@ public class MyUtaPage extends BasicPage {
             card.moreActionsButton( label + " > MoreActionsButton",
                     () -> allOf(
                             withId( R.id.item_library_lazy_track_overflow ),
+                            isCompletelyDisplayed(),
                             isDescendantOfA( UtaPassUtil.withIndex(
                                     this.getMatcherToCountMaxIndexOfWindow(),
                                     indexInWindow ) ) ) ) ;

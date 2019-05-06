@@ -176,7 +176,7 @@ public class Best50Module extends ViewObject {
 
             card.playButton(label + " > PlayButton",
                     () -> allOf(
-                            withId( R.id.promotion_song_myuta_register ),
+                            UtaPassUtil.withDrawable( R.drawable.btn_myuta_play),
                             isDescendantOfA( UtaPassUtil.withIndex(
                                     this.getMatcherToCountMaxIndexOfWindow(),
                                     indexInWindow ) ) ) ) ;

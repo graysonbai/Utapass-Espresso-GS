@@ -1,11 +1,14 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages ;
 
+import android.support.test.espresso.action.ViewActions;
+
 import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.DailyRankingModule;
 
+import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -131,5 +134,9 @@ public class LibraryPage extends BasicPage{
 
     public DailyRankingModule dailyRankingModule(){
         return new DailyRankingModule( this.label() );
+    }
+
+    public void swipeDown() {
+        onView( withId( R.id.main_container ) ).perform( ViewActions.swipeUp() ) ;
     }
 }

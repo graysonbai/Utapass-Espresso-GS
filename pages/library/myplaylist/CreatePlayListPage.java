@@ -8,6 +8,7 @@ import com.kddi.android.UtaPass.sqa_espresso.common.BasicTextField;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 
+import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -20,7 +21,7 @@ public class CreatePlayListPage extends ViewObject {
     }
 
     public void _ready(){
-       this.addMusicButton().assertVisible();
+       this.doneButton().assertVisible();
     }
 
     public BasicTextField createPlaylistTitle(){
@@ -39,6 +40,8 @@ public class CreatePlayListPage extends ViewObject {
 
     public BasicButton addMusicButton(){
         return new BasicButton( this.label() + " > AddMusicButton",
-                () -> withId( R.id.create_playlist_add_music_layout ) );
+                () -> allOf(
+                        UtaPassUtil.withIndex( withId( R.id.create_playlist_add_music_layout ) , 0 ),
+                        isCompletelyDisplayed() ) );
     }
 }

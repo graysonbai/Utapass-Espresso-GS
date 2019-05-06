@@ -36,7 +36,9 @@ public class SideBarMenu extends ViewObject {
     }
 
     public void _ready() {
+        UtaPassUtil.sleep( 2, "Ensure stability");
         this.assertVisible() ;
+        this.lineUp().card( 0 ).title().assertVisible();
     }
 
     public void assertVisible() {
@@ -106,7 +108,7 @@ public class SideBarMenu extends ViewObject {
 
         public InternalCard card( int index ) {
             int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
-            InternalCard card = new InternalCard() ;
+            InternalCard card = new InternalCard();
 
             String label = String.format( "%s > MenuItem(%s)",
                     this.label(),
@@ -124,7 +126,7 @@ public class SideBarMenu extends ViewObject {
                             withId( R.id.item_drawer_default_section_title ),
                             isDescendantOfA( UtaPassUtil.withIndex(
                                     this.getMatcherToCountMaxIndexOfWindow(),
-                                    indexInWindow ) ) ) ) ;
+                                    indexInWindow ) ) ) );
 
             card.subtitle( label + " > Subtitle",
                     () -> allOf(

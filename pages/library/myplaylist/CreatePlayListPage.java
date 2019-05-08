@@ -10,9 +10,11 @@ import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
+import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.endsWith;
 
 public class CreatePlayListPage extends ViewObject {
 
@@ -43,5 +45,13 @@ public class CreatePlayListPage extends ViewObject {
                 () -> allOf(
                         UtaPassUtil.withIndex( withId( R.id.create_playlist_add_music_layout ) , 0 ),
                         isCompletelyDisplayed() ) );
+    }
+
+    public BasicButton closeButton(){
+        return new BasicButton(
+                this.label() + "closeButton",
+                () -> allOf(
+                        withClassName( endsWith( "ImageButton" ) ),
+                        isDescendantOfA( withId( R.id.create_playlist_toolbar ) ) ) );
     }
 }

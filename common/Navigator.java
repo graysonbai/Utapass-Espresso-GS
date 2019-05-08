@@ -55,6 +55,7 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.DeleteMyUtaConf
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.SaveMyUtaConfirmPopupMessage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.SaveMyUtaPopupMessage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.WhatsNewDetailPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream.page.DebugUtilPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.page.PopularArtistPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.page.TopChartPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.page.WhatsNewPage;
@@ -128,7 +129,14 @@ public class Navigator {
     private RadioNowPlayingPage radioNowPlayingPage;
     private SongInfoPage songInfoPage;
     private EmptyMyUtaPage emptyMyUtaPage;
+    private DebugUtilPage debugUtilPage;
 
+    public DebugUtilPage debugUtilPage(){
+        if( this.debugUtilPage == null ){
+            this.debugUtilPage = new DebugUtilPage();
+        }
+        return this.debugUtilPage.ready();
+    }
     public EmptyMyUtaPage emptyMyUtaPage(){
         if( this.emptyMyUtaPage == null ){
             this.emptyMyUtaPage = new EmptyMyUtaPage();

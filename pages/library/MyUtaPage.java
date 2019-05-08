@@ -84,6 +84,7 @@ public class MyUtaPage extends BasicPage {
         if( this.myUtaHistoryButton().isVisible() ) {
             this.swipeUp() ;
             this.swipeUp() ;
+            UtaPassUtil.sleep( 2);
         }
 
         if( this.lineUp == null ) {

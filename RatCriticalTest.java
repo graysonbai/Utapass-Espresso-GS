@@ -733,6 +733,7 @@ public class RatCriticalTest extends BasicTest {
                       .songName()
                       .assertEquals( songname ) ;
     }
+
     @Test
     @TestRailId( { "C2290751", "C1922750" } )
     public void Reminder_about_the_quota(){
@@ -745,9 +746,11 @@ public class RatCriticalTest extends BasicTest {
                       .myUtaCategory()
                       .tap() ;
 
-        this.navigator.myUtaPage()
-                      .tooltip()
-                      .tap() ;
+        if ( this.navigator.myUtaPage().tooltip().isVisible() ){
+            this.navigator.myUtaPage()
+                    .tooltip()
+                    .tap();
+        }
 
         this.navigator.myUtaPage()
                       .myUtaHistoryButton()
@@ -895,6 +898,35 @@ public class RatCriticalTest extends BasicTest {
         this.updateTestCaseInfo() ;
 
         this.navigator.streamTab()
+                .tap() ;
+
+        this.navigator.libraryTab()
+                .tap() ;
+
+        this.navigator.libraryPage()
+                .myPlaylistsCategory()
+                .tap() ;
+
+        while ( this.navigator.myPlayListPage().lineUp().card( 0 ).title().isVisible() ){
+            this.navigator.myPlayListPage()
+                          .lineUp()
+                          .card( 0 ).cover()
+                          .tap() ;
+
+            this.navigator.myPlaylistDetailPage()
+                          .moreButton()
+                          .tap() ;
+
+            this.navigator.moreMenuPage()
+                          .moreDeletePlaylistButton()
+                          .tap() ;
+
+            this.navigator.moreMenuPage()
+                          .deleteButton()
+                          .tap() ;
+        }
+
+        this.navigator.streamTab()
                       .tap() ;
 
         this.navigator.libraryTab()
@@ -922,10 +954,14 @@ public class RatCriticalTest extends BasicTest {
                       .tap() ;
 
         this.navigator.createPlayListPage()
-                      .createPlaylistTitle()
+                      .doneButton()
                       .assertVisible() ;
 
-        UtaPassUtil.pressBack() ;
+        this.navigator.createPlayListPage()
+                      .closeButton()
+                      .tap();
+
+//        UtaPassUtil.pressBack() ;
 
         this.navigator.localNowPlayingPage()
                       .arrowButton()
@@ -1225,14 +1261,15 @@ public class RatCriticalTest extends BasicTest {
                       .tap() ;
 
         if ( this.navigator.myUtaPage().tooltip().isVisible() ){
-            this.navigator.myUtaPage().tooltip().tap();
+            this.navigator.myUtaPage()
+                    .tooltip()
+                    .tap() ;
         }
 
         this.navigator.myUtaPage()
                       .lineUp()
                       .card( 0 )
-                      .songName()
-                      .tap() ;
+                      .tap();
 
         this.navigator.songNowPlayingBar()
                       .assertPlaying() ;

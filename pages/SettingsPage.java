@@ -18,7 +18,7 @@ public class SettingsPage extends ViewObject {
     public void _ready() {
     }
 
-    public LazyString id () {
+    public LazyString id() {
         return new LazyString(
                     this.label() + " > ID ",
                     () ->  withId( R.id.settings_id_subtitle ) );

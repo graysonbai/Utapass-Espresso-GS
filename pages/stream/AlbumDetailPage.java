@@ -47,7 +47,7 @@ public class AlbumDetailPage extends BasicPage {
     }
 
     public void _ready() {
-        this.lineUp().card( 0 ).cover().assertVisible();
+        this.shuffleAllButton().assertVisible();
     }
 
     public BasicImage cover() {
@@ -99,8 +99,6 @@ public class AlbumDetailPage extends BasicPage {
     }
 
     public BasicButton shuffleAllButton() {
-        this.lineUp().swipeToPosition( 1 ) ;
-
         return new BasicButton(
                 this.label() + " > shuffleAll",
                 () -> allOf(

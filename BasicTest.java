@@ -21,8 +21,7 @@ public class BasicTest {
     protected Navigator navigator = new Navigator() ;
 
     @Rule
-    public ActivityTestRule<MainActivity> mActivityRule =
-            new ActivityTestRule<>( MainActivity.class ) ;
+    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>( MainActivity.class ) ;
 
     @Before
     public void pre_condition() {
@@ -88,35 +87,35 @@ public class BasicTest {
 
         this.navigator.sideBarMenu()
                       .lineUp()
-                      .card( 0 )
+                      .card( 1 )
                       .title()
                       .tap() ;
 
-        String auid = this.navigator.settingsPage()
-                      .id()
-                      .string() ;
+        String auid = this.navigator.debugUtilPage()
+                      .getMsno()
+                      .string();
 
         resetQuota( auid );
         UtaPassUtil.pressBack();
     }
 
-    public void resetQuota( String AUID ) {
-        QuotaControl quotaControl = new QuotaControl( AUID );
+    public void resetQuota( String auid ) {
+        QuotaControl quotaControl = new QuotaControl( auid );
         quotaControl.revokeAllQuota();
-        quotaControl.get20Quota();
+        quotaControl.get10Quota();
     }
 
     private void enterMyUtaPage(){
         this.navigator.libraryTab()
-                .tap();
+                      .tap();
 
         UtaPassUtil.swipeDown();
 
         UtaPassUtil.swipeDown();
 
         this.navigator.libraryPage()
-                .myUtaCategory()
-                .tap();
+                      .myUtaCategory()
+                      .tap();
     }
 
     private void ensureMyUtaPageIsEmpty(){

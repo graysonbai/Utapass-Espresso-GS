@@ -2,6 +2,7 @@ package com.kddi.android.UtaPass.sqa_espresso.pages ;
 
 import com.kddi.android.UtaPass.R ;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
+import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
@@ -17,8 +18,10 @@ public class SettingsPage extends ViewObject {
     public void _ready() {
     }
 
-    public String id() {
-        return this.getText( withId( R.id.settings_id_subtitle ) ) ;
+    public LazyString id() {
+        return new LazyString(
+                    this.label() + " > ID ",
+                    () ->  withId( R.id.settings_id_subtitle ) );
     }
 
     public BasicButton highQualityButton(){

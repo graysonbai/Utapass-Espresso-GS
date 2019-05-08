@@ -4,6 +4,7 @@ import android.view.View;
 
 import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
+import com.kddi.android.UtaPass.sqa_espresso.common.BasicImage;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 
@@ -22,8 +23,6 @@ public class StreamNowPlayingPage extends NowPlayingPage {
     public void _ready(){
         this.playListDetailButton().assertVisible();
         this.songTitle().assertVisible();
-        this.myUtaButton().assertVisible();
-        this.castButton().assertVisible();
     }
 
     public Matcher<View> matcher() {
@@ -44,7 +43,15 @@ public class StreamNowPlayingPage extends NowPlayingPage {
         return new BasicButton(
                 this.label() + " > MyUtaButton",
                 () -> allOf(
-                        UtaPassUtil.withIndex( withId( R.id.media_action_bar_my_uta_layout ), 0  ),
+                        UtaPassUtil.withDrawable( R.drawable.btn_player_myuta ),
+                        isDescendantOfA( withId( R.id.nowplaying_media_action_bar ) ) ) );
+    }
+
+    public BasicImage saveMyUtaButton(){
+        return new BasicImage(
+                this.label() + " > MyUtaButton",
+                () -> allOf(
+                        UtaPassUtil.withDrawable( R.drawable.btn_player_myuta_saved ),
                         isDescendantOfA( withId( R.id.nowplaying_media_action_bar ) ) ) );
     }
 

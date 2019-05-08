@@ -15,6 +15,11 @@ public class SongInfoPage extends ViewObject {
         this.label( " SongInfoPage " );
     }
 
+    public void _ready(){
+        this.titleName().assertVisible();
+        this.myUtaButton().assertVisible();
+    }
+
     public BasicButton songInfoPlayButton(){
         return new BasicButton( this.label() + " > songInFo Play Button ",
                 () -> UtaPassUtil.withIndex( allOf(

@@ -179,6 +179,7 @@ public class UtaPassUtil {
 
     public static void pressBack() {
         Espresso.pressBack() ;
+        UtaPassUtil.dprint( "pressBack" );
     }
 
     public static void closeApp() {

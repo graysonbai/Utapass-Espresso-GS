@@ -225,7 +225,6 @@ public class RatCriticalTest extends BasicTest {
         this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
-
     @Test
     @TestRailId( { "C1917729" } )
     public void play_video_in_library_videos_page(){
@@ -734,6 +733,7 @@ public class RatCriticalTest extends BasicTest {
                       .songName()
                       .assertEquals( songname ) ;
     }
+
     @Test
     @TestRailId( { "C2290751", "C1922750" } )
     public void Reminder_about_the_quota(){
@@ -746,9 +746,11 @@ public class RatCriticalTest extends BasicTest {
                       .myUtaCategory()
                       .tap() ;
 
-        this.navigator.myUtaPage()
-                      .tooltip()
-                      .tap() ;
+        if ( this.navigator.myUtaPage().tooltip().isVisible() ){
+            this.navigator.myUtaPage()
+                    .tooltip()
+                    .tap();
+        }
 
         this.navigator.myUtaPage()
                       .myUtaHistoryButton()
@@ -895,22 +897,20 @@ public class RatCriticalTest extends BasicTest {
     public void local_songs_open_add_to_playlist_page(){
         this.updateTestCaseInfo() ;
 
+        this.navigator.streamTab()
+                .tap() ;
+
         this.navigator.libraryTab()
-                      .tap() ;
+                .tap() ;
 
         this.navigator.libraryPage()
-                      .myPlaylistsCategory()
-                      .tap() ;
+                .myPlaylistsCategory()
+                .tap() ;
 
-        while( this.navigator.myPlayListPage()
-                      .lineUp()
-                      .card( 0 ).cover()
-                      .isVisible() ){
-
+        while ( this.navigator.myPlayListPage().lineUp().card( 0 ).title().isVisible() ){
             this.navigator.myPlayListPage()
                           .lineUp()
-                          .card( 0 )
-                          .cover()
+                          .card( 0 ).cover()
                           .tap() ;
 
             this.navigator.myPlaylistDetailPage()
@@ -945,7 +945,6 @@ public class RatCriticalTest extends BasicTest {
         this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
 
-
         this.navigator.songNowPlayingBar()
                       .cover()
                       .tap() ;
@@ -955,10 +954,14 @@ public class RatCriticalTest extends BasicTest {
                       .tap() ;
 
         this.navigator.createPlayListPage()
-                      .createPlaylistTitle()
+                      .doneButton()
                       .assertVisible() ;
 
-        UtaPassUtil.pressBack() ;
+        this.navigator.createPlayListPage()
+                      .closeButton()
+                      .tap();
+
+//        UtaPassUtil.pressBack() ;
 
         this.navigator.localNowPlayingPage()
                       .arrowButton()
@@ -1210,6 +1213,240 @@ public class RatCriticalTest extends BasicTest {
         this.navigator.songInfoPage()
                       .songInfoPauseButton()
                       .assertVisible() ;
+    }
 
+    @Test
+    @TestRailId( { "C2398863", "C1934617", "C2398886", "C2208786" } )
+    public void delete_And_Play_MyUta_Song(){
+        this.updateTestCaseInfo();
+
+        this.navigator.streamPage()
+                      .artistNewReleaseModule()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
+
+        this.navigator.artistNewReleaseDetailPage()
+                      .lineUp()
+                      .card( 0 )
+                      .myUtaButton()
+                      .tap() ;
+
+        this.navigator.saveMyUtaPopupMessage()
+                      .saveButton()
+                      .tap() ;
+
+        if( this.navigator.saveMyUtaConfirmPopupMessage().isVisible() ){
+            this.navigator.saveMyUtaConfirmPopupMessage()
+                    .closeButton()
+                    .tap() ;
+        }
+
+        this.navigator.artistNewReleaseDetailPage()
+                      .lineUp()
+                      .card( 1 )
+                      .myUtaButton()
+                      .tap() ;
+
+        this.navigator.saveMyUtaPopupMessage()
+                      .saveButton()
+                      .tap() ;
+
+        this.navigator.libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .myUtaCategory()
+                      .tap() ;
+
+        if ( this.navigator.myUtaPage().tooltip().isVisible() ){
+            this.navigator.myUtaPage()
+                    .tooltip()
+                    .tap() ;
+        }
+
+        this.navigator.myUtaPage()
+                      .lineUp()
+                      .card( 0 )
+                      .tap();
+
+        this.navigator.songNowPlayingBar()
+                      .assertPlaying() ;
+
+        this.navigator.myUtaPage()
+                      .playButton()
+                      .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                      .assertPlaying() ;
+
+        this.navigator.myUtaPage()
+                      .lineUp()
+                      .card( 1 )
+                      .songName()
+                      .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                      .assertPlaying() ;
+
+        this.navigator.myUtaPage()
+                      .lineUp()
+                      .card( 0 )
+                      .moreActionsButton()
+                      .tap() ;
+
+        this.navigator.songMoreActionMenu()
+                      .SongInfoMenuItem()
+                      .tap() ;
+
+        this.navigator.songInfoPage()
+                      .songInfoPlayButton()
+                      .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                      .assertPlaying() ;
+
+        this.navigator.streamTab()
+                      .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                      .assertPlaying() ;
+    }
+
+    @Test
+    @TestRailId({ "C2207538" })
+    public void Premium_NowPlaying_Register_Song(){
+        this.updateTestCaseInfo();
+
+        this.navigator.streamPage()
+                      .whatsNewModule()
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                      .assertPlaying() ;
+
+        this.navigator.songNowPlayingBar()
+                      .cover()
+                      .tap() ;
+
+        this.navigator.streamNowPlayingPage()
+                      .myUtaButton()
+                      .tap() ;
+
+        this.navigator.saveMyUtaPopupMessage()
+                      .cancelButton()
+                      .tap() ;
+
+        this.navigator.streamNowPlayingPage()
+                      .myUtaButton()
+                      .assertVisible() ;
+
+        this.navigator.streamNowPlayingPage()
+                      .myUtaButton()
+                      .tap() ;
+
+        this.navigator.saveMyUtaPopupMessage()
+                      .saveButton()
+                      .tap() ;
+
+        if( this.navigator.saveMyUtaConfirmPopupMessage().isVisible() ){
+            this.navigator.saveMyUtaConfirmPopupMessage()
+                    .closeButton()
+                    .tap() ;
+        }
+
+        this.navigator.streamNowPlayingPage()
+                      .saveMyUtaButton()
+                      .assertVisible() ;
+
+        String songname = this.navigator.streamNowPlayingPage()
+                      .songTitle()
+                      .string() ;
+
+        this.navigator.streamNowPlayingPage()
+                      .arrowButton()
+                      .tap() ;
+
+        this.navigator.libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .myUtaCategory()
+                      .tap() ;
+
+        this.navigator.myUtaPage()
+                      .lineUp()
+                      .card( 0 )
+                      .songName()
+                      .text()
+                      .assertEquals( songname );
+    }
+
+    @Test
+    @TestRailId( { "C2867768" } )
+    public void play_MyUta_Song_in_Best50_Module(){
+        this.updateTestCaseInfo();
+
+        this.navigator.streamPage()
+                      .best50Module()
+                      .lineUp()
+                      .card( 1 )
+                      .myUtaButton()
+                      .tap();
+
+        this.navigator.saveMyUtaPopupMessage()
+                      .saveButton()
+                      .tap() ;
+
+        if( this.navigator.saveMyUtaConfirmPopupMessage().isVisible() ){
+            this.navigator.saveMyUtaConfirmPopupMessage()
+                          .closeButton()
+                          .tap() ;
+        }
+
+        this.navigator.streamPage()
+                      .best50Module()
+                      .lineUp()
+                      .card( 1 )
+                      .playButton()
+                      .tap();
+
+        this.navigator.streamPage()
+                      .best50Module()
+                      .lineUp()
+                      .card( 1 )
+                      .playButton()
+                      .assertVisible();
+
+        String songname = this.navigator.streamPage()
+                      .best50Module()
+                      .lineUp()
+                      .card( 1 )
+                      .songName()
+                      .string();
+
+        this.navigator.libraryTab()
+                      .tap();
+
+        this.navigator.libraryPage()
+                      .myUtaCategory()
+                      .tap();
+
+        if ( this.navigator.myUtaPage().tooltip().isVisible() ){
+            this.navigator.myUtaPage()
+                          .tooltip()
+                          .tap();
+        }
+
+        this.navigator.myUtaPage()
+                      .lineUp()
+                      .card( 0 )
+                      .songName()
+                      .text()
+                      .assertEquals( songname );
     }
 }

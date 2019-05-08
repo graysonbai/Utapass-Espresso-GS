@@ -1,5 +1,7 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages ;
 
+import android.support.test.espresso.action.ViewActions;
+
 import com.kddi.android.UtaPass.R ;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
@@ -85,6 +87,10 @@ public class StreamPage extends BasicPage {
                 this.hasMamaModule() ? 1 : 0 ;
 
         this.swipeToSpotlightModule() ;
+    }
+
+    public void swipedown() {
+        onView( withId( R.id.main_viewpager ) ).perform( ViewActions.swipeDown() ) ;
     }
 
     public void closeAllNotice() {

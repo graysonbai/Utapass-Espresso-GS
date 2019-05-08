@@ -22,10 +22,6 @@ public class LocalNowPlayingPage extends NowPlayingPage {
     }
 
     public void _ready(){
-        this.songTitle().assertVisible();
-        this.prevButton().assertVisible();
-        this.favoriteButton().assertVisible();
-        this.addMyplaylistButton().assertVisible();
     }
 
     public Matcher<View> matcher() {
@@ -44,7 +40,7 @@ public class LocalNowPlayingPage extends NowPlayingPage {
 
     public BasicButton addMyplaylistButton(){
         return new BasicButton(
-                this.label() + " > PlayModeButton",
+                this.label() + " > Add Myplaylist Button",
                 () -> allOf(
                         UtaPassUtil.withIndex( withId( R.id.media_action_bar_add_list_layout ), 0  ),
                         isDescendantOfA( withId( R.id.nowplaying_media_action_bar ) ) ) );

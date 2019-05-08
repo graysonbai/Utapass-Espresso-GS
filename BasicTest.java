@@ -6,6 +6,7 @@ import com.kddi.android.UtaPass.main.MainActivity;
 import com.kddi.android.UtaPass.sqa_espresso.common.Navigator;
 import com.kddi.android.UtaPass.sqa_espresso.common.RunningStatus;
 import com.kddi.android.UtaPass.sqa_espresso.common.TestRailId;
+import com.kddi.android.UtaPass.sqa_espresso.common.toolkit.QuotaControl;
 import com.kddi.android.UtaPass.sqa_espresso.common.UserStatus;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import org.junit.After;
@@ -20,12 +21,15 @@ public class BasicTest {
     protected Navigator navigator = new Navigator() ;
 
     @Rule
-    public ActivityTestRule<MainActivity> mActivityRule =
-            new ActivityTestRule<>( MainActivity.class ) ;
+    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>( MainActivity.class ) ;
 
     @Before
     public void pre_condition() {
         this.ensureLogin() ;
+        this.resetQuota();
+        this.ensureMyUtaPageIsEmpty();
+        this.navigator.streamTab()
+                      .tap() ;
     }
 
     public void ensureLogin() {
@@ -74,6 +78,78 @@ public class BasicTest {
 
         UserStatus.isLogin = true ;
         this.navigator.streamPage() ;
+    }
+
+    public void resetQuota(){
+        this.navigator.streamPage()
+                      .sideBarButton()
+                      .tap() ;
+
+        this.navigator.sideBarMenu()
+                      .lineUp()
+                      .card( 1 )
+                      .title()
+                      .tap() ;
+
+        String auid = this.navigator.debugUtilPage()
+                      .getMsno()
+                      .string();
+
+        resetQuota( auid );
+        UtaPassUtil.pressBack();
+    }
+
+    public void resetQuota( String auid ) {
+        QuotaControl quotaControl = new QuotaControl( auid );
+        quotaControl.revokeAllQuota();
+        quotaControl.get10Quota();
+    }
+
+    private void enterMyUtaPage(){
+        this.navigator.libraryTab()
+                      .tap();
+
+        UtaPassUtil.swipeDown();
+
+        UtaPassUtil.swipeDown();
+
+        this.navigator.libraryPage()
+                      .myUtaCategory()
+                      .tap();
+    }
+
+    private void ensureMyUtaPageIsEmpty(){
+        this.enterMyUtaPage();
+
+        if ( this.navigator.myUtaPage().tooltip().isVisible() ){
+            this.navigator.myUtaPage()
+                    .tooltip()
+                    .tap() ;
+        }
+
+        while ( !this.navigator.emptyMyUtaPage().title().isVisible() ) {
+            this.navigator.myUtaPage()
+                    .lineUp()
+                    .card(0)
+                    .moreActionsButton()
+                    .tap() ;
+
+            if( !this.navigator.songMoreActionMenu().deleteSongMenuItem().isVisible() ){
+                this.navigator.myUtaPage()
+                        .lineUp()
+                        .card(0)
+                        .moreActionsButton()
+                        .tap() ;
+            }
+
+            this.navigator.songMoreActionMenu()
+                    .deleteSongMenuItem()
+                    .tap() ;
+
+            this.navigator.deleteMyUtaConfirmPopupMessage()
+                    .deleteButton()
+                    .tap() ;
+        }
     }
 
     private void ensureBackToStreamPage(){

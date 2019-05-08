@@ -22,7 +22,7 @@ public class NowPlayingPage extends ViewObject {
     }
 
     public void _ready(){
-        this.favoriteButton().assertVisible();
+        this.songTitle().assertVisible();
     }
 
     public Matcher<View> matcher() {

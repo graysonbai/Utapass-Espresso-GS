@@ -30,7 +30,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId ;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.endsWith;
 
 
@@ -48,13 +47,12 @@ public class AlbumDetailPage extends BasicPage {
     }
 
     public void _ready() {
-        this.title().assertVisible() ;
-        this.description().assertVisible() ;
+        this.shuffleAllButton().assertVisible();
     }
 
     public BasicImage cover() {
         return new BasicImage(
-                this.label() + "cover",
+                this.label() + " > cover",
                 () -> withId( R.id.detail_playlist_image_normal ) ) ;
     }
 
@@ -101,8 +99,6 @@ public class AlbumDetailPage extends BasicPage {
     }
 
     public BasicButton shuffleAllButton() {
-        this.lineUp().swipeToPosition( 1 ) ;
-
         return new BasicButton(
                 this.label() + " > shuffleAll",
                 () -> allOf(

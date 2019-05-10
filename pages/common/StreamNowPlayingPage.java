@@ -43,11 +43,19 @@ public class StreamNowPlayingPage extends NowPlayingPage {
         return new BasicButton(
                 this.label() + " > MyUtaButton",
                 () -> allOf(
+                        UtaPassUtil.withIndex( withId( R.id.media_action_bar_my_uta_layout), 0 ),
+                        isDescendantOfA( withId( R.id.nowplaying_media_action_bar ) ) ) );
+    }
+
+    public BasicImage notMyUtaImage(){
+        return new BasicImage(
+                this.label() + " > MyUtaButton",
+                () -> allOf(
                         UtaPassUtil.withDrawable( R.drawable.btn_player_myuta ),
                         isDescendantOfA( withId( R.id.nowplaying_media_action_bar ) ) ) );
     }
 
-    public BasicImage saveMyUtaButton(){
+    public BasicImage saveMyUtaImage(){
         return new BasicImage(
                 this.label() + " > MyUtaButton",
                 () -> allOf(

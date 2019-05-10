@@ -807,33 +807,33 @@ public class RatCriticalTest extends BasicTest {
                       .assertInvisible() ;
     }
 
-    @Test
-    @TestRailId( { "C2603291" } )
-    public void play_radio_songs_from_radio_page(){
-        this.updateTestCaseInfo() ;
-
-        this.navigator.streamPage()
-                      .radioModule()
-                      .lineUp()
-                      .card( 6 )
-                      .cover()
-                      .tap() ;
-
-        this.navigator.radioDetailPage()
-                      .playButton()
-                      .tap() ;
-
-
-        this.navigator.radioNowPlayingBar()
-                      .assertPlaying() ;
-
-
-        this.navigator.radioDetailPage()
-                      .playButton()
-                      .text()
-                      .assertVisible() ;
-
-    }
+//    @Test
+//    @TestRailId( { "C2603291" } )
+//    public void play_radio_songs_from_radio_page(){
+//        this.updateTestCaseInfo() ;
+//
+//        this.navigator.streamPage()
+//                      .radioModule()
+//                      .lineUp()
+//                      .card( 6 )
+//                      .cover()
+//                      .tap() ;
+//
+//        this.navigator.radioDetailPage()
+//                      .playButton()
+//                      .tap() ;
+//
+//
+//        this.navigator.radioNowPlayingBar()
+//                      .assertPlaying() ;
+//
+//
+//        this.navigator.radioDetailPage()
+//                      .playButton()
+//                      .text()
+//                      .assertVisible() ;
+//
+//    }
 
     @Test
     @TestRailId( {  "C12323453" } )
@@ -1023,98 +1023,98 @@ public class RatCriticalTest extends BasicTest {
         UtaPassUtil.pressBack() ;
     }
 
-    @Test
-    @TestRailId( { "C2603367" } )
-    public void Play_history_1st_view_Radio_Playlist(){
-        this.updateTestCaseInfo() ;
-
-        this.navigator.streamPage()
-                      .radioModule()
-                      .lineUp()
-                      .card( 6 )
-                      .playButton()
-                      .tap() ;
-
-        this.navigator.radioNowPlayingBar()
-                      .tap() ;
-
-        this.navigator.radioNowPlayingPage()
-                      .onAirSonglistButton()
-                      .tap() ;
-
-        this.navigator.onAriSonglistPage()
-                      .onAriSonglistPlaylistButton()
-                      .tap() ;
-
-        String songname = this.navigator.artistNewReleaseDetailPage()
-                      .title()
-                      .string() ;
-
-        this.navigator.artistNewReleaseDetailPage()
-                      .shuffleAllButton()
-                      .tap() ;
-
-        this.navigator.songNowPlayingBar()
-                      .assertPlaying() ;
-
-        this.navigator.libraryTab()
-                      .tap() ;
-
-        this.navigator.libraryPage()
-                      .playHistorySeeAllButton()
-                      .tap() ;
-
-        this.navigator.playHistoryPage()
-                      .playlistsPanel()
-                      .lineUp()
-                      .card( 0 )
-                      .title()
-                      .assertEquals( songname );
-
-        this.navigator.streamTab()
-                      .tap() ;
-
-        this.navigator.streamPage()
-                      .liveModule()
-                      .lineUp()
-                      .card( 1 )
-                      .playButton()
-                      .tap() ;
-
-        this.navigator.liveConcertPage()
-                      .video()
-                      .tap() ;
-
-        this.navigator.liveConcertPage()
-                      .arrowButton()
-                      .tap() ;
-
-        this.navigator.libraryTab()
-                      .tap() ;
-
-        this.navigator.libraryPage()
-                      .playHistorySeeAllButton()
-                      .tap() ;
-
-        this.navigator.playHistoryPage()
-                      .playlistsPanel()
-                      .lineUp()
-                      .card( 0 )
-                      .playButton()
-                      .tap() ;
-
-        this.navigator.songNowPlayingBar()
-                      .tap() ;
-
-        this.navigator.streamNowPlayingPage()
-                      .playModeButton()
-                      .text()
-                      .assertEquals( "RepeatAll" ) ;
-
-        this.navigator.streamNowPlayingPage()
-                      .arrowButton()
-                      .tap() ;
-    }
+//    @Test
+////    @TestRailId( { "C2603367" } )
+////    public void Play_history_1st_view_Radio_Playlist(){
+////        this.updateTestCaseInfo() ;
+////
+////        this.navigator.streamPage()
+////                      .radioModule()
+////                      .lineUp()
+////                      .card( 6 )
+////                      .playButton()
+////                      .tap() ;
+////
+////        this.navigator.radioNowPlayingBar()
+////                      .tap() ;
+////
+////        this.navigator.radioNowPlayingPage()
+////                      .onAirSonglistButton()
+////                      .tap() ;
+////
+////        this.navigator.onAriSonglistPage()
+////                      .onAriSonglistPlaylistButton()
+////                      .tap() ;
+////
+////        String songname = this.navigator.artistNewReleaseDetailPage()
+////                      .title()
+////                      .string() ;
+////
+////        this.navigator.artistNewReleaseDetailPage()
+////                      .shuffleAllButton()
+////                      .tap() ;
+////
+////        this.navigator.songNowPlayingBar()
+////                      .assertPlaying() ;
+////
+////        this.navigator.libraryTab()
+////                      .tap() ;
+////
+////        this.navigator.libraryPage()
+////                      .playHistorySeeAllButton()
+////                      .tap() ;
+////
+////        this.navigator.playHistoryPage()
+////                      .playlistsPanel()
+////                      .lineUp()
+////                      .card( 0 )
+////                      .title()
+////                      .assertEquals( songname );
+////
+////        this.navigator.streamTab()
+////                      .tap() ;
+////
+////        this.navigator.streamPage()
+////                      .liveModule()
+////                      .lineUp()
+////                      .card( 1 )
+////                      .playButton()
+////                      .tap() ;
+////
+////        this.navigator.liveConcertPage()
+////                      .video()
+////                      .tap() ;
+////
+////        this.navigator.liveConcertPage()
+////                      .arrowButton()
+////                      .tap() ;
+////
+////        this.navigator.libraryTab()
+////                      .tap() ;
+////
+////        this.navigator.libraryPage()
+////                      .playHistorySeeAllButton()
+////                      .tap() ;
+////
+////        this.navigator.playHistoryPage()
+////                      .playlistsPanel()
+////                      .lineUp()
+////                      .card( 0 )
+////                      .playButton()
+////                      .tap() ;
+////
+////        this.navigator.songNowPlayingBar()
+////                      .tap() ;
+////
+////        this.navigator.streamNowPlayingPage()
+////                      .playModeButton()
+////                      .text()
+////                      .assertEquals( "RepeatAll" ) ;
+////
+////        this.navigator.streamNowPlayingPage()
+////                      .arrowButton()
+////                      .tap() ;
+////    }
 
     @Test
     @TestRailId( { "C1917983" } )
@@ -1360,7 +1360,7 @@ public class RatCriticalTest extends BasicTest {
         }
 
         this.navigator.streamNowPlayingPage()
-                      .saveMyUtaButton()
+                      .saveMyUtaImage()
                       .assertVisible() ;
 
         String songname = this.navigator.streamNowPlayingPage()

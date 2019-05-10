@@ -9,31 +9,6 @@ import org.junit.runner.RunWith ;
 
 @RunWith(AndroidJUnit4.class)
 public class SmokeTest extends BasicTest {
-//    @Test
-//    @TestRailId( { "C2603307" } )
-//    public void play_radio() {
-//        this.updateTestCaseInfo() ;
-//
-//        this.navigator.streamPage()
-//                      .radioModule()
-//                      .lineUp()
-//                      .lastCard()
-//                      .playButton()
-//                      .tap() ;
-//
-//        this.sleep( 10, "to load Radio Station" ) ;
-//
-//        this.navigator.radioNowPlayingBar()
-//                      .programName()
-//                      .assertVisible() ;
-//
-//        this.navigator.radioNowPlayingBar()
-//                      .djName()
-//                      .assertVisible() ;
-//
-//        this.navigator.radioNowPlayingBar()
-//                      .assertPlaying() ;
-//    }
 
     @Test
     @TestRailId( { "C1917543", "C1917560", "C1917613" } )
@@ -477,4 +452,30 @@ public class SmokeTest extends BasicTest {
         this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
     }
+
+//      @Test
+//    @TestRailId( { "C2603307" } )
+//    public void play_radio() {
+//        this.updateTestCaseInfo() ;
+//
+//        this.navigator.streamPage()
+//                      .radioModule()
+//                      .lineUp()
+//                      .lastCard()
+//                      .playButton()
+//                      .tap() ;
+//
+//        this.sleep( 10, "to load Radio Station" ) ;
+//
+//        this.navigator.radioNowPlayingBar()
+//                      .programName()
+//                      .assertVisible() ;
+//
+//        this.navigator.radioNowPlayingBar()
+//                      .djName()
+//                      .assertVisible() ;
+//
+//        this.navigator.radioNowPlayingBar()
+//                      .assertPlaying() ;
+//    }
 }

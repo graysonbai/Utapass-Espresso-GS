@@ -9,7 +9,6 @@ import org.junit.runner.RunWith ;
 
 @RunWith(AndroidJUnit4.class)
 public class SmokeTest extends BasicTest {
-
 //    @Test
 //    @TestRailId( { "C2603307" } )
 //    public void play_radio() {

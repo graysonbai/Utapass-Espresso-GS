@@ -1360,7 +1360,7 @@ public class RatCriticalTest extends BasicTest {
         }
 
         this.navigator.streamNowPlayingPage()
-                      .saveMyUtaButton()
+                      .saveMyUtaImage()
                       .assertVisible() ;
 
         String songname = this.navigator.streamNowPlayingPage()

@@ -18,8 +18,10 @@ import org.hamcrest.Matcher;
 
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
+import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.endsWith;
 
 public class AddToPlaylistPage extends ViewObject{
     private InternalLineUp lineUp;
@@ -37,6 +39,13 @@ public class AddToPlaylistPage extends ViewObject{
                 () -> allOf(
                         withId( R.id.add_tracks_to_playlist_fab ),
                         isCompletelyDisplayed() ) );
+    }
+
+    public BasicButton closeButton(){
+        return new BasicButton( this.label() + " > Close Button", () ->
+                allOf( UtaPassUtil.withIndex(
+                        withClassName( endsWith( "ImageButton" ) ), 0 ),
+                        isDescendantOfA( withId( R.id.add_tracks_to_playlist_toolbar ) ) ) );
     }
 
     public InternalLineUp lineUp(){

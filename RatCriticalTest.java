@@ -961,8 +961,6 @@ public class RatCriticalTest extends BasicTest {
                       .closeButton()
                       .tap();
 
-//        UtaPassUtil.pressBack() ;
-
         this.navigator.localNowPlayingPage()
                       .arrowButton()
                       .tap() ;
@@ -1019,8 +1017,10 @@ public class RatCriticalTest extends BasicTest {
                       .createNowButton()
                       .assertVisible() ;
 
-        UtaPassUtil.pressBack() ;
-        UtaPassUtil.pressBack() ;
+
+        this.navigator.addToPlaylistPage().closeButton().tap();
+
+        this.navigator.localNowPlayingPage().arrowButton().tap();
     }
 
 //    @Test

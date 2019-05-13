@@ -22,7 +22,6 @@ public class SaveMyUtaPopupMessage extends ViewObject {
         this.matcher = withId( R.id.parentPanel ) ;
 
         this.label( "SaveMyUtaPopupMessage" ) ;
-        this.retryWhenNotReady( false ) ;
     }
 
     public void _ready() {
@@ -40,7 +39,7 @@ public class SaveMyUtaPopupMessage extends ViewObject {
 
     public LazyString message() {
         return new LazyString(
-                this.label() + " > title",
+                this.label() + " > message",
                 () -> withId( android.R.id.message ) ) ;
     }
 

@@ -16,8 +16,8 @@ public class SongInfoPage extends ViewObject {
     }
 
     public void _ready(){
-        this.titleName().assertVisible();
-        this.myUtaButton().assertVisible();
+        this.titleName().ready();
+        this.myUtaButton().ready();
     }
 
     public BasicButton songInfoPlayButton(){

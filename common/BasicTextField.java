@@ -45,7 +45,6 @@ public class BasicTextField extends ViewObject {
 
         UtaPassUtil.dprint_type( this.label(), text ) ;
         onView( this.matcher.execute() ).perform( typeText( text ), pressImeActionButton() ) ;
-        UtaPassUtil.sleep( 3 );
     }
 
     public boolean isVisible() {

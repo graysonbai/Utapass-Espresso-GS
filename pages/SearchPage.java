@@ -36,7 +36,7 @@ public class SearchPage extends BasicPage {
     }
 
     public SearchStreamPanel searchStreamPanel(){
-        return new SearchStreamPanel( this.label() );
+        return new SearchStreamPanel( this.label() ).ready();
     }
 
     public BasicTextField searchBar(){

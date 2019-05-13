@@ -26,6 +26,7 @@ public class SearchStreamPanel extends BasicPage {
     }
 
     public void _ready(){
+        this.lineUp().card( 0 ).artistName().ready();
     }
 
     public InternalLineUp lineUp() {

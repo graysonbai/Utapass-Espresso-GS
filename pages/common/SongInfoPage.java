@@ -18,10 +18,11 @@ public class SongInfoPage extends ViewObject {
     public void _ready(){
         this.titleName().ready();
         this.myUtaButton().ready();
+        this.songInfoPlayButton().ready();
     }
 
     public BasicButton songInfoPlayButton(){
-        return new BasicButton( this.label() + " > songInFo Play Button ",
+        return new BasicButton( this.label() + " > Song info Play Button ",
                 () -> UtaPassUtil.withIndex( allOf(
                         withId( R.id.view_playlist_play_icon ),
                         isDescendantOfA( withId( R.id.song_info_cover_container ) ) ) , 0 ) );

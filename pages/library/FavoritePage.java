@@ -62,7 +62,7 @@ public class FavoritePage extends BasicPage {
                 () -> allOf( UtaPassUtil.withIndex( withId( R.id.menu_item_text ),0 ) ) ){
             public void tap(){
                 super.tap();
-                UtaPassUtil.sleep( 2 , "wait for action take effect" );
+                UtaPassUtil.sleep( 5 , "wait for action take effect" );
             }
         } ;
     }
@@ -72,7 +72,7 @@ public class FavoritePage extends BasicPage {
                 () -> allOf( UtaPassUtil.withIndex( withId( R.id.menu_item_text ),1 ) ) ){
             public void tap(){
                 super.tap();
-                UtaPassUtil.sleep( 2 , "wait for action take effect" );
+                UtaPassUtil.sleep( 5 , "wait for action take effect" );
             }
         } ;
     }

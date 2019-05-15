@@ -181,7 +181,7 @@ public class Best50Test extends BasicTest {
 
                 this.sleep(5) ;
                 if( this.navigator.saveMyUtaConfirmPopupMessage()
-                                  .isVisible() ) {
+                                  .messageTitle().isVisible() ) {
 
                     this.navigator.saveMyUtaConfirmPopupMessage()
                                   .closeButton()

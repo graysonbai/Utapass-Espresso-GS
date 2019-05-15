@@ -1237,7 +1237,7 @@ public class RatCriticalTest extends BasicTest {
                       .saveButton()
                       .tap() ;
 
-        if( this.navigator.saveMyUtaConfirmPopupMessage().isVisible() ){
+        if( this.navigator.saveMyUtaConfirmPopupMessage().messageTitle().isVisible() ){
             this.navigator.saveMyUtaConfirmPopupMessage()
                     .closeButton()
                     .tap() ;
@@ -1353,10 +1353,10 @@ public class RatCriticalTest extends BasicTest {
                       .saveButton()
                       .tap() ;
 
-        if( this.navigator.saveMyUtaConfirmPopupMessage().isVisible() ){
+        if( this.navigator.saveMyUtaConfirmPopupMessage().messageTitle().isReady() ){
             this.navigator.saveMyUtaConfirmPopupMessage()
-                    .closeButton()
-                    .tap() ;
+                          .closeButton()
+                          .tap() ;
         }
 
         this.navigator.streamNowPlayingPage()
@@ -1402,7 +1402,7 @@ public class RatCriticalTest extends BasicTest {
                       .saveButton()
                       .tap() ;
 
-        if( this.navigator.saveMyUtaConfirmPopupMessage().isVisible() ){
+        if( this.navigator.saveMyUtaConfirmPopupMessage().messageTitle().isVisible() ){
             this.navigator.saveMyUtaConfirmPopupMessage()
                           .closeButton()
                           .tap() ;

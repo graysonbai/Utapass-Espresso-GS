@@ -836,7 +836,7 @@ public class RatCriticalTest extends BasicTest {
 //    }
 
     @Test
-    @TestRailId( {  "C12323453" } )
+    @TestRailId( {  "C1917511" } )
     public void play_live_video_in_detail_page(){
         this.updateTestCaseInfo() ;
 

@@ -47,7 +47,9 @@ public class MyPlaylistDetailPage extends BasicPage {
     }
 
     public void swipeUp() {
-        onView( withId( R.id.detail_playlist_coordinator_layout  ) ).perform( ViewActions.swipeUp() ) ;
+        this.handleException(
+                () -> onView( withId( R.id.detail_playlist_coordinator_layout  ) ).perform( ViewActions.swipeUp() ) );
+        UtaPassUtil.sleep( 1 );
     }
 
     public BasicButton moreButton(){

@@ -392,7 +392,7 @@ public class SmokeTest extends BasicTest {
                       .tap() ;
 
         this.navigator.favoritePage()
-                      .playlists()
+                      .playlistsButton()
                       .tap() ;
 
         this.navigator.playlistsPage()
@@ -453,7 +453,7 @@ public class SmokeTest extends BasicTest {
                       .assertPlaying() ;
     }
 
-//      @Test
+//    @Test
 //    @TestRailId( { "C2603307" } )
 //    public void play_radio() {
 //        this.updateTestCaseInfo() ;

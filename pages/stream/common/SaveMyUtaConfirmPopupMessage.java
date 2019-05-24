@@ -3,6 +3,7 @@ package com.kddi.android.UtaPass.sqa_espresso.pages.stream.common ;
 import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
+import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
@@ -35,6 +36,11 @@ public class SaveMyUtaConfirmPopupMessage extends ViewObject {
         return new BasicButton( this.label() + " > message Title",
                 () -> allOf(
                         withId( R.id.myuta_saved_confirm),
-                        isDescendantOfA( withId( android.R.id.content ) ) ) );
+                        isDescendantOfA( withId( android.R.id.content ) ) ) ){
+            public void tap(){
+                super.tap();
+                UtaPassUtil.sleep( 3, "Ensure stability");
+            }
+        };
     }
 }

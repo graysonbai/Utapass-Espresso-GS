@@ -81,6 +81,27 @@ public class NowPlayingPage extends ViewObject {
                 this.label() + " > FavoriteButton",
                 () -> allOf(
                         UtaPassUtil.withIndex( withId( R.id.media_action_bar_like_layout ), 0  ),
+                        isDescendantOfA( withId( R.id.nowplaying_media_action_bar ) ) ) ){
+            public void tap(){
+                super.tap();
+                UtaPassUtil.sleep( 3, "Ensure stability" );
+            }
+        };
+    }
+
+    public BasicButton savefavoriteImage(){
+        return new BasicButton(
+                this.label() + " > FavoriteButton",
+                () -> allOf(
+                        UtaPassUtil.withDrawable( R.drawable.btn_favorited_player ),
+                        isDescendantOfA( withId( R.id.nowplaying_media_action_bar ) ) ) );
+    }
+
+    public BasicButton nofavoriteImage(){
+        return new BasicButton(
+                this.label() + " > FavoriteButton",
+                () -> allOf(
+                        UtaPassUtil.withDrawable( R.drawable.btn_favorite_player ),
                         isDescendantOfA( withId( R.id.nowplaying_media_action_bar ) ) ) );
     }
 

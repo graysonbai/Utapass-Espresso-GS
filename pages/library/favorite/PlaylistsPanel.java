@@ -1,4 +1,4 @@
-package com.kddi.android.UtaPass.sqa_espresso.pages.library ;
+package com.kddi.android.UtaPass.sqa_espresso.pages.library.favorite ;
 
 import android.view.View;
 
@@ -14,79 +14,29 @@ import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ILikeCount;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IPlayButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ITitle;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
-import com.kddi.android.UtaPass.sqa_espresso.pages.library.favorite.StreamMusicPanel;
 
 import org.hamcrest.Matcher;
 
 import static android.support.test.espresso.matcher.ViewMatchers.* ;
-import static android.support.test.espresso.matcher.ViewMatchers.withText ;
+
+import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
+import static android.support.test.espresso.matcher.ViewMatchers.withId ;
 import static org.hamcrest.Matchers.* ;
 
 
-public class FavoritePage extends BasicPage {
-    private InternalLineUp lineup ;
+public class PlaylistsPanel extends BasicPage {
+    private InternalLineUp lineUp ;
 
-    public FavoritePage() {
-        this.label( "FavoritePage" ) ;
-    }
-
-    public BasicButton playlistsButton() {
-        return new BasicButton( this.label() + " > Playlists",
-                () -> allOf( anyOf( withText( "Playlists" ),
-                                    withText( "プレイリスト" ) ),
-                             isCompletelyDisplayed() ) ) ;
-    }
-
-    public BasicButton streamMusicButton() {
-        return new BasicButton( this.label() + " > StreamMusic",
-                () -> allOf( anyOf( withText( "Stream Music" ),
-                                    withText( "聴き放題の楽曲" ) ),
-                             isCompletelyDisplayed() ) ) ;
-    }
-
-    public StreamMusicPanel streamMusicPanel() {
-        return new StreamMusicPanel( this.label() );
-    }
-
-    public BasicButton localMusicButton() {
-        return new BasicButton( this.label() + " > LocalMusic",
-                () -> allOf( anyOf( withText( "Local Music" ),
-                                    withText( "ローカル楽曲" ) ),
-                             isCompletelyDisplayed() ) ) ;
-    }
-
-    public BasicButton sortButton() {
-        return new BasicButton( this.label() + " > sort Button",
-                () -> allOf(
-                        withId(R.id.sort ),
-                        isDescendantOfA( withId(R.id.basetab_toolbar ) ) ) );
-    }
-
-    public BasicButton likedTimeButton() {
-        return new BasicButton( this.label() + " > liked Time Button",
-                () -> allOf( UtaPassUtil.withIndex( withId( R.id.menu_item_text ),0 ) ) ){
-            public void tap(){
-                super.tap();
-                UtaPassUtil.sleep( 5 , "wait for action take effect" );
-            }
-        } ;
-    }
-
-    public BasicButton likedCountButton() {
-        return new BasicButton( this.label() + " > liked Count Button",
-                () -> allOf( UtaPassUtil.withIndex( withId( R.id.menu_item_text ),1 ) ) ){
-            public void tap(){
-                super.tap();
-                UtaPassUtil.sleep( 5 , "wait for action take effect" );
-            }
-        } ;
+    public PlaylistsPanel() {
+        this.label( "Favorite > PlaylistsPanel" ) ;
     }
 
     public InternalLineUp lineUp() {
-        if( this.lineup == null ) {
-            this.lineup = new InternalLineUp( this.label() ) ;
+        if( this.lineUp == null ) {
+            this.lineUp = new InternalLineUp( this.label() ) ;
         }
-        return this.lineup ;
+
+        return this.lineUp ;
     }
 
     public class InternalLineUp extends LineUpObject {
@@ -105,8 +55,8 @@ public class FavoritePage extends BasicPage {
                     isCompletelyDisplayed() ) ;
         }
 
-        public InternalCard card( int index ) {
-            int indexInWindow = index ;
+        public InternalCard card(int index ) {
+            int indexInWindow = this.swipeToCardViewAndGetIndexOfWindow( index ) ;
 
             InternalCard card = new InternalCard() ;
 
@@ -121,9 +71,9 @@ public class FavoritePage extends BasicPage {
                                     this.getMatcherToCountMaxIndexOfWindow(),
                                     indexInWindow ) ) ) ) ;
 
-            card.playButton( label + " > PlayButton",
+            card.playButton(label + " > PlayButton",
                     () -> allOf(
-                            withId( R.id.view_playlist_play_layout ),
+                            withId( R.id.item_playlist_card_play ),
                             isDescendantOfA( UtaPassUtil.withIndex(
                                     this.getMatcherToCountMaxIndexOfWindow(),
                                     indexInWindow ) ) ) ) ;

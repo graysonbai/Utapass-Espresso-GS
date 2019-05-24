@@ -26,14 +26,14 @@ import static org.hamcrest.Matchers.allOf;
 public class SongsPanel extends BasicPage {
     private InternalLineUp lineup ;
 
-    public SongsPanel(){
-        this.label( "SongsPanel" );
+    public SongsPanel( String label ){
+        this.label( label + " > SongsPanel" );
     }
 
     public void _ready(){
-        this.lineUp().card( 0 ).cover().assertVisible();
-        this.lineUp().card( 0 ).title().assertVisible();
-        this.lineUp().card( 0 ).subtitle().assertVisible();
+//        this.lineUp().card( 0 ).cover().assertVisible();
+//        this.lineUp().card( 0 ).title().assertVisible();
+//        this.lineUp().card( 0 ).subtitle().assertVisible();
     }
 
     public InternalLineUp lineUp() {
@@ -84,7 +84,7 @@ public class SongsPanel extends BasicPage {
 
             card.playButton( label + " > PlayButton",
                     () -> allOf(
-                            withId( R.id.item_detail_stream_audio_myuta_play ),
+                            UtaPassUtil.withDrawable( R.drawable.btn_myuta_play  ),
                             isDescendantOfA( UtaPassUtil.withIndex(
                                     this.getMatcherToCountMaxIndexOfWindow(),
                                     indexInWindow ) ) ) ) ;

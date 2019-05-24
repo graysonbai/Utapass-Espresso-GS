@@ -6,6 +6,7 @@ import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
+import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.InvisibleException;
 
@@ -56,7 +57,12 @@ public class SaveMyUtaPopupMessage extends ViewObject {
     public BasicButton saveButton() {
         return new BasicButton(
                this.label() + " > saveButton",
-                () -> withId( android.R.id.button1 ) ) ;
+                () -> withId( android.R.id.button1 ) ){
+            public void tap(){
+                super.tap();
+                UtaPassUtil.sleep( 3, "Ensure stability");
+            }
+        };
     }
 
     public BasicButton cancelButton() {

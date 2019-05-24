@@ -46,6 +46,6 @@ public class PlayHistoryPage extends BasicPage {
     }
 
     public SongsPanel SongsPanel (){
-        return new SongsPanel();
+        return new SongsPanel( this.label() );
     }
 }

@@ -1,4 +1,4 @@
-package com.kddi.android.UtaPass.sqa_espresso.pages.library.favorite ;
+package com.kddi.android.UtaPass.sqa_espresso.pages.library.favorite;
 
 import android.view.View;
 
@@ -9,26 +9,25 @@ import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
+import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IArtistName;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ICover;
-import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ILikeCount;
+import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IMyUtaButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IPlayButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ITitle;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
 
 import org.hamcrest.Matcher;
 
-import static android.support.test.espresso.matcher.ViewMatchers.* ;
-
+import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
-import static android.support.test.espresso.matcher.ViewMatchers.withId ;
-import static org.hamcrest.Matchers.* ;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static org.hamcrest.Matchers.allOf;
 
-
-public class PlaylistsPage extends BasicPage {
+public class StreamMusicPanel extends BasicPage {
     private InternalLineUp lineUp ;
 
-    public PlaylistsPage() {
-        this.label( "Favorite > PlaylistsPage" ) ;
+    public StreamMusicPanel( String label ) {
+        this.label( label +  "StreamMusicPanel" ) ;
     }
 
     public InternalLineUp lineUp() {
@@ -46,12 +45,12 @@ public class PlaylistsPage extends BasicPage {
         }
 
         protected Matcher<View> getMatcherToFindRecycleView() {
-            return withId( R.id.liked_playlist_recycler_view ) ;
+            return UtaPassUtil.withIndex( withId( R.id.liked_songs_recycler_view ), 0 ) ;
         }
 
         protected Matcher<View> getMatcherToCountMaxIndexOfWindow() {
             return allOf(
-                    withId( R.id.item_playlist_content_layout ),
+                    withId( R.id.item_detail_stream_audio_layout ),
                     isCompletelyDisplayed() ) ;
         }
 
@@ -66,28 +65,35 @@ public class PlaylistsPage extends BasicPage {
 
             card.cover( label + " > Cover",
                     () -> allOf(
-                            withId( R.id.item_playlist_card_image ),
+                            withId( R.id.item_detail_stream_audio_image ),
                             isDescendantOfA( UtaPassUtil.withIndex(
                                     this.getMatcherToCountMaxIndexOfWindow(),
                                     indexInWindow ) ) ) ) ;
 
             card.playButton(label + " > PlayButton",
                     () -> allOf(
-                            withId( R.id.item_playlist_card_play ),
+                            withId( R.id.item_detail_stream_audio_myuta_play ),
                             isDescendantOfA( UtaPassUtil.withIndex(
                                     this.getMatcherToCountMaxIndexOfWindow(),
                                     indexInWindow ) ) ) ) ;
 
             card.title( label + " > Title",
                     () -> allOf(
-                            withId( R.id.item_playlist_card_title ),
+                            withId( R.id.item_detail_stream_audio_title ),
                             isDescendantOfA( UtaPassUtil.withIndex(
                                     this.getMatcherToCountMaxIndexOfWindow(),
                                     indexInWindow ) ) ) ) ;
 
-            card.likeCount( label + " > LikeCount",
+            card.myUtaButton( label + " > myUtaButton",
                     () -> allOf(
-                            withId( R.id.item_playlist_card_like_count ),
+                            withId( R.id.item_detail_stream_audio_myuta_register ),
+                            isDescendantOfA( UtaPassUtil.withIndex(
+                                    this.getMatcherToCountMaxIndexOfWindow(),
+                                    indexInWindow ) ) ) ) ;
+
+            card.artistName( label + " > artistName",
+                    () -> allOf(
+                            withId( R.id.item_detail_stream_audio_artist ),
                             isDescendantOfA( UtaPassUtil.withIndex(
                                     this.getMatcherToCountMaxIndexOfWindow(),
                                     indexInWindow ) ) ) ) ;
@@ -96,17 +102,19 @@ public class PlaylistsPage extends BasicPage {
         }
     }
 
-    public class InternalCard implements ICover, IPlayButton, ITitle, ILikeCount {
+    public class InternalCard implements ICover, IPlayButton, ITitle, IMyUtaButton, IArtistName {
 
         String labelCover ;
         String labelTitle ;
         String labelPlayButton ;
-        String labelLikeCount ;
+        String labelMyUtaButton ;
+        String labelArtistName ;
 
         private LazyMatcher matcherCover ;
         private LazyMatcher matcherTitle ;
         private LazyMatcher matcherPlayButton ;
-        private LazyMatcher matcherLikeCount ;
+        private LazyMatcher matcherMyUtaButton ;
+        private LazyMatcher matcherArtistName ;
 
         public void cover( String label, LazyMatcher matcher ) {
             this.labelCover = label ;
@@ -135,13 +143,27 @@ public class PlaylistsPage extends BasicPage {
             return new LazyString( this.labelTitle, this.matcherTitle ) ;
         }
 
-        public void likeCount( String label, LazyMatcher matcher ) {
-            this.labelLikeCount = label ;
-            this.matcherLikeCount = matcher ;
+
+        @Override
+        public void artistName(String label, LazyMatcher matcher) {
+            this.labelArtistName = label ;
+            this.matcherArtistName = matcher ;
         }
 
-        public LazyString likeCount() {
-            return new LazyString( this.labelLikeCount, this.matcherLikeCount ) ;
+        @Override
+        public LazyString artistName() {
+            return new LazyString( this.labelArtistName, this.matcherArtistName ) ;
+        }
+
+        @Override
+        public void myUtaButton( String label, LazyMatcher matcher ) {
+            this.labelMyUtaButton = label;
+            this.matcherMyUtaButton = matcher;
+        }
+
+        @Override
+        public BasicButton myUtaButton() {
+            return new BasicButton( this.labelMyUtaButton, this.matcherMyUtaButton ) ;
         }
     }
 }

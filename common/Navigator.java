@@ -28,7 +28,8 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.library.FavoritePage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.albums.AlbumsDetailPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.artists.ArtistAlbumsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.artists.ArtistDetailPage;
-import com.kddi.android.UtaPass.sqa_espresso.pages.library.favorite.PlaylistsPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.favorite.EmptyFavoritePage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.favorite.PlaylistsPanel;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.myplaylist.AddMusicPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.myplaylist.CreatePlayListPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.myplaylist.MoreMenuPage;
@@ -78,7 +79,7 @@ public class Navigator {
     private ArtistAlbumsPage artistAlbumsPage ;
     private VideosPage videosPage ;
     private FavoritePage favoritePage ;
-    private PlaylistsPage playlistsPage ;
+    private PlaylistsPanel playlistsPanel;
 
     private MyUtaPage myUtaPage ;
     private SongMoreActionMenu songMoreActionMenu ;
@@ -130,6 +131,14 @@ public class Navigator {
     private SongInfoPage songInfoPage;
     private EmptyMyUtaPage emptyMyUtaPage;
     private DebugUtilPage debugUtilPage;
+    private EmptyFavoritePage emptyFavoritePage;
+
+    public EmptyFavoritePage emptyFavoritePage(){
+        if( this.emptyFavoritePage == null ){
+            this.emptyFavoritePage = new EmptyFavoritePage();
+        }
+        return this.emptyFavoritePage.ready();
+    }
 
     public DebugUtilPage debugUtilPage(){
         if( this.debugUtilPage == null ){
@@ -534,10 +543,10 @@ public class Navigator {
         return this.favoritePage.ready() ;
     }
 
-    public PlaylistsPage playlistsPage() {
-        if( this.playlistsPage == null ) {
-            this.playlistsPage = new PlaylistsPage() ;
+    public PlaylistsPanel playlistsPage() {
+        if( this.playlistsPanel == null ) {
+            this.playlistsPanel = new PlaylistsPanel() ;
         }
-        return this.playlistsPage.ready() ;
+        return this.playlistsPanel.ready() ;
     }
 }

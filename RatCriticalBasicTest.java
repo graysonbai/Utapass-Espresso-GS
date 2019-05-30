@@ -83,137 +83,6 @@ public class RatCriticalBasicTest extends BasicTest {
     }
 
     @Test
-    @TestRailId( { "C1917372" } )
-    public void local_songs_open_add_to_playlist_page(){
-        this.updateTestCaseInfo() ;
-
-        this.navigator.streamTab()
-                .tap() ;
-
-        this.navigator.libraryTab()
-                .tap() ;
-
-        this.navigator.libraryPage()
-                .myPlaylistsCategory()
-                .tap() ;
-
-        while ( this.navigator.myPlayListPage().lineUp().card( 0 ).title().isVisible() ){
-            this.navigator.myPlayListPage()
-                    .lineUp()
-                    .card( 0 ).cover()
-                    .tap() ;
-
-            this.navigator.myPlaylistDetailPage()
-                    .moreButton()
-                    .tap() ;
-
-            this.navigator.moreMenuPage()
-                    .moreDeletePlaylistButton()
-                    .tap() ;
-
-            this.navigator.moreMenuPage()
-                    .deleteButton()
-                    .tap() ;
-        }
-
-        this.navigator.streamTab()
-                .tap() ;
-
-        this.navigator.libraryTab()
-                .tap() ;
-
-        this.navigator.libraryPage()
-                .songsCategory()
-                .tap() ;
-
-        this.navigator.songsPage()
-                .lineUp()
-                .card( 0 )
-                .cover()
-                .tap() ;
-
-        this.navigator.songNowPlayingBar()
-                .assertPlaying() ;
-
-        this.navigator.songNowPlayingBar()
-                .cover()
-                .tap() ;
-
-        this.navigator.localNowPlayingPage()
-                .addMyplaylistButton()
-                .tap() ;
-
-        this.navigator.createPlayListPage()
-                .doneButton()
-                .assertVisible() ;
-
-        this.navigator.createPlayListPage()
-                .closeButton()
-                .tap();
-
-        this.navigator.localNowPlayingPage()
-                .arrowButton()
-                .tap() ;
-
-        this.navigator.streamTab()
-                .tap() ;
-
-        this.navigator.libraryTab()
-                .tap() ;
-
-        this.navigator.libraryPage()
-                .myPlaylistsCategory()
-                .tap() ;
-
-        this.navigator.myPlayListPage()
-                .createNowButton()
-                .tap() ;
-
-        this.navigator.createPlayListPage()
-                .createPlaylistTitle()
-                .type( "Hello World" ) ;
-
-        this.navigator.createPlayListPage()
-                .addMusicButton()
-                .tap() ;
-
-        this.navigator.addMusicPage()
-                .songsType()
-                .tap() ;
-
-        this.navigator.myPlayListSongsPage()
-                .lineUp()
-                .card( 0 )
-                .cover()
-                .tap() ;
-
-        this.navigator.myPlayListSongsPage()
-                .nextButton()
-                .tap() ;
-
-        this.navigator.createPlayListPage()
-                .doneButton()
-                .tap() ;
-
-        this.navigator.songNowPlayingBar()
-                .cover()
-                .tap() ;
-
-        this.navigator.localNowPlayingPage()
-                .addMyplaylistButton()
-                .tap() ;
-
-        this.navigator.addToPlaylistPage()
-                .createNowButton()
-                .assertVisible() ;
-
-
-        this.navigator.addToPlaylistPage().closeButton().tap();
-
-        this.navigator.localNowPlayingPage().arrowButton().tap();
-    }
-
-    @Test
     @TestRailId( {  "C1917511" } )
     public void play_live_video_in_detail_page(){
         this.updateTestCaseInfo() ;
@@ -283,34 +152,6 @@ public class RatCriticalBasicTest extends BasicTest {
                     .recommendString()
                     .assertStringTitle( "(^P|p).*" ) ;
         }
-    }
-
-    @Test
-    @TestRailId( { "C1922153" } )
-    public void Play_search_results_in_playlists(){
-        this.updateTestCaseInfo() ;
-
-        this.navigator.searchTab()
-                .tap() ;
-
-        this.navigator.searchPage()
-                .searchBar()
-                .typeReturn( "Coldplay" );
-
-        this.navigator.searchPage()
-                .searchStreamPanel()
-                .lineUp()
-                .card( 2 )
-                .songName()
-                .tap() ;
-
-        this.navigator.songInfoPage()
-                .songInfoPlayButton()
-                .tap() ;
-
-        this.navigator.songInfoPage()
-                .songInfoPauseButton()
-                .assertVisible() ;
     }
 
     @Test
@@ -672,18 +513,18 @@ public class RatCriticalBasicTest extends BasicTest {
         this.updateTestCaseInfo() ;
 
         this.navigator.libraryTab()
-                .tap() ;
+                      .tap() ;
 
         this.navigator.libraryPage()
-                .videosCategory()
-                .tap() ;
+                      .videosCategory()
+                      .tap() ;
 
         this.navigator.videosPage()
-                .playButton()
-                .tap() ;
+                      .playButton()
+                      .tap() ;
 
         this.navigator.songNowPlayingBar()
-                .assertPlaying() ;
+                      .assertPlaying() ;
     }
 
     @Test
@@ -709,7 +550,264 @@ public class RatCriticalBasicTest extends BasicTest {
     }
 
     @Test
-    @TestRailId( { "C1922170", "C1922171" } )
+    @TestRailId( { "C1917735" } )
+    public void play_album_song_in_library_album_page(){
+        this.updateTestCaseInfo() ;
+
+        this.navigator.libraryTab()
+                .tap() ;
+
+        this.navigator.libraryPage()
+                .albumsCategory()
+                .tap() ;
+
+        this.navigator.albumsPage()
+                .lineUp()
+                .card( 0 )
+                .cover()
+                .tap() ;
+
+
+        this.navigator.albumsDetailPage()
+                .songsLineUp()
+                .song( 0 )
+                .cover()
+                .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                .assertPlaying() ;
+    }
+
+    @Test
+    @TestRailId( { "C1917372" } )
+    public void local_songs_open_add_to_playlist_page(){
+        this.updateTestCaseInfo() ;
+
+        this.navigator.streamTab()
+                .tap() ;
+
+        this.navigator.libraryTab()
+                .tap() ;
+
+        this.navigator.libraryPage()
+                .myPlaylistsCategory()
+                .tap() ;
+
+        while ( this.navigator.myPlayListPage().lineUp().card( 0 ).title().isVisible() ){
+            this.navigator.myPlayListPage()
+                    .lineUp()
+                    .card( 0 ).cover()
+                    .tap() ;
+
+            this.navigator.myPlaylistDetailPage()
+                    .moreButton()
+                    .tap() ;
+
+            this.navigator.moreMenuPage()
+                    .moreDeletePlaylistButton()
+                    .tap() ;
+
+            this.navigator.moreMenuPage()
+                    .deleteButton()
+                    .tap() ;
+        }
+
+        this.navigator.streamTab()
+                .tap() ;
+
+        this.navigator.libraryTab()
+                .tap() ;
+
+        this.navigator.libraryPage()
+                .songsCategory()
+                .tap() ;
+
+        this.navigator.songsPage()
+                .lineUp()
+                .card( 0 )
+                .cover()
+                .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                .assertPlaying() ;
+
+        this.navigator.songNowPlayingBar()
+                .cover()
+                .tap() ;
+
+        this.navigator.localNowPlayingPage()
+                .addMyplaylistButton()
+                .tap() ;
+
+        this.navigator.createPlayListPage()
+                .doneButton()
+                .assertVisible() ;
+
+        this.navigator.createPlayListPage()
+                .closeButton()
+                .tap();
+
+        this.navigator.localNowPlayingPage()
+                .arrowButton()
+                .tap() ;
+
+        this.navigator.streamTab()
+                .tap() ;
+
+        this.navigator.libraryTab()
+                .tap() ;
+
+        this.navigator.libraryPage()
+                .myPlaylistsCategory()
+                .tap() ;
+
+        this.navigator.myPlayListPage()
+                .createNowButton()
+                .tap() ;
+
+        this.navigator.createPlayListPage()
+                .createPlaylistTitle()
+                .type( "Hello World" ) ;
+
+        this.navigator.createPlayListPage()
+                .addMusicButton()
+                .tap() ;
+
+        this.navigator.addMusicPage()
+                .songsType()
+                .tap() ;
+
+        this.navigator.myPlayListSongsPage()
+                .lineUp()
+                .card( 0 )
+                .cover()
+                .tap() ;
+
+        this.navigator.myPlayListSongsPage()
+                .nextButton()
+                .tap() ;
+
+        this.navigator.createPlayListPage()
+                .doneButton()
+                .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                .cover()
+                .tap() ;
+
+        this.navigator.localNowPlayingPage()
+                .addMyplaylistButton()
+                .tap() ;
+
+        this.navigator.addToPlaylistPage()
+                .createNowButton()
+                .assertVisible() ;
+
+        this.navigator.addToPlaylistPage()
+                      .closeButton()
+                      .tap();
+
+        this.navigator.localNowPlayingPage()
+                      .arrowButton()
+                      .tap();
+    }
+
+    @Test
+    @TestRailId( { "C1917296", "C1917981", "C1917977" } )
+    public void favorite_stream_song_check_favorite_playlists_page(){
+        this.updateTestCaseInfo() ;
+
+        this.navigator.streamPage()
+                .popularArtistModule()
+                .lineUp()
+                .card( 0 )
+                .playButton()
+                .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                .assertPlaying() ;
+
+        this.navigator.songNowPlayingBar()
+                .cover()
+                .tap() ;
+
+        this.navigator.streamNowPlayingPage()
+                .favoriteButton()
+                .tap() ;
+
+        this.navigator.streamNowPlayingPage()
+                .savefavoriteImage()
+                .assertVisible() ;
+
+        String titlename = this.navigator.streamNowPlayingPage()
+                .songTitle()
+                .string() ;
+
+        this.navigator.streamNowPlayingPage()
+                .arrowButton()
+                .tap() ;
+
+        this.navigator.libraryTab()
+                .tap() ;
+
+        this.navigator.libraryPage()
+                .favoriteCategory()
+                .tap() ;
+
+        this.navigator.favoritePage()
+                .streamMusicButton()
+                .tap() ;
+
+        this.navigator.favoritePage()
+                .streamMusicPanel()
+                .lineUp()
+                .card( 0 )
+                .title()
+                .assertEquals( titlename );
+
+        this.navigator.songNowPlayingBar()
+                .cover()
+                .tap() ;
+
+        this.navigator.streamNowPlayingPage()
+                .favoriteButton()
+                .tap() ;
+
+        this.navigator.streamNowPlayingPage()
+                .arrowButton()
+                .tap() ;
+
+        if( this.navigator.favoritePage().streamMusicPanel().lineUp().card( 0 ).cover().isVisible() ){
+            this.navigator.favoritePage()
+                    .streamMusicPanel()
+                    .lineUp()
+                    .card( 0 )
+                    .title()
+                    .assertNotEquals( titlename ) ;
+
+        } else {
+            this.navigator.streamTab()
+                    .tap() ;
+
+            this.navigator.libraryTab()
+                    .tap() ;
+
+            this.navigator.libraryPage()
+                    .favoriteCategory()
+                    .tap() ;
+
+            this.navigator.favoritePage()
+                    .streamMusicButton()
+                    .tap() ;
+
+            this.navigator.emptyFavoritePage()
+                    .title()
+                    .assertVisible() ;
+        }
+    }
+
+    @Test
+    @TestRailId( { "C1922170", "C1922171", "C3080414", "C1917982", "C1917977" } )
     public void unfavorite_playlist_does_not_exist_favorite_page(){
         this.updateTestCaseInfo() ;
 
@@ -769,7 +867,45 @@ public class RatCriticalBasicTest extends BasicTest {
     }
 
     @Test
-    @TestRailId( { "C1922260" } )
+    @TestRailId( { "C1922153", "C1922067" } )
+    public void Play_search_results_in_playlists(){
+        this.updateTestCaseInfo() ;
+
+        this.navigator.searchTab()
+                .tap() ;
+
+        this.navigator.searchPage()
+                .searchBar()
+                .typeReturn( "Coldplay" );
+
+        this.navigator.searchPage()
+                .streamPanelButton()
+                .text()
+                .assertEquals( "Stream" );
+
+        this.navigator.searchPage()
+                .localMusicPanelButton()
+                .text()
+                .assertEquals( "Local Music" );
+
+        this.navigator.searchPage()
+                .searchStreamPanel()
+                .lineUp()
+                .card( 2 )
+                .songName()
+                .tap() ;
+
+        this.navigator.songInfoPage()
+                .songInfoPlayButton()
+                .tap() ;
+
+        this.navigator.songInfoPage()
+                .songInfoPauseButton()
+                .assertVisible() ;
+    }
+
+    @Test
+    @TestRailId( { "C1922260", "C1922176" } )
     public void verify_title_name_in_myplaylist_page(){
         this.updateTestCaseInfo() ;
 
@@ -816,5 +952,181 @@ public class RatCriticalBasicTest extends BasicTest {
                 .card( 0 )
                 .title()
                 .assertEquals( "Hello World" ) ;
+
+        this.navigator.myPlayListPage()
+                .lineUp()
+                .card( 0 )
+                .playButton()
+                .tap();
+
+        this.navigator.songNowPlayingBar()
+                .assertPlaying();
+    }
+
+    @Test
+    @TestRailId( { "C1922193" } )
+    public void play_stream_song_in_favorite_playlists(){
+        this.updateTestCaseInfo() ;
+
+        this.navigator.streamPage()
+                .newSongsHitSongsModule()
+                .lineUp()
+                .card( 0 )
+                .cover()
+                .tap() ;
+
+        this.navigator.newSongsHitSongsDetailPage()
+                .favoriteButton()
+                .tap() ;
+
+        String titlename = this.navigator.newSongsHitSongsDetailPage()
+                .title()
+                .string() ;
+
+        this.navigator.libraryTab()
+                .tap() ;
+
+        this.navigator.libraryPage()
+                .favoriteCategory()
+                .tap() ;
+
+        this.navigator.favoritePage()
+                .lineUp()
+                .card( 0 )
+                .title()
+                .assertEquals( titlename );
+
+        this.navigator.favoritePage()
+                .lineUp()
+                .card( 0 )
+                .playButton()
+                .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                .assertPlaying() ;
+
+        this.navigator.favoritePage()
+                .lineUp()
+                .card( 0 )
+                .cover()
+                .tap() ;
+
+        this.navigator.newSongsHitSongsDetailPage()
+                .favoriteButton()
+                .tap() ;
+    }
+
+    @Test
+    @TestRailId({ "C2208814" })
+    public void delete_artist_page_myuta_song(){
+        this.updateTestCaseInfo() ;
+
+        this.navigator.streamPage()
+                .popularArtistModule()
+                .lineUp()
+                .card( 0 )
+                .cover()
+                .tap() ;
+
+        String songname = this.navigator.popularArtistDetailPage()
+                .lineUp()
+                .card( 0 )
+                .songName()
+                .string() ;
+
+        this.navigator.popularArtistDetailPage()
+                .lineUp()
+                .card( 0 )
+                .myUtaButton()
+                .tap() ;
+
+        this.navigator.saveMyUtaPopupMessage()
+                .saveButton()
+                .tap() ;
+
+        if(this.navigator.saveMyUtaConfirmPopupMessage().closeButton().isVisible() ){
+            this.navigator.saveMyUtaConfirmPopupMessage()
+                    .closeButton()
+                    .tap() ;
+        }
+
+        this.navigator.libraryTab()
+                .tap() ;
+
+        this.navigator.libraryPage()
+                .artistsCategory()
+                .tap() ;
+
+        this.navigator.artistsPage()
+                .sortButton()
+                .tap() ;
+
+        this.navigator.artistSortPanel()
+                .recentlyAddedButton()
+                .tap() ;
+
+        String artistname = this.navigator.artistsPage()
+                .lineUp()
+                .card( 0 )
+                .artistName()
+                .string() ;
+
+        this.navigator.artistsPage()
+                .lineUp()
+                .card( 0 )
+                .cover()
+                .tap() ;
+
+        this.navigator.albumsDetailPage()
+                .songsLineUp()
+                .song( 0 )
+                .songName()
+                .assertEquals( songname );
+
+        this.navigator.albumsDetailPage()
+                .songsLineUp()
+                .song( 0 )
+                .moreButton()
+                .tap() ;
+
+        this.navigator.albumDetailMorePanel()
+                .deleteSongButton()
+                .tap() ;
+
+        this.navigator.deleteSongConfirmMessage()
+                .deleteButton()
+                .tap() ;
+
+        this.navigator.artistsPage()
+                .lineUp()
+                .card( 0 )
+                .artistName()
+                .assertNotEquals( artistname );
+    }
+
+    @Test
+    @TestRailId( { "C3224847" } )
+    public void best_Fifty_Order() {
+        this.updateTestCaseInfo() ;
+
+        this.navigator.streamPage()
+                .best50Module()
+                .lineUp()
+                .countSongs()
+                .assertEquals( 15 ) ;
+
+        this.navigator.streamPage()
+                .best50Module()
+                .seeAll()
+                .tap() ;
+
+        this.navigator.best50Page()
+                .showMoreButton()
+                .tap() ;
+
+        this.navigator.best50Page()
+                .lineUp()
+                .countSongs()
+                .assertEquals( 50 ) ;
     }
 }

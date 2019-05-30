@@ -10,6 +10,52 @@ import org.junit.runner.RunWith ;
 
 @RunWith(AndroidJUnit4.class)
 public class RatCriticalBasicTest extends BasicTest {
+    @Test
+    @TestRailId( { "C1917543", "C1917560", "C1917613" } )
+    public void play_live_event() {
+        this.updateTestCaseInfo() ;
+
+        String randomToken = String.valueOf( System.currentTimeMillis() ) ;
+
+        this.navigator.streamPage()
+                .liveModule()
+                .lineUp()
+                .card( 1 )
+                .playButton()
+                .tap() ;
+
+        this.navigator.liveConcertPage()
+                .title()
+                .assertEquals( "KICK OFF VIVA!!! 2017" ) ;
+
+        this.navigator.liveConcertPage()
+                .messageTextField()
+                .type( randomToken ) ;
+
+        this.sleep( 3, "stable reason for tapping 'send' button" ) ;
+
+        this.navigator.liveConcertPage()
+                .sendButton()
+                .tap() ;
+
+        this.sleep( 3, "stable reason for uploading message to chatroom" ) ;
+
+        this.navigator.liveConcertPage()
+                .chatroom()
+                .lastMessage()
+                .content()
+                .assertEquals( randomToken ) ;
+
+        this.navigator.liveConcertPage()
+                .video()
+                .tap() ;
+
+        this.navigator.liveConcertPage()
+                .arrowButton()
+                .tap() ;
+
+        this.navigator.streamPage() ;
+    }
 
     @Test
     @TestRailId( { "C1917983" } )
@@ -508,6 +554,7 @@ public class RatCriticalBasicTest extends BasicTest {
                 .assertPlaying() ;
     }
 
+    @Test
     @TestRailId( { "C1917729" } )
     public void play_video_in_library_videos_page(){
         this.updateTestCaseInfo() ;

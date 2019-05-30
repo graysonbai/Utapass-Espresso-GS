@@ -1742,4 +1742,175 @@ public class RatCriticalTest extends BasicTest {
                       .songName()
                       .assertEquals( songname );
     }
+
+    @Test
+    @TestRailId({ "C2208814" })
+    public void delete_artist_page_myuta_song(){
+        this.navigator.streamPage()
+                      .popularArtistModule()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
+
+        String songname = this.navigator.popularArtistDetailPage()
+                      .lineUp()
+                      .card( 0 )
+                      .songName()
+                      .string() ;
+
+        this.navigator.popularArtistDetailPage()
+                      .lineUp()
+                      .card( 0 )
+                      .myUtaButton()
+                      .tap() ;
+
+        this.navigator.saveMyUtaPopupMessage()
+                      .saveButton()
+                      .tap() ;
+
+        if(this.navigator.saveMyUtaConfirmPopupMessage().closeButton().isVisible() ){
+            this.navigator.saveMyUtaConfirmPopupMessage()
+                          .closeButton()
+                          .tap() ;
+        }
+
+        this.navigator.libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .artistsCategory()
+                      .tap() ;
+
+        this.navigator.artistsPage()
+                      .sortButton()
+                      .tap() ;
+
+        this.navigator.artistSortPanel()
+                      .recentlyAddedButton()
+                      .tap() ;
+
+        String artistname = this.navigator.artistsPage()
+                      .lineUp()
+                      .card( 0 )
+                      .artistName()
+                      .string() ;
+
+        this.navigator.artistsPage()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
+
+        this.navigator.albumsDetailPage()
+                      .songsLineUp()
+                      .song( 0 )
+                      .songName()
+                      .assertEquals( songname );
+
+        this.navigator.albumsDetailPage()
+                      .songsLineUp()
+                      .song( 0 )
+                      .moreButton()
+                      .tap() ;
+
+        this.navigator.albumDetailMorePanel()
+                      .deleteSongButton()
+                      .tap() ;
+
+        this.navigator.deleteSongConfirmMessage()
+                      .deleteButton()
+                      .tap() ;
+
+        this.navigator.artistsPage()
+                      .lineUp()
+                      .card( 0 )
+                      .artistName()
+                      .assertNotEquals( artistname );
+    }
+    @Test
+    @TestRailId({ "C2208800" })
+    public void delete_album_page_myuta_song(){
+        this.navigator.streamPage()
+                      .topChartsModule()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
+
+        String songname = this.navigator.popularArtistDetailPage()
+                      .lineUp()
+                      .card( 0 )
+                      .songName()
+                      .string() ;
+
+        this.navigator.popularArtistDetailPage()
+                      .lineUp()
+                      .card( 0 )
+                      .myUtaButton()
+                      .tap() ;
+
+        this.navigator.saveMyUtaPopupMessage()
+                      .saveButton()
+                      .tap() ;
+
+        if(this.navigator.saveMyUtaConfirmPopupMessage().closeButton().isVisible() ){
+            this.navigator.saveMyUtaConfirmPopupMessage()
+                          .closeButton()
+                          .tap() ;
+        }
+
+        this.navigator.libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .albumsCategory()
+                      .tap() ;
+
+        this.navigator.albumsPage()
+                      .sortButton()
+                      .tap() ;
+
+        this.navigator.albumSortPanel()
+                      .recentlyAddedButton()
+                      .tap() ;
+
+        String artistname = this.navigator.albumsPage()
+                      .lineUp()
+                      .card( 0 )
+                      .artistName()
+                      .string() ;
+
+        this.navigator.albumsPage()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
+
+        this.navigator.albumsDetailPage()
+                      .songsLineUp()
+                      .song( 0 )
+                      .songName()
+                      .assertEquals( songname );
+
+        this.navigator.albumsDetailPage()
+                      .songsLineUp()
+                      .song( 0 )
+                      .moreButton()
+                      .tap() ;
+
+        this.navigator.albumDetailMorePanel()
+                      .deleteSongButton()
+                      .tap() ;
+
+        this.navigator.deleteSongConfirmMessage()
+                      .deleteButton()
+                      .tap() ;
+
+        this.navigator.albumsPage()
+                      .lineUp()
+                      .card( 0 )
+                      .artistName()
+                      .assertNotEquals( artistname );
+    }
 }

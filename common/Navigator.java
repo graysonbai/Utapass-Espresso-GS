@@ -25,9 +25,13 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.library.SongsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.VideosPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.FavoritePage;
 
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.albums.AlbumSortPanel;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.albums.AlbumsDetailPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.artists.AlbumDetailMorePanel;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.artists.ArtistAlbumsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.artists.ArtistDetailPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.artists.ArtistSortPanel;
+import com.kddi.android.UtaPass.sqa_espresso.pages.common.DeleteSongConfirmMessage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.favorite.EmptyFavoritePage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.favorite.PlaylistsPanel;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.myplaylist.AddMusicPage;
@@ -132,6 +136,38 @@ public class Navigator {
     private EmptyMyUtaPage emptyMyUtaPage;
     private DebugUtilPage debugUtilPage;
     private EmptyFavoritePage emptyFavoritePage;
+    private ArtistSortPanel artistSortPanel;
+    private DeleteSongConfirmMessage deleteSongConfirmMessage;
+    private AlbumSortPanel albumSortPanel;
+
+    public AlbumSortPanel albumSortPanel(){
+        if( this.albumSortPanel == null ){
+            this.albumSortPanel = new AlbumSortPanel();
+        }
+        return this.albumSortPanel.ready();
+    }
+
+    public DeleteSongConfirmMessage deleteSongConfirmMessage(){
+        if( this.deleteSongConfirmMessage == null ){
+            this.deleteSongConfirmMessage = new DeleteSongConfirmMessage();
+        }
+        return this.deleteSongConfirmMessage.ready();
+    }
+    private AlbumDetailMorePanel albumDetailMorePanel;
+
+    public AlbumDetailMorePanel albumDetailMorePanel(){
+        if( this.albumDetailMorePanel == null ){
+            this.albumDetailMorePanel = new AlbumDetailMorePanel();
+        }
+        return this.albumDetailMorePanel.ready();
+    }
+
+    public ArtistSortPanel artistSortPanel(){
+        if( this.artistSortPanel == null ){
+            this.artistSortPanel = new ArtistSortPanel();
+        }
+        return this.artistSortPanel.ready();
+    }
 
     public EmptyFavoritePage emptyFavoritePage(){
         if( this.emptyFavoritePage == null ){

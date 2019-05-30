@@ -11,6 +11,7 @@ import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IRecommendString;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.search.SearchLocalMusicPanel;
 import com.kddi.android.UtaPass.sqa_espresso.pages.search.SearchStreamPanel;
 
 import org.hamcrest.Matcher;
@@ -20,8 +21,11 @@ import static android.support.test.espresso.action.ViewActions.pressImeActionBut
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
+import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId ;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.endsWith;
 
 
 public class SearchPage extends BasicPage {
@@ -37,6 +41,26 @@ public class SearchPage extends BasicPage {
 
     public SearchStreamPanel searchStreamPanel(){
         return new SearchStreamPanel( this.label() ).ready();
+    }
+
+    public SearchStreamPanel searchLocalMusicPanel(){
+        return new SearchLocalMusicPanel( this.label() ).ready();
+    }
+
+    public BasicButton streamPanelButton(){
+        return new BasicButton( this.label() + " > stream Panel Button",
+                () -> allOf(
+                        withClassName( endsWith( "TextView" ) ),
+                        withText( "Stream" ),
+                        isDescendantOfA( withId( R.id.search_tabs ) ) ) ) ;
+    }
+
+    public BasicButton localMusicPanelButton(){
+        return new BasicButton( this.label() + " > stream Panel Button",
+                () -> allOf(
+                        withClassName( endsWith( "TextView" ) ),
+                        withText( "Local Music" ),
+                        isDescendantOfA( withId( R.id.search_tabs ) ) ) ) ;
     }
 
     public BasicTextField searchBar(){

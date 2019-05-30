@@ -52,6 +52,14 @@ public class AlbumsPage extends BasicPage {
                         isDescendantOfA( withId( R.id.design_bottom_sheet) ) ) );
     }
 
+    public BasicButton sortButton(){
+        return new BasicButton(this.label() + " > sortButton ",
+                () -> allOf(
+                        withId( R.id.sort ),
+                        isDescendantOfA(
+                                withId( R.id.browse_toolbar ) ) ) );
+    }
+
     public InternalLineUp lineUp(){
         if( this.lineup == null){
             this.lineup = new InternalLineUp( this.label() );

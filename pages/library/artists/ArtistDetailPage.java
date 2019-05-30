@@ -16,7 +16,6 @@ import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ISongName;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
 
 import org.hamcrest.Matcher;
-import org.hamcrest.Matchers;
 
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -84,25 +83,25 @@ public class ArtistDetailPage extends BasicPage {
 
             song.songName(label + " > songName ",
                     () -> UtaPassUtil.withIndex(
-                            Matchers.allOf(
+                            allOf(
                                     withId(R.id.item_detail_local_audio_title),
                                     isDescendantOfA(this.getMatcherToFindRecycleView())), indexInWindow));
 
             song.artistName(label + " > artistName ",
                     () -> UtaPassUtil.withIndex(
-                            Matchers.allOf(
+                            allOf(
                                     withId(R.id.item_detail_local_audio_artist),
                                     isDescendantOfA(this.getMatcherToFindRecycleView())), indexInWindow));
 
             song.cover(label + " > cover ",
                     () -> UtaPassUtil.withIndex(
-                            Matchers.allOf(
+                            allOf(
                                     withId(R.id.layout_detail_local_audio_image),
                                     isDescendantOfA(this.getMatcherToFindRecycleView())), indexInWindow));
 
             song.moreButton(label + " > moreButton ",
                     () -> UtaPassUtil.withIndex(
-                            Matchers.allOf(
+                            allOf(
                                     withId(R.id.item_detail_local_audio_overflow),
                                     isDescendantOfA(this.getMatcherToFindRecycleView())), indexInWindow));
 

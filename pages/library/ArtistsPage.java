@@ -42,6 +42,14 @@ public class ArtistsPage extends BasicPage {
         }
     }
 
+    public BasicButton sortButton(){
+        return new BasicButton(this.label() + " > sortButton ",
+                () -> allOf(
+                        withId( R.id.sort ),
+                        isDescendantOfA(
+                                withId( R.id.browse_toolbar ) ) ) );
+    }
+
     public InternalLineUp lineUp(){
         if( this.lineUp == null){
             this.lineUp = new InternalLineUp( this.label() );

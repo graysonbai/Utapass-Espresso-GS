@@ -365,10 +365,10 @@ public class RatCriticalTest extends BasicTest {
                       .lineUp()
                       .card( 0 )
                       .playButton()
-                      .tap();
+                      .tap() ;
 
         this.navigator.songNowPlayingBar()
-                      .assertPlaying();
+                      .assertPlaying() ;
     }
 
     @Test
@@ -758,7 +758,7 @@ public class RatCriticalTest extends BasicTest {
         if ( this.navigator.myUtaPage().tooltip().isVisible() ){
             this.navigator.myUtaPage()
                     .tooltip()
-                    .tap();
+                    .tap() ;
         }
 
         this.navigator.myUtaPage()
@@ -968,7 +968,7 @@ public class RatCriticalTest extends BasicTest {
 
         this.navigator.createPlayListPage()
                       .closeButton()
-                      .tap();
+                      .tap() ;
 
         this.navigator.localNowPlayingPage()
                       .arrowButton()
@@ -1027,9 +1027,9 @@ public class RatCriticalTest extends BasicTest {
                       .assertVisible() ;
 
 
-        this.navigator.addToPlaylistPage().closeButton().tap();
+        this.navigator.addToPlaylistPage().closeButton().tap() ;
 
-        this.navigator.localNowPlayingPage().arrowButton().tap();
+        this.navigator.localNowPlayingPage().arrowButton().tap() ;
     }
 
 //    @Test
@@ -1078,7 +1078,7 @@ public class RatCriticalTest extends BasicTest {
 ////                      .lineUp()
 ////                      .card( 0 )
 ////                      .title()
-////                      .assertEquals( songname );
+////                      .assertEquals( songname ) ;
 ////
 ////        this.navigator.streamTab()
 ////                      .tap() ;
@@ -1159,7 +1159,7 @@ public class RatCriticalTest extends BasicTest {
                       .lineUp()
                       .card( 1 )
                       .likeCount()
-                      .assertLessThan( likecount );
+                      .assertLessThan( likecount ) ;
 
         this.navigator.favoritePage()
                       .lineUp()
@@ -1193,11 +1193,11 @@ public class RatCriticalTest extends BasicTest {
                       .lineUp()
                       .card( 0 )
                       .title()
-                      .assertEquals( titlename );
+                      .assertEquals( titlename ) ;
     }
 
     @Test
-    @TestRailId( { "C1922153" } )
+    @TestRailId( { "C1922153", "C1922067" } )
     public void Play_search_results_in_playlists(){
         this.updateTestCaseInfo() ;
 
@@ -1206,7 +1206,17 @@ public class RatCriticalTest extends BasicTest {
 
         this.navigator.searchPage()
                       .searchBar()
-                      .typeReturn( "Coldplay" );
+                      .typeReturn( "Coldplay" ) ;
+
+        this.navigator.searchPage()
+                      .streamPanelButton()
+                      .text()
+                      .assertEquals( "Stream" ) ;
+
+        this.navigator.searchPage()
+                      .localMusicPanelButton()
+                      .text()
+                      .assertEquals( "Local Music" ) ;
 
         this.navigator.searchPage()
                       .searchStreamPanel()
@@ -1227,7 +1237,7 @@ public class RatCriticalTest extends BasicTest {
     @Test
     @TestRailId( { "C2398863", "C1934617", "C2398886", "C2208786" } )
     public void delete_And_Play_MyUta_Song(){
-        this.updateTestCaseInfo();
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .artistNewReleaseModule()
@@ -1278,7 +1288,7 @@ public class RatCriticalTest extends BasicTest {
         this.navigator.myUtaPage()
                       .lineUp()
                       .card( 0 )
-                      .tap();
+                      .tap() ;
 
         this.navigator.songNowPlayingBar()
                       .assertPlaying() ;
@@ -1326,7 +1336,7 @@ public class RatCriticalTest extends BasicTest {
     @Test
     @TestRailId({ "C2207538" })
     public void Premium_NowPlaying_Register_Song(){
-        this.updateTestCaseInfo();
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .whatsNewModule()
@@ -1392,20 +1402,20 @@ public class RatCriticalTest extends BasicTest {
                       .card( 0 )
                       .songName()
                       .text()
-                      .assertEquals( songname );
+                      .assertEquals( songname ) ;
     }
 
     @Test
     @TestRailId( { "C2867768" } )
     public void play_MyUta_Song_in_Best50_Module(){
-        this.updateTestCaseInfo();
+        this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
                       .best50Module()
                       .lineUp()
                       .card( 1 )
                       .myUtaButton()
-                      .tap();
+                      .tap() ;
 
         this.navigator.saveMyUtaPopupMessage()
                       .saveButton()
@@ -1422,33 +1432,33 @@ public class RatCriticalTest extends BasicTest {
                       .lineUp()
                       .card( 1 )
                       .playButton()
-                      .tap();
+                      .tap() ;
 
         this.navigator.streamPage()
                       .best50Module()
                       .lineUp()
                       .card( 1 )
                       .playButton()
-                      .assertVisible();
+                      .assertVisible() ;
 
         String songname = this.navigator.streamPage()
                       .best50Module()
                       .lineUp()
                       .card( 1 )
                       .songName()
-                      .string();
+                      .string() ;
 
         this.navigator.libraryTab()
-                      .tap();
+                      .tap() ;
 
         this.navigator.libraryPage()
                       .myUtaCategory()
-                      .tap();
+                      .tap() ;
 
         if ( this.navigator.myUtaPage().tooltip().isVisible() ){
             this.navigator.myUtaPage()
                           .tooltip()
-                          .tap();
+                          .tap() ;
         }
 
         this.navigator.myUtaPage()
@@ -1456,7 +1466,7 @@ public class RatCriticalTest extends BasicTest {
                       .card( 0 )
                       .songName()
                       .text()
-                      .assertEquals( songname );
+                      .assertEquals( songname ) ;
     }
 
     @Test
@@ -1555,7 +1565,7 @@ public class RatCriticalTest extends BasicTest {
                       .lineUp()
                       .card( 0 )
                       .title()
-                      .assertEquals( titlename );
+                      .assertEquals( titlename ) ;
 
         this.navigator.songNowPlayingBar()
                       .cover()
@@ -1629,7 +1639,7 @@ public class RatCriticalTest extends BasicTest {
                       .lineUp()
                       .card( 0 )
                       .title()
-                      .assertEquals( titlename );
+                      .assertEquals( titlename ) ;
 
         this.navigator.favoritePage()
                       .lineUp()
@@ -1740,12 +1750,14 @@ public class RatCriticalTest extends BasicTest {
 
         this.navigator.songNowPlayingBar()
                       .songName()
-                      .assertEquals( songname );
+                      .assertEquals( songname ) ;
     }
 
     @Test
     @TestRailId({ "C2208814" })
     public void delete_artist_page_myuta_song(){
+        this.updateTestCaseInfo() ;
+
         this.navigator.streamPage()
                       .popularArtistModule()
                       .lineUp()
@@ -1806,7 +1818,7 @@ public class RatCriticalTest extends BasicTest {
                       .songsLineUp()
                       .song( 0 )
                       .songName()
-                      .assertEquals( songname );
+                      .assertEquals( songname ) ;
 
         this.navigator.albumsDetailPage()
                       .songsLineUp()
@@ -1826,11 +1838,14 @@ public class RatCriticalTest extends BasicTest {
                       .lineUp()
                       .card( 0 )
                       .artistName()
-                      .assertNotEquals( artistname );
+                      .assertNotEquals( artistname ) ;
     }
+
     @Test
     @TestRailId({ "C2208800" })
     public void delete_album_page_myuta_song(){
+        this.updateTestCaseInfo() ;
+
         this.navigator.streamPage()
                       .topChartsModule()
                       .lineUp()
@@ -1891,7 +1906,7 @@ public class RatCriticalTest extends BasicTest {
                       .songsLineUp()
                       .song( 0 )
                       .songName()
-                      .assertEquals( songname );
+                      .assertEquals( songname ) ;
 
         this.navigator.albumsDetailPage()
                       .songsLineUp()
@@ -1911,6 +1926,6 @@ public class RatCriticalTest extends BasicTest {
                       .lineUp()
                       .card( 0 )
                       .artistName()
-                      .assertNotEquals( artistname );
+                      .assertNotEquals( artistname ) ;
     }
 }

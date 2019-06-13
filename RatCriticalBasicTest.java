@@ -9,7 +9,7 @@ import org.junit.Test ;
 import org.junit.runner.RunWith ;
 
 @RunWith(AndroidJUnit4.class)
-public class RatCriticalBasicTest extends BasicTest {
+public class RatCriticalBasicTest extends BasicPlanEvn {
     @Test
     @TestRailId( { "C1917543", "C1917560", "C1917613" } )
     public void play_live_event() {

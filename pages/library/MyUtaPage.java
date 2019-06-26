@@ -23,9 +23,11 @@ import org.hamcrest.Matcher;
 import java.util.regex.Pattern;
 
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.matcher.ViewMatchers.* ;
+import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.endsWith;
 
 public class MyUtaPage extends BasicPage {
     private InternalLineUp lineUp ;

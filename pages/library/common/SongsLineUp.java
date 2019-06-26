@@ -1,17 +1,13 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.library.common ;
 
-import android.support.test.espresso.ViewInteraction;
 import android.view.View;
 
 import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.SongObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
-import com.kddi.android.UtaPass.sqa_espresso.pages.library.common.LibraryLineUp;
-import com.kddi.android.UtaPass.sqa_espresso.pages.library.common.TitleBar;
 
 import org.hamcrest.Matcher;
 
-import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.allOf;

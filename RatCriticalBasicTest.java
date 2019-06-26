@@ -1,58 +1,63 @@
 package com.kddi.android.UtaPass.sqa_espresso ;
 
-import android.support.test.runner.AndroidJUnit4 ;
+import android.support.test.runner.AndroidJUnit4;
 
 import com.kddi.android.UtaPass.sqa_espresso.common.TestRailId;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 
-import org.junit.Test ;
-import org.junit.runner.RunWith ;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
 public class RatCriticalBasicTest extends BasicPlanEvn {
+<<<<<<< HEAD
+=======
+
+>>>>>>> espresso-gs-dev
     @Test
     @TestRailId( { "C1917543", "C1917560", "C1917613" } )
+    //issue
     public void play_live_event() {
         this.updateTestCaseInfo() ;
 
         String randomToken = String.valueOf( System.currentTimeMillis() ) ;
 
         this.navigator.streamPage()
-                .liveModule()
-                .lineUp()
-                .card( 1 )
-                .playButton()
-                .tap() ;
+                      .liveModule()
+                      .lineUp()
+                      .card( 1 )
+                      .playButton()
+                      .tap() ;
 
         this.navigator.liveConcertPage()
-                .title()
-                .assertEquals( "KICK OFF VIVA!!! 2017" ) ;
+                      .title()
+                      .assertEquals( "KICK OFF VIVA!!! 2017" ) ;
 
         this.navigator.liveConcertPage()
-                .messageTextField()
-                .type( randomToken ) ;
+                      .messageTextField()
+                      .type( randomToken ) ;
 
         this.sleep( 3, "stable reason for tapping 'send' button" ) ;
 
         this.navigator.liveConcertPage()
-                .sendButton()
-                .tap() ;
+                      .sendButton()
+                      .tap() ;
 
         this.sleep( 3, "stable reason for uploading message to chatroom" ) ;
 
         this.navigator.liveConcertPage()
-                .chatroom()
-                .lastMessage()
-                .content()
-                .assertEquals( randomToken ) ;
+                      .chatroom()
+                      .lastMessage()
+                      .content()
+                      .assertEquals( randomToken ) ;
 
         this.navigator.liveConcertPage()
-                .video()
-                .tap() ;
+                      .video()
+                      .tap() ;
 
         this.navigator.liveConcertPage()
-                .arrowButton()
-                .tap() ;
+                      .arrowButton()
+                      .tap() ;
 
         this.navigator.streamPage() ;
     }
@@ -63,69 +68,69 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
         this.updateTestCaseInfo() ;
 
         this.navigator.libraryTab()
-                .tap() ;
+                      .tap() ;
 
         this.navigator.libraryPage()
-                .favoriteCategory()
-                .tap() ;
+                      .favoriteCategory()
+                      .tap() ;
 
         this.navigator.favoritePage()
-                .playlistsButton()
-                .tap() ;
+                      .playlistsButton()
+                      .tap() ;
 
         this.navigator.favoritePage()
-                .sortButton()
-                .tap() ;
+                      .sortButton()
+                      .tap() ;
 
         this.navigator.favoritePage()
-                .likedCountButton()
-                .tap() ;
+                      .likedCountButton()
+                      .tap() ;
 
         String likecount = this.navigator.favoritePage()
-                .lineUp()
-                .card( 0 )
-                .likeCount()
-                .string() ;
+                      .lineUp()
+                      .card( 0 )
+                      .likeCount()
+                      .string() ;
 
         this.navigator.favoritePage()
-                .lineUp()
-                .card( 1 )
-                .likeCount()
-                .assertLessThan( likecount );
+                      .lineUp()
+                      .card( 1 )
+                      .likeCount()
+                      .assertLessThan( likecount );
 
         this.navigator.favoritePage()
-                .lineUp()
-                .card( 2 )
-                .cover()
-                .tap() ;
+                      .lineUp()
+                      .card( 2 )
+                      .cover()
+                      .tap() ;
 
         String titlename = this.navigator.artistNewReleaseDetailPage()
-                .title()
-                .string() ;
+                      .title()
+                      .string() ;
 
         this.navigator.artistNewReleaseDetailPage()
-                .favoriteButton()
-                .tap() ;
+                      .favoriteButton()
+                      .tap() ;
 
         this.navigator.artistNewReleaseDetailPage()
-                .favoriteButton()
-                .tap() ;
+                      .favoriteButton()
+                      .tap() ;
 
         UtaPassUtil.pressBack() ;
 
         this.navigator.favoritePage()
-                .sortButton()
-                .tap() ;
+                      .sortButton()
+                      .tap() ;
 
         this.navigator.favoritePage()
-                .likedTimeButton()
-                .tap() ;
+                      .likedTimeButton()
+                      .tap() ;
 
         this.navigator.favoritePage()
-                .lineUp()
-                .card( 0 )
-                .title()
-                .assertEquals( titlename );
+                      .lineUp()
+                      .card( 0 )
+                      .title()
+                      .assertEquals( titlename );
     }
 
     @Test
@@ -135,47 +140,47 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
 
 
         this.navigator.streamPage()
-                .liveModule()
-                .lineUp()
-                .card( 1 )
-                .playButton()
-                .tap() ;
+                      .liveModule()
+                      .lineUp()
+                      .card( 1 )
+                      .playButton()
+                      .tap() ;
 
         this.navigator.liveConcertPage()
-                .icon()
-                .tap() ;
+                      .icon()
+                      .tap() ;
 
         this.navigator.liveDetailPage()
-                .onAirVideio()
-                .tap() ;
+                      .onAirVideio()
+                      .tap() ;
 
         this.navigator.liveConcertPage()
-                .title()
-                .assertEquals( "KICK OFF VIVA!!! 2017" ) ;
+                      .title()
+                      .assertEquals( "KICK OFF VIVA!!! 2017" ) ;
 
         this.navigator.liveConcertPage()
-                .video()
-                .assertVisible() ;
+                      .video()
+                      .assertVisible() ;
 
         this.navigator.liveConcertPage()
-                .icon()
-                .tap() ;
+                      .icon()
+                      .tap() ;
     }
 
-    @Test
-    @TestRailId( { "C1917677" } )
-    public void ensure_daily_ranking_number_of_cards(){
-        this.updateTestCaseInfo() ;
-
-        this.navigator.libraryTab()
-                .tap() ;
-
-        this.navigator.libraryPage()
-                .dailyRankingModule()
-                .lineUp()
-                .countSongs()
-                .assertEquals( 10 ) ;
-    }
+//    @Test
+//    @TestRailId( { "C1917677" } )
+//    public void ensure_daily_ranking_number_of_cards(){
+//        this.updateTestCaseInfo() ;
+//
+//        this.navigator.libraryTab()
+//                      .tap() ;
+//
+//        this.navigator.libraryPage()
+//                      .dailyRankingModule()
+//                      .lineUp()
+//                      .countSongs()
+//                      .assertEquals( 10 ) ;
+//    }
 
     @Test
     @TestRailId( { "C1922033" } )
@@ -183,20 +188,20 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
         this.updateTestCaseInfo() ;
 
         this.navigator.searchTab()
-                .tap() ;
+                      .tap() ;
 
         this.navigator.searchPage()
-                .searchBar()
-                .type("P" ) ;
+                      .searchBar()
+                      .type("P" ) ;
 
         UtaPassUtil.closesoftboard() ;
 
         for ( int count = 0; count < 10; count++ ){
             this.navigator.searchPage()
-                    .lineUp()
-                    .searchResult( count )
-                    .recommendString()
-                    .assertStringTitle( "(^P|p).*" ) ;
+                          .lineUp()
+                          .searchResult( count )
+                          .recommendString()
+                          .assertStringTitle( "(^P|p).*" ) ;
         }
     }
 
@@ -355,7 +360,6 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
                       .songTitle()
                       .assertNotEquals( localSongName ) ;
 
-
         this.navigator.localNowPlayingPage()
                       .arrowButton()
                       .tap() ;
@@ -367,11 +371,13 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
         this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
-                .dailyMixModule()
-                .lineUp()
-                .card( 0 )
-                .playButton()
-                .tap() ;
+                      .dailyMixModule()
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
+
+        this.navigator.songNowPlayingBar().assertPlaying();
     }
 
     @Test
@@ -380,27 +386,27 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
         this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
-                .whatsNewModule()
-                .lineUp()
-                .card( 0 )
-                .playButton()
-                .tap() ;
+                      .whatsNewModule()
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
 
         this.navigator.songNowPlayingBar()
-                .assertPlaying() ;
+                      .assertPlaying() ;
 
         this.navigator.streamPage()
-                .whatsNewModule()
-                .lineUp()
-                .card( 0 )
-                .cover()
-                .tap() ;
+                      .whatsNewModule()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
 
         this.navigator.whatsNewDetailPage()
-                .lineUp()
-                .card( 0 )
-                .cover()
-                .assertVisible() ;
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .assertVisible() ;
     }
 
     @Test
@@ -409,27 +415,27 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
         this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
-                .artistNewReleaseModule()
-                .lineUp()
-                .card( 0 )
-                .playButton()
-                .tap() ;
+                      .artistNewReleaseModule()
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
 
         this.navigator.songNowPlayingBar()
-                .assertPlaying() ;
+                      .assertPlaying() ;
 
         this.navigator.streamPage()
-                .artistNewReleaseModule()
-                .lineUp()
-                .card( 0 )
-                .cover()
-                .tap() ;
+                      .artistNewReleaseModule()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
 
         this.navigator.whatsNewDetailPage()
-                .lineUp()
-                .card( 0 )
-                .cover()
-                .assertVisible() ;
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .assertVisible() ;
     }
 
     @Test
@@ -438,27 +444,27 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
         this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
-                .popularArtistModule()
-                .lineUp()
-                .card( 0 )
-                .playButton()
-                .tap() ;
+                      .popularArtistModule()
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
 
         this.navigator.songNowPlayingBar()
-                .assertPlaying() ;
+                      .assertPlaying() ;
 
         this.navigator.streamPage()
-                .popularArtistModule()
-                .lineUp()
-                .card( 0 )
-                .cover()
-                .tap() ;
+                      .popularArtistModule()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
 
         this.navigator.popularArtistDetailPage()
-                .lineUp()
-                .card( 0 )
-                .cover()
-                .assertVisible() ;
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .assertVisible() ;
     }
 
     @Test
@@ -467,27 +473,27 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
         this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
-                .newSongsHitSongsModule()
-                .lineUp()
-                .card( 0 )
-                .playButton()
-                .tap() ;
+                      .newSongsHitSongsModule()
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
 
         this.navigator.songNowPlayingBar()
-                .assertPlaying() ;
+                      .assertPlaying() ;
 
         this.navigator.streamPage()
-                .newSongsHitSongsModule()
-                .lineUp()
-                .card( 0 )
-                .cover()
-                .tap() ;
+                      .newSongsHitSongsModule()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
 
         this.navigator.newSongsHitSongsDetailPage()
-                .lineUp()
-                .card( 0 )
-                .cover()
-                .assertVisible() ;
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .assertVisible() ;
     }
 
     @Test
@@ -496,27 +502,27 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
         this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
-                .topChartsModule()
-                .lineUp()
-                .card( 0 )
-                .playButton()
-                .tap() ;
+                      .topChartsModule()
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
 
         this.navigator.songNowPlayingBar()
-                .assertPlaying() ;
+                      .assertPlaying() ;
 
         this.navigator.streamPage()
-                .topChartsModule()
-                .lineUp()
-                .card( 0 )
-                .cover()
-                .tap() ;
+                      .topChartsModule()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
 
         this.navigator.topChartsDetailPage()
-                .lineUp()
-                .card( 0 )
-                .cover()
-                .assertVisible() ;
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .assertVisible() ;
     }
 
     @Test
@@ -525,33 +531,33 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
         this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
-                .topChartsModule()
-                .seeAll()
-                .tap() ;
+                      .topChartsModule()
+                      .seeAll()
+                      .tap() ;
 
         this.navigator.topChartPage()
-                .topChannelPanel()
-                .lineUp()
-                .card( 0 )
-                .playButton()
-                .tap() ;
+                      .topChannelPanel()
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
 
         this.navigator.songNowPlayingBar()
-                .assertPlaying() ;
+                      .assertPlaying() ;
 
         this.navigator.topChartPage()
-                .topGrossingButton()
-                .tap() ;
+                      .topGrossingButton()
+                      .tap() ;
 
         this.navigator.topChartPage()
-                .topGrossingPanel()
-                .lineUp()
-                .card( 1 )
-                .playButton()
-                .tap() ;
+                      .topGrossingPanel()
+                      .lineUp()
+                      .card( 1 )
+                      .playButton()
+                      .tap() ;
 
         this.navigator.songNowPlayingBar()
-                .assertPlaying() ;
+                      .assertPlaying() ;
     }
 
     @Test
@@ -580,20 +586,20 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
         this.updateTestCaseInfo() ;
 
         this.navigator.libraryTab()
-                .tap() ;
+                      .tap() ;
 
         this.navigator.libraryPage()
-                .songsCategory()
-                .tap() ;
+                      .songsCategory()
+                      .tap() ;
 
         this.navigator.songsPage()
-                .lineUp()
-                .card( 0 )
-                .cover()
-                .tap() ;
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
 
         this.navigator.songNowPlayingBar()
-                .assertPlaying() ;
+                      .assertPlaying() ;
     }
 
     @Test
@@ -602,27 +608,27 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
         this.updateTestCaseInfo() ;
 
         this.navigator.libraryTab()
-                .tap() ;
+                      .tap() ;
 
         this.navigator.libraryPage()
-                .albumsCategory()
-                .tap() ;
+                      .albumsCategory()
+                      .tap() ;
 
         this.navigator.albumsPage()
-                .lineUp()
-                .card( 0 )
-                .cover()
-                .tap() ;
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
 
 
         this.navigator.albumsDetailPage()
-                .songsLineUp()
-                .song( 0 )
-                .cover()
-                .tap() ;
+                      .songsLineUp()
+                      .song( 0 )
+                      .cover()
+                      .tap() ;
 
         this.navigator.songNowPlayingBar()
-                .assertPlaying() ;
+                      .assertPlaying() ;
     }
 
     @Test
@@ -631,124 +637,124 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
         this.updateTestCaseInfo() ;
 
         this.navigator.streamTab()
-                .tap() ;
+                      .tap() ;
 
         this.navigator.libraryTab()
-                .tap() ;
+                      .tap() ;
 
         this.navigator.libraryPage()
-                .myPlaylistsCategory()
-                .tap() ;
+                      .myPlaylistsCategory()
+                      .tap() ;
 
         while ( this.navigator.myPlayListPage().lineUp().card( 0 ).title().isVisible() ){
             this.navigator.myPlayListPage()
-                    .lineUp()
-                    .card( 0 ).cover()
-                    .tap() ;
+                          .lineUp()
+                          .card( 0 ).cover()
+                          .tap() ;
 
             this.navigator.myPlaylistDetailPage()
-                    .moreButton()
-                    .tap() ;
+                          .moreButton()
+                          .tap() ;
 
             this.navigator.moreMenuPage()
-                    .moreDeletePlaylistButton()
-                    .tap() ;
+                          .moreDeletePlaylistButton()
+                          .tap() ;
 
             this.navigator.moreMenuPage()
-                    .deleteButton()
-                    .tap() ;
+                          .deleteButton()
+                          .tap() ;
         }
 
         this.navigator.streamTab()
-                .tap() ;
+                      .tap() ;
 
         this.navigator.libraryTab()
-                .tap() ;
+                      .tap() ;
 
         this.navigator.libraryPage()
-                .songsCategory()
-                .tap() ;
+                      .songsCategory()
+                      .tap() ;
 
         this.navigator.songsPage()
-                .lineUp()
-                .card( 0 )
-                .cover()
-                .tap() ;
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
 
         this.navigator.songNowPlayingBar()
-                .assertPlaying() ;
+                      .assertPlaying() ;
 
         this.navigator.songNowPlayingBar()
-                .cover()
-                .tap() ;
+                      .cover()
+                      .tap() ;
 
         this.navigator.localNowPlayingPage()
-                .addMyplaylistButton()
-                .tap() ;
+                      .addMyplaylistButton()
+                      .tap() ;
 
         this.navigator.createPlayListPage()
-                .doneButton()
-                .assertVisible() ;
+                      .doneButton()
+                      .assertVisible() ;
 
         this.navigator.createPlayListPage()
-                .closeButton()
-                .tap();
+                      .closeButton()
+                      .tap();
 
         this.navigator.localNowPlayingPage()
-                .arrowButton()
-                .tap() ;
+                      .arrowButton()
+                      .tap() ;
 
         this.navigator.streamTab()
-                .tap() ;
+                      .tap() ;
 
         this.navigator.libraryTab()
-                .tap() ;
+                      .tap() ;
 
         this.navigator.libraryPage()
-                .myPlaylistsCategory()
-                .tap() ;
+                      .myPlaylistsCategory()
+                      .tap() ;
 
         this.navigator.myPlayListPage()
-                .createNowButton()
-                .tap() ;
+                      .createNowButton()
+                      .tap() ;
 
         this.navigator.createPlayListPage()
-                .createPlaylistTitle()
-                .type( "Hello World" ) ;
+                      .createPlaylistTitle()
+                      .type( "Hello World" ) ;
 
         this.navigator.createPlayListPage()
-                .addMusicButton()
-                .tap() ;
+                      .addMusicButton()
+                      .tap() ;
 
         this.navigator.addMusicPage()
-                .songsType()
-                .tap() ;
+                      .songsType()
+                      .tap() ;
 
         this.navigator.myPlayListSongsPage()
-                .lineUp()
-                .card( 0 )
-                .cover()
-                .tap() ;
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
 
         this.navigator.myPlayListSongsPage()
-                .nextButton()
-                .tap() ;
+                      .nextButton()
+                      .tap() ;
 
         this.navigator.createPlayListPage()
-                .doneButton()
-                .tap() ;
+                      .doneButton()
+                      .tap() ;
 
         this.navigator.songNowPlayingBar()
-                .cover()
-                .tap() ;
+                      .cover()
+                      .tap() ;
 
         this.navigator.localNowPlayingPage()
-                .addMyplaylistButton()
-                .tap() ;
+                      .addMyplaylistButton()
+                      .tap() ;
 
         this.navigator.addToPlaylistPage()
-                .createNowButton()
-                .assertVisible() ;
+                      .createNowButton()
+                      .assertVisible() ;
 
         this.navigator.addToPlaylistPage()
                       .closeButton()
@@ -765,191 +771,192 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
         this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
-                .popularArtistModule()
-                .lineUp()
-                .card( 0 )
-                .playButton()
-                .tap() ;
+                      .popularArtistModule()
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
 
         this.navigator.songNowPlayingBar()
-                .assertPlaying() ;
+                      .assertPlaying() ;
 
         this.navigator.songNowPlayingBar()
-                .cover()
-                .tap() ;
+                      .cover()
+                      .tap() ;
 
         this.navigator.streamNowPlayingPage()
-                .favoriteButton()
-                .tap() ;
+                      .favoriteButton()
+                      .tap() ;
 
         this.navigator.streamNowPlayingPage()
-                .savefavoriteImage()
-                .assertVisible() ;
+                      .savefavoriteImage()
+                      .assertVisible() ;
 
         String titlename = this.navigator.streamNowPlayingPage()
-                .songTitle()
-                .string() ;
+                      .songTitle()
+                      .string() ;
 
         this.navigator.streamNowPlayingPage()
-                .arrowButton()
-                .tap() ;
+                      .arrowButton()
+                      .tap() ;
 
         this.navigator.libraryTab()
-                .tap() ;
+                      .tap() ;
 
         this.navigator.libraryPage()
-                .favoriteCategory()
-                .tap() ;
+                      .favoriteCategory()
+                      .tap() ;
 
         this.navigator.favoritePage()
-                .streamMusicButton()
-                .tap() ;
+                      .streamMusicButton()
+                      .tap() ;
 
         this.navigator.favoritePage()
-                .streamMusicPanel()
-                .lineUp()
-                .card( 0 )
-                .title()
-                .assertEquals( titlename );
+                      .streamMusicPanel()
+                      .lineUp()
+                      .card( 0 )
+                      .title()
+                      .assertEquals( titlename );
 
         this.navigator.songNowPlayingBar()
-                .cover()
-                .tap() ;
+                      .cover()
+                      .tap() ;
 
         this.navigator.streamNowPlayingPage()
-                .favoriteButton()
-                .tap() ;
+                      .favoriteButton()
+                      .tap() ;
 
         this.navigator.streamNowPlayingPage()
-                .arrowButton()
-                .tap() ;
+                      .arrowButton()
+                      .tap() ;
 
         if( this.navigator.favoritePage().streamMusicPanel().lineUp().card( 0 ).cover().isVisible() ){
             this.navigator.favoritePage()
-                    .streamMusicPanel()
-                    .lineUp()
-                    .card( 0 )
-                    .title()
-                    .assertNotEquals( titlename ) ;
+                          .streamMusicPanel()
+                          .lineUp()
+                          .card( 0 )
+                          .title()
+                          .assertNotEquals( titlename ) ;
 
         } else {
             this.navigator.streamTab()
-                    .tap() ;
+                          .tap() ;
 
             this.navigator.libraryTab()
-                    .tap() ;
+                          .tap() ;
 
             this.navigator.libraryPage()
-                    .favoriteCategory()
-                    .tap() ;
+                          .favoriteCategory()
+                          .tap() ;
 
             this.navigator.favoritePage()
-                    .streamMusicButton()
-                    .tap() ;
+                          .streamMusicButton()
+                          .tap() ;
 
             this.navigator.emptyFavoritePage()
-                    .title()
-                    .assertVisible() ;
+                          .title()
+                          .assertVisible() ;
         }
     }
 
     @Test
     @TestRailId( { "C1922170", "C1922171", "C3080414", "C1917982", "C1917977" } )
+    //issue
     public void unfavorite_playlist_does_not_exist_favorite_page(){
         this.updateTestCaseInfo() ;
 
         String artistTitleName = this.navigator.streamPage()
-                .artistNewReleaseModule()
-                .lineUp()
-                .card( 0 )
-                .title()
-                .string() ;
+                      .artistNewReleaseModule()
+                      .lineUp()
+                      .card( 0 )
+                      .title()
+                      .string() ;
 
         this.navigator.streamPage()
-                .artistNewReleaseModule()
-                .lineUp()
-                .card( 0 )
-                .cover()
-                .tap() ;
+                      .artistNewReleaseModule()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
 
         this.navigator.artistNewReleaseDetailPage()
-                .favoriteButton()
-                .tap() ;
+                      .favoriteButton()
+                      .tap() ;
 
         this.navigator.libraryTab()
-                .tap() ;
+                      .tap() ;
 
         this.navigator.libraryPage()
-                .favoriteCategory()
-                .tap() ;
+                      .favoriteCategory()
+                      .tap() ;
 
         this.navigator.favoritePage()
-                .lineUp()
-                .card( 0 )
-                .title()
-                .assertEquals( artistTitleName ) ;
+                      .lineUp()
+                      .card( 0 )
+                      .title()
+                      .assertEquals( artistTitleName ) ;
 
         this.navigator.favoritePage()
-                .lineUp()
-                .card( 0 )
-                .cover()
-                .tap() ;
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
 
         this.navigator.artistNewReleaseDetailPage()
-                .favoriteButton()
-                .tap() ;
+                      .favoriteButton()
+                      .tap() ;
 
         UtaPassUtil.pressBack() ;
         UtaPassUtil.pressBack() ;
 
         this.navigator.libraryPage()
-                .favoriteCategory()
-                .tap() ;
+                      .favoriteCategory()
+                      .tap() ;
 
         this.navigator.favoritePage()
-                .lineUp()
-                .card( 0 )
-                .title()
-                .assertNotEquals( artistTitleName ) ;
+                      .lineUp()
+                      .card( 0 )
+                      .title()
+                      .assertNotEquals( artistTitleName ) ;
     }
 
-    @Test
-    @TestRailId( { "C1922153", "C1922067" } )
-    public void Play_search_results_in_playlists(){
-        this.updateTestCaseInfo() ;
-
-        this.navigator.searchTab()
-                .tap() ;
-
-        this.navigator.searchPage()
-                .searchBar()
-                .typeReturn( "Coldplay" );
-
-        this.navigator.searchPage()
-                .streamPanelButton()
-                .text()
-                .assertEquals( "Stream" );
-
-        this.navigator.searchPage()
-                .localMusicPanelButton()
-                .text()
-                .assertEquals( "Local Music" );
-
-        this.navigator.searchPage()
-                .searchStreamPanel()
-                .lineUp()
-                .card( 2 )
-                .songName()
-                .tap() ;
-
-        this.navigator.songInfoPage()
-                .songInfoPlayButton()
-                .tap() ;
-
-        this.navigator.songInfoPage()
-                .songInfoPauseButton()
-                .assertVisible() ;
-    }
+//    @Test
+//    @TestRailId( { "C1922153", "C1922067" } )
+//    public void Play_search_results_in_playlists(){
+//        this.updateTestCaseInfo() ;
+//
+//        this.navigator.searchTab()
+//                      .tap() ;
+//
+//        this.navigator.searchPage()
+//                      .searchBar()
+//                      .typeReturn( "Coldplay" );
+//
+//        this.navigator.searchPage()
+//                      .streamPanelButton()
+//                      .text()
+//                      .assertEquals( "Stream" );
+//
+//        this.navigator.searchPage()
+//                      .localMusicPanelButton()
+//                      .text()
+//                      .assertEquals( "Local Music" );
+//
+//        this.navigator.searchPage()
+//                      .searchStreamPanel()
+//                      .lineUp()
+//                      .card( 2 )
+//                      .songName()
+//                      .tap() ;
+//
+//        this.navigator.songInfoPage()
+//                      .songInfoPlayButton()
+//                      .tap() ;
+//
+//        this.navigator.songInfoPage()
+//                      .songInfoPauseButton()
+//                      .assertVisible() ;
+//    }
 
     @Test
     @TestRailId( { "C1922260", "C1922176" } )
@@ -957,57 +964,57 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
         this.updateTestCaseInfo() ;
 
         this.navigator.libraryTab()
-                .tap() ;
+                      .tap() ;
 
         this.navigator.libraryPage()
-                .myPlaylistsCategory()
-                .tap() ;
+                      .myPlaylistsCategory()
+                      .tap() ;
 
         this.navigator.myPlayListPage()
-                .createNowButton()
-                .tap() ;
+                      .createNowButton()
+                      .tap() ;
 
         this.navigator.createPlayListPage()
-                .createPlaylistTitle()
-                .type( "Hello World" ) ;
+                      .createPlaylistTitle()
+                      .type( "Hello World" ) ;
 
         this.navigator.createPlayListPage()
-                .addMusicButton()
-                .tap() ;
+                      .addMusicButton()
+                      .tap() ;
 
 
         this.navigator.addMusicPage()
-                .songsType()
-                .tap() ;
+                      .songsType()
+                      .tap() ;
 
         this.navigator.myPlayListSongsPage()
-                .lineUp()
-                .card( 0 )
-                .cover()
-                .tap() ;
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
 
         this.navigator.myPlayListSongsPage()
-                .nextButton()
-                .tap() ;
+                      .nextButton()
+                      .tap() ;
 
         this.navigator.createPlayListPage()
-                .doneButton()
-                .tap() ;
+                      .doneButton()
+                      .tap() ;
 
         this.navigator.myPlayListPage()
-                .lineUp()
-                .card( 0 )
-                .title()
-                .assertEquals( "Hello World" ) ;
+                      .lineUp()
+                      .card( 0 )
+                      .title()
+                      .assertEquals( "Hello World" ) ;
 
         this.navigator.myPlayListPage()
-                .lineUp()
-                .card( 0 )
-                .playButton()
-                .tap();
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap();
 
         this.navigator.songNowPlayingBar()
-                .assertPlaying();
+                      .assertPlaying();
     }
 
     @Test
@@ -1016,51 +1023,51 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
         this.updateTestCaseInfo() ;
 
         this.navigator.streamPage()
-                .newSongsHitSongsModule()
-                .lineUp()
-                .card( 0 )
-                .cover()
-                .tap() ;
+                      .newSongsHitSongsModule()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
 
         this.navigator.newSongsHitSongsDetailPage()
-                .favoriteButton()
-                .tap() ;
+                      .favoriteButton()
+                      .tap() ;
 
         String titlename = this.navigator.newSongsHitSongsDetailPage()
-                .title()
-                .string() ;
+                      .title()
+                      .string() ;
 
         this.navigator.libraryTab()
-                .tap() ;
+                      .tap() ;
 
         this.navigator.libraryPage()
-                .favoriteCategory()
-                .tap() ;
+                      .favoriteCategory()
+                      .tap() ;
 
         this.navigator.favoritePage()
-                .lineUp()
-                .card( 0 )
-                .title()
-                .assertEquals( titlename );
+                      .lineUp()
+                      .card( 0 )
+                      .title()
+                      .assertEquals( titlename );
 
         this.navigator.favoritePage()
-                .lineUp()
-                .card( 0 )
-                .playButton()
-                .tap() ;
+                      .lineUp()
+                      .card( 0 )
+                      .playButton()
+                      .tap() ;
 
         this.navigator.songNowPlayingBar()
-                .assertPlaying() ;
+                      .assertPlaying() ;
 
         this.navigator.favoritePage()
-                .lineUp()
-                .card( 0 )
-                .cover()
-                .tap() ;
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
 
         this.navigator.newSongsHitSongsDetailPage()
-                .favoriteButton()
-                .tap() ;
+                      .favoriteButton()
+                      .tap() ;
     }
 
     @Test
@@ -1068,24 +1075,50 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
     public void best_Fifty_Order() {
         this.updateTestCaseInfo() ;
 
+<<<<<<< HEAD
+=======
         this.navigator.streamPage()
-                .best50Module()
-                .lineUp()
-                .countSongs()
-                .assertEquals( 15 ) ;
+                      .best50Module()
+                      .lineUp()
+                      .countSongs()
+                      .assertEquals( 15 ) ;
 
         this.navigator.streamPage()
-                .best50Module()
-                .seeAll()
-                .tap() ;
+                      .best50Module()
+                      .seeAll()
+                      .tap() ;
 
         this.navigator.best50Page()
-                .showMoreButton()
-                .tap() ;
+                      .showMoreButton()
+                      .tap() ;
 
         this.navigator.best50Page()
-                .lineUp()
-                .countSongs()
-                .assertEquals( 50 ) ;
+                      .lineUp()
+                      .countSongs()
+                      .assertEquals( 50 ) ;
+    }
+
+    @Test
+    @TestRailId( { "C3452792" } )
+    public void play_song_order_in_stream_playlist_detail(){
+>>>>>>> espresso-gs-dev
+        this.navigator.streamPage()
+                      .topChartsModule()
+                      .lineUp()
+                      .card( 0 )
+                      .cover()
+                      .tap() ;
+
+        this.navigator.topChartsDetailPage()
+                      .playButton()
+                      .tap() ;
+
+        this.navigator.basicSellingTrigger()
+                      .title()
+                      .assertVisible() ;
+
+        this.navigator.basicSellingTrigger()
+                      .closeButton()
+                      .tap() ;
     }
 }

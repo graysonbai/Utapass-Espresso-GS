@@ -2,14 +2,12 @@ package com.kddi.android.UtaPass.sqa_espresso.pages.stream.common;
 
 import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
-import com.kddi.android.UtaPass.sqa_espresso.common.BasicString;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.endsWith;
 
 public class MyUtaPlayHistoryPopupMessage extends ViewObject {

@@ -1,17 +1,22 @@
 package com.kddi.android.UtaPass.sqa_espresso.common ;
 
-import android.support.test.espresso.ViewInteraction ;
-import android.view.View ;
+import android.support.test.espresso.ViewInteraction;
+import android.view.View;
 
-import com.kddi.android.UtaPass.R ;
+import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.InvisibleException;
 
-import org.hamcrest.Matcher ;
+import org.hamcrest.Matcher;
 
-import static android.support.test.espresso.Espresso.onView ;
-import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition ;
-import static android.support.test.espresso.matcher.ViewMatchers.* ;
-import static org.hamcrest.Matchers.* ;
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
+import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
+import static android.support.test.espresso.matcher.ViewMatchers.hasSibling;
+import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.anyOf;
 
 
 public abstract class LineUpObject extends ViewObject {

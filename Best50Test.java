@@ -1,13 +1,13 @@
 package com.kddi.android.UtaPass.sqa_espresso ;
 
-import android.support.test.runner.AndroidJUnit4 ;
-
-import org.junit.Test ;
-import org.junit.runner.RunWith ;
+import android.support.test.runner.AndroidJUnit4;
 
 import com.kddi.android.UtaPass.sqa_espresso.common.StringObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.Best50Module;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 
 @RunWith(AndroidJUnit4.class)

@@ -1,7 +1,7 @@
 package com.kddi.android.UtaPass.sqa_espresso.common.toolkit;
 
 import java.io.IOException;
-import java.util.HashMap;
+
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

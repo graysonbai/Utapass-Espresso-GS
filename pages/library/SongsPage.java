@@ -2,7 +2,7 @@ package com.kddi.android.UtaPass.sqa_espresso.pages.library ;
 
 import android.view.View;
 
-import com.kddi.android.UtaPass.R ;
+import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicImage;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher;
@@ -21,7 +21,7 @@ import org.hamcrest.Matcher;
 
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
-import static android.support.test.espresso.matcher.ViewMatchers.withId ;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.allOf;
 
 

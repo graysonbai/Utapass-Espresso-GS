@@ -1,21 +1,28 @@
 package com.kddi.android.UtaPass.sqa_espresso.common ;
 
-import android.support.test.espresso.* ;
-import android.view.View ;
-import android.widget.TextView ;
+import android.support.test.espresso.AmbiguousViewMatcherException;
+import android.support.test.espresso.NoMatchingViewException;
+import android.support.test.espresso.PerformException;
+import android.support.test.espresso.UiController;
+import android.support.test.espresso.ViewAction;
+import android.support.test.espresso.ViewInteraction;
+import android.view.View;
+import android.widget.TextView;
 
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.ExecuteException;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.MultipleMatchViewException;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.NoMatchViewException;
 
+import junit.framework.AssertionFailedError;
 
-import junit.framework.AssertionFailedError ;
+import org.hamcrest.Matcher;
 
-import org.hamcrest.Matcher ;
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
+import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 
-import static android.support.test.espresso.Espresso.onView ;
-import static android.support.test.espresso.assertion.ViewAssertions.matches ;
-import static android.support.test.espresso.matcher.ViewMatchers.* ;
 
 public class ViewObject {
     private String label = "ViewObject" ;

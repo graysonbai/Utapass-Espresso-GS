@@ -20,10 +20,9 @@ import org.hamcrest.Matcher;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anyOf;
-
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.endsWith;
 
 public class SideBarMenu extends ViewObject {

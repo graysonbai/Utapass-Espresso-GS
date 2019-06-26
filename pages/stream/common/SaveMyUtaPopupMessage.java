@@ -4,7 +4,6 @@ import android.view.View;
 
 import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
-import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
@@ -12,8 +11,6 @@ import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.InvisibleExceptio
 
 import org.hamcrest.Matcher;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 public class SaveMyUtaPopupMessage extends ViewObject {

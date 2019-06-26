@@ -4,7 +4,7 @@ import android.support.test.espresso.action.ViewActions;
 import android.support.test.uiautomator.UiObjectNotFoundException;
 import android.view.View;
 
-import com.kddi.android.UtaPass.R ;
+import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicImage;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher;
@@ -23,7 +23,7 @@ import org.hamcrest.Matchers;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
-import static android.support.test.espresso.matcher.ViewMatchers.withId ;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.core.AllOf.allOf;
 
 

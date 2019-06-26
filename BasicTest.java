@@ -6,9 +6,10 @@ import com.kddi.android.UtaPass.main.MainActivity;
 import com.kddi.android.UtaPass.sqa_espresso.common.Navigator;
 import com.kddi.android.UtaPass.sqa_espresso.common.RunningStatus;
 import com.kddi.android.UtaPass.sqa_espresso.common.TestRailId;
-import com.kddi.android.UtaPass.sqa_espresso.common.toolkit.QuotaControl;
 import com.kddi.android.UtaPass.sqa_espresso.common.UserStatus;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
+import com.kddi.android.UtaPass.sqa_espresso.common.toolkit.QuotaControl;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;

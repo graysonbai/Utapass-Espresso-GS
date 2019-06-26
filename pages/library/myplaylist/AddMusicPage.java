@@ -1,11 +1,11 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.library.myplaylist;
 
+import android.view.View;
+
 import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
-
-import android.view.View;
 
 import org.hamcrest.Matcher;
 

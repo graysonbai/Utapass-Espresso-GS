@@ -7,19 +7,19 @@ import android.view.View;
 import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicImage;
-import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher ;
+import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.StringObject;
-import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil ;
+import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IArtistName;
-import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ICover ;
+import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ICover;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IPlayButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ISongName;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ITitle;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
 
-import org.hamcrest.Matcher ;
+import org.hamcrest.Matcher;
 
 import java.util.HashSet;
 import java.util.Set;

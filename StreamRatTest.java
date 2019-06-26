@@ -1,9 +1,9 @@
 package com.kddi.android.UtaPass.sqa_espresso ;
 
-import android.support.test.runner.AndroidJUnit4 ;
+import android.support.test.runner.AndroidJUnit4;
 
-import org.junit.Test ;
-import org.junit.runner.RunWith ;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 
 @RunWith(AndroidJUnit4.class)

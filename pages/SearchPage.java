@@ -2,7 +2,7 @@ package com.kddi.android.UtaPass.sqa_espresso.pages ;
 
 import android.view.View;
 
-import com.kddi.android.UtaPass.R ;
+import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicTextField;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher;
@@ -16,13 +16,10 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.search.SearchStreamPanel;
 
 import org.hamcrest.Matcher;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.pressImeActionButton;
-import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
-import static android.support.test.espresso.matcher.ViewMatchers.withId ;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.endsWith;

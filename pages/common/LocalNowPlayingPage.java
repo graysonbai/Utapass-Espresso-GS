@@ -4,9 +4,7 @@ import android.view.View;
 
 import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
-import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
-import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 
 import org.hamcrest.Matcher;
 

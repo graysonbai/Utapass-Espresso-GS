@@ -16,6 +16,7 @@ import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IMoreButton;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
 
 import org.hamcrest.Matcher;
+
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;

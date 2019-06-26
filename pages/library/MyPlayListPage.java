@@ -18,10 +18,9 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.library.myplaylist.SortMenuPa
 
 import org.hamcrest.Matcher;
 
+import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
-
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anyOf;
 

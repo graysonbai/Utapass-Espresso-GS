@@ -1,12 +1,9 @@
 package com.kddi.android.UtaPass.sqa_espresso.common ;
 
 import android.support.test.uiautomator.UiObjectNotFoundException;
-import android.view.View;
 
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.ButtonInvisibleException;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.ButtonVisibleException;
-
-import org.hamcrest.Matcher;
 
 
 public class UiAutomatorButton extends ViewObject {

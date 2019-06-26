@@ -1,9 +1,9 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.library.myuta ;
 
-import com.kddi.android.UtaPass.R ;
-import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton ;
+import com.kddi.android.UtaPass.R;
+import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 
-import static android.support.test.espresso.matcher.ViewMatchers.withId ;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 public class MyUtaHistoryButton extends BasicButton {
 

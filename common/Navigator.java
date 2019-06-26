@@ -5,9 +5,12 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.SearchPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.SettingsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.StreamPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.AddToPlaylistPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicSellingTrigger;
+import com.kddi.android.UtaPass.sqa_espresso.pages.common.DeleteSongConfirmMessage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.LibraryTab;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.ListenWithNowPlayingBar;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.LocalNowPlayingPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.common.MyUtaSellingTrigger;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.NowPlayingPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.RadioNowPlayingBar;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.RadioNowPlayingPage;
@@ -18,20 +21,18 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.common.StreamNowPlayingPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.StreamTab;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.AlbumsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.ArtistsPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.library.FavoritePage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.MyPlayListPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.MyUtaPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.PlayHistoryPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.SongsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.VideosPage;
-import com.kddi.android.UtaPass.sqa_espresso.pages.library.FavoritePage;
-
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.albums.AlbumSortPanel;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.albums.AlbumsDetailPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.artists.AlbumDetailMorePanel;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.artists.ArtistAlbumsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.artists.ArtistDetailPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.artists.ArtistSortPanel;
-import com.kddi.android.UtaPass.sqa_espresso.pages.common.DeleteSongConfirmMessage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.favorite.EmptyFavoritePage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.favorite.PlaylistsPanel;
 import com.kddi.android.UtaPass.sqa_espresso.pages.library.myplaylist.AddMusicPage;
@@ -48,6 +49,9 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.stream.LiveConcertPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.NewSongsHitSongsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.SideBarMenu;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.SpotlightPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.DeleteMyUtaConfirmPopupMessage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.SaveMyUtaConfirmPopupMessage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.SaveMyUtaPopupMessage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.ArtistNewReleaseDetailPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.DailyMixDetailPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.LiveDetailPage;
@@ -56,9 +60,6 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.OnAirSonglistPa
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.PopularArtistDetailPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.RadioDetailPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.TopChartsDetailPage;
-import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.DeleteMyUtaConfirmPopupMessage;
-import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.SaveMyUtaConfirmPopupMessage;
-import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.SaveMyUtaPopupMessage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.WhatsNewDetailPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.page.DebugUtilPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.page.PopularArtistPage;
@@ -139,6 +140,22 @@ public class Navigator {
     private ArtistSortPanel artistSortPanel;
     private DeleteSongConfirmMessage deleteSongConfirmMessage;
     private AlbumSortPanel albumSortPanel;
+    private MyUtaSellingTrigger myUtaSellingTrigger;
+    private BasicSellingTrigger basicSellingTrigger;
+
+    public BasicSellingTrigger basicSellingTrigger(){
+        if( this.basicSellingTrigger == null ){
+            this.basicSellingTrigger = new BasicSellingTrigger();
+        }
+        return this.basicSellingTrigger.ready();
+    }
+
+    public MyUtaSellingTrigger myUtaSellingTrigger(){
+        if( this.myUtaSellingTrigger == null ){
+            this.myUtaSellingTrigger = new MyUtaSellingTrigger();
+        }
+        return this.myUtaSellingTrigger.ready();
+    }
 
     public AlbumSortPanel albumSortPanel(){
         if( this.albumSortPanel == null ){

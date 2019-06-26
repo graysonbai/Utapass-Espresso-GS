@@ -2,7 +2,7 @@ package com.kddi.android.UtaPass.sqa_espresso.pages ;
 
 import android.support.test.espresso.action.ViewActions;
 
-import com.kddi.android.UtaPass.R ;
+import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
@@ -19,11 +19,14 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.TopChartsModul
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.WhatsNewModule;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream._module.YouMayAlsoLikeModule;
 
-import static android.support.test.espresso.Espresso.onView ;
+import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.matcher.ViewMatchers.* ;
 import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
-import static org.hamcrest.Matchers.*;
+import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.anyOf;
 
 
 public class StreamPage extends BasicPage {

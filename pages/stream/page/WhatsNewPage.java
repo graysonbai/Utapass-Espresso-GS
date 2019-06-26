@@ -8,7 +8,6 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.stream.page.whatsnew.LastWeek
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.page.whatsnew.ThisWeekPanel;
 
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
-
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.allOf;

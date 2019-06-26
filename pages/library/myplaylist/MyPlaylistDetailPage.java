@@ -10,7 +10,6 @@ import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.LineUpObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
-import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IArtistName;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ICover;
 import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IMoreButton;

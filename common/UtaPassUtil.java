@@ -2,30 +2,35 @@ package com.kddi.android.UtaPass.sqa_espresso.common ;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
-import android.content.res.Resources ;
-import android.graphics.* ;
-import android.graphics.drawable.Drawable ;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.* ;
-import android.support.test.espresso.action.* ;
-import android.support.test.rule.ActivityTestRule ;
+import android.support.test.espresso.Espresso;
+import android.support.test.espresso.ViewAction;
+import android.support.test.espresso.action.CoordinatesProvider;
+import android.support.test.espresso.action.GeneralLocation;
+import android.support.test.espresso.action.GeneralSwipeAction;
+import android.support.test.espresso.action.Press;
+import android.support.test.espresso.action.Swipe;
+import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
 import android.support.test.uiautomator.UiDevice;
 import android.support.test.uiautomator.UiObject;
-import android.support.test.uiautomator.UiObjectNotFoundException;
 import android.support.test.uiautomator.UiSelector;
-import android.util.Log ;
-import android.view.View ;
-import android.widget.ImageView ;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.kddi.android.UtaPass.main.MainActivity;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.BasicException;
-import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.NoMatchViewException;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.NotReadyException;
-import com.kddi.android.UtaPass.sqa_espresso.pages.common.SongNowPlayingBar;
 import com.squareup.spoon.Spoon;
 
-import org.hamcrest.* ;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeMatcher;
 
 import java.util.Collection;
 

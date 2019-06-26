@@ -1,14 +1,14 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.common ;
 
-import com.kddi.android.UtaPass.R ;
+import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyString;
 import com.kddi.android.UtaPass.sqa_espresso.common.StringObject;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
 
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
-import static android.support.test.espresso.matcher.ViewMatchers.withId ;
-import static org.hamcrest.Matchers.* ;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static org.hamcrest.Matchers.allOf;
 
 
 public class SongNowPlayingBar extends BasicNowPlayingBar {

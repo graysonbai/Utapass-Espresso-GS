@@ -4,7 +4,7 @@ import android.support.test.espresso.NoMatchingViewException;
 import android.support.test.espresso.action.ViewActions;
 import android.view.View;
 
-import com.kddi.android.UtaPass.R ;
+import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicImage;
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyMatcher;
@@ -28,7 +28,7 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
-import static android.support.test.espresso.matcher.ViewMatchers.withId ;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.endsWith;
 
@@ -89,11 +89,15 @@ public class AlbumDetailPage extends BasicPage {
                 () -> allOf(
                         withId( R.id.button_play_in_order ),
                         isDescendantOfA( withId( R.id.two_play_action_layout ) ) ) ){
-
             public LazyString text() {
                 return new LazyString( this.label(), () -> allOf(
                         withClassName( endsWith( "TextView" ) ),
                         isDescendantOfA( super.matcher().execute() ) ) ) ;
+            }
+
+            public void tap() {
+                super.tap();
+                UtaPassUtil.sleep( 3, "ensure stability" );
             }
         } ;
     }

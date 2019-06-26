@@ -1,6 +1,5 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.library.common ;
 
-import android.support.test.espresso.ViewInteraction;
 import android.support.test.espresso.action.ViewActions;
 import android.view.View;
 

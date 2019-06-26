@@ -1,7 +1,6 @@
 package com.kddi.android.UtaPass.sqa_espresso.common ;
 
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.StringNotEqualException;
-import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.StringNotInException;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;

@@ -68,6 +68,9 @@ public class RatCriticalTest extends BasicTest {
                 .card( 0 )
                 .playButton()
                 .tap() ;
+
+        this.navigator.songNowPlayingBar()
+                      .assertPlaying();
     }
 
     @Test

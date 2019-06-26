@@ -10,10 +10,6 @@ import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
 public class RatCriticalBasicTest extends BasicPlanEvn {
-<<<<<<< HEAD
-=======
-
->>>>>>> espresso-gs-dev
     @Test
     @TestRailId( { "C1917543", "C1917560", "C1917613" } )
     //issue
@@ -167,20 +163,20 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
                       .tap() ;
     }
 
-//    @Test
-//    @TestRailId( { "C1917677" } )
-//    public void ensure_daily_ranking_number_of_cards(){
-//        this.updateTestCaseInfo() ;
-//
-//        this.navigator.libraryTab()
-//                      .tap() ;
-//
-//        this.navigator.libraryPage()
-//                      .dailyRankingModule()
-//                      .lineUp()
-//                      .countSongs()
-//                      .assertEquals( 10 ) ;
-//    }
+    @Test
+    @TestRailId( { "C1917677" } )
+    public void ensure_daily_ranking_number_of_cards(){
+        this.updateTestCaseInfo() ;
+
+        this.navigator.libraryTab()
+                      .tap() ;
+
+        this.navigator.libraryPage()
+                      .dailyRankingModule()
+                      .lineUp()
+                      .countSongs()
+                      .assertEquals( 10 ) ;
+    }
 
     @Test
     @TestRailId( { "C1922033" } )
@@ -377,7 +373,8 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
                       .playButton()
                       .tap() ;
 
-        this.navigator.songNowPlayingBar().assertPlaying();
+        this.navigator.songNowPlayingBar()
+                      .assertPlaying();
     }
 
     @Test
@@ -1075,8 +1072,6 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
     public void best_Fifty_Order() {
         this.updateTestCaseInfo() ;
 
-<<<<<<< HEAD
-=======
         this.navigator.streamPage()
                       .best50Module()
                       .lineUp()
@@ -1101,7 +1096,6 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
     @Test
     @TestRailId( { "C3452792" } )
     public void play_song_order_in_stream_playlist_detail(){
->>>>>>> espresso-gs-dev
         this.navigator.streamPage()
                       .topChartsModule()
                       .lineUp()

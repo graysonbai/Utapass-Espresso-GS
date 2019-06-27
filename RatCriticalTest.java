@@ -1251,36 +1251,47 @@ public class RatCriticalTest extends BasicTest {
         this.updateTestCaseInfo() ;
 
         this.navigator.searchTab()
-                      .tap() ;
+                .tap() ;
 
         this.navigator.searchPage()
-                      .searchBar()
-                      .typeReturn( "Coldplay" ) ;
+                .searchBar()
+                .typeReturn( "Coldplay" );
 
         this.navigator.searchPage()
-                      .streamPanelButton()
-                      .text()
-                      .assertEquals( "Stream" ) ;
+                .streamPanelButton()
+                .text()
+                .assertEquals( "Stream" );
 
         this.navigator.searchPage()
-                      .localMusicPanelButton()
-                      .text()
-                      .assertEquals( "Local Music" ) ;
+                .localMusicPanelButton()
+                .text()
+                .assertEquals( "Local Music" );
 
         this.navigator.searchPage()
-                      .searchStreamPanel()
-                      .lineUp()
-                      .card( 2 )
-                      .songName()
-                      .tap() ;
+                .searchStreamPanel()
+                .lineUp()
+                .card( 2 )
+                .songName()
+                .tap() ;
+
+        this.navigator.searchArtistPage()
+                .songPanelButton()
+                .tap();
+
+        this.navigator.searchArtistPage()
+                .songPanel()
+                .lineUp()
+                .card( 2 )
+                .songName()
+                .tap();
 
         this.navigator.songInfoPage()
-                      .songInfoPlayButton()
-                      .tap() ;
+                .songInfoPlayButton()
+                .tap() ;
 
         this.navigator.songInfoPage()
-                      .songInfoPauseButton()
-                      .assertVisible() ;
+                .songInfoPauseButton()
+                .assertVisible() ;
     }
 
     @Test

@@ -917,43 +917,54 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
                       .assertNotEquals( artistTitleName ) ;
     }
 
-//    @Test
-//    @TestRailId( { "C1922153", "C1922067" } )
-//    public void Play_search_results_in_playlists(){
-//        this.updateTestCaseInfo() ;
-//
-//        this.navigator.searchTab()
-//                      .tap() ;
-//
-//        this.navigator.searchPage()
-//                      .searchBar()
-//                      .typeReturn( "Coldplay" );
-//
-//        this.navigator.searchPage()
-//                      .streamPanelButton()
-//                      .text()
-//                      .assertEquals( "Stream" );
-//
-//        this.navigator.searchPage()
-//                      .localMusicPanelButton()
-//                      .text()
-//                      .assertEquals( "Local Music" );
-//
-//        this.navigator.searchPage()
-//                      .searchStreamPanel()
-//                      .lineUp()
-//                      .card( 2 )
-//                      .songName()
-//                      .tap() ;
-//
-//        this.navigator.songInfoPage()
-//                      .songInfoPlayButton()
-//                      .tap() ;
-//
-//        this.navigator.songInfoPage()
-//                      .songInfoPauseButton()
-//                      .assertVisible() ;
-//    }
+    @Test
+    @TestRailId( { "C1922153", "C1922067" } )
+    public void Play_search_results_in_playlists(){
+        this.updateTestCaseInfo() ;
+
+        this.navigator.searchTab()
+                      .tap() ;
+
+        this.navigator.searchPage()
+                      .searchBar()
+                      .typeReturn( "Coldplay" );
+
+        this.navigator.searchPage()
+                      .streamPanelButton()
+                      .text()
+                      .assertEquals( "Stream" );
+
+        this.navigator.searchPage()
+                      .localMusicPanelButton()
+                      .text()
+                      .assertEquals( "Local Music" );
+
+        this.navigator.searchPage()
+                      .searchStreamPanel()
+                      .lineUp()
+                      .card( 2 )
+                      .songName()
+                      .tap() ;
+
+        this.navigator.searchArtistPage()
+                      .songPanelButton()
+                      .tap();
+
+        this.navigator.searchArtistPage()
+                      .songPanel()
+                      .lineUp()
+                      .card( 2 )
+                      .songName()
+                      .tap();
+
+        this.navigator.songInfoPage()
+                      .songInfoPlayButton()
+                      .tap() ;
+
+        this.navigator.songInfoPage()
+                      .songInfoPauseButton()
+                      .assertVisible() ;
+    }
 
     @Test
     @TestRailId( { "C1922260", "C1922176" } )

@@ -1,6 +1,7 @@
 package com.kddi.android.UtaPass.sqa_espresso.common ;
 
-import com.kddi.android.UtaPass.sqa_espresso.pages.LibraryPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.search.searchArtist.SearchArtistPage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream.LibraryPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.SearchPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.SettingsPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.StreamPage;
@@ -142,6 +143,14 @@ public class Navigator {
     private AlbumSortPanel albumSortPanel;
     private MyUtaSellingTrigger myUtaSellingTrigger;
     private BasicSellingTrigger basicSellingTrigger;
+    private SearchArtistPage searchArtistPage;
+
+    public SearchArtistPage searchArtistPage(){
+        if( this.searchArtistPage == null ){
+            this.searchArtistPage = new SearchArtistPage();
+        }
+        return this.searchArtistPage.ready();
+    }
 
     public BasicSellingTrigger basicSellingTrigger(){
         if( this.basicSellingTrigger == null ){

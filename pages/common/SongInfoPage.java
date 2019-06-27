@@ -25,7 +25,12 @@ public class SongInfoPage extends ViewObject {
         return new BasicButton( this.label() + " > Song info Play Button ",
                 () -> UtaPassUtil.withIndex( allOf(
                         withId( R.id.view_playlist_play_icon ),
-                        isDescendantOfA( withId( R.id.song_info_cover_container ) ) ) , 0 ) );
+                        isDescendantOfA( withId( R.id.song_info_cover_container ) ) ) , 0 ) ){
+            public void tap(){
+                super.tap();
+                UtaPassUtil.sleep( 2, "Ensure stability");
+            }
+        };
     }
 
     public BasicButton songInfoPauseButton(){

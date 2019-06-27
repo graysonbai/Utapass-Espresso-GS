@@ -1,4 +1,4 @@
-package com.kddi.android.UtaPass.sqa_espresso.pages.search;
+package com.kddi.android.UtaPass.sqa_espresso.pages.search.searchArtist;
 
 import android.view.View;
 
@@ -20,11 +20,11 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.core.AllOf.allOf;
 
-public class SearchStreamPanel extends BasicPage {
+public class PlaylistPanel extends BasicPage {
     private InternalLineUp lineUp;
 
-    public SearchStreamPanel( String label ){
-        this.label( label + " > SearchStreamPanel" );
+    public PlaylistPanel( String label ){
+        this.label( label + " > PlaylistPanel" );
     }
 
     public InternalLineUp lineUp() {
@@ -35,18 +35,17 @@ public class SearchStreamPanel extends BasicPage {
     }
 
     public class InternalLineUp extends LineUpObject {
-
         public InternalLineUp(  String label ) {
             this.setMaxIndexOfLineUpObject( 50 ) ;
             this.label( label + " > LineUp" ) ;
         }
 
         protected Matcher<View> getMatcherToFindRecycleView() {
-            return withId( R.id.search_stream_inner_recycler_view ) ;
+            return UtaPassUtil.withIndex( withId( R.id.stream_artist_inner_recycler_view ), 0 ) ;
         }
 
         protected Matcher<View> getMatcherToCountMaxIndexOfWindow() {
-            return allOf( withId( R.id.item_playlist_linear_root_layout ),
+            return allOf( withId( R.id.item_detail_stream_audio_layout ),
                     isCompletelyDisplayed(),
                     isDescendantOfA( this.getMatcherToFindRecycleView() ) ) ;
         }
@@ -63,7 +62,7 @@ public class SearchStreamPanel extends BasicPage {
 
             card.songName(label + " > SongName",
                     () -> allOf(
-                            withId( R.id.item_playlist_linear_title ),
+                            withId( R.id.item_detail_stream_audio_title ),
                             isDescendantOfA( UtaPassUtil.withIndex(
                                     this.getMatcherToFindRecycleView(),
                                     indexInWindow ) ) ) ) ;
@@ -77,8 +76,8 @@ public class SearchStreamPanel extends BasicPage {
 
             card.cover( label + "Cover",
                     () -> allOf(
-                            withId( R.id.item_playlist_linear_image ),
-                            isDescendantOfA( UtaPassUtil.withIndex(
+                            withId( R.id.item_detail_stream_audio_image ),
+                            isDescendantOfA(UtaPassUtil.withIndex(
                                     this.getMatcherToFindRecycleView(),
                                     indexInWindow ) ) ) );
 

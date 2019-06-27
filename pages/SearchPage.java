@@ -13,6 +13,7 @@ import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.IRecommendStri
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.search.SearchLocalMusicPanel;
 import com.kddi.android.UtaPass.sqa_espresso.pages.search.SearchStreamPanel;
+import com.kddi.android.UtaPass.sqa_espresso.pages.search.searchArtist.SearchArtistPage;
 
 import org.hamcrest.Matcher;
 

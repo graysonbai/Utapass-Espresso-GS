@@ -1145,4 +1145,37 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
                       .description()
                       .assertVisible();
     }
+
+    @Test
+    @TestRailId({ "C2207533" })
+    public void ensure_tap_myuta_popup_selling_trigger_screen(){
+        this.navigator.streamPage()
+                .artistNewReleaseModule()
+                .lineUp()
+                .card( 1 )
+                .playButton()
+                .tap();
+
+        this.navigator.songNowPlayingBar()
+                .assertPlaying();
+
+        this.navigator.songNowPlayingBar()
+                .tap();
+
+        this.navigator.streamNowPlayingPage()
+                .myUtaButton()
+                .tap();
+
+        this.navigator.myUtaSellingTrigger()
+                .description()
+                .assertVisible();
+
+        this.navigator.myUtaSellingTrigger()
+                .closeButton()
+                .tap();
+
+        this.navigator.streamNowPlayingPage()
+                .arrowButton()
+                .tap();
+    }
 }

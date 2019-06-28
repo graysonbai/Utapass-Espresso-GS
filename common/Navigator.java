@@ -53,6 +53,7 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.stream.SpotlightPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.DeleteMyUtaConfirmPopupMessage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.SaveMyUtaConfirmPopupMessage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.SaveMyUtaPopupMessage;
+import com.kddi.android.UtaPass.sqa_espresso.pages.stream.common.ShufflePlayOnlyMessage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.ArtistNewReleaseDetailPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.DailyMixDetailPage;
 import com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail.LiveDetailPage;
@@ -144,6 +145,14 @@ public class Navigator {
     private MyUtaSellingTrigger myUtaSellingTrigger;
     private BasicSellingTrigger basicSellingTrigger;
     private SearchArtistPage searchArtistPage;
+    private ShufflePlayOnlyMessage shufflePlayOnlyMessage;
+
+    public ShufflePlayOnlyMessage shufflePlayOnlyMessage(){
+        if( this.shufflePlayOnlyMessage == null ){
+            this.shufflePlayOnlyMessage = new ShufflePlayOnlyMessage();
+        }
+        return this.shufflePlayOnlyMessage.ready();
+    }
 
     public SearchArtistPage searchArtistPage(){
         if( this.searchArtistPage == null ){

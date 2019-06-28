@@ -1178,4 +1178,41 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
                 .arrowButton()
                 .tap();
     }
+
+    @Test
+    @TestRailId({ "C2207545" })
+    public void basic_plan_tap_play_mode(){
+        this.navigator.streamPage()
+                .artistNewReleaseModule()
+                .lineUp()
+                .card( 1 )
+                .playButton()
+                .tap();
+
+        this.navigator.songNowPlayingBar()
+                .assertPlaying();
+
+        this.navigator.songNowPlayingBar()
+                .tap();
+
+        this.navigator.streamNowPlayingPage()
+                .playModeButton()
+                .tap();
+
+        this.navigator.shufflePlayOnlyMessage()
+                .title()
+                .assertVisible();
+
+        this.navigator.shufflePlayOnlyMessage()
+                .description()
+                .assertVisible();
+
+        this.navigator.shufflePlayOnlyMessage()
+                .closeButton()
+                .tap();
+
+        this.navigator.streamNowPlayingPage()
+                .arrowButton()
+                .tap();
+    }
 }

@@ -1530,52 +1530,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
-    @TestRailId( { "C2208781" } )
-    public void myuta_song_in_play_history_songs_panel(){
-        this.updateTestCaseInfo() ;
-
-        this.navigator.streamPage()
-                      .whatsNewModule()
-                      .lineUp()
-                      .card( 0 )
-                      .playButton()
-                      .tap() ;
-
-        this.navigator.songNowPlayingBar()
-                      .assertPlaying() ;
-
-        this.navigator.libraryTab()
-                      .tap() ;
-
-        this.navigator.libraryPage()
-                      .playHistorySeeAllButton()
-                      .tap() ;
-
-        this.navigator.playHistoryPage()
-                      .songsPanelButton()
-                      .tap() ;
-
-        this.navigator.playHistoryPage()
-                      .SongsPanel()
-                      .lineUp()
-                      .card( 0 )
-                      .myUtaButton()
-                      .tap() ;
-
-        this.navigator.saveMyUtaPopupMessage()
-                      .saveButton()
-                      .tap() ;
-
-        this.navigator.playHistoryPage()
-                      .SongsPanel()
-                      .lineUp()
-                      .card( 0 )
-                      .playButton()
-                      .assertVisible() ;
-    }
-
-    @Test
-    @TestRailId( { "C1917296", "C1917981", "C1917977" } )
+    @TestRailId( { "C1917296", "C1917981" } )
     public void favorite_stream_song_check_favorite_playlists_page(){
         this.updateTestCaseInfo() ;
 
@@ -1748,7 +1703,7 @@ public class RatCriticalTest extends BasicTest {
     }
 
     @Test
-    @TestRailId( { "C3224847" } )
+    @TestRailId( { "C2208781" } )
     public void myuta_song_in_playhistory_songs_page() {
         this.updateTestCaseInfo() ;
 

@@ -763,7 +763,7 @@ public class RatCriticalBasicTest extends BasicPlanEvn {
     }
 
     @Test
-    @TestRailId( { "C1917296", "C1917981", "C1917977" } )
+    @TestRailId( { "C1917296", "C1917981" } )
     public void favorite_stream_song_check_favorite_playlists_page(){
         this.updateTestCaseInfo() ;
 

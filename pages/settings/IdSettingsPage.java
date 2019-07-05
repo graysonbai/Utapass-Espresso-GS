@@ -1,6 +1,6 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.settings ;
 
-import android.support.test.uiautomator.UiSelector;
+import androidx.test.uiautomator.UiSelector;
 
 import com.kddi.android.UtaPass.sqa_espresso.common.LazyUiAutomatorString;
 import com.kddi.android.UtaPass.sqa_espresso.common.StringObject;

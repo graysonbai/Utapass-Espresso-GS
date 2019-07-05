@@ -1,15 +1,15 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.stream.detail;
 
-import android.support.test.espresso.ViewInteraction;
+import androidx.test.espresso.ViewInteraction;
 
 import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.BasicButton;
 import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
-import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
+import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.allOf;
 
 public class LiveDetailPage extends BasicPage {
@@ -22,7 +22,7 @@ public class LiveDetailPage extends BasicPage {
 
     }
 
-    private ViewInteraction getRecycleView( int position ) {
+    private ViewInteraction getRecycleView(int position ) {
         return onView( withId( R.id.live_detail_recycler_view ) ).perform( scrollToPosition( position ));
     }
 

@@ -18,9 +18,9 @@ import com.kddi.android.UtaPass.sqa_espresso.pages.common.BasicPage;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 
-import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withParent;
+import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static org.hamcrest.core.AllOf.allOf;
 
 

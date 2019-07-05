@@ -1,6 +1,6 @@
 package com.kddi.android.UtaPass.sqa_espresso.common ;
 
-import android.support.test.uiautomator.UiObject;
+import androidx.test.uiautomator.UiObject;
 
 public interface LazyUiAutomatorMatcher {
     UiObject execute() ;

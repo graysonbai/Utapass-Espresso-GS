@@ -1,6 +1,6 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.common ;
 
-import android.support.test.espresso.Espresso;
+import androidx.test.espresso.Espresso;
 
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 

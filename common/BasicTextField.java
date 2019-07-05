@@ -3,10 +3,10 @@ package com.kddi.android.UtaPass.sqa_espresso.common ;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.ButtonInvisibleException;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.ButtonVisibleException;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.pressImeActionButton;
-import static android.support.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
+import static androidx.test.espresso.action.ViewActions.typeText;
 
 
 public class BasicTextField extends ViewObject {

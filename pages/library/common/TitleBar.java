@@ -1,7 +1,8 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.library.common ;
 
-import android.support.test.espresso.action.ViewActions;
 import android.view.View;
+
+import androidx.test.espresso.action.ViewActions;
 
 import com.kddi.android.UtaPass.R;
 import com.kddi.android.UtaPass.sqa_espresso.common.UtaPassUtil;
@@ -9,10 +10,10 @@ import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 
 import org.hamcrest.Matcher;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
-import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
+import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.endsWith;
 

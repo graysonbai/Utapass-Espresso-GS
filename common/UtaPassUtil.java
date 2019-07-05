@@ -6,22 +6,22 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.Espresso;
-import android.support.test.espresso.ViewAction;
-import android.support.test.espresso.action.CoordinatesProvider;
-import android.support.test.espresso.action.GeneralLocation;
-import android.support.test.espresso.action.GeneralSwipeAction;
-import android.support.test.espresso.action.Press;
-import android.support.test.espresso.action.Swipe;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
-import android.support.test.uiautomator.UiDevice;
-import android.support.test.uiautomator.UiObject;
-import android.support.test.uiautomator.UiSelector;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.action.CoordinatesProvider;
+import androidx.test.espresso.action.GeneralLocation;
+import androidx.test.espresso.action.GeneralSwipeAction;
+import androidx.test.espresso.action.Press;
+import androidx.test.espresso.action.Swipe;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
+import androidx.test.uiautomator.UiDevice;
+import androidx.test.uiautomator.UiObject;
+import androidx.test.uiautomator.UiSelector;
 
 import com.kddi.android.UtaPass.main.MainActivity;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.BasicException;
@@ -34,8 +34,8 @@ import org.hamcrest.TypeSafeMatcher;
 
 import java.util.Collection;
 
-import static android.support.test.InstrumentationRegistry.getInstrumentation;
-import static android.support.test.runner.lifecycle.Stage.RESUMED;
+import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
+import static androidx.test.runner.lifecycle.Stage.RESUMED;
 
 public class UtaPassUtil {
     private static final int RETRY_INTERVAL = 5 ;
@@ -198,10 +198,10 @@ public class UtaPassUtil {
     }
 
     public static UiDevice getUiDeviceInstance() {
-        return UiDevice.getInstance( InstrumentationRegistry.getInstrumentation() ) ;
+        return UiDevice.getInstance( getInstrumentation() ) ;
     }
 
-    public static UiObject findObjectByClassName( String className ) {
+    public static UiObject findObjectByClassName(String className ) {
         return UtaPassUtil.findObjectByClassName( className, 0 ) ;
     }
 

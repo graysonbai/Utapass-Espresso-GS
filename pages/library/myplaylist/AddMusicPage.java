@@ -9,7 +9,8 @@ import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 
 import org.hamcrest.Matcher;
 
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+
 
 public class AddMusicPage extends ViewObject {
 

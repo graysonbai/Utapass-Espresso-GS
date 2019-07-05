@@ -3,8 +3,8 @@ package com.kddi.android.UtaPass.sqa_espresso.common ;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.InvisibleException;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.VisibleException;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
 
 
 public class BasicImage extends ViewObject {

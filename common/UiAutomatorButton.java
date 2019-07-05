@@ -1,6 +1,6 @@
 package com.kddi.android.UtaPass.sqa_espresso.common ;
 
-import android.support.test.uiautomator.UiObjectNotFoundException;
+import androidx.test.uiautomator.UiObjectNotFoundException;
 
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.ButtonInvisibleException;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.ButtonVisibleException;

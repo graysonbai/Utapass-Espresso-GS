@@ -14,7 +14,7 @@ import com.kddi.android.UtaPass.sqa_espresso.common.card_behavior.ITitle;
 
 import org.hamcrest.Matcher;
 
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 
 public class DailyMixModule extends ViewObject {

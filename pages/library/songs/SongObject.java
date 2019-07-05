@@ -1,10 +1,11 @@
 package com.kddi.android.UtaPass.sqa_espresso.pages.library.songs ;
 
-import android.support.test.espresso.ViewInteraction;
+
+import androidx.test.espresso.ViewInteraction;
 
 import com.kddi.android.UtaPass.sqa_espresso.common.ViewObject;
 
-import static android.support.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.click;
 
 public class SongObject extends ViewObject {
 

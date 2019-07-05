@@ -11,7 +11,7 @@ import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.InvisibleExceptio
 
 import org.hamcrest.Matcher;
 
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 public class SaveMyUtaPopupMessage extends ViewObject {
     private Matcher<View> matcher ;

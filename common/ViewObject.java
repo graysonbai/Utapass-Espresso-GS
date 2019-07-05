@@ -1,13 +1,14 @@
 package com.kddi.android.UtaPass.sqa_espresso.common ;
 
-import android.support.test.espresso.AmbiguousViewMatcherException;
-import android.support.test.espresso.NoMatchingViewException;
-import android.support.test.espresso.PerformException;
-import android.support.test.espresso.UiController;
-import android.support.test.espresso.ViewAction;
-import android.support.test.espresso.ViewInteraction;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.test.espresso.AmbiguousViewMatcherException;
+import androidx.test.espresso.NoMatchingViewException;
+import androidx.test.espresso.PerformException;
+import androidx.test.espresso.UiController;
+import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.ViewInteraction;
 
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.ExecuteException;
 import com.kddi.android.UtaPass.sqa_espresso.common.exceptions.MultipleMatchViewException;
@@ -17,11 +18,11 @@ import junit.framework.AssertionFailedError;
 
 import org.hamcrest.Matcher;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
-import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
+import static androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 
 
 public class ViewObject {
@@ -86,7 +87,7 @@ public class ViewObject {
         }
     }
 
-    protected ViewInteraction handleExceptionWhenMatching( IMatcher command) {
+    protected ViewInteraction handleExceptionWhenMatching( IMatcher command ) {
         try {
             return command.execute() ;
         }

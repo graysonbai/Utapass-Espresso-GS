@@ -1,6 +1,6 @@
 package com.kddi.android.UtaPass.sqa_espresso;
 
-import android.support.test.rule.ActivityTestRule;
+import androidx.test.rule.ActivityTestRule;
 
 import com.kddi.android.UtaPass.main.MainActivity;
 import com.kddi.android.UtaPass.sqa_espresso.common.Navigator;
